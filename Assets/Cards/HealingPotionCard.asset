@@ -15,6 +15,6 @@ MonoBehaviour:
   cardName: Heal Potion
   description: Deals 5 heal
   cardIcon: {fileID: 0}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 4009389148060104062, guid: f0b4bf1bbab207040a3099cf777acfcb, type: 3}
   isConsumable: 1
   healAmount: 5

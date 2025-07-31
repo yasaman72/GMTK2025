@@ -15,6 +15,6 @@ MonoBehaviour:
   cardName: Dagger
   description: Deals 1 damage
   cardIcon: {fileID: 0}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 4009389148060104062, guid: 81a3d55b829add4468aaf915c58adea5, type: 3}
   isConsumable: 0
   damage: 1

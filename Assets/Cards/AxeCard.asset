@@ -15,6 +15,6 @@ MonoBehaviour:
   cardName: 'Axe '
   description: Deals 3 damage
   cardIcon: {fileID: 0}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 4009389148060104062, guid: 2650f0187dc5af246b32d7ad1dec5fbe, type: 3}
   isConsumable: 0
   damage: 3

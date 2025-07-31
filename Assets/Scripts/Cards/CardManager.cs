@@ -162,16 +162,15 @@ namespace Cards
                 Debug.LogWarning($"No prefab assigned for {card.cardName}");
                 return;
             }
-        
-            // Instantiate card prefab
+            
             GameObject thrownCard = Instantiate(card.cardPrefab, throwOrigin.position, Quaternion.identity);
             thrownCards.Add(thrownCard);
         
             // Add rigidbody if not present
-            Rigidbody rb = thrownCard.GetComponent<Rigidbody>();
+            Rigidbody2D rb = thrownCard.GetComponent<Rigidbody2D>();
             if (rb == null)
             {
-                rb = thrownCard.AddComponent<Rigidbody>();
+                rb = thrownCard.AddComponent<Rigidbody2D>();
             }
         
             // Calculate throw force
@@ -179,11 +178,8 @@ namespace Cards
             float force = Random.Range(throwForceRange.x, throwForceRange.y);
         
             Vector3 throwDirection = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
-            rb.AddForce(throwDirection * force, ForceMode.Impulse);
-        
-            // Add random rotation
-            rb.AddTorque(Random.insideUnitSphere * 5f, ForceMode.Impulse);
-        
+            rb.AddForce(throwDirection * force, ForceMode2D.Impulse);
+            
             Debug.Log($"Threw {card.cardName}");
         }
     
