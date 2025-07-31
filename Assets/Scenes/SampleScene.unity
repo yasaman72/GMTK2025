@@ -969,7 +969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDeck: {fileID: 11400000, guid: 999cc3a33c6139845b6a017597e1a0f8, type: 2}
-  cardsToThrowPerTurn: 5
+  cardsToThrowPerTurn: 1
   throwOrigin: {fileID: 695616085}
   throwForceRange: {x: 5, y: 15}
   throwAngleRange: {x: 60, y: 120}
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 15
+  m_text: '#'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 645de658a06490a44bd8edfbaf821bcc, type: 2}
   m_sharedMaterial: {fileID: -3496228087137838545, guid: 645de658a06490a44bd8edfbaf821bcc, type: 2}
