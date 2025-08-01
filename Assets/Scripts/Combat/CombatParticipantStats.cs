@@ -11,4 +11,9 @@ public class CombatParticipantStats : ScriptableObject
     {
         _currentHealth = Mathf.Clamp(health, 0, _maxHealth);
     }
+
+    public void ResetHp()
+    {
+        _currentHealth = _maxHealth;
+    }
 }

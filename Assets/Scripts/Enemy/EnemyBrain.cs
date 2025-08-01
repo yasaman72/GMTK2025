@@ -1,15 +1,32 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 {
     [SerializeField] private CombatParticipantStats _stats;
     [SerializeField] private EnemyBehavior[] _enemyBehaviors;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [Header("Intention UI")]
+    [SerializeField] private Image _intentionIcon;
+    [SerializeField] private TextMeshProUGUI _intentionText;
+    [Header("HP UI")]
+    [SerializeField] private TextMeshProUGUI _enemyHp;
+    [SerializeField] private Slider _hpBar;
+
+    private EnemyBehavior nextAction;
+
+    private void Awake()
+    {
+        _stats.ResetHp();
+    }
 
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += HandleTurnChanged;
         HandleTurnChanged(TurnManager.IsPlayerTurn);
+
+        InitializeHpUi();
     }
 
     private void OnDisable()
@@ -21,19 +38,53 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     {
         Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f) : Color.white;
         _spriteRenderer.color = newColor;
+
+        if (isPlayerTurn)
+        {
+            // pick the aciton in player's turn to show the intention
+            PickNextAction(); 
+        }
+        else
+        {
+            // TODO: add a delay and efects and animations for the enemy action
+            nextAction.TakeAction(this);
+        }
     }
 
-    public void TakeAction()
+    private void PickNextAction()
     {
         int behaviorIndex = Random.Range(0, _enemyBehaviors.Length);
-        EnemyBehavior selectedBehavior = _enemyBehaviors[behaviorIndex];
-        selectedBehavior.TakeAction(this);
+        nextAction = _enemyBehaviors[behaviorIndex];
+        UpdateIntentionUI(nextAction);
+    }
+
+    private void UpdateIntentionUI(EnemyBehavior nextAction)
+    {
+        _intentionIcon.sprite = nextAction.icon;
+        if (nextAction is EnemyBehavior_Attack attackBehavior)
+        {
+            _intentionText.text = attackBehavior.attackDamage.ToString();
+        }
+        else
+        { _intentionText.text = ""; }
     }
 
     #region IDamageable Implementation
     public void TakeDamage(int damage)
     {
         _stats.SetCurrentHealth(_stats.CurrentHealth - damage);
+        UpdateHpUi();
+    }
+
+    public void Heal(int amount)
+    {
+        if (amount < 0)
+        {
+            Logger.LogWarning("Heal amount cannot be negative");
+            return;
+        }
+        _stats.SetCurrentHealth(_stats.CurrentHealth + amount);
+        UpdateHpUi();
     }
 
     public bool IsDead()
@@ -59,4 +110,16 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         target.TakeDamage(damage);
     }
     #endregion
+
+    private void UpdateHpUi()
+    {
+        _enemyHp.text = $"{_stats.CurrentHealth}/{_stats.MaxHealth}";
+        _hpBar.value = (float)_stats.CurrentHealth / _stats.MaxHealth;
+    }
+    private void InitializeHpUi()
+    {
+        _enemyHp.text = $"{_stats.CurrentHealth}/{_stats.MaxHealth}";
+        _hpBar.maxValue = _stats.MaxHealth;
+        _hpBar.value = _stats.CurrentHealth;
+    }
 }

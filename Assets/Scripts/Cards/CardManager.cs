@@ -22,6 +22,7 @@ namespace Cards
         [Header("Throwing Settings")]
         public int cardsToThrowPerTurn = 5;
         public Transform throwOrigin; // Bottom of screen
+        public Vector2 throwRange = new Vector2(-5f, 5f);
         public Vector2 throwForceRange = new Vector2(5f, 15f);
         public Vector2 throwAngleRange = new Vector2(60f, 120f); // Degrees
         public Vector2 torqueRange = new Vector2(-5, 5);
@@ -174,7 +175,8 @@ namespace Cards
                 return;
             }
 
-            GameObject thrownCard = Instantiate(card.cardPrefab, throwOrigin.position, Quaternion.identity);
+            Vector2 origin = (Vector2)throwOrigin.position + (Vector2.right * Random.Range(throwRange.x, throwRange.y));
+            GameObject thrownCard = Instantiate(card.cardPrefab, origin, Quaternion.identity);
             thrownCards.Add(thrownCard);
 
             // Add rigidbody if not present
