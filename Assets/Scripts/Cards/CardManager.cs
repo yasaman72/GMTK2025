@@ -24,6 +24,7 @@ namespace Cards
         public Transform throwOrigin; // Bottom of screen
         public Vector2 throwForceRange = new Vector2(5f, 15f);
         public Vector2 throwAngleRange = new Vector2(60f, 120f); // Degrees
+        public Vector2 torqueRange = new Vector2(-5, 5);
 
         [Header("UI Elements")]
         public Button throwButton;
@@ -39,6 +40,8 @@ namespace Cards
         private List<GameObject> thrownCards = new();
         private Dictionary<BaseCard, TextMeshProUGUI> deckDisplayTexts = new();
 
+        private CardDeck discardPile;
+
         void Start()
         {
             InitializeGame();
@@ -49,6 +52,10 @@ namespace Cards
             // Create runtime copy of deck
             runtimeDeck = Instantiate(baseDeck);
             runtimeDeck.InitializeDeck();
+
+            discardPile = Instantiate(baseDeck);
+            discardPile.InitializeDeck();
+            discardPile.RemoveAllCards();
 
             // Setup UI
             throwButton.onClick.AddListener(OnThrowButtonClicked);
@@ -104,14 +111,6 @@ namespace Cards
 
             ClearThrownCards();
 
-            if (cardsToThrow.Count == 0)
-            {
-                // TODO: shuffle cards back to hand and always draw 5
-                Logger.Log("No cards left to throw!", shouldLog);
-                throwButton.gameObject.SetActive(true);
-                yield break;
-            }
-
             // Throw cards with slight delays
             for (int i = 0; i < cardsToThrow.Count; i++)
             {
@@ -143,20 +142,27 @@ namespace Cards
 
         List<BaseCard> SelectCardsToThrow()
         {
+            if (runtimeDeck.GetTotalCardCount() <= cardsToThrowPerTurn)
+            {
+                Logger.Log ("reshuffle!", shouldLog);
+
+                List<BaseCard> discardCards = discardPile.GetAllCardsAsList();
+                foreach (var card in discardCards)
+                {
+                    runtimeDeck.AddCard(card);
+                }
+                discardPile.RemoveAllCards();
+            }
+
             List<BaseCard> allCards = runtimeDeck.GetAllCardsAsList();
             List<BaseCard> selectedCards = new List<BaseCard>();
 
-            // Randomly select cards to throw
-            int cardsToSelect = Mathf.Min(cardsToThrowPerTurn, allCards.Count);
-
-            for (int i = 0; i < cardsToSelect; i++)
+            for (int i = 0; i < cardsToThrowPerTurn; i++)
             {
-                if (allCards.Count > 0)
-                {
-                    int randomIndex = Random.Range(0, allCards.Count);
-                    selectedCards.Add(allCards[randomIndex]);
-                    allCards.RemoveAt(randomIndex);
-                }
+                int randomIndex = Random.Range(0, allCards.Count);
+                selectedCards.Add(allCards[randomIndex]);
+                discardPile.AddCard(allCards[randomIndex]);
+                allCards.RemoveAt(randomIndex);
             }
 
             return selectedCards;
@@ -183,9 +189,11 @@ namespace Cards
             // Calculate throw force
             float angle = Random.Range(throwAngleRange.x, throwAngleRange.y) * Mathf.Deg2Rad;
             float force = Random.Range(throwForceRange.x, throwForceRange.y);
+            float torque = Random.Range(torqueRange.x, torqueRange.y);
 
             Vector3 throwDirection = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
             rb.AddForce(throwDirection * force, ForceMode2D.Impulse);
+            rb.AddTorque(torque, ForceMode2D.Impulse);
 
             Logger.Log($"Threw {card.cardName}", shouldLog);
         }

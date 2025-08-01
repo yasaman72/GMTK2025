@@ -15,6 +15,7 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private float _slowMotionTimeScale = 0.2f;
 
     private List<Vector2> _points = new();
+    private bool _hasAlreadyDrawn = false;
 
     private void OnEnable()
     {
@@ -23,11 +24,22 @@ public class PlayerLassoManager : MonoBehaviour
             _lineRenderer = GetComponent<LineRenderer>();
         }
         ClearLasso();
+        GameStateManager.OnPlayerDrawTurnStart += OnPlayerDrawTurnStart;
+    }
+
+    private void OnDisable()
+    {
+        GameStateManager.OnPlayerDrawTurnStart -= OnPlayerDrawTurnStart;
+    }
+
+    private void OnPlayerDrawTurnStart()
+    {
+        _hasAlreadyDrawn = false;
     }
 
     private void Update()
     {
-        if (!GameStateManager.CanPlayerDrawLasso) return;
+        if (!GameStateManager.CanPlayerDrawLasso || _hasAlreadyDrawn) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -87,7 +99,7 @@ public class PlayerLassoManager : MonoBehaviour
 
     private bool IsLineNearOtherEnd()
     {
-        return _points.Count > 3 && Vector2.Distance(_points[^1], _points[0]) < _loopCloseThreshold;
+        return _points.Count > 10 && Vector2.Distance(_points[^1], _points[0]) < _loopCloseThreshold;
     }
 
     void CloseLoop()
@@ -97,8 +109,10 @@ public class PlayerLassoManager : MonoBehaviour
         _points.Add(_points[0]);
         _lineRenderer.positionCount = _points.Count;
         _lineRenderer.SetPosition(_points.Count - 1, _points[0]);
+        _hasAlreadyDrawn = true;
 
         DetectInsidePoints(_points);
+        ClearLasso();
     }
 
     void DetectInsidePoints(List<Vector2> loopPoints)

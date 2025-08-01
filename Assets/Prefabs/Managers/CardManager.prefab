@@ -49,7 +49,8 @@ MonoBehaviour:
   cardsToThrowPerTurn: 5
   throwOrigin: {fileID: 0}
   throwForceRange: {x: 5, y: 15}
-  throwAngleRange: {x: 60, y: 120}
+  throwAngleRange: {x: 80, y: 100}
+  torqueRange: {x: -5, y: 5}
   throwButton: {fileID: 0}
   deckCountText: {fileID: 0}
   deckDisplayParent: {fileID: 0}

@@ -1280,6 +1280,14 @@ PrefabInstance:
       propertyPath: deckDisplayParent
       value: 
       objectReference: {fileID: 834479190}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwAngleRange.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwAngleRange.y
+      value: 110
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1299,7 +1307,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: _loopCloseThreshold
-      value: 0.5
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _defaultColor.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _defaultColor.atime2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _defaultColor.key0.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _defaultColor.key1.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _defaultColor.key2.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _slowMotionTimeScale
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _defaultColor.m_NumAlphaKeys
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7142599115855705853, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: m_LocalPosition.x

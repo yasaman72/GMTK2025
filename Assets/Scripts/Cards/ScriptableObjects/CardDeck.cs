@@ -75,6 +75,11 @@ namespace Cards.ScriptableObjects
             }
             return false;
         }
+
+        public void RemoveAllCards()
+        {
+            currentDeck.Clear();
+        }
     
         public void AddCard(BaseCard card, int quantity = 1)
         {
