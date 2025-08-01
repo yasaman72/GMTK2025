@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class EnemyBrain : MonoBehaviour
+public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 {
+    [SerializeField] private CombatParticipantStats _stats;
     [SerializeField] private EnemyBehavior[] _enemyBehaviors;
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -18,7 +19,7 @@ public class EnemyBrain : MonoBehaviour
 
     private void HandleTurnChanged(bool isPlayerTurn)
     {
-        Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f): Color.white;
+        Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f) : Color.white;
         _spriteRenderer.color = newColor;
     }
 
@@ -26,7 +27,36 @@ public class EnemyBrain : MonoBehaviour
     {
         int behaviorIndex = Random.Range(0, _enemyBehaviors.Length);
         EnemyBehavior selectedBehavior = _enemyBehaviors[behaviorIndex];
-        selectedBehavior.TakeAction();
+        selectedBehavior.TakeAction(this);
     }
 
+    #region IDamageable Implementation
+    public void TakeDamage(int damage)
+    {
+        _stats.SetCurrentHealth(_stats.CurrentHealth - damage);
+    }
+
+    public bool IsDead()
+    {
+        return _stats.CurrentHealth <= 0;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return _stats.CurrentHealth;
+    }
+    #endregion
+
+    #region IDamageDealer Implementation
+    public void DealDamage(IDamageable target, int damage)
+    {
+        if (target == null)
+        {
+            Logger.LogWarning("Target is null");
+            return;
+        }
+
+        target.TakeDamage(damage);
+    }
+    #endregion
 }

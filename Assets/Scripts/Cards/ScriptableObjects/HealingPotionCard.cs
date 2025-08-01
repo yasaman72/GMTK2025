@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace Cards.ScriptableObjects
 {
@@ -12,11 +14,18 @@ namespace Cards.ScriptableObjects
         {
             isConsumable = true; // Potions are always consumable
         }
-    
-        public override void UseCard()
+
+        public override void UseCard(MonoBehaviour runner, Action callBack)
         {
             Debug.Log($"Healing Potion heals player for {healAmount} HP");
-            // TODO: Heal player
+            runner.StartCoroutine(ActivateCardEffect(callBack));
+        }
+
+        private IEnumerator ActivateCardEffect(Action callBack)
+        {
+            // TODO: implement effects and logic
+            yield return new WaitForSeconds(1);
+            callBack?.Invoke();
         }
     }
 }

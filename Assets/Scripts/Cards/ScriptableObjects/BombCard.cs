@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace Cards.ScriptableObjects
 {
@@ -8,10 +10,17 @@ namespace Cards.ScriptableObjects
         [Header("Bomb Properties")]
         public int damage = 3;
     
-        public override void UseCard()
+        public override void UseCard(MonoBehaviour runner, Action callBack)
         {
             Debug.Log($"Bomb explodes! Player takes {damage} damage");
-            // TODO: Damage player
+            runner.StartCoroutine(ActivateCardEffect(callBack));
+        }
+
+        private IEnumerator ActivateCardEffect(Action callBack)
+        {
+            // TODO: implement effects and logic
+            yield return new WaitForSeconds(1);
+            callBack?.Invoke();
         }
     }
 }

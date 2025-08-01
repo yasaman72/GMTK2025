@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    private static bool shouldLog = false;
+
     public static Action<bool> OnTurnChanged;
     private static bool _isPlayerTurn = true;
     public static bool IsPlayerTurn
@@ -22,11 +24,11 @@ public class TurnManager : MonoBehaviour
 
         if (IsPlayerTurn)
         {
-            Debug.Log("Player's turn!");
+            Logger.Log("Player's turn!", shouldLog);
         }
         else
         {
-            Debug.Log("Enemy's turn!");
+            Logger.Log("Enemy's turn!", shouldLog);
         }
     }
 }

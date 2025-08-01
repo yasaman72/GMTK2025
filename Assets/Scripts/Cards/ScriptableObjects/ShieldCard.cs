@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace Cards.ScriptableObjects
 {
@@ -7,11 +9,18 @@ namespace Cards.ScriptableObjects
     {
         [Header("Shield Properties")]
         public int shieldAmount = 1;
-    
-        public override void UseCard()
+
+        public override void UseCard(MonoBehaviour runner, Action callBack)
         {
             Debug.Log($"Shield provides {shieldAmount} protection");
-            // TODO: Add shield to player
+            runner.StartCoroutine(ActivateCardEffect(callBack));
+        }
+
+        private IEnumerator ActivateCardEffect(Action callBack)
+        {
+            // TODO: implement effects and logic
+            yield return new WaitForSeconds(1);
+            callBack?.Invoke();
         }
     }
 }

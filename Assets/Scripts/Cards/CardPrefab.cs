@@ -72,8 +72,13 @@ namespace Cards
             // Use the card
             if (cardData != null)
             {
-                cardData.OnCardActivated();
+                cardData.OnCardActivated(this, CardActivationCallback);
             }
+        }
+
+        private void CardActivationCallback()
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -5,8 +5,20 @@ public class EnemyBehavior_Attack : EnemyBehavior
 {
     public int attackDamage = 10;
 
-    public override void TakeAction()
+    public override void TakeAction(IDamageDealer enemy)
     {
-        Debug.Log($"Enemy attacks for {attackDamage} damage!");
+        if (enemy == null)
+        {
+            Logger.LogWarning("Enemy is null");
+            return;
+        }
+
+        IDamageable target = PlayerManager.DamageableInstance;
+        if (target == null)
+        {
+            Logger.LogWarning("No valid target to attack.");
+            return;
+        }
+        enemy.DealDamage(target, attackDamage);
     }
 }

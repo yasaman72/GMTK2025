@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Cards.ScriptableObjects
@@ -17,13 +18,13 @@ namespace Cards.ScriptableObjects
         public bool isConsumable = false; // Whether this card is removed after use
     
         // Abstract method that each card type must implement
-        public abstract void UseCard();
+        public abstract void UseCard(MonoBehaviour runner, Action callBack);
     
         // Virtual method for card effects - can be overridden
-        public virtual void OnCardActivated()
+        public virtual void OnCardActivated(MonoBehaviour runner, Action callBack)
         {
-            UseCard();
-        
+            UseCard(runner, callBack);
+
             if (isConsumable)
             {
                 Debug.Log($"{cardName} consumed and removed from deck");

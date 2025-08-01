@@ -2,5 +2,5 @@ using UnityEngine;
 
 public abstract class EnemyBehavior : ScriptableObject
 {
-    public abstract void TakeAction();
+    public abstract void TakeAction(IDamageDealer enemy);
 }
