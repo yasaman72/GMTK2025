@@ -32,8 +32,6 @@ namespace Cards
         public Transform deckDisplayParent; // For showing remaining cards
         [SerializeField] GameObject displayObjPrefab;
 
-        [Header("Turn Management")]
-        public bool isPlayerTurn = true;
         public float enemyTurnDuration = 2f;
 
         // Runtime variables
@@ -98,7 +96,7 @@ namespace Cards
 
         public void OnThrowButtonClicked()
         {
-            if (!isPlayerTurn) return;
+            if (!TurnManager.IsPlayerTurn) return;
 
             StartCoroutine(ThrowCardsSequence());
         }
@@ -210,26 +208,8 @@ namespace Cards
 
         void SetPlayerTurn(bool playerTurn)
         {
-            isPlayerTurn = playerTurn;
+            TurnManager.ChangeTurn(playerTurn);
             throwButton.gameObject.SetActive(playerTurn);
-
-            if (playerTurn)
-            {
-                Logger.Log("Player's turn!", shouldLog);
-            }
-            else
-            {
-                Logger.Log("Enemy's turn!", shouldLog);
-            }
-        }
-
-        // Public method for other systems to trigger enemy turn end
-        public void EndEnemyTurn()
-        {
-            if (!isPlayerTurn)
-            {
-                SetPlayerTurn(true);
-            }
         }
     }
 }

@@ -2,8 +2,6 @@ using System;
 
 public static class GameStateManager
 {
-    public static Action PlayerTurnFinished;
-
     // After items are thrown, these values change to allow player start drawing the lasso
     public static Action OnPlayerDrawTurnStart;
     private static bool _canPlayerDrawLasso = false;
