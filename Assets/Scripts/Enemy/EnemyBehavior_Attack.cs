@@ -13,7 +13,7 @@ public class EnemyBehavior_Attack : EnemyBehavior
             return;
         }
 
-        IDamageable target = PlayerManager.DamageableInstance;
+        IDamageable target = PlayerManager.PlayerDamageableInstance;
         if (target == null)
         {
             Logger.LogWarning("No valid target to attack.");

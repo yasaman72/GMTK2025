@@ -12,8 +12,6 @@ public class HudManager : MonoBehaviour
     {
         TurnManager.OnTurnChanged += UpdateTurnText;
         PlayerManager.OnPlayerHPChanged += UpdatePlayerHpVisuals;
-
-        InitializeHud();
     }
 
     private void OnDisable()
@@ -22,9 +20,16 @@ public class HudManager : MonoBehaviour
         PlayerManager.OnPlayerHPChanged -= UpdatePlayerHpVisuals;
     }
 
+    private void Start()
+    {
+        InitializeHud();
+    }
     private void InitializeHud()
     {
-        _turnText.text = TurnManager.IsPlayerTurn ? "Your Turn!" : "Enemy Turn!";
+        UpdateTurnText(TurnManager.IsPlayerTurn);
+        UpdatePlayerHpVisuals(
+            PlayerManager.PlayerDamageableInstance.GetCurrentHealth(),
+            PlayerManager.PlayerDamageableInstance.MaxHealth);
     }
 
     private void UpdateTurnText(bool isPlayerTurn)

@@ -9,8 +9,8 @@ namespace Cards.ScriptableObjects
     {
         [Header("Bomb Properties")]
         public int damage = 3;
-    
-        public override void UseCard(MonoBehaviour runner, Action callBack)
+
+        public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
         {
             Debug.Log($"Bomb explodes! Player takes {damage} damage");
             runner.StartCoroutine(ActivateCardEffect(callBack));

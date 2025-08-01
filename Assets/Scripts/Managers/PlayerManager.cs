@@ -5,12 +5,17 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
 {
     public static Action<int, int> OnPlayerHPChanged;
     [SerializeField] private CombatParticipantStats _playerStats;
+    [SerializeField] private DamageIndicatorApplier _damageIndicatorApplier;
 
-    public static IDamageable DamageableInstance { get; private set; }
+    public static IDamageable PlayerDamageableInstance { get; private set; }
+    public static IDamageDealer PlayerDamageDealerInstance { get; private set; }
+
+    public int MaxHealth => _playerStats.MaxHealth;
 
     private void Awake()
     {
-        DamageableInstance = this;
+        PlayerDamageableInstance = this;
+        PlayerDamageDealerInstance = this;
         _playerStats.ResetHp();
     }
 
@@ -23,6 +28,7 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
     {
         _playerStats.SetCurrentHealth(_playerStats.CurrentHealth - damage);
         OnPlayerHPChanged?.Invoke(_playerStats.CurrentHealth, _playerStats.MaxHealth);
+        _damageIndicatorApplier.ShowDamageIndicator(damage);
     }
 
     public void Heal(int amount)

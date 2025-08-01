@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     [SerializeField] private Slider _hpBar;
 
     private EnemyBehavior nextAction;
+    public int MaxHealth => _stats.MaxHealth;
 
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         TurnManager.OnTurnChanged += HandleTurnChanged;
         HandleTurnChanged(TurnManager.IsPlayerTurn);
 
-        InitializeHpUi();
+        UpdateHpUi();
     }
 
     private void OnDisable()
@@ -42,7 +44,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         if (isPlayerTurn)
         {
             // pick the aciton in player's turn to show the intention
-            PickNextAction(); 
+            PickNextAction();
         }
         else
         {
@@ -115,11 +117,5 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     {
         _enemyHp.text = $"{_stats.CurrentHealth}/{_stats.MaxHealth}";
         _hpBar.value = (float)_stats.CurrentHealth / _stats.MaxHealth;
-    }
-    private void InitializeHpUi()
-    {
-        _enemyHp.text = $"{_stats.CurrentHealth}/{_stats.MaxHealth}";
-        _hpBar.maxValue = _stats.MaxHealth;
-        _hpBar.value = _stats.CurrentHealth;
     }
 }

@@ -11,6 +11,7 @@ namespace Cards
         [Header("Visual")]
         public SpriteRenderer cardRenderer;
         public float destroyAfterTime = 10f; // Auto-destroy if not lassoed
+        public Animation onActivateAnimation;
 
         [Header("Physics")]
         public bool isLassoed = false;
@@ -72,7 +73,7 @@ namespace Cards
             // Use the card
             if (cardData != null)
             {
-                cardData.OnCardActivated(this, CardActivationCallback);
+                cardData.OnCardActivated(this, CardActivationCallback, this);
             }
         }
 

@@ -10,7 +10,7 @@ namespace Cards.ScriptableObjects
         [Header("Shield Properties")]
         public int shieldAmount = 1;
 
-        public override void UseCard(MonoBehaviour runner, Action callBack)
+        public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
         {
             Debug.Log($"Shield provides {shieldAmount} protection");
             runner.StartCoroutine(ActivateCardEffect(callBack));
