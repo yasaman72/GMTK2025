@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,17 +8,25 @@ public class HudManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _turnText;
     [SerializeField] private Slider _playerHpSlider;
     [SerializeField] private TextMeshProUGUI _playerHpText;
+    [SerializeField] private TextMeshProUGUI _playerShield;
 
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += UpdateTurnText;
         PlayerManager.OnPlayerHPChanged += UpdatePlayerHpVisuals;
+        PlayerManager.OnPlayerShieldChanged += UpdatePlayerShieldVisuals;
     }
 
     private void OnDisable()
     {
         TurnManager.OnTurnChanged -= UpdateTurnText;
         PlayerManager.OnPlayerHPChanged -= UpdatePlayerHpVisuals;
+        PlayerManager.OnPlayerShieldChanged -= UpdatePlayerShieldVisuals;
+    }
+
+    private void UpdatePlayerShieldVisuals(int shieldAmount)
+    {
+        _playerShield.text = $"{shieldAmount}";
     }
 
     private void Start()

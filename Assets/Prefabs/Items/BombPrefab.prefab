@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -4975520578640395922, guid: fffdbc027ac9398498db28f7ffbbe6be, type: 3}
+  m_Sprite: {fileID: 395275383933611329, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -155,7 +155,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.195, y: 2.215}
+    oldSize: {x: 2.81, y: 1.99}
     newSize: {x: 5.12, y: 4.02}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -178,4 +178,5 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: 361380270d81ae14c993159898d1a690, type: 2}
   cardRenderer: {fileID: 4511104064061259222}
   destroyAfterTime: 10
+  onActivateAnimation: {fileID: 0}
   isLassoed: 0

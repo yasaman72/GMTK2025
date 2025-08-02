@@ -4,8 +4,10 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
 {
     public static Action<int, int> OnPlayerHPChanged;
+    public static Action<int> OnPlayerShieldChanged;
     [SerializeField] private CombatParticipantStats _playerStats;
     [SerializeField] private DamageIndicatorApplier _damageIndicatorApplier;
+    [SerializeField] public Transform _playerHpOrigin;
 
     public static IDamageable PlayerDamageableInstance { get; private set; }
     public static IDamageDealer PlayerDamageDealerInstance { get; private set; }
@@ -16,7 +18,7 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
     {
         PlayerDamageableInstance = this;
         PlayerDamageDealerInstance = this;
-        _playerStats.ResetHp();
+        _playerStats.ResetStats();
     }
 
     private void OnEnable()
@@ -26,9 +28,12 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
 
     public void TakeDamage(int damage)
     {
-        _playerStats.SetCurrentHealth(_playerStats.CurrentHealth - damage);
+        int finalDamage = _playerStats.DamageShield(damage);
+        OnPlayerShieldChanged?.Invoke(_playerStats.CurrentShield);
+
+        _playerStats.SetCurrentHealth(_playerStats.CurrentHealth - finalDamage);
         OnPlayerHPChanged?.Invoke(_playerStats.CurrentHealth, _playerStats.MaxHealth);
-        _damageIndicatorApplier.ShowDamageIndicator(damage);
+        _damageIndicatorApplier.ShowDamageIndicator(finalDamage);
     }
 
     public void Heal(int amount)
@@ -62,4 +67,9 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
         target.TakeDamage(damage);
     }
 
+    public void AddShield(int amount)
+    {
+        _playerStats.AddShield(amount);
+        OnPlayerShieldChanged?.Invoke(_playerStats.CurrentShield);
+    }
 }

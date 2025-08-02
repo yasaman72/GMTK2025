@@ -9,17 +9,32 @@ namespace Cards.ScriptableObjects
     {
         [Header("Shield Properties")]
         public int shieldAmount = 1;
+        public float moveSpeed = 1f;
 
         public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
         {
             Debug.Log($"Shield provides {shieldAmount} protection");
-            runner.StartCoroutine(ActivateCardEffect(callBack));
+            runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
         }
 
-        private IEnumerator ActivateCardEffect(Action callBack)
+        private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)
         {
-            // TODO: implement effects and logic
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.3f);
+
+            Transform playerHpPos = FindAnyObjectByType<PlayerManager>()._playerHpOrigin;
+
+            while (Vector2.Distance(cardPrefab.transform.position, playerHpPos.position) > 1)
+            {
+                cardPrefab.transform.position = Vector2.MoveTowards(
+                    cardPrefab.transform.position,
+                    playerHpPos.position,
+                    0.05f * moveSpeed);
+                yield return null;
+            }
+
+            PlayerManager.PlayerDamageableInstance.AddShield(shieldAmount);
+
+
             callBack?.Invoke();
         }
     }

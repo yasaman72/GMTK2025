@@ -9,7 +9,8 @@ namespace Cards.ScriptableObjects
     {
         [Header("Healing Properties")]
         public int healAmount = 5;
-    
+        public float moveSpeed = 1f;
+
         private void Awake()
         {
             isConsumable = true; // Potions are always consumable
@@ -19,13 +20,25 @@ namespace Cards.ScriptableObjects
         {
             Debug.Log($"Healing Potion heals player for {healAmount} HP");
             runner.StopAllCoroutines();
-            runner.StartCoroutine(ActivateCardEffect(callBack));
+            runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
         }
 
-        private IEnumerator ActivateCardEffect(Action callBack)
+        private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)
         {
-            // TODO: implement effects and logic
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.3f);
+            Transform playerHpPos = FindAnyObjectByType<PlayerManager>()._playerHpOrigin;
+
+            while (Vector2.Distance(cardPrefab.transform.position, playerHpPos.position) > 1)
+            {
+                cardPrefab.transform.position = Vector2.MoveTowards(
+                    cardPrefab.transform.position,
+                    playerHpPos.position,
+                    0.05f * moveSpeed);
+                yield return null;
+            }
+
+            PlayerManager.PlayerDamageableInstance.Heal(healAmount);
+
             callBack?.Invoke();
         }
     }

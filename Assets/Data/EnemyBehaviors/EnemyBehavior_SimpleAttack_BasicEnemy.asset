@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cf3d2c25c9ee844b52e92c4805b9ac, type: 3}
   m_Name: EnemyBehavior_SimpleAttack_BasicEnemy
   m_EditorClassIdentifier: 
-  icon: {fileID: 1872732258777413398, guid: 6535e3ee7e3587543a0b754786622348, type: 3}
+  icon: {fileID: 2481595509450091535, guid: 9e53bc01c0eec174f839fcb42affd5da, type: 3}
   attackDamage: 1

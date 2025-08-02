@@ -20,7 +20,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 
     private void Awake()
     {
-        _stats.ResetHp();
+        _stats.ResetStats();
     }
 
     private void OnEnable()
@@ -117,5 +117,10 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     {
         _enemyHp.text = $"{_stats.CurrentHealth}/{_stats.MaxHealth}";
         _hpBar.value = (float)_stats.CurrentHealth / _stats.MaxHealth;
+    }
+
+    public void AddShield(int amount)
+    {
+        throw new System.NotImplementedException();
     }
 }

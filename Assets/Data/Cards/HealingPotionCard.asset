@@ -18,3 +18,4 @@ MonoBehaviour:
   cardPrefab: {fileID: 4009389148060104062, guid: f0b4bf1bbab207040a3099cf777acfcb, type: 3}
   isConsumable: 1
   healAmount: 5
+  moveSpeed: 4

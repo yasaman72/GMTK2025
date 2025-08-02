@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Cards.ScriptableObjects
 {
@@ -13,13 +14,21 @@ namespace Cards.ScriptableObjects
         public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
         {
             Debug.Log($"Bomb explodes! Player takes {damage} damage");
-            runner.StartCoroutine(ActivateCardEffect(callBack));
+            runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
         }
 
-        private IEnumerator ActivateCardEffect(Action callBack)
+        private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)
         {
-            // TODO: implement effects and logic
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.1f);
+
+            float scaleDuration = 0.5f;
+            Vector3 targetScale = cardPrefab.transform.localScale * 2f;
+
+            cardPrefab.transform.DOScale(targetScale, scaleDuration);
+
+            yield return new WaitForSeconds(scaleDuration);
+
+            PlayerManager.PlayerDamageableInstance.TakeDamage(damage);
             callBack?.Invoke();
         }
     }

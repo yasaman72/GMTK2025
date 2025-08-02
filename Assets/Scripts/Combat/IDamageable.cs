@@ -5,4 +5,5 @@ public interface IDamageable
     int GetCurrentHealth();
     int MaxHealth { get; }
     void Heal(int amount);
+    void AddShield(int amount);
 }
