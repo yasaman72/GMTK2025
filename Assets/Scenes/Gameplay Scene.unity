@@ -5618,6 +5618,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 405607435}
     - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwRange.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwRange.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: deckCountText
       value: 
       objectReference: {fileID: 2059575341}
@@ -5629,6 +5637,22 @@ PrefabInstance:
       propertyPath: deckDisplayParent
       value: 
       objectReference: {fileID: 834479190}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwAngleRange.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwAngleRange.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwForceRange.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwForceRange.y
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
