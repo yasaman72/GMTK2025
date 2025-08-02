@@ -11,8 +11,6 @@ namespace Cards
 {
     public class CardManager : MonoBehaviour
     {
-        public static Action OnCardsOutOfView;
-
         [SerializeField] private bool shouldLog = true;
 
         [Header("Deck Configuration")]
@@ -60,9 +58,6 @@ namespace Cards
             throwButton.onClick.AddListener(OnThrowButtonClicked);
             SetupDeckDisplay();
             UpdateUI();
-
-            // Start with player turn
-            SetPlayerTurn(true);
         }
 
         void SetupDeckDisplay()
@@ -125,9 +120,16 @@ namespace Cards
 
             UpdateUI();
 
-            // TODO: replace following lines witha proper lasso window logic
             GameStateManager.CanPlayerDrawLasso = true;
-            yield return new WaitForSeconds(enemyTurnDuration);
+            while(thrownCards.Count > 0)
+            {
+                // Wait until all thrown cards are out of view or destroyed
+                yield return new WaitForEndOfFrame();
+                if (thrownCards.TrueForAll(card => card == null || !card.activeInHierarchy))
+                {
+                    break;
+                }
+            }
             GameStateManager.CanPlayerDrawLasso = false;
 
             // Switch to enemy turn

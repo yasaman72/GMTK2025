@@ -13,7 +13,6 @@ namespace Cards.ScriptableObjects
 
         public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
         {
-            Debug.Log($"Dagger deals {damage} damage to selected enemy");
             runner.StopAllCoroutines();
             runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
         }

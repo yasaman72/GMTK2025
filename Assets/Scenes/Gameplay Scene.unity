@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &190092377 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7786877394748537071, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
+  m_PrefabInstance: {fileID: 8211760044993420323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &405607435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6940654973811860616, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
@@ -974,14 +979,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2795149489267271710, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3771842613608920168, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_Name
       value: CardManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
-      propertyPath: baseDeck
-      value: 
-      objectReference: {fileID: 11400000, guid: 999cc3a33c6139845b6a017597e1a0f8, type: 2}
     - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: throwButton
       value: 
@@ -994,14 +999,6 @@ PrefabInstance:
       propertyPath: deckDisplayParent
       value: 
       objectReference: {fileID: 834479190}
-    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
-      propertyPath: throwForceRange.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
-      propertyPath: throwForceRange.y
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1185,7 +1182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6888318848136120314, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 64.3
+      value: 64.29999
       objectReference: {fileID: 0}
     - target: {fileID: 6950200441190973320, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
       propertyPath: m_Camera
@@ -1470,6 +1467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1832897389}
     m_Modifications:
+    - target: {fileID: 868586431597869176, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 190092377}
     - target: {fileID: 4740664897842006383, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
       propertyPath: m_Name
       value: Basic Enemy

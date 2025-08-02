@@ -1,12 +1,15 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    [SerializeField] private float _delayBeforeStar = 1.5f;
+
     private static bool shouldLog = false;
 
     public static Action<bool> OnTurnChanged;
-    private static bool _isPlayerTurn = true;
+    private static bool _isPlayerTurn = false;
     public static bool IsPlayerTurn
     {
         private set
@@ -16,6 +19,13 @@ public class TurnManager : MonoBehaviour
             _isPlayerTurn = value; 
         }
         get => _isPlayerTurn;
+    }
+
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(_delayBeforeStar);
+        ChangeTurn(true); 
+        yield return null;
     }
 
     public static void ChangeTurn(bool isPlayerTurn)

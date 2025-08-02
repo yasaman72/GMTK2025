@@ -51,7 +51,14 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         else
         {
             // TODO: add a delay and efects and animations for the enemy action
-            nextAction.TakeAction(this);
+            if (nextAction == null)
+            {
+                Logger.Log("Next action is null.", true);
+            }
+            else
+            {
+                nextAction.TakeAction(this);
+            }
         }
     }
 

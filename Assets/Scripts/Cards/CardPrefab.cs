@@ -56,7 +56,6 @@ namespace Cards
         public void OnLassoed()
         {
             isLassoed = true;
-            Debug.Log($"Card {cardData?.cardName} was lassoed!");
 
             // Visual feedback
             if (cardRenderer != null)

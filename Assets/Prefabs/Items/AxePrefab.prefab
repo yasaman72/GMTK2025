@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7123327090805414664}
   - component: {fileID: 7631069350742609475}
   - component: {fileID: 2433646272860243771}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: AxePrefab
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
