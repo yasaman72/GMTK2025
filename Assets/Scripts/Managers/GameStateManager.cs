@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour
 {
     // After items are thrown, these values change to allow player start drawing the lasso
-    public static Action OnPlayerDrawTurnStart;
+    public static Action OnPlayerClickedThrowButton;
     private static bool _canPlayerDrawLasso = false;
 
     [SerializeField] private GameObject _gameOverPage;
@@ -19,7 +19,7 @@ public class GameStateManager : MonoBehaviour
         {
             if (value)
             {
-                OnPlayerDrawTurnStart?.Invoke();
+                OnPlayerClickedThrowButton?.Invoke();
             }
             _canPlayerDrawLasso = value;
         }

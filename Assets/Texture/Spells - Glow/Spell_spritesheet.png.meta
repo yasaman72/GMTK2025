@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 4735af73ca884994fa9b923b9fffd94a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1824497341154696411
+    second: Spell_spritesheet_0
+  - first:
+      213: 8588465456659299840
+    second: Spell_spritesheet_1
+  - first:
+      213: -2924253630102580156
+    second: Spell_spritesheet_2
+  - first:
+      213: -8996953070982547432
+    second: Spell_spritesheet_3
+  - first:
+      213: 8901616816120197635
+    second: Spell_spritesheet_4
+  - first:
+      213: 4155088482254750757
+    second: Spell_spritesheet_5
+  - first:
+      213: 3571680879229870775
+    second: Spell_spritesheet_6
+  - first:
+      213: -6897605538396782943
+    second: Spell_spritesheet_7
+  - first:
+      213: 7760192623539686693
+    second: Spell_spritesheet_8
+  - first:
+      213: -2723642994514647969
+    second: Spell_spritesheet_9
+  - first:
+      213: 8839868912199988019
+    second: Spell_spritesheet_10
+  - first:
+      213: 3697818421613045634
+    second: Spell_spritesheet_11
+  - first:
+      213: -5956676252605484523
+    second: Spell_spritesheet_12
+  - first:
+      213: 8394754929677842945
+    second: Spell_spritesheet_13
+  - first:
+      213: 2362377622564846777
+    second: Spell_spritesheet_14
+  - first:
+      213: 1534907846572558616
+    second: Spell_spritesheet_15
+  - first:
+      213: 5579576463213233819
+    second: Spell_spritesheet_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spell_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 1721
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdc9b294aaae15910800000000000000
+      internalID: 1824497341154696411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 1740
+        width: 467
+        height: 467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00ef3e544db503770800000000000000
+      internalID: 8588465456659299840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1721
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 444d69811d6fa67d0800000000000000
+      internalID: -2924253630102580156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1815
+        y: 1722
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 818b93f89d6642380800000000000000
+      internalID: -8996953070982547432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 2407
+        y: 1721
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 302fc7bd455e88b70800000000000000
+      internalID: 8901616816120197635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1200
+        width: 419
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5248c13c5f6d9a930800000000000000
+      internalID: 4155088482254750757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1169
+        width: 483
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b22d8906d8219130800000000000000
+      internalID: 3571680879229870775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1265
+        y: 1197
+        width: 425
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aeb713de48c640a0800000000000000
+      internalID: -6897605538396782943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1815
+        y: 1157
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d80ba631eb1bb60800000000000000
+      internalID: 7760192623539686693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 613
+        width: 463
+        height: 463
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5429f0802da33ad0800000000000000
+      internalID: -2723642994514647969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 607
+        width: 477
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 333f2b4a0f58daa70800000000000000
+      internalID: 8839868912199988019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 593
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2872428334a415330800000000000000
+      internalID: 3697818421613045634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 1832
+        y: 610
+        width: 471
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 512f1711282a55da0800000000000000
+      internalID: -5956676252605484523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 51
+        width: 461
+        height: 461
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10a38e79129208470800000000000000
+      internalID: 8394754929677842945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 29
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bc3f4a6ee9d8c020800000000000000
+      internalID: 2362377622564846777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 29
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819caeddd861d4510800000000000000
+      internalID: 1534907846572558616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 29
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9684fe3b33ae6d40800000000000000
+      internalID: 5579576463213233819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spell_spritesheet_0: 1824497341154696411
+      Spell_spritesheet_1: 8588465456659299840
+      Spell_spritesheet_10: 8839868912199988019
+      Spell_spritesheet_11: 3697818421613045634
+      Spell_spritesheet_12: -5956676252605484523
+      Spell_spritesheet_13: 8394754929677842945
+      Spell_spritesheet_14: 2362377622564846777
+      Spell_spritesheet_15: 1534907846572558616
+      Spell_spritesheet_16: 5579576463213233819
+      Spell_spritesheet_2: -2924253630102580156
+      Spell_spritesheet_3: -8996953070982547432
+      Spell_spritesheet_4: 8901616816120197635
+      Spell_spritesheet_5: 4155088482254750757
+      Spell_spritesheet_6: 3571680879229870775
+      Spell_spritesheet_7: -6897605538396782943
+      Spell_spritesheet_8: 7760192623539686693
+      Spell_spritesheet_9: -2723642994514647969
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

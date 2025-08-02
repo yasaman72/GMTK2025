@@ -27,16 +27,28 @@ public class PlayerLassoManager : MonoBehaviour
             _lineRenderer = GetComponent<LineRenderer>();
         }
         ClearLasso();
-        GameStateManager.OnPlayerDrawTurnStart += OnPlayerDrawTurnStart;
+        GameStateManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
+        TurnManager.OnTurnChanged += OnTurnChanged;
+
+        _spellParticleSystem.Stop();
+        _spellParticleSystem.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
-        GameStateManager.OnPlayerDrawTurnStart -= OnPlayerDrawTurnStart;
+        GameStateManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
+        TurnManager.OnTurnChanged -= OnTurnChanged;
+    }
+
+    private void OnTurnChanged(bool isPlayerTurn)
+    {
+        if (!isPlayerTurn)
+            ClearLasso();
     }
 
     private void OnPlayerDrawTurnStart()
     {
+        ClearLasso();
         _hasAlreadyDrawn = false;
     }
 
@@ -46,13 +58,16 @@ public class PlayerLassoManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            ClearLasso();
+            _spellParticleSystem.gameObject.SetActive(true);
+            _spellParticleSystem.Play();
+
             Time.timeScale = _slowMotionTimeScale;
         }
 
         if (Input.GetMouseButton(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _spellParticleSystem.transform.position = mousePos;
             if (_points.Count == 0 || Vector2.Distance(_points[^1], mousePos) > _pointSpacing)
             {
                 _points.Add(mousePos);
@@ -78,22 +93,16 @@ public class PlayerLassoManager : MonoBehaviour
             if (IsLineNearOtherEnd())
             {
                 CloseLoop();
-                ClearLasso();
             }
-            else
-            {
-                ClearLasso();
-            }
+
+            ClearLasso();
         }
     }
 
     private void ClearLasso()
     {
-        if (_lineRenderer == null)
-        {
-            Logger.LogWarning("LineRenderer is not assigned!");
-            return;
-        }
+        _spellParticleSystem.Stop();
+        _spellParticleSystem.gameObject.SetActive(false);
 
         _lineRenderer.positionCount = 0;
         _points.Clear();
@@ -107,6 +116,9 @@ public class PlayerLassoManager : MonoBehaviour
 
     void CloseLoop()
     {
+        _spellParticleSystem.Stop();
+        _spellParticleSystem.gameObject.SetActive(false);
+
         Logger.Log("Loop closed!", shouldLog);
         Time.timeScale = 1f;
         _points.Add(_points[0]);
