@@ -14,6 +14,8 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     [Header("HP UI")]
     [SerializeField] private TextMeshProUGUI _enemyHp;
     [SerializeField] private Slider _hpBar;
+    [Header("Animation")]
+    [SerializeField] private Animator _animator;
 
     private EnemyBehavior nextAction;
     public int MaxHealth => _stats.MaxHealth;
@@ -75,6 +77,11 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     public void TakeDamage(int damage)
     {
         _stats.SetCurrentHealth(_stats.CurrentHealth - damage);
+        if (damage > 0)
+        {
+            _animator.SetTrigger("Hit");
+        }
+
         UpdateHpUi();
     }
 

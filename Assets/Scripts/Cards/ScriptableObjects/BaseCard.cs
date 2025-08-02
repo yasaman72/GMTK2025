@@ -10,6 +10,7 @@ namespace Cards.ScriptableObjects
         public string cardName;
         public string description;
         public Sprite cardIcon;
+        public Color onSelectColor = Color.green;
 
         [Header("Prefab")]
         public GameObject cardPrefab; // The prefab that will be thrown (with rigidbody)
