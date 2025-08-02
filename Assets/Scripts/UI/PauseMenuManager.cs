@@ -26,4 +26,10 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+
+    // TODO: this is a dirty implementation that uses the same code for pause and game over page
+    public void OnRestart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
 }

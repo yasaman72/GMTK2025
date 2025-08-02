@@ -5,6 +5,8 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
 {
     public static Action<int, int> OnPlayerHPChanged;
     public static Action<int> OnPlayerShieldChanged;
+    public static Action OnPlayerDeath;
+
     [SerializeField] private CombatParticipantStats _playerStats;
     [SerializeField] private DamageIndicatorApplier _damageIndicatorApplier;
     [SerializeField] public Transform _playerHpOrigin;
@@ -52,7 +54,7 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
         if (isDead)
         {
             AudioManager.OnPlaySoundEffct?.Invoke(_playerDeathSound);
-            Debug.Log("Player is dead");
+            OnPlayerDeath?.Invoke();
         }
     }
 
