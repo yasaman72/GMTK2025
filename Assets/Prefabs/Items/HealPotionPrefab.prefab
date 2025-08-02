@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7123327090805414664}
   - component: {fileID: 7631069350742609475}
   - component: {fileID: 2433646272860243771}
+  - component: {fileID: 2268647949461971677}
   m_Layer: 0
   m_Name: HealPotionPrefab
   m_TagString: Card
@@ -179,4 +180,27 @@ MonoBehaviour:
   cardRenderer: {fileID: 4511104064061259222}
   destroyAfterTime: 10
   onActivateAnimation: {fileID: 0}
+  itemAnimator: {fileID: 0}
   isLassoed: 0
+--- !u!95 &2268647949461971677
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009389148060104062}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9d3a919f10dc69488b842667f3d0d76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

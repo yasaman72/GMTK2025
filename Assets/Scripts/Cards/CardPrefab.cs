@@ -1,4 +1,5 @@
 ﻿using Cards.ScriptableObjects;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Cards
@@ -11,7 +12,6 @@ namespace Cards
         [Header("Visual")]
         public SpriteRenderer cardRenderer;
         public float destroyAfterTime = 10f; // Auto-destroy if not lassoed
-        public Animation onActivateAnimation;
 
         [Header("Physics")]
         public bool isLassoed = false;
@@ -68,14 +68,23 @@ namespace Cards
             {
                 rb.bodyType = RigidbodyType2D.Static;
             }
+        }
 
-            // Use the card
+        public void OnActivate()
+        {
             if (cardData != null)
             {
                 cardData.OnCardActivated(this, CardActivationCallback, this);
             }
         }
 
+
+        public void OnDropedForBeingExtra()
+        {
+            cardRenderer.color = new Color(.5f,.5f,.5f, .5f);
+            transform.DOShakePosition(1f, 0.2f, 10, 90, false, true);
+            transform.DOScale(Vector3.zero, 0.5f).SetDelay(1f).OnComplete(() => Destroy(gameObject));
+        }
         private void CardActivationCallback()
         {
             Destroy(gameObject);

@@ -1,4 +1,5 @@
 using Cards;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private Gradient _nearCloseColor;
     [Space]
     [SerializeField] private float _slowMotionTimeScale = 0.2f;
+    [SerializeField] private int _maxAllowedItems = 3;
+    [SerializeField] private ParticleSystem _spellParticleSystem;
 
     private List<Vector2> _points = new();
     private bool _hasAlreadyDrawn = false;
@@ -111,11 +114,11 @@ public class PlayerLassoManager : MonoBehaviour
         _lineRenderer.SetPosition(_points.Count - 1, _points[0]);
         _hasAlreadyDrawn = true;
 
-        DetectInsidePoints(_points);
+        StartCoroutine(DetectInsidePoints(_points));
         ClearLasso();
     }
 
-    void DetectInsidePoints(List<Vector2> loopPoints)
+    private IEnumerator DetectInsidePoints(List<Vector2> loopPoints)
     {
         GameObject temp = new GameObject("TempCollider");
         PolygonCollider2D poly = temp.AddComponent<PolygonCollider2D>();
@@ -124,18 +127,36 @@ public class PlayerLassoManager : MonoBehaviour
         List<Collider2D> hits = new List<Collider2D>();
         Physics2D.OverlapCollider(poly, new ContactFilter2D().NoFilter(), hits);
 
+        List<CardPrefab> lassoedCards = new List<CardPrefab>();
+
         foreach (var hit in hits)
         {
             if (hit != null)
             {
-                CardPrefab cardPrefab = hit.gameObject.GetComponent<CardPrefab>();
-                if (cardPrefab)
-                {
-                    cardPrefab.OnLassoed();
-                }
-
+                CardPrefab card = hit.gameObject.GetComponent<CardPrefab>();
+                lassoedCards.Add(card);
                 Logger.Log($"Detected: {hit.gameObject.name}", shouldLog);
+                card.OnLassoed();
             }
+        }
+
+        if (lassoedCards.Count > _maxAllowedItems)
+        {
+            // force remove a random card to match the max allowed items
+            int itemsToRemove = lassoedCards.Count - _maxAllowedItems;
+            for (int i = 0; i < itemsToRemove; i++)
+            {
+                int randomIndex = Random.Range(0, lassoedCards.Count);
+                lassoedCards[randomIndex].OnDropedForBeingExtra();
+                lassoedCards.RemoveAt(randomIndex);
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        foreach (var card in lassoedCards)
+        {
+            card.OnActivate();
+            yield return new WaitForSeconds(0.5f);
         }
 
         Destroy(temp);

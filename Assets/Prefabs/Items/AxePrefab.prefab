@@ -178,5 +178,4 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: 27ab8304722993d42a50fb1f246c209c, type: 2}
   cardRenderer: {fileID: 4511104064061259222}
   destroyAfterTime: 10
-  onActivateAnimation: {fileID: 0}
   isLassoed: 0
