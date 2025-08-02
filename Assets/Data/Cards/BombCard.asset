@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: 'Bomb '
   description: 3 damage to player
   cardIcon: {fileID: 0}
-  onSelectColor: {r: 1, g: 0.19515002, b: 0, a: 1}
+  onSelectColor: {r: 0.36862746, g: 0.023529412, b: 0.023529412, a: 1}
   cardPrefab: {fileID: 4009389148060104062, guid: bfca1e57867cb6c44a0c9e87b31f2571, type: 3}
   isConsumable: 0
   damage: 3

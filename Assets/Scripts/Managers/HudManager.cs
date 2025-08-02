@@ -9,12 +9,14 @@ public class HudManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerHpText;
     [SerializeField] private TextMeshProUGUI _playerShield;
     [SerializeField] private Image _bgImage;
+    [SerializeField] private GameObject _pauseMenu;
 
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += UpdateTurnText;
         PlayerManager.OnPlayerHPChanged += UpdatePlayerHpVisuals;
         PlayerManager.OnPlayerShieldChanged += UpdatePlayerShieldVisuals;
+        _pauseMenu.SetActive(false);
     }
 
     private void OnDisable()
@@ -53,5 +55,12 @@ public class HudManager : MonoBehaviour
     {
         _playerHpText.text = $"{currentHp} / {maxHp}";
         _playerHpSlider.value = (float)currentHp / maxHp;
+    }
+
+
+    public void OnPause()
+    {
+        Time.timeScale = 0f;
+        _pauseMenu.SetActive(true);
     }
 }

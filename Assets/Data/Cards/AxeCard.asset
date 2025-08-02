@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: 'Axe '
   description: Deals 3 damage
   cardIcon: {fileID: 2481595509450091535, guid: 9e53bc01c0eec174f839fcb42affd5da, type: 3}
+  onSelectColor: {r: 1, g: 0.9019608, b: 0.36078432, a: 1}
   cardPrefab: {fileID: 4009389148060104062, guid: 2650f0187dc5af246b32d7ad1dec5fbe, type: 3}
   isConsumable: 0
   damage: 3

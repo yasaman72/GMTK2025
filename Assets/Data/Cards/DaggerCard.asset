@@ -15,7 +15,9 @@ MonoBehaviour:
   cardName: Dagger
   description: Deals 1 damage
   cardIcon: {fileID: 0}
+  onSelectColor: {r: 1, g: 0.9019608, b: 0.36078432, a: 1}
   cardPrefab: {fileID: 4009389148060104062, guid: 81a3d55b829add4468aaf915c58adea5, type: 3}
   isConsumable: 0
   damage: 1
   moveSpeed: 2
+  delayBeforeMove: 0.3
