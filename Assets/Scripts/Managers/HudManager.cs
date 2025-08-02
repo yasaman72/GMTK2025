@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class HudManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _turnText;
+    [SerializeField] private Image _turnBg;
     [SerializeField] private Slider _playerHpSlider;
     [SerializeField] private TextMeshProUGUI _playerHpText;
     [SerializeField] private TextMeshProUGUI _playerShield;
@@ -46,6 +47,7 @@ public class HudManager : MonoBehaviour
     private void UpdateTurnText(bool isPlayerTurn)
     {
         _turnText.text = isPlayerTurn ? "Your Turn!" : "Enemy Turn!";
+        _turnBg.color = isPlayerTurn ? Color.black : Color.red;
 
         Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f) : Color.white;
         _bgImage.color = newColor;

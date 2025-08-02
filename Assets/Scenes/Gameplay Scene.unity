@@ -439,6 +439,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1832897389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314152162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2948926766176228383, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+  m_PrefabInstance: {fileID: 3915370811910431692}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1446824176
 GameObject:
   m_ObjectHideFlags: 0
@@ -5732,6 +5743,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3057459521817995418, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: _turnBg
+      value: 
+      objectReference: {fileID: 1314152162}
+    - target: {fileID: 3057459521817995418, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
       propertyPath: _pauseMenu
       value: 
       objectReference: {fileID: 1579268299}
@@ -6352,14 +6367,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1832897389}
     m_Modifications:
-    - target: {fileID: 868586431597869176, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
-      propertyPath: _hitSound
-      value: 
-      objectReference: {fileID: 8300000, guid: fb4db43ccb74a3c4dbe338843a8bc571, type: 3}
-    - target: {fileID: 868586431597869176, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
-      propertyPath: _deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 7936f13ea3bc57f498a4817942e2a7b8, type: 3}
     - target: {fileID: 4740664897842006383, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
       propertyPath: m_Name
       value: Basic Enemy
@@ -6411,18 +6418,6 @@ PrefabInstance:
     - target: {fileID: 6101699184705232718, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354075033553675505, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354075033553675505, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354075033553675505, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

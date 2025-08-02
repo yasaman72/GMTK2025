@@ -20,6 +20,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     [SerializeField] private Slider _hpBar;
     [Header("Animation")]
     [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _parentAnimator;
     [Header("Audio")]
     [SerializeField] private AudioClip _hitSound;
     [SerializeField] private AudioClip _deathSound;
@@ -107,7 +108,8 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 
         if (IsDead())
         {
-            _animator.SetTrigger("Death");
+            _animator.SetBool("IsDead", true);
+            _parentAnimator.SetTrigger("Death");
             AudioManager.OnPlaySoundEffct?.Invoke(_deathSound);
             OnEnemyDeath?.Invoke();
         }

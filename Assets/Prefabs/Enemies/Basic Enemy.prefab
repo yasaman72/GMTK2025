@@ -90,6 +90,7 @@ MonoBehaviour:
   _enemyHp: {fileID: 5635045663842941516}
   _hpBar: {fileID: 3416480341366670859}
   _animator: {fileID: 7786877394748537071}
+  _parentAnimator: {fileID: 8578262144771523568}
   _hitSound: {fileID: 8300000, guid: fb4db43ccb74a3c4dbe338843a8bc571, type: 3}
   _deathSound: {fileID: 8300000, guid: 7936f13ea3bc57f498a4817942e2a7b8, type: 3}
 --- !u!114 &7617898554937828164
