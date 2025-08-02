@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 {
+    public Action OnEnemyDeath;
+
     [SerializeField] private CombatParticipantStats _stats;
     [SerializeField] private EnemyBehavior[] _enemyBehaviors;
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -74,7 +77,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 
     private void PickNextAction()
     {
-        int behaviorIndex = Random.Range(0, _enemyBehaviors.Length);
+        int behaviorIndex = UnityEngine.Random.Range(0, _enemyBehaviors.Length);
         nextAction = _enemyBehaviors[behaviorIndex];
         UpdateIntentionUI(nextAction);
     }
@@ -93,11 +96,20 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     #region IDamageable Implementation
     public void TakeDamage(int damage)
     {
+        if (IsDead()) return;
+
         _stats.SetCurrentHealth(_stats.CurrentHealth - damage);
         if (damage > 0)
         {
             _animator.SetTrigger("Hit");
             AudioManager.OnPlaySoundEffct?.Invoke(_hitSound);
+        }
+
+        if (IsDead())
+        {
+            _animator.SetTrigger("Death");
+            AudioManager.OnPlaySoundEffct?.Invoke(_deathSound);
+            OnEnemyDeath?.Invoke();
         }
 
         UpdateHpUi();

@@ -32,6 +32,7 @@ public class PlayerLassoManager : MonoBehaviour
 
         _spellParticleSystem.Stop();
         _spellParticleSystem.gameObject.SetActive(false);
+        _spellParticleSystem.transform.position = Vector2.one * 1000;
     }
 
     private void OnDisable()
@@ -58,14 +59,16 @@ public class PlayerLassoManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            _spellParticleSystem.gameObject.SetActive(true);
-            _spellParticleSystem.Play();
 
             Time.timeScale = _slowMotionTimeScale;
         }
 
         if (Input.GetMouseButton(0))
         {
+            _spellParticleSystem.gameObject.SetActive(true);
+            if (!_spellParticleSystem.isPlaying)
+                _spellParticleSystem.Play();
+
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _spellParticleSystem.transform.position = mousePos;
             if (_points.Count == 0 || Vector2.Distance(_points[^1], mousePos) > _pointSpacing)
@@ -103,6 +106,7 @@ public class PlayerLassoManager : MonoBehaviour
     {
         _spellParticleSystem.Stop();
         _spellParticleSystem.gameObject.SetActive(false);
+        _spellParticleSystem.transform.position = Vector2.one * 1000;
 
         _lineRenderer.positionCount = 0;
         _points.Clear();
