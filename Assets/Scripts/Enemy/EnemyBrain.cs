@@ -9,6 +9,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     [SerializeField] private EnemyBehavior[] _enemyBehaviors;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [Header("Intention UI")]
+    [SerializeField] private GameObject _enemyUi;
     [SerializeField] private Image _intentionIcon;
     [SerializeField] private TextMeshProUGUI _intentionText;
     [Header("HP UI")]
@@ -31,6 +32,13 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         HandleTurnChanged(TurnManager.IsPlayerTurn);
 
         UpdateHpUi();
+    }
+
+    private IEnumerator Start()
+    {
+        _enemyUi.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        _enemyUi.SetActive(true);
     }
 
     private void OnDisable()
