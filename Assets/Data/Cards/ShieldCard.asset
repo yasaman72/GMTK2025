@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Provide 1 shield
   cardIcon: {fileID: 0}
   onSelectColor: {r: 1, g: 0.9019608, b: 0.36078432, a: 1}
+  onUseSound: {fileID: 8300000, guid: 65556e632c1225c40ae99e4e160a4240, type: 3}
   cardPrefab: {fileID: 4009389148060104062, guid: 717cd1974ef3c3944b0dd42026674f89, type: 3}
   isConsumable: 0
   shieldAmount: 1

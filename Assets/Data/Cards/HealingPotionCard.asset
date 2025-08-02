@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Deals 5 heal
   cardIcon: {fileID: 0}
   onSelectColor: {r: 1, g: 0.9019608, b: 0.36078432, a: 1}
+  onUseSound: {fileID: 8300000, guid: d931d2008bd41ad459957f25902e0418, type: 3}
   cardPrefab: {fileID: 4009389148060104062, guid: f0b4bf1bbab207040a3099cf777acfcb, type: 3}
   isConsumable: 1
   healAmount: 5

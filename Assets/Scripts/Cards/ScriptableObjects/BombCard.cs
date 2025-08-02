@@ -27,6 +27,7 @@ namespace Cards.ScriptableObjects
             cardPrefab.transform.DOScale(targetScale, scaleDuration);
 
             yield return new WaitForSeconds(scaleDuration);
+            AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
             PlayerManager.PlayerDamageableInstance.TakeDamage(damage);
             callBack?.Invoke();

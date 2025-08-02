@@ -4,7 +4,6 @@ using Cards.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 using Random = UnityEngine.Random;
 
 namespace Cards
@@ -20,10 +19,14 @@ namespace Cards
         [Header("Throwing Settings")]
         public int cardsToThrowPerTurn = 5;
         public Transform throwOrigin; // Bottom of screen
+        public float delayBetweenThrows = 0.2f;
         public Vector2 throwRange = new Vector2(-5f, 5f);
         public Vector2 throwForceRange = new Vector2(5f, 15f);
         public Vector2 throwAngleRange = new Vector2(60f, 120f); // Degrees
         public Vector2 torqueRange = new Vector2(-5, 5);
+        [Header("Audio Settings")]
+        public AudioClip throwSound;
+        public AudioClip throwStartSound;
 
         [Header("UI Elements")]
         public Button throwButton;
@@ -105,11 +108,14 @@ namespace Cards
 
             ClearThrownCards();
 
+            AudioManager.OnPlaySoundEffct?.Invoke(throwStartSound);
+
             // Throw cards with slight delays
             for (int i = 0; i < cardsToThrow.Count; i++)
             {
                 ThrowCard(cardsToThrow[i]);
-                yield return new WaitForSeconds(0.1f); // Small delay between throws
+                AudioManager.OnPlaySoundEffct?.Invoke(throwSound);
+                yield return new WaitForSeconds(delayBetweenThrows); // Small delay between throws
             }
 
             // Remove thrown cards from deck
@@ -121,7 +127,7 @@ namespace Cards
             UpdateUI();
 
             GameStateManager.CanPlayerDrawLasso = true;
-            while(thrownCards.Count > 0)
+            while (thrownCards.Count > 0)
             {
                 // Wait until all thrown cards are out of view or destroyed
                 yield return new WaitForEndOfFrame();
@@ -145,7 +151,7 @@ namespace Cards
         {
             if (runtimeDeck.GetTotalCardCount() <= cardsToThrowPerTurn)
             {
-                Logger.Log ("reshuffle!", shouldLog);
+                Logger.Log("reshuffle!", shouldLog);
 
                 List<BaseCard> discardCards = discardPile.GetAllCardsAsList();
                 foreach (var card in discardCards)

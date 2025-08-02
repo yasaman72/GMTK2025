@@ -33,6 +33,7 @@ namespace Cards.ScriptableObjects
             }
 
             PlayerManager.PlayerDamageableInstance.AddShield(shieldAmount);
+            AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
 
             callBack?.Invoke();

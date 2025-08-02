@@ -9,9 +9,10 @@ public class CombatParticipantStats : ScriptableObject
     public int MaxHealth => _maxHealth;
     public int CurrentHealth => _currentHealth;
     public int CurrentShield => _currentShield;
-    public void SetCurrentHealth(int health)
+    public bool SetCurrentHealth(int health)
     {
         _currentHealth = Mathf.Clamp(health, 0, _maxHealth);
+        return _currentHealth <= 0;
     }
 
     public void AddShield(int shield)

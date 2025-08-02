@@ -8,6 +8,10 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
     [SerializeField] private CombatParticipantStats _playerStats;
     [SerializeField] private DamageIndicatorApplier _damageIndicatorApplier;
     [SerializeField] public Transform _playerHpOrigin;
+    [Header("Audio")]
+    [SerializeField] private AudioClip _playerHitSound;
+    [SerializeField] private AudioClip _onHitShieldSound;
+    [SerializeField] private AudioClip _playerDeathSound;
 
     public static IDamageable PlayerDamageableInstance { get; private set; }
     public static IDamageDealer PlayerDamageDealerInstance { get; private set; }
@@ -31,9 +35,25 @@ public class PlayerManager : MonoBehaviour, IDamageDealer, IDamageable
         int finalDamage = _playerStats.DamageShield(damage);
         OnPlayerShieldChanged?.Invoke(_playerStats.CurrentShield);
 
-        _playerStats.SetCurrentHealth(_playerStats.CurrentHealth - finalDamage);
+        if (finalDamage != damage)
+        {
+            AudioManager.OnPlaySoundEffct?.Invoke(_onHitShieldSound);
+        }
+
+        if (finalDamage > 0)
+        {
+            AudioManager.OnPlaySoundEffct?.Invoke(_playerHitSound);
+        }
+
+        bool isDead = _playerStats.SetCurrentHealth(_playerStats.CurrentHealth - finalDamage);
         OnPlayerHPChanged?.Invoke(_playerStats.CurrentHealth, _playerStats.MaxHealth);
         _damageIndicatorApplier.ShowDamageIndicator(finalDamage);
+
+        if (isDead)
+        {
+            AudioManager.OnPlaySoundEffct?.Invoke(_playerDeathSound);
+            Debug.Log("Player is dead");
+        }
     }
 
     public void Heal(int amount)

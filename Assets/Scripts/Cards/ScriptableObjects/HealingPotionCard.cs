@@ -38,6 +38,7 @@ namespace Cards.ScriptableObjects
             }
 
             PlayerManager.PlayerDamageableInstance.Heal(healAmount);
+            AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
             callBack?.Invoke();
         }

@@ -17,6 +17,9 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     [SerializeField] private Slider _hpBar;
     [Header("Animation")]
     [SerializeField] private Animator _animator;
+    [Header("Audio")]
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private AudioClip _deathSound;
 
     private EnemyBehavior nextAction;
     public int MaxHealth => _stats.MaxHealth;
@@ -25,7 +28,6 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     {
         _stats.ResetStats();
     }
-
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += HandleTurnChanged;
@@ -95,6 +97,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         if (damage > 0)
         {
             _animator.SetTrigger("Hit");
+            AudioManager.OnPlaySoundEffct?.Invoke(_hitSound);
         }
 
         UpdateHpUi();

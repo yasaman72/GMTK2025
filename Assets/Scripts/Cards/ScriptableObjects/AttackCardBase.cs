@@ -38,6 +38,7 @@ namespace Cards.ScriptableObjects
 
             // TODO: update the target selection if more enemies present in one comabt (milestone 2)
             PlayerManager.PlayerDamageDealerInstance.DealDamage(enemy, damage);
+            AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
             yield return new WaitForSeconds(1);
             callBack?.Invoke();
