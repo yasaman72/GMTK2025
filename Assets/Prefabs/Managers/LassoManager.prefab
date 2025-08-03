@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldLog: 0
   _lineRenderer: {fileID: 9149384676272495391}
-  _pointSpacing: 0.1
-  _loopCloseThreshold: 0.7
+  _pointSpacing: 0.5
+  _loopCloseThreshold: 2
   _defaultColor:
     serializedVersion: 2
     key0: {r: 0.3964933, g: 0.9811321, b: 0.26379493, a: 1}
