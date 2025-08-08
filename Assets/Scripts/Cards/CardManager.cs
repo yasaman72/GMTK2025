@@ -19,7 +19,11 @@ namespace Cards
         {
             get => _drawDeck;
         }
-        private CardDeck discardPile;
+        private static CardDeck _discardDeck;
+        public static CardDeck DiscardDeck
+        {
+            get => _discardDeck;
+        }
 
         [Header("Throwing Settings")]
         public int cardsToThrowPerTurn = 5;
@@ -36,45 +40,31 @@ namespace Cards
         [Header("UI Elements")]
         public Button throwButton;
         public TextMeshProUGUI deckCountText;
+        public TextMeshProUGUI discardDeckCountText;
         public Transform deckDisplayParent; // For showing remaining cards
-        [SerializeField] GameObject displayObjPrefab;
-
         public float enemyTurnDuration = 2f;
 
         // Runtime variables
         private List<GameObject> thrownCards = new();
-        private Dictionary<BaseCard, TextMeshProUGUI> deckDisplayTexts = new();
-
 
         void Start()
         {
-            InitializeGame();
+            Initialize();
         }
 
-        void InitializeGame()
+        void Initialize()
         {
             // Create runtime copy of deck
             _drawDeck = Instantiate(baseDeck);
             _drawDeck.InitializeDeck();
 
-            discardPile = Instantiate(baseDeck);
-            discardPile.InitializeDeck();
-            discardPile.RemoveAllCards();
+            _discardDeck = Instantiate(baseDeck);
+            _discardDeck.InitializeDeck();
+            _discardDeck.RemoveAllCards();
 
             // Setup UI
             throwButton.onClick.AddListener(OnThrowButtonClicked);
-            SetupDeckDisplay();
             UpdateUI();
-        }
-
-        void SetupDeckDisplay()
-        {
-            foreach (var kvp in _drawDeck.currentDeck)
-            {
-                GameObject displayObj = Instantiate(displayObjPrefab, deckDisplayParent);
-                displayObj.name = $"{kvp.Key.cardName}_Display";
-                deckDisplayTexts[kvp.Key] = displayObj.GetComponent<TextMeshProUGUI>(); ;
-            }
         }
 
         void UpdateUI()
@@ -82,19 +72,7 @@ namespace Cards
             // Update deck count
             int totalCards = _drawDeck.GetTotalCardCount();
             deckCountText.text = totalCards.ToString();
-
-            // Update individual card counts
-            foreach (var kvp in deckDisplayTexts)
-            {
-                if (_drawDeck.currentDeck.ContainsKey(kvp.Key))
-                {
-                    kvp.Value.text = $"{kvp.Key.cardName}: {_drawDeck.currentDeck[kvp.Key]}";
-                }
-                else
-                {
-                    kvp.Value.text = $"{kvp.Key.cardName}: 0";
-                }
-            }
+            discardDeckCountText.text = _discardDeck.GetTotalCardCount().ToString();
         }
 
         public void OnThrowButtonClicked()
@@ -113,13 +91,6 @@ namespace Cards
             ClearThrownCards();
 
             AudioManager.OnPlaySoundEffct?.Invoke(throwStartSound);
-
-            // Remove thrown cards from deck
-            foreach (var card in cardsToThrow)
-            {
-                _drawDeck.RemoveCard(card);
-            }
-            UpdateUI();
 
             // Throw cards with slight delays
             for (int i = 0; i < cardsToThrow.Count; i++)
@@ -148,6 +119,9 @@ namespace Cards
 
             // Back to player turn
             SetPlayerTurn(true);
+
+            if (_drawDeck.GetTotalCardCount() <= 0)
+                ReturnCardsToDrawDeck();
         }
 
         List<BaseCard> SelectCardsToThrow()
@@ -159,24 +133,35 @@ namespace Cards
             {
                 if (allCards.Count <= 0)
                 {
-                    Logger.Log("reshuffle!", shouldLog);
-
-                    List<BaseCard> discardCards = discardPile.GetAllCardsAsList();
-                    foreach (var card in discardCards)
-                    {
-                        _drawDeck.AddCard(card);
-                    }
-                    discardPile.RemoveAllCards();
+                    ReturnCardsToDrawDeck();
                     allCards = _drawDeck.GetAllCardsAsList();
                 }
 
                 int randomIndex = Random.Range(0, allCards.Count);
                 selectedCards.Add(allCards[randomIndex]);
-                discardPile.AddCard(allCards[randomIndex]);
+                _discardDeck.AddCard(allCards[randomIndex]);
                 allCards.RemoveAt(randomIndex);
             }
 
+            // Remove thrown cards from deck
+            foreach (var card in selectedCards)
+            {
+                _drawDeck.RemoveCard(card);
+            }
+            UpdateUI();
+
             return selectedCards;
+        }
+
+        private void ReturnCardsToDrawDeck()
+        {
+            List<BaseCard> discardCards = _discardDeck.GetAllCardsAsList();
+            foreach (var card in discardCards)
+            {
+                _drawDeck.AddCard(card);
+            }
+            _discardDeck.RemoveAllCards();
+            UpdateUI();
         }
 
         void ThrowCard(BaseCard card)
@@ -220,6 +205,8 @@ namespace Cards
             thrownCards.Clear();
         }
 
+
+        // TODO: move to a proper class
         void SetPlayerTurn(bool playerTurn)
         {
             TurnManager.ChangeTurn(playerTurn);

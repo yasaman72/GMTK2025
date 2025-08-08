@@ -69,8 +69,14 @@ public class HudManager : MonoBehaviour
         _pauseMenu.SetActive(true);
     }
 
-    public void OpenDeck()
+    // TODO: find a single solution for opening any deck
+    public void OpenDrawDeck()
     {
         DeckView.OpenDeck?.Invoke(CardManager.DrawDeck);
+    }
+
+    public void OpenDiscardDeck()
+    {
+        DeckView.OpenDeck?.Invoke(CardManager.DiscardDeck);
     }
 }

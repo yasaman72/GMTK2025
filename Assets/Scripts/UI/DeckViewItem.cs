@@ -12,7 +12,7 @@ public class DeckViewItem : MonoBehaviour
     public void Setup(BaseCard card)
     {
         _nameText.text = card.cardName;
-        _nameText.text = card.description;
+        _descriptionText.text = card.description;
         _icon.sprite = card.cardIcon;
     }
 }
