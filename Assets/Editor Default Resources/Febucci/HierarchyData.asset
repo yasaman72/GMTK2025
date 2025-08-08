@@ -30,7 +30,7 @@ MonoBehaviour:
     startString: '>'
     color: {r: 0, g: 1, b: 1, a: 0.15}
   tree:
-    enabled: 1
+    enabled: 0
     drawOverlayOnColoredPrefabs: 1
     dividerHeigth: 1
     baseLevelColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

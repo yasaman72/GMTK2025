@@ -1,3 +1,4 @@
+using Cards;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class HudManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerShield;
     [SerializeField] private Image _bgImage;
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private DeckView _deckView;
 
     private void OnEnable()
     {
@@ -18,6 +20,7 @@ public class HudManager : MonoBehaviour
         PlayerManager.OnPlayerHPChanged += UpdatePlayerHpVisuals;
         PlayerManager.OnPlayerShieldChanged += UpdatePlayerShieldVisuals;
         _pauseMenu.SetActive(false);
+        _deckView.Initialize();
     }
 
     private void OnDisable()
@@ -64,5 +67,10 @@ public class HudManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         _pauseMenu.SetActive(true);
+    }
+
+    public void OpenDeck()
+    {
+        DeckView.OpenDeck?.Invoke(CardManager.DrawDeck);
     }
 }

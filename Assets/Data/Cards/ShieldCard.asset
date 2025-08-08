@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 'Shield '
   description: Provide 1 shield
-  cardIcon: {fileID: 0}
+  cardIcon: {fileID: -3633131140005696750, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
   onSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   onUseSound: {fileID: 8300000, guid: 65556e632c1225c40ae99e4e160a4240, type: 3}
   cardPrefab: {fileID: 4009389148060104062, guid: 717cd1974ef3c3944b0dd42026674f89, type: 3}

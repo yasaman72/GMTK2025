@@ -13,8 +13,13 @@ namespace Cards
         [SerializeField] private bool shouldLog = true;
 
         [Header("Deck Configuration")]
-        public CardDeck baseDeck; // Assign in inspector
-        private CardDeck runtimeDeck; // Copy for gameplay
+        public CardDeck baseDeck;
+        public static CardDeck _drawDeck;
+        public static CardDeck DrawDeck
+        {
+            get => _drawDeck;
+        }
+        private CardDeck discardPile;
 
         [Header("Throwing Settings")]
         public int cardsToThrowPerTurn = 5;
@@ -40,7 +45,6 @@ namespace Cards
         private List<GameObject> thrownCards = new();
         private Dictionary<BaseCard, TextMeshProUGUI> deckDisplayTexts = new();
 
-        private CardDeck discardPile;
 
         void Start()
         {
@@ -50,8 +54,8 @@ namespace Cards
         void InitializeGame()
         {
             // Create runtime copy of deck
-            runtimeDeck = Instantiate(baseDeck);
-            runtimeDeck.InitializeDeck();
+            _drawDeck = Instantiate(baseDeck);
+            _drawDeck.InitializeDeck();
 
             discardPile = Instantiate(baseDeck);
             discardPile.InitializeDeck();
@@ -65,7 +69,7 @@ namespace Cards
 
         void SetupDeckDisplay()
         {
-            foreach (var kvp in runtimeDeck.currentDeck)
+            foreach (var kvp in _drawDeck.currentDeck)
             {
                 GameObject displayObj = Instantiate(displayObjPrefab, deckDisplayParent);
                 displayObj.name = $"{kvp.Key.cardName}_Display";
@@ -76,15 +80,15 @@ namespace Cards
         void UpdateUI()
         {
             // Update deck count
-            int totalCards = runtimeDeck.GetTotalCardCount();
+            int totalCards = _drawDeck.GetTotalCardCount();
             deckCountText.text = totalCards.ToString();
 
             // Update individual card counts
             foreach (var kvp in deckDisplayTexts)
             {
-                if (runtimeDeck.currentDeck.ContainsKey(kvp.Key))
+                if (_drawDeck.currentDeck.ContainsKey(kvp.Key))
                 {
-                    kvp.Value.text = $"{kvp.Key.cardName}: {runtimeDeck.currentDeck[kvp.Key]}";
+                    kvp.Value.text = $"{kvp.Key.cardName}: {_drawDeck.currentDeck[kvp.Key]}";
                 }
                 else
                 {
@@ -110,6 +114,13 @@ namespace Cards
 
             AudioManager.OnPlaySoundEffct?.Invoke(throwStartSound);
 
+            // Remove thrown cards from deck
+            foreach (var card in cardsToThrow)
+            {
+                _drawDeck.RemoveCard(card);
+            }
+            UpdateUI();
+
             // Throw cards with slight delays
             for (int i = 0; i < cardsToThrow.Count; i++)
             {
@@ -117,14 +128,6 @@ namespace Cards
                 AudioManager.OnPlaySoundEffct?.Invoke(throwSound);
                 yield return new WaitForSeconds(delayBetweenThrows); // Small delay between throws
             }
-
-            // Remove thrown cards from deck
-            foreach (var card in cardsToThrow)
-            {
-                runtimeDeck.RemoveCard(card);
-            }
-
-            UpdateUI();
 
             GameStateManager.CanPlayerDrawLasso = true;
             while (thrownCards.Count > 0)
@@ -149,23 +152,24 @@ namespace Cards
 
         List<BaseCard> SelectCardsToThrow()
         {
-            if (runtimeDeck.GetTotalCardCount() <= cardsToThrowPerTurn)
-            {
-                Logger.Log("reshuffle!", shouldLog);
-
-                List<BaseCard> discardCards = discardPile.GetAllCardsAsList();
-                foreach (var card in discardCards)
-                {
-                    runtimeDeck.AddCard(card);
-                }
-                discardPile.RemoveAllCards();
-            }
-
-            List<BaseCard> allCards = runtimeDeck.GetAllCardsAsList();
+            List<BaseCard> allCards = _drawDeck.GetAllCardsAsList();
             List<BaseCard> selectedCards = new List<BaseCard>();
 
             for (int i = 0; i < cardsToThrowPerTurn; i++)
             {
+                if (allCards.Count <= 0)
+                {
+                    Logger.Log("reshuffle!", shouldLog);
+
+                    List<BaseCard> discardCards = discardPile.GetAllCardsAsList();
+                    foreach (var card in discardCards)
+                    {
+                        _drawDeck.AddCard(card);
+                    }
+                    discardPile.RemoveAllCards();
+                    allCards = _drawDeck.GetAllCardsAsList();
+                }
+
                 int randomIndex = Random.Range(0, allCards.Count);
                 selectedCards.Add(allCards[randomIndex]);
                 discardPile.AddCard(allCards[randomIndex]);
