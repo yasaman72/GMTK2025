@@ -629,7 +629,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1645704437}
         m_TargetAssemblyTypeName: HudManager, Assembly-CSharp
-        m_MethodName: OpenDeck
+        m_MethodName: OpenDiscardDeck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5927,6 +5927,10 @@ PrefabInstance:
       propertyPath: throwForceRange.y
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: discardDeckCountText
+      value: 
+      objectReference: {fileID: 960233474}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6040,6 +6044,10 @@ PrefabInstance:
       propertyPath: _pauseMenu
       value: 
       objectReference: {fileID: 1579268299}
+    - target: {fileID: 3772968950846914952, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenDrawDeck
+      objectReference: {fileID: 0}
     - target: {fileID: 4060340070686707565, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
