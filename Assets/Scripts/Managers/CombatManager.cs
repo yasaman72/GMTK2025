@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
@@ -6,8 +7,10 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private Transform _enemySpawnPos;
     [SerializeField] private float _waitBeforeNewEnemySpawn = 3;
+    [SerializeField] private TextMeshProUGUI _deatedEnemiesCounter;
 
     private GameObject _currentEnemy;
+    private int _defeatedEnemiesCount = 0;
 
     private void Start()
     {
@@ -16,6 +19,8 @@ public class CombatManager : MonoBehaviour
         {
             Destroy(enemy.gameObject);
         }
+
+        _deatedEnemiesCounter.text = "0";
 
         SpawnNewEnemy();
     }
@@ -30,6 +35,9 @@ public class CombatManager : MonoBehaviour
     {
         _currentEnemy.GetComponent<EnemyBrain>().OnEnemyDeath -= HandleEnemyDeath;
         StartCoroutine(EnemyDeathAndRespawn());
+
+        _defeatedEnemiesCount++;
+        _deatedEnemiesCounter.text = _defeatedEnemiesCount.ToString();
     }
 
     IEnumerator EnemyDeathAndRespawn()
