@@ -2780,13 +2780,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 140
       objectReference: {fileID: 0}
-    - target: {fileID: 2573703330287621046, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
-      propertyPath: m_text
-      value: 'Pick 1 reward to add to your items.
-
-        They go to your discard
-        pile.'
-      objectReference: {fileID: 0}
     - target: {fileID: 3771873974026576767, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

@@ -389,10 +389,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'pick 1 reward to add to your items.
+  m_text: 'Pick 1 reward to add to your items.
 
-    they will go to your discard
-    pile.'
+    They go to your discard pile.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -549,22 +548,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6100743709650146597, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8450187520209263157, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8450187520209263157, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8450187520209263157, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8450187520209263157, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8666278385128463733, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}

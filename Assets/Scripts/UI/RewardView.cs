@@ -33,7 +33,8 @@ public class RewardView : MonoBehaviour
         // TODO: pooling and not reseting everytime deck is opened
         foreach (Transform item in _deckContentHolder)
         {
-            Destroy(item.gameObject);
+            if (item)
+                Destroy(item.gameObject);
         }
 
         // TODO: update "CardDeck" to handle runtime deck and data file decks
@@ -41,7 +42,7 @@ public class RewardView : MonoBehaviour
         {
             var newCardPrefab = Instantiate(_deckViewItemPrefab, _deckContentHolder);
             newCardPrefab.GetComponent<DeckViewItem>().Setup(card);
-            newCardPrefab.AddComponent<Button>().onClick.AddListener( () => OnRewardPicked(card));
+            newCardPrefab.AddComponent<Button>().onClick.AddListener(() => OnRewardPicked(card));
         }
         gameObject.SetActive(true);
     }
