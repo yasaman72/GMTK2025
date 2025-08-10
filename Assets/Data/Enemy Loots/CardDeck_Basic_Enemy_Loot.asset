@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53aa06d2943438b8d9530dd0debb8fc, type: 3}
+  m_Name: CardDeck_Basic_Enemy_Loot
+  m_EditorClassIdentifier: 
+  startingCards:
+  - cardType: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
+    quantity: 1
+  - cardType: {fileID: 11400000, guid: 8cb78b64c70247c4587d5a3530dd2509, type: 2}
+    quantity: 2
+  totalCards: 3

@@ -8,7 +8,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 {
     public Action OnEnemyDeath;
 
-    [SerializeField] private CombatParticipantStats _stats;
+    [SerializeField] public EnemyStats stats;
     [SerializeField] private EnemyBehavior[] _enemyBehaviors;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [Header("Intention UI")]
@@ -26,11 +26,11 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     [SerializeField] private AudioClip _deathSound;
 
     private EnemyBehavior nextAction;
-    public int MaxHealth => _stats.MaxHealth;
+    public int MaxHealth => stats.MaxHealth;
 
     private void Awake()
     {
-        _stats.ResetStats();
+        stats.ResetStats();
     }
     private void OnEnable()
     {
@@ -100,7 +100,7 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     {
         if (IsDead()) return;
 
-        _stats.SetCurrentHealth(_stats.CurrentHealth - damage);
+        stats.SetCurrentHealth(stats.CurrentHealth - damage);
         if (damage > 0)
         {
             _animator.SetTrigger("Hit");
@@ -125,18 +125,18 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
             Logger.LogWarning("Heal amount cannot be negative");
             return;
         }
-        _stats.SetCurrentHealth(_stats.CurrentHealth + amount);
+        stats.SetCurrentHealth(stats.CurrentHealth + amount);
         UpdateHpUi();
     }
 
     public bool IsDead()
     {
-        return _stats.CurrentHealth <= 0;
+        return stats.CurrentHealth <= 0;
     }
 
     public int GetCurrentHealth()
     {
-        return _stats.CurrentHealth;
+        return stats.CurrentHealth;
     }
     #endregion
 
@@ -155,8 +155,8 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
 
     private void UpdateHpUi()
     {
-        _enemyHp.text = $"{_stats.CurrentHealth}/{_stats.MaxHealth}";
-        _hpBar.value = (float)_stats.CurrentHealth / _stats.MaxHealth;
+        _enemyHp.text = $"{stats.CurrentHealth}/{stats.MaxHealth}";
+        _hpBar.value = (float)stats.CurrentHealth / stats.MaxHealth;
     }
 
     public void AddShield(int amount)

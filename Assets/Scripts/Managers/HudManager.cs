@@ -12,7 +12,10 @@ public class HudManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerShield;
     [SerializeField] private Image _bgImage;
     [SerializeField] private GameObject _pauseMenu;
+    [Space]
+    // TODO: this is a dirty fix
     [SerializeField] private DeckView _deckView;
+    [SerializeField] private RewardView _rewardView;
 
     private void OnEnable()
     {
@@ -21,6 +24,7 @@ public class HudManager : MonoBehaviour
         PlayerManager.OnPlayerShieldChanged += UpdatePlayerShieldVisuals;
         _pauseMenu.SetActive(false);
         _deckView.Initialize();
+        _rewardView.Initialize();
     }
 
     private void OnDisable()

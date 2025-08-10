@@ -205,6 +205,15 @@ namespace Cards
             thrownCards.Clear();
         }
 
+        public void AddCardToDiscard(CardEntry card)
+        {
+            for (int i = 0; i < card.quantity; i++)
+            {
+                _discardDeck.AddCard(card.cardType);
+            }
+
+            UpdateUI();
+        }
 
         // TODO: move to a proper class
         void SetPlayerTurn(bool playerTurn)

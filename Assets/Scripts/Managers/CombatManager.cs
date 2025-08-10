@@ -10,6 +10,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _deatedEnemiesCounter;
 
     private GameObject _currentEnemy;
+    private EnemyStats _currentEnemyStats;
     private int _defeatedEnemiesCount = 0;
 
     private void Start()
@@ -29,6 +30,7 @@ public class CombatManager : MonoBehaviour
     {
         _currentEnemy = Instantiate(_enemyPrefab, _enemySpawnPos.position, Quaternion.identity, _enemySpawnPos);
         _currentEnemy.GetComponent<EnemyBrain>().OnEnemyDeath += HandleEnemyDeath;
+        _currentEnemyStats = _currentEnemy.GetComponent<EnemyBrain>().stats;
     }
 
     private void HandleEnemyDeath()
@@ -43,6 +45,8 @@ public class CombatManager : MonoBehaviour
     IEnumerator EnemyDeathAndRespawn()
     {
         yield return new WaitForSeconds(_waitBeforeNewEnemySpawn);
+        RewardView.OpenRewards?.Invoke(_currentEnemyStats.defeatRewards);
+
         Destroy(_currentEnemy);
         SpawnNewEnemy();
     }
