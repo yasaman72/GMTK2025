@@ -6034,6 +6034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2341727369108590428, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00012207031
+      objectReference: {fileID: 0}
     - target: {fileID: 2721990244803047427, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6769,7 +6773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 560562099884095892, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 329.4
+      value: 262.345
       objectReference: {fileID: 0}
     - target: {fileID: 560562099884095892, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6785,7 +6789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1950182635068052095, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 329.4
+      value: 262.345
       objectReference: {fileID: 0}
     - target: {fileID: 1950182635068052095, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6809,11 +6813,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3059270945712917775, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 329.4
+      value: 262.345
       objectReference: {fileID: 0}
     - target: {fileID: 3059270945712917775, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -81.295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089947197613007220, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
+      propertyPath: m_text
+      value: "Each turn, draw a circle around thrown items.\n\r\r\nOnly <color #FFFF00>3</color>
+        items can be collected each turn! If you collect more than three items, any
+        extra will be discarded randomly. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089947197613007220, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
+      propertyPath: m_margin.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089947197613007220, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
+      propertyPath: m_margin.z
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3755110803288282675, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6825,7 +6843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3755110803288282675, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 329.4
+      value: 262.345
       objectReference: {fileID: 0}
     - target: {fileID: 3755110803288282675, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_AnchoredPosition.y

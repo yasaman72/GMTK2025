@@ -71,7 +71,8 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
             }
             else
             {
-                nextAction.TakeAction(this);
+                if (!IsDead())
+                    nextAction.TakeAction(this);
             }
         }
     }
