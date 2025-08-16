@@ -33,6 +33,8 @@ namespace Cards
         public Vector2 throwForceRange = new Vector2(5f, 15f);
         public Vector2 throwAngleRange = new Vector2(60f, 120f); // Degrees
         public Vector2 torqueRange = new Vector2(-5, 5);
+        [SerializeField] private ComboCard comboCard;
+
         [Header("Audio Settings")]
         public AudioClip throwSound;
         public AudioClip throwStartSound;
@@ -41,7 +43,7 @@ namespace Cards
         public Button throwButton;
         public TextMeshProUGUI deckCountText;
         public TextMeshProUGUI discardDeckCountText;
-        public Transform deckDisplayParent; // For showing remaining cards
+        public Transform deckDisplayParent;
         public float enemyTurnDuration = 2f;
 
         // Runtime variables
@@ -92,6 +94,8 @@ namespace Cards
 
             AudioManager.OnPlaySoundEffct?.Invoke(throwStartSound);
 
+            cardsToThrow = ShuffleCards(cardsToThrow);
+
             // Throw cards with slight delays
             for (int i = 0; i < cardsToThrow.Count; i++)
             {
@@ -111,6 +115,7 @@ namespace Cards
                 }
             }
             GameStateManager.CanPlayerDrawLasso = false;
+
 
             // Switch to enemy turn
             SetPlayerTurn(false);
@@ -150,7 +155,25 @@ namespace Cards
             }
             UpdateUI();
 
+            // always add combo card
+            selectedCards.Add(comboCard);
+
             return selectedCards;
+        }
+
+        List<BaseCard> ShuffleCards(List<BaseCard> originalCards)
+        {
+            // randomize cards order before throwing
+            List<BaseCard> shuffledCards = new List<BaseCard>();
+            int cardsCount = originalCards.Count;
+            while (shuffledCards.Count < cardsCount)
+            {
+                int randomIndex = Random.Range(0, originalCards.Count);
+                shuffledCards.Add(originalCards[randomIndex]);
+                originalCards.RemoveAt(randomIndex);
+            }
+
+            return shuffledCards;
         }
 
         private void ReturnCardsToDrawDeck()

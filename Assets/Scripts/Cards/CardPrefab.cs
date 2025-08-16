@@ -27,15 +27,6 @@ namespace Cards
 
         void Start()
         {
-            // Set visual if card data is assigned
-            if (cardData != null && cardRenderer != null && cardData.cardIcon != null)
-            {
-                cardRenderer.sprite = cardData.cardIcon;
-            }
-
-            // Auto-destroy after time
-            Destroy(gameObject, destroyAfterTime);
-
             // Add some tag for lasso detection
             gameObject.tag = "ThrowableCard";
         }
@@ -78,15 +69,25 @@ namespace Cards
             }
         }
 
-
         public void OnDropedForBeingExtra()
         {
-            cardRenderer.color = new Color(.5f,.5f,.5f, .5f);
+            cardRenderer.color = new Color(.5f, .5f, .5f, .5f);
             transform.DOShakePosition(1f, 0.2f, 10, 90, false, true);
             transform.DOScale(Vector3.zero, 0.5f).SetDelay(1f).OnComplete(() => Destroy(gameObject));
         }
+
         private void CardActivationCallback()
         {
+            Destroy(gameObject);
+        }
+
+        public void OnCardDroppedOut()
+        {
+            if (cardData is ComboCard)
+            {
+                PlayerComboManager.OnPlayerComboBreak?.Invoke();
+            }
+
             Destroy(gameObject);
         }
     }

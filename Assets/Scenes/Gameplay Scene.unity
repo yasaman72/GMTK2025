@@ -5357,6 +5357,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1773090825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3765888672505129961, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+  m_PrefabInstance: {fileID: 3915370811910431692}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1832897388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5632,6 +5637,10 @@ PrefabInstance:
       value: CardManager
       objectReference: {fileID: 0}
     - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: comboCard
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e99b5feed481ef44b9051d4d690e253, type: 2}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: throwSound
       value: 
       objectReference: {fileID: 8300000, guid: e86283dad0bc38f47897297cb359b439, type: 3}
@@ -5828,6 +5837,34 @@ PrefabInstance:
       propertyPath: _pauseMenu
       value: 
       objectReference: {fileID: 1579268299}
+    - target: {fileID: 3765888672505129961, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_Name
+      value: Combo Title Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023324878924598252, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.4999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023324878924598252, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023324878924598252, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 57.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023324878924598252, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 61.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023324878924598252, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -348.05002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023324878924598252, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 135.46999
+      objectReference: {fileID: 0}
     - target: {fileID: 5627074133038162550, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
       propertyPath: _cardManager
       value: 
@@ -5844,11 +5881,30 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 8079344181579258909, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_Name
+      value: Combo Counter Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 8858503159165746346, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.05000305
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+--- !u!114 &3915370811910431693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6626576242751163140, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+  m_PrefabInstance: {fileID: 3915370811910431692}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4019621324865817169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5860,6 +5916,10 @@ PrefabInstance:
     - target: {fileID: 1471165421731587253, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: m_Name
       value: LassoManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _maxAllowedItems
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: _defaultColor.key0.a
@@ -6410,8 +6470,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075900557494967467, guid: 9689b242e0279c046a098f733bbb7144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8619310722066919937}
   m_SourcePrefab: {fileID: 100100000, guid: 9689b242e0279c046a098f733bbb7144, type: 3}
+--- !u!1 &8619310722066919936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075900557494967467, guid: 9689b242e0279c046a098f733bbb7144, type: 3}
+  m_PrefabInstance: {fileID: 8619310722066919935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8619310722066919937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619310722066919936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2da51d0ad76ac40b96fd86d7679fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerComboCounter: {fileID: 3915370811910431693}
+  _minComboToShow: 1
+  _playerComboText: {fileID: 1773090825}
 --- !u!1001 &8645411576931606734
 PrefabInstance:
   m_ObjectHideFlags: 0

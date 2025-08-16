@@ -5,9 +5,10 @@ public class CardDestroyer : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<CardPrefab>())
+        var CardPrefab = collision.gameObject.GetComponent<CardPrefab>();
+        if (CardPrefab)
         {
-            Destroy(collision.gameObject);
+            CardPrefab.OnCardDroppedOut();
         }
     }
 }

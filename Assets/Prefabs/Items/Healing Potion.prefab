@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7123327090805414664}
   - component: {fileID: 7631069350742609475}
   - component: {fileID: 2433646272860243771}
-  - component: {fileID: 2430422710424673360}
+  - component: {fileID: 2268647949461971677}
   m_Layer: 0
-  m_Name: ShieldPrefab
+  m_Name: Healing Potion
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4009389148060104062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.1241884, y: 2.7171178, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -3633131140005696750, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
+  m_Sprite: {fileID: 7028616704906629411, guid: f71b2108ef39daa46912ef2a1702692c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,7 +156,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.17, y: 3.35}
+    oldSize: {x: 2.35, y: 2.59}
     newSize: {x: 5.12, y: 4.02}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -176,11 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614d0f37557c4e0ab6aec17cc677ac98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
+  cardData: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
   cardRenderer: {fileID: 4511104064061259222}
   destroyAfterTime: 10
   isLassoed: 0
---- !u!95 &2430422710424673360
+--- !u!95 &2268647949461971677
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0

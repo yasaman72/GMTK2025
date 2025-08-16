@@ -10,6 +10,7 @@ namespace Cards.ScriptableObjects
         public string cardName;
         public string description;
         public Sprite cardIcon;
+        public bool isNegativeItem;
         public Color onSelectColor = Color.green;
         public AudioClip onUseSound;
 
