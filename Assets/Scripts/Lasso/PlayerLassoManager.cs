@@ -41,9 +41,9 @@ public class PlayerLassoManager : MonoBehaviour
         TurnManager.OnTurnChanged -= OnTurnChanged;
     }
 
-    private void OnTurnChanged(bool isPlayerTurn)
+    private void OnTurnChanged(TurnManager.ETurnMode turnMode)
     {
-        if (!isPlayerTurn)
+        if (turnMode != TurnManager.ETurnMode.Player)
             ClearLasso();
     }
 

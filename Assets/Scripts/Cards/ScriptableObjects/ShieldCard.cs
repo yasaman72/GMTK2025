@@ -11,10 +11,10 @@ namespace Cards.ScriptableObjects
         public int shieldAmount = 1;
         public float moveSpeed = 1f;
 
-        public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
+        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
-            Debug.Log($"Shield provides {shieldAmount} protection");
-            runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
+            Logger.Log($"Shield provides {shieldAmount} protection", shouldLog);
+            runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }
 
         private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)

@@ -16,11 +16,11 @@ namespace Cards.ScriptableObjects
             isConsumable = true; // Potions are always consumable
         }
 
-        public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
+        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
-            Debug.Log($"Healing Potion heals player for {healAmount} HP");
+            Logger.Log($"Healing Potion heals player for {healAmount} HP", shouldLog);
             runner.StopAllCoroutines();
-            runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
+            runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }
 
         private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)

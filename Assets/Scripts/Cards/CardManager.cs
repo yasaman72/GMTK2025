@@ -54,6 +54,16 @@ namespace Cards
             Initialize();
         }
 
+        private void OnEnable()
+        {
+            TurnManager.OnTurnChanged += HandleTurnChanged;
+        }
+
+        private void OnDisable()
+        {
+            TurnManager.OnTurnChanged -= HandleTurnChanged;
+        }
+
         void Initialize()
         {
             // Create runtime copy of deck
@@ -67,6 +77,8 @@ namespace Cards
             // Setup UI
             throwButton.onClick.AddListener(OnThrowButtonClicked);
             UpdateUI();
+
+            throwButton.gameObject.SetActive(TurnManager.TurnMode == TurnManager.ETurnMode.Player);
         }
 
         void UpdateUI()
@@ -77,9 +89,23 @@ namespace Cards
             discardDeckCountText.text = _discardDeck.GetTotalCardCount().ToString();
         }
 
+        private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
+        {
+            if (turnMode == TurnManager.ETurnMode.Player)
+            {
+                throwButton.gameObject.SetActive(true);
+                UpdateUI();
+                ClearThrownCards();
+            }
+            else
+            {
+                throwButton.gameObject.SetActive(false);
+            }
+        }
+
         public void OnThrowButtonClicked()
         {
-            if (!TurnManager.IsPlayerTurn) return;
+            if (TurnManager.TurnMode != TurnManager.ETurnMode.Player) return;
 
             StartCoroutine(ThrowCardsSequence());
         }
@@ -116,17 +142,7 @@ namespace Cards
             }
             GameStateManager.CanPlayerDrawLasso = false;
 
-
-            // Switch to enemy turn
-            SetPlayerTurn(false);
-            // TODO: switch to players turn after all items are activated or all items are out of the view
-            yield return new WaitForSeconds(enemyTurnDuration);
-
-            // Back to player turn
-            SetPlayerTurn(true);
-
-            if (_drawDeck.GetTotalCardCount() <= 0)
-                ReturnCardsToDrawDeck();
+            AfterPlayerTurnEnd();
         }
 
         List<BaseCard> SelectCardsToThrow()
@@ -238,11 +254,13 @@ namespace Cards
             UpdateUI();
         }
 
-        // TODO: move to a proper class
-        void SetPlayerTurn(bool playerTurn)
+        private void AfterPlayerTurnEnd()
         {
-            TurnManager.ChangeTurn(playerTurn);
-            throwButton.gameObject.SetActive(playerTurn);
+            throwButton.gameObject.SetActive(false);
+            TurnManager.ChangeTurn(TurnManager.ETurnMode.Enemy);
+
+            if (_drawDeck.GetTotalCardCount() <= 0)
+                ReturnCardsToDrawDeck();
         }
     }
 }

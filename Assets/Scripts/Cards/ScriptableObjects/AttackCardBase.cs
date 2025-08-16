@@ -11,13 +11,13 @@ namespace Cards.ScriptableObjects
         public int moveSpeed = 1;
         public float delayBeforeMove = 0.3f;
 
-        public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
+        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             runner.StopAllCoroutines();
-            runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
+            runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }
 
-        private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)
+        private IEnumerator ActivateCardEffect(Action callback, CardPrefab cardPrefab)
         {
             // Visuals and animation
             var enemy = FindAnyObjectByType<EnemyBrain>();
@@ -41,7 +41,7 @@ namespace Cards.ScriptableObjects
             AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
             yield return new WaitForSeconds(1);
-            callBack?.Invoke();
+            callback?.Invoke();
         }
     }
 }

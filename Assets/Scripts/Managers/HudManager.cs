@@ -45,17 +45,17 @@ public class HudManager : MonoBehaviour
     }
     private void InitializeHud()
     {
-        UpdateTurnText(TurnManager.IsPlayerTurn);
+        UpdateTurnText(TurnManager.TurnMode);
         UpdatePlayerHpVisuals(
             PlayerManager.PlayerDamageableInstance.GetCurrentHealth(),
             PlayerManager.PlayerDamageableInstance.MaxHealth);
     }
 
-    private void UpdateTurnText(bool isPlayerTurn)
+    private void UpdateTurnText(TurnManager.ETurnMode turnMode)
     {
+        bool isPlayerTurn = turnMode == TurnManager.ETurnMode.Player;
         _turnText.text = isPlayerTurn ? "Your Turn!" : "Enemy Turn!";
         _turnBg.color = isPlayerTurn ? Color.black : Color.red;
-
         Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f) : Color.white;
         _bgImage.color = newColor;
     }

@@ -35,8 +35,9 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += HandleTurnChanged;
-        HandleTurnChanged(TurnManager.IsPlayerTurn);
+        TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
 
+        PickNextAction();
         UpdateHpUi();
     }
 
@@ -52,23 +53,21 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         TurnManager.OnTurnChanged -= HandleTurnChanged;
     }
 
-    private void HandleTurnChanged(bool isPlayerTurn)
+    private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
     {
-        Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f) : Color.white;
+        Color newColor = turnMode == TurnManager.ETurnMode.Player ? new Color(.5f, .5f, .5f) : Color.white;
         _spriteRenderer.color = newColor;
 
-        if (isPlayerTurn)
+        if (turnMode == TurnManager.ETurnMode.Player)
         {
-            // pick the aciton in player's turn to show the intention
             PickNextAction();
         }
         else
         {
-            // TODO: add a delay and efects and animations for the enemy action
             if (nextAction != null)
             {
                 if (!IsDead())
-                    nextAction.TakeAction(this);
+                    nextAction.TakeAction(this, this, OnActionFinished);
             }
         }
     }
@@ -78,6 +77,11 @@ public class EnemyBrain : MonoBehaviour, IDamageable, IDamageDealer
         int behaviorIndex = UnityEngine.Random.Range(0, _enemyBehaviors.Length);
         nextAction = _enemyBehaviors[behaviorIndex];
         UpdateIntentionUI(nextAction);
+    }
+
+    private void OnActionFinished()
+    {
+        TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
     }
 
     private void UpdateIntentionUI(EnemyBehavior nextAction)

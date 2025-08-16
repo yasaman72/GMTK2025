@@ -11,13 +11,13 @@ namespace Cards.ScriptableObjects
         [Header("Bomb Properties")]
         public int damage = 3;
 
-        public override void UseCard(MonoBehaviour runner, Action callBack, CardPrefab cardPrefab)
+        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
-            Debug.Log($"Bomb explodes! Player takes {damage} damage");
-            runner.StartCoroutine(ActivateCardEffect(callBack, cardPrefab));
+            Logger.Log($"Bomb explodes! Player takes {damage} damage", shouldLog);
+            runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }
 
-        private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)
+        private IEnumerator ActivateCardEffect(Action callback, CardPrefab cardPrefab)
         {
             yield return new WaitForSeconds(.1f);
 
@@ -31,7 +31,7 @@ namespace Cards.ScriptableObjects
             PlayerManager.PlayerDamageableInstance.TakeDamage(damage);
             AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
-            callBack?.Invoke();
+            callback?.Invoke();
         }
     }
 }
