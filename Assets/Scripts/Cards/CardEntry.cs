@@ -5,13 +5,13 @@ namespace Cards
     [System.Serializable]
     public class CardEntry
     {
-        public BaseCard cardType;
-        public int quantity;
+        public BaseCard Card;
+        public int Quantity;
     
         public CardEntry(BaseCard card, int qty)
         {
-            cardType = card;
-            quantity = qty;
+            Card = card;
+            Quantity = qty;
         }
     }
 }

@@ -22,8 +22,8 @@ namespace Cards.ScriptableObjects
             totalCards = 0;
             foreach (var entry in startingCards)
             {
-                if (entry.cardType != null)
-                    totalCards += entry.quantity;
+                if (entry.Card != null)
+                    totalCards += entry.Quantity;
             }
         }
     
@@ -32,9 +32,9 @@ namespace Cards.ScriptableObjects
             currentDeck.Clear();
             foreach (var entry in startingCards)
             {
-                if (entry.cardType != null && entry.quantity > 0)
+                if (entry.Card != null && entry.Quantity > 0)
                 {
-                    currentDeck[entry.cardType] = entry.quantity;
+                    currentDeck[entry.Card] = entry.Quantity;
                 }
             }
         }

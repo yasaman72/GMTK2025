@@ -2,8 +2,8 @@ using Cards;
 using Cards.ScriptableObjects;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
+using static ShopData;
 
 public class DeckViewItem : MonoBehaviour
 {
@@ -11,6 +11,10 @@ public class DeckViewItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _countText;
+    [Header("Shop")]
+    [SerializeField] private GameObject _priceParent;
+    [SerializeField] private TextMeshProUGUI _priceText;
+
 
     public void Setup(BaseCard card)
     {
@@ -21,7 +25,13 @@ public class DeckViewItem : MonoBehaviour
 
     public void Setup(CardEntry card)
     {
-        Setup(card.cardType);
-        _countText.text = card.quantity.ToString() + "X";
+        Setup(card.Card);
+        _countText.text = card.Quantity.ToString() + "X";
+    }
+    public void Setup(ShopItem shopItem)
+    {
+        Setup(shopItem.CardEntry);
+        _priceParent.SetActive(true);
+        _priceText.text = shopItem.Price.ToString();
     }
 }

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: StartingDeck
   m_EditorClassIdentifier: 
   startingCards:
-  - cardType: {fileID: 11400000, guid: 3be46b6e043980248b5dbe63afbae9f2, type: 2}
-    quantity: 5
-  - cardType: {fileID: 11400000, guid: 4391da219602b584da8f5a7e46dd3e39, type: 2}
-    quantity: 3
-  - cardType: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
-    quantity: 1
-  - cardType: {fileID: 11400000, guid: 361380270d81ae14c993159898d1a690, type: 2}
-    quantity: 4
-  - cardType: {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
-    quantity: 2
+  - Card: {fileID: 11400000, guid: 4391da219602b584da8f5a7e46dd3e39, type: 2}
+    Quantity: 3
+  - Card: {fileID: 11400000, guid: 3be46b6e043980248b5dbe63afbae9f2, type: 2}
+    Quantity: 5
+  - Card: {fileID: 11400000, guid: 361380270d81ae14c993159898d1a690, type: 2}
+    Quantity: 3
+  - Card: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
+    Quantity: 2
+  - Card: {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
+    Quantity: 2
   totalCards: 15

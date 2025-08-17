@@ -5,11 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Random = UnityEngine.Random;
+using System;
 
 namespace Cards
 {
     public class CardManager : MonoBehaviour
     {
+        public static Action<CardEntry> AddCardToDeckAction;
+
         [SerializeField] private bool shouldLog = true;
 
         [Header("Deck Configuration")]
@@ -57,11 +60,13 @@ namespace Cards
         private void OnEnable()
         {
             TurnManager.OnTurnChanged += HandleTurnChanged;
+            AddCardToDeckAction += AddCardToDeck;
         }
 
         private void OnDisable()
         {
             TurnManager.OnTurnChanged -= HandleTurnChanged;
+            AddCardToDeckAction -= AddCardToDeck;
         }
 
         void Initialize()
@@ -244,11 +249,11 @@ namespace Cards
             thrownCards.Clear();
         }
 
-        public void AddCardToDiscard(CardEntry card)
+        public void AddCardToDeck(CardEntry card)
         {
-            for (int i = 0; i < card.quantity; i++)
+            for (int i = 0; i < card.Quantity; i++)
             {
-                _discardDeck.AddCard(card.cardType);
+                _drawDeck.AddCard(card.Card);
             }
 
             UpdateUI();
