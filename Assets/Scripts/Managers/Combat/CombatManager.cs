@@ -15,7 +15,7 @@ public class CombatManager : MonoBehaviour
 
     private void Start()
     {
-        var enemies = FindObjectsByType<EnemyBrain>(FindObjectsSortMode.None);
+        var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (var enemy in enemies)
         {
             Destroy(enemy.gameObject);
@@ -29,13 +29,13 @@ public class CombatManager : MonoBehaviour
     private void SpawnNewEnemy()
     {
         _currentEnemy = Instantiate(_enemyPrefab, _enemySpawnPos.position, Quaternion.identity, _enemySpawnPos);
-        _currentEnemy.GetComponent<EnemyBrain>().OnEnemyDeath += HandleEnemyDeath;
-        _currentEnemyStats = _currentEnemy.GetComponent<EnemyBrain>().stats;
+        _currentEnemy.GetComponent<Enemy>().OnDeath += HandleEnemyDeath;
+        _currentEnemyStats = _currentEnemy.GetComponent<Enemy>().Stats as EnemyStats;
     }
 
     private void HandleEnemyDeath()
     {
-        _currentEnemy.GetComponent<EnemyBrain>().OnEnemyDeath -= HandleEnemyDeath;
+        _currentEnemy.GetComponent<Enemy>().OnDeath -= HandleEnemyDeath;
         StartCoroutine(EnemyDeathAndRespawn());
 
         _defeatedEnemiesCount++;

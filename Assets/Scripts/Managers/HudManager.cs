@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HudManager : MonoBehaviour
+public class HudManager : CustomMonoBehavior
 {
     [SerializeField] private TextMeshProUGUI _turnText;
     [SerializeField] private Image _turnBg;
@@ -20,8 +20,6 @@ public class HudManager : MonoBehaviour
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += UpdateTurnText;
-        PlayerManager.OnPlayerHPChanged += UpdatePlayerHpVisuals;
-        PlayerManager.OnPlayerShieldChanged += UpdatePlayerShieldVisuals;
         _pauseMenu.SetActive(false);
         _deckView.Initialize();
         _rewardView.Initialize();
@@ -30,13 +28,6 @@ public class HudManager : MonoBehaviour
     private void OnDisable()
     {
         TurnManager.OnTurnChanged -= UpdateTurnText;
-        PlayerManager.OnPlayerHPChanged -= UpdatePlayerHpVisuals;
-        PlayerManager.OnPlayerShieldChanged -= UpdatePlayerShieldVisuals;
-    }
-
-    private void UpdatePlayerShieldVisuals(int shieldAmount)
-    {
-        _playerShield.text = $"{shieldAmount}";
     }
 
     private void Start()
@@ -46,9 +37,6 @@ public class HudManager : MonoBehaviour
     private void InitializeHud()
     {
         UpdateTurnText(TurnManager.TurnMode);
-        UpdatePlayerHpVisuals(
-            PlayerManager.PlayerDamageableInstance.GetCurrentHealth(),
-            PlayerManager.PlayerDamageableInstance.MaxHealth);
     }
 
     private void UpdateTurnText(TurnManager.ETurnMode turnMode)
@@ -59,13 +47,6 @@ public class HudManager : MonoBehaviour
         Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f) : Color.white;
         _bgImage.color = newColor;
     }
-
-    private void UpdatePlayerHpVisuals(int currentHp, int maxHp)
-    {
-        _playerHpText.text = $"{currentHp} / {maxHp}";
-        _playerHpSlider.value = (float)currentHp / maxHp;
-    }
-
 
     public void OnPause()
     {

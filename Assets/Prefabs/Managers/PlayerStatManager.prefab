@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4539417081799516603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642435378301239536}
+  m_Layer: 0
+  m_Name: Player Damage Indicator Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642435378301239536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539417081799516603}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.69, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3701337093540993611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8129861768524730877
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3701337093540993611}
-  - component: {fileID: 7009993031492877634}
+  - component: {fileID: 5954276191555633292}
+  - component: {fileID: 4119353285427057102}
+  - component: {fileID: 2196125166669418209}
   m_Layer: 0
   m_Name: PlayerStatManager
   m_TagString: Untagged
@@ -29,10 +62,11 @@ Transform:
   m_LocalPosition: {x: -0.28754, y: -0.83039, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1642435378301239536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7009993031492877634
+--- !u!114 &5954276191555633292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +75,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 8129861768524730877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2afbc5119fe4d2d41a236e93c32910e1, type: 3}
+  m_Script: {fileID: 11500000, guid: e7adf2fdb1a349f408f97f2ee8a972bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStats: {fileID: 11400000, guid: 88236aa6c59b93d4e95748fbeee9cb38, type: 2}
+  _damageIndicator: {fileID: 7475109830850499184, guid: f281cbf6ebfabd94fa101e690aff3ab7, type: 3}
+  _origin: {fileID: 1642435378301239536}
+  _destroyAfter: 1
+  _spawnHorizontalRange: {x: -0.5, y: 0.5}
+--- !u!114 &4119353285427057102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129861768524730877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb443afea96b134889e17c9e2e1a28a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats: {fileID: 11400000, guid: cd39f389133948543a2195f1ab539711, type: 2}
+  _damageIndicatorApplier: {fileID: 5954276191555633292}
+  HPOrigin: {fileID: 1642435378301239536}
+  _hitSound: {fileID: 8300000, guid: c8511709c09f97346a56d9b8152c3784, type: 3}
+  _onHitShieldSound: {fileID: 8300000, guid: 73b6a6c81ed58b042a1bad46165f01a6, type: 3}
+  _deathSound: {fileID: 8300000, guid: 4cdf7d96212e8694c8f7c2d875cc8e7d, type: 3}
+--- !u!114 &2196125166669418209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129861768524730877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c431ac9d3a19148b94e7d16542a67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldLog: 0

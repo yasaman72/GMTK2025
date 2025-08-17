@@ -16,7 +16,7 @@ namespace Cards.ScriptableObjects
             isConsumable = true; // Potions are always consumable
         }
 
-        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
+        protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             Logger.Log($"Healing Potion heals player for {healAmount} HP", shouldLog);
             runner.StopAllCoroutines();
@@ -26,7 +26,7 @@ namespace Cards.ScriptableObjects
         private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)
         {
             yield return new WaitForSeconds(.3f);
-            Transform playerHpPos = FindAnyObjectByType<PlayerManager>()._playerHpOrigin;
+            Transform playerHpPos = Player.PlayerCombatCharacter.HPOrigin;
 
             while (Vector2.Distance(cardPrefab.transform.position, playerHpPos.position) > 1)
             {
@@ -37,7 +37,7 @@ namespace Cards.ScriptableObjects
                 yield return null;
             }
 
-            PlayerManager.PlayerDamageableInstance.Heal(healAmount);
+            Player.PlayerCombatCharacter.Heal(healAmount);
             AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
             callBack?.Invoke();

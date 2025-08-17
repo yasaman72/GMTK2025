@@ -2,11 +2,9 @@ using System;
 using UnityEngine;
 using static LootSet;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : CustomMonoBehavior
 {
     public static Action<LootSetData> AddToInventoryAction;
-
-    [SerializeField] private bool shouldLog = false;
 
     private static int coinCount;
     public static int CoinCount

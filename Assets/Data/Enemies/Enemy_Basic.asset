@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
   m_Name: Enemy_Basic
   m_EditorClassIdentifier: 
-  _maxHealth: 10
-  _currentHealth: 10
-  _currentShield: 0
+  MaxHealth: 10
   defeatRewards: {fileID: 11400000, guid: f6c73efaa50e2ea4fa9e294408eeec09, type: 2}
+  EnemyActions:
+  - {fileID: 11400000, guid: 5a4e5e583e3211048b53c5e382d48c01, type: 2}
+  - {fileID: 11400000, guid: 5819b94420dbb404da36c5c3977d8e9a, type: 2}
+  - {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}

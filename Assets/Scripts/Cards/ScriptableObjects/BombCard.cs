@@ -11,7 +11,7 @@ namespace Cards.ScriptableObjects
         [Header("Bomb Properties")]
         public int damage = 3;
 
-        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
+        protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             Logger.Log($"Bomb explodes! Player takes {damage} damage", shouldLog);
             runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
@@ -28,7 +28,7 @@ namespace Cards.ScriptableObjects
 
             yield return new WaitForSeconds(scaleDuration);
 
-            PlayerManager.PlayerDamageableInstance.TakeDamage(damage);
+            Player.PlayerCombatCharacter.TakeDamage(damage);
             AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
             callback?.Invoke();

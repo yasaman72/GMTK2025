@@ -11,7 +11,7 @@ namespace Cards.ScriptableObjects
         public int shieldAmount = 1;
         public float moveSpeed = 1f;
 
-        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
+        protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             Logger.Log($"Shield provides {shieldAmount} protection", shouldLog);
             runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
@@ -21,7 +21,7 @@ namespace Cards.ScriptableObjects
         {
             yield return new WaitForSeconds(.3f);
 
-            Transform playerHpPos = FindAnyObjectByType<PlayerManager>()._playerHpOrigin;
+            Transform playerHpPos = FindAnyObjectByType<Player>().HPOrigin;
 
             while (Vector2.Distance(cardPrefab.transform.position, playerHpPos.position) > 1)
             {
@@ -32,7 +32,7 @@ namespace Cards.ScriptableObjects
                 yield return null;
             }
 
-            PlayerManager.PlayerDamageableInstance.AddShield(shieldAmount);
+            Player.PlayerCombatCharacter.AddShield(shieldAmount);
             AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
 

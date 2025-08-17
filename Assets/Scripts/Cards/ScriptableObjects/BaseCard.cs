@@ -16,13 +16,10 @@ namespace Cards.ScriptableObjects
         [SerializeField] protected bool shouldLog;
 
         [Header("Prefab")]
-        public GameObject cardPrefab; // The prefab that will be thrown (with rigidbody)
+        public GameObject cardPrefab;
 
         [Header("Card Properties")]
-        public bool isConsumable = false; // Whether this card is removed after use
-
-        // Abstract method that each card type must implement
-        public abstract void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab);
+        public bool isConsumable = false;
 
         // Virtual method for card effects - can be overridden
         public virtual void OnCardActivated(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
@@ -31,8 +28,12 @@ namespace Cards.ScriptableObjects
 
             if (isConsumable)
             {
-                Debug.Log($"{cardName} consumed and removed from deck");
+                // TODO: Implement logic to consume card
+                Logger.Log($"{cardName} consumed and removed from deck", shouldLog);
             }
         }
+
+        // Abstract method that each card type must implement
+        protected abstract void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab);
     }
 }

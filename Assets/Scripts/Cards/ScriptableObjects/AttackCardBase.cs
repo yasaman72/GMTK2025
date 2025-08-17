@@ -4,14 +4,15 @@ using System;
 
 namespace Cards.ScriptableObjects
 {
-    public abstract class AttackCardBase : BaseCard
+    [CreateAssetMenu(fileName = "AttackCard_[attack name]", menuName = "Cards/Attack Card")]
+    public class AttackCardBase : BaseCard
     {
-        [Header("Axe Properties")]
+        [Header("Attack Properties")]
         public int damage = 3;
         public int moveSpeed = 1;
         public float delayBeforeMove = 0.3f;
 
-        public override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
+        protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             runner.StopAllCoroutines();
             runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
@@ -20,7 +21,7 @@ namespace Cards.ScriptableObjects
         private IEnumerator ActivateCardEffect(Action callback, CardPrefab cardPrefab)
         {
             // Visuals and animation
-            var enemy = FindAnyObjectByType<EnemyBrain>();
+            var enemy = FindAnyObjectByType<Enemy>();
             Transform enemyTransform = enemy.transform;
 
             yield return new WaitForSeconds(delayBeforeMove);
@@ -37,7 +38,7 @@ namespace Cards.ScriptableObjects
             enemy.GetComponentInChildren<DamageIndicatorApplier>()?.ShowDamageIndicator(damage);
 
             // TODO: update the target selection if more enemies present in one comabt (milestone 2)
-            PlayerManager.PlayerDamageDealerInstance.DealDamage(enemy, damage);
+            Player.PlayerCombatCharacter.DealDamage(enemy, damage);
             AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
 
             yield return new WaitForSeconds(1);

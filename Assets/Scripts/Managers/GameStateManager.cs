@@ -27,12 +27,12 @@ public class GameStateManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerManager.OnPlayerDeath += HandlePlayerDeath;
+        Player.PlayerCombatCharacter.OnDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
-        PlayerManager.OnPlayerDeath -= HandlePlayerDeath;
+        Player.PlayerCombatCharacter.OnDeath -= HandlePlayerDeath;
     }
 
     private void HandlePlayerDeath()

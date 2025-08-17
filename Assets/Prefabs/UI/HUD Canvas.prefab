@@ -461,6 +461,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1167921856725557066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3877921137158470228}
+  - component: {fileID: 6707536199521812613}
+  m_Layer: 5
+  m_Name: PlayerInventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3877921137158470228
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167921856725557066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7558146527452962883}
+  m_Father: {fileID: 2721990244803047427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6707536199521812613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167921856725557066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ed4f038f1d4424ab56a86960296cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinAmountText: {fileID: 6817942613108573928}
 --- !u!1 &1265036587734527222
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,9 +696,8 @@ GameObject:
   - component: {fileID: 6950200441190973320}
   - component: {fileID: 2936048100816096589}
   - component: {fileID: 6646657083831193686}
-  - component: {fileID: 3057459521817995418}
   - component: {fileID: 3558497824041371109}
-  - component: {fileID: 4960298635189894038}
+  - component: {fileID: 3057459521817995418}
   m_Layer: 5
   m_Name: HUD Canvas
   m_TagString: Untagged
@@ -680,7 +729,7 @@ RectTransform:
   - {fileID: 3583897401691893323}
   - {fileID: 4707791466163011750}
   - {fileID: 5023324878924598252}
-  - {fileID: 7558146527452962883}
+  - {fileID: 3877921137158470228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -751,27 +800,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3057459521817995418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912243462227331284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02461610674a5fd4dbfa45a7c1d466bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _turnText: {fileID: 7939934616453858887}
-  _turnBg: {fileID: 2948926766176228383}
-  _playerHpSlider: {fileID: 2692883633227798156}
-  _playerHpText: {fileID: 4402652397581581307}
-  _playerShield: {fileID: 460498504523082767}
-  _bgImage: {fileID: 2729811742761520048}
-  _pauseMenu: {fileID: 0}
-  _deckView: {fileID: 5798548892088469991}
-  _rewardView: {fileID: 5627074133038162550}
 --- !u!95 &3558497824041371109
 Animator:
   serializedVersion: 7
@@ -794,7 +822,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4960298635189894038
+--- !u!114 &3057459521817995418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -803,10 +831,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1912243462227331284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78ed4f038f1d4424ab56a86960296cbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 02461610674a5fd4dbfa45a7c1d466bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinAmountText: {fileID: 6817942613108573928}
+  shouldLog: 0
+  _turnText: {fileID: 7939934616453858887}
+  _turnBg: {fileID: 2948926766176228383}
+  _playerHpSlider: {fileID: 2692883633227798156}
+  _playerHpText: {fileID: 4402652397581581307}
+  _playerShield: {fileID: 460498504523082767}
+  _bgImage: {fileID: 2729811742761520048}
+  _pauseMenu: {fileID: 0}
+  _deckView: {fileID: 5798548892088469991}
+  _rewardView: {fileID: 5627074133038162550}
 --- !u!1 &2205264878229275435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,18 +1711,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5310721237641155191}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8273750945239372799}
   - {fileID: 4963029314102051598}
-  m_Father: {fileID: 2721990244803047427}
+  m_Father: {fileID: 3877921137158470228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200.63, y: -74.45001}
+  m_AnchoredPosition: {x: 180.2, y: -67.1}
   m_SizeDelta: {x: 0, y: 31.779999}
   m_Pivot: {x: 0.4999997, y: 0.5}
 --- !u!114 &218450327302490006
@@ -2943,6 +2980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2365798420324996583}
+  - component: {fileID: 5773690866416132780}
   m_Layer: 5
   m_Name: Player Stats
   m_TagString: Untagged
@@ -2972,6 +3010,24 @@ RectTransform:
   m_AnchoredPosition: {x: 132.375, y: -33.5625}
   m_SizeDelta: {x: 218.05002, y: 50.005005}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5773690866416132780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171890024404048777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b565e9d533d47a340b67b46a78abc140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldLog: 0
+  combatCharacter: {fileID: 0}
+  _hpBar: {fileID: 2692883633227798156}
+  _hpAmountText: {fileID: 4402652397581581307}
+  _shieldIcon: {fileID: 7704239936031399418}
+  _shieldAmountText: {fileID: 460498504523082767}
 --- !u!1 &8581530566623642716
 GameObject:
   m_ObjectHideFlags: 0
