@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 'Bomb '
   description: deals 3 damage to you
-  cardIcon: {fileID: 395275383933611329, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
+  cardIcon: {fileID: 21300000, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
   isNegativeItem: 1
   onSelectColor: {r: 0.36862746, g: 0.023529412, b: 0.023529412, a: 1}
   onUseSound: {fileID: 8300000, guid: 6d1f06708c36d6b4f92844f399405962, type: 3}
+  shouldLog: 0
   cardPrefab: {fileID: 4009389148060104062, guid: bfca1e57867cb6c44a0c9e87b31f2571, type: 3}
   isConsumable: 0
   damage: 3

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: StartingDeck
   m_EditorClassIdentifier: 
   startingCards:
-  - cardType: {fileID: 11400000, guid: 8cb78b64c70247c4587d5a3530dd2509, type: 2}
+  - cardType: {fileID: 11400000, guid: 3be46b6e043980248b5dbe63afbae9f2, type: 2}
     quantity: 5
-  - cardType: {fileID: 11400000, guid: 27ab8304722993d42a50fb1f246c209c, type: 2}
+  - cardType: {fileID: 11400000, guid: 4391da219602b584da8f5a7e46dd3e39, type: 2}
     quantity: 3
   - cardType: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
     quantity: 1

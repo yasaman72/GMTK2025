@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 897aa2f393a44960b8ccd1ee1e12a00c, type: 3}
-  m_Name: AxeCard
+  m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
+  m_Name: AttackCard_Axe
   m_EditorClassIdentifier: 
   cardName: 'Axe '
   description: Deals 3 damage
-  cardIcon: {fileID: 2481595509450091535, guid: 9e53bc01c0eec174f839fcb42affd5da, type: 3}
-  onSelectColor: {r: 0.8473626, g: 1, b: 0.48742133, a: 1}
-  onUseSound: {fileID: 8300000, guid: 4b9186caebb90f0459dd64f7ff60b4e6, type: 3}
+  cardIcon: {fileID: 21300000, guid: 9e53bc01c0eec174f839fcb42affd5da, type: 3}
+  isNegativeItem: 0
+  onSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
+  onUseSound: {fileID: 8300000, guid: 900d351379628994a8acb967c99535f3, type: 3}
+  shouldLog: 0
   cardPrefab: {fileID: 4009389148060104062, guid: 2650f0187dc5af246b32d7ad1dec5fbe, type: 3}
   isConsumable: 0
   damage: 3

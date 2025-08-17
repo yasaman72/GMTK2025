@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Healing Potion
   description: Deals 5 heal
-  cardIcon: {fileID: 7028616704906629411, guid: f71b2108ef39daa46912ef2a1702692c, type: 3}
+  cardIcon: {fileID: 21300000, guid: f71b2108ef39daa46912ef2a1702692c, type: 3}
+  isNegativeItem: 0
   onSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   onUseSound: {fileID: 8300000, guid: d931d2008bd41ad459957f25902e0418, type: 3}
+  shouldLog: 0
   cardPrefab: {fileID: 4009389148060104062, guid: f0b4bf1bbab207040a3099cf777acfcb, type: 3}
   isConsumable: 1
   healAmount: 5
