@@ -6703,7 +6703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089947197613007220, guid: b17baa36748214440ab963970f4bf2f5, type: 3}
       propertyPath: m_text
-      value: "Each turn, draw a circle around thrown items.\n\r\r\nOnly <color #FFFF00>3</color>
+      value: "Each turn, draw a circle around thrown items.\n\r\r\nOnly <color #FFFF00>4</color>
         items can be collected each turn! If you collect more than three items, any
         extra will be discarded randomly. "
       objectReference: {fileID: 0}

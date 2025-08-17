@@ -60,7 +60,7 @@ public class PlayerInventory : CustomMonoBehavior
         if (CoinCount < amount)
         {
             Debug.Log($"Not enough coins to spend. Current coins: {CoinCount}, Attempted to spend: {amount}");
-            return true;
+            return false;
         }
         CoinCount -= amount;
         return true;

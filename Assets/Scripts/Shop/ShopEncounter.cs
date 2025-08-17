@@ -14,6 +14,7 @@ public class ShopEncounter : BaseEncounter
     private void OnDisable()
     {
         ShopUI.OnShopClosedEvent -= FinishEncounter;
+        FinishEncounter();
     }
 
     public override void StartEncounter()
