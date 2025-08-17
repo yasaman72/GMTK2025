@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
-  m_Name: Stats_Enemy_Basic
+  m_Script: {fileID: 11500000, guid: aaa8485d67e8da44cbb7f3c36f14a180, type: 3}
+  m_Name: Basic_Enemy_LootSet
   m_EditorClassIdentifier: 
-  _maxHealth: 10
-  _currentHealth: 10
-  _currentShield: 0
-  defeatRewards: {fileID: 11400000, guid: 66d561c1284521c44931dc765b7458bb, type: 2}
+  rewards:
+  - Item: {fileID: 11400000, guid: 400b5fbbdde999147a3911e21b4f1185, type: 2}
+    CountMin: 5
+    CountMax: 10
+    Chance: 100

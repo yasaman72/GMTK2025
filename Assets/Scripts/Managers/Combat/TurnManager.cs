@@ -9,7 +9,8 @@ public class TurnManager : MonoBehaviour
     public enum ETurnMode
     {
         Player,
-        Enemy
+        Enemy,
+        NONE
     }
 
     private static bool shouldLog = false;
@@ -45,6 +46,9 @@ public class TurnManager : MonoBehaviour
                 break;
             case ETurnMode.Enemy:
                 Logger.Log("Enemy's turn!", shouldLog);
+                break;
+            case ETurnMode.NONE:
+                Logger.Log("No turn mode set!", shouldLog);
                 break;
             default:
                 Logger.LogError("Unknown turn mode: " + newTurnMode);

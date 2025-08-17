@@ -1,18 +1,16 @@
-using Cards;
-using Cards.ScriptableObjects;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using static LootSet;
 
 public class RewardView : MonoBehaviour
 {
-    public static Action<CardDeck> OpenRewards;
+    public static Action<LootSet> OpenRewards;
 
     [SerializeField] private bool _shouldLog;
     [Space]
     [SerializeField] private Transform _deckContentHolder;
-    [SerializeField] private GameObject _deckViewItemPrefab;
-    [SerializeField] private CardManager _cardManager;
+    [SerializeField] private GameObject _rewardItemPrefab;
 
 
     public void Initialize()
@@ -26,7 +24,7 @@ public class RewardView : MonoBehaviour
         OpenRewards -= onDeckOpen;
     }
 
-    private void onDeckOpen(CardDeck deck)
+    private void onDeckOpen(LootSet loot)
     {
         Time.timeScale = 0;
 
@@ -37,23 +35,25 @@ public class RewardView : MonoBehaviour
                 Destroy(item.gameObject);
         }
 
-        // TODO: update "CardDeck" to handle runtime deck and data file decks
-        foreach (var card in deck.startingCards)
+        var pickedRewards = loot.GetPickedLoots();
+        foreach (var reward in pickedRewards)
         {
-            var newCardPrefab = Instantiate(_deckViewItemPrefab, _deckContentHolder);
-            newCardPrefab.GetComponent<DeckViewItem>().Setup(card);
-            newCardPrefab.AddComponent<Button>().onClick.AddListener(() => OnRewardPicked(card));
+            reward.Reset();
+
+            var newRewardPrefab = Instantiate(_rewardItemPrefab, _deckContentHolder);
+            var rewardItem = newRewardPrefab.GetComponent<RewardItem>().Setup(reward);
+            newRewardPrefab.AddComponent<Button>().onClick.AddListener(() =>
+            {
+                rewardItem.OnRewardPicked();
+                Close();
+            });
         }
         gameObject.SetActive(true);
     }
 
-    public void OnRewardPicked(CardEntry card)
+    public void Close()
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
-
-        Logger.Log("add card " + card.cardType.cardName, _shouldLog);
-
-        _cardManager.AddCardToDiscard(card);
     }
 }
