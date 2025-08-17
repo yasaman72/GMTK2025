@@ -1,17 +1,28 @@
 using UnityEngine;
+using static LootSet;
 
 public class CheatManager : MonoBehaviour
 {
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.PageUp))
-        {
-            AddCoin(200);
-        }
-    }
+    [SerializeField] GameObject _shop;
+    [SerializeField] GameObject _enemies;
 
-    private void AddCoin(int amount)
+    public void AddCoin(int amount)
     {
         PlayerInventory.CoinCount += amount;
+    }
+
+    public void AddLoot(LootSetData loot)
+    {
+        PlayerInventory.AddToInventoryAction?.Invoke(loot);
+    }
+
+    public void ToggleShop()
+    {
+        _shop.SetActive(!_shop.activeInHierarchy);
+    }
+
+    public void ToggleEnemies()
+    {
+        _enemies.SetActive(!_enemies.activeInHierarchy);
     }
 }
