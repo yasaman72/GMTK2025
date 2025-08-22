@@ -36,6 +36,7 @@ public class LootSet : ScriptableObject
 
         public void Loot()
         {
+            AudioManager.PlayAudioOneShot?.Invoke(Item.OnLootSound);
             PlayerInventory.AddToInventoryAction?.Invoke(this);
         }
     }

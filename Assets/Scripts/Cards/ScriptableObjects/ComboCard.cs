@@ -16,6 +16,7 @@ namespace Cards.ScriptableObjects
         private IEnumerator ActivateCardEffect(Action callBack, CardPrefab cardPrefab)
         {
             yield return new WaitForSeconds(.1f);
+            AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
             callBack?.Invoke();
         }
     }

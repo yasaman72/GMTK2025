@@ -172,12 +172,28 @@ MonoBehaviour:
   baseDeck: {fileID: 11400000, guid: 999cc3a33c6139845b6a017597e1a0f8, type: 2}
   cardsToThrowPerTurn: 5
   throwOrigin: {fileID: 2660645805810739518}
+  delayBetweenThrows: 0.2
   throwRange: {x: -5, y: 5}
-  throwForceRange: {x: 8, y: 12}
-  throwAngleRange: {x: 70, y: 110}
+  throwForceRange: {x: 10, y: 12}
+  throwAngleRange: {x: 80, y: 100}
   torqueRange: {x: -5, y: 5}
+  comboCard: {fileID: 11400000, guid: 2e99b5feed481ef44b9051d4d690e253, type: 2}
+  throwSound:
+    Guid:
+      Data1: 979551258
+      Data2: 1193583996
+      Data3: -49757567
+      Data4: -425429034
+    Path: event:/Gameplay/Throw_Single_Item
+  throwStartSound:
+    Guid:
+      Data1: -1135495620
+      Data2: 1274607391
+      Data3: 819366834
+      Data4: 1714882310
+    Path: event:/Gameplay/Throw_Start
   throwButton: {fileID: 0}
   deckCountText: {fileID: 0}
+  discardDeckCountText: {fileID: 0}
   deckDisplayParent: {fileID: 0}
-  displayObjPrefab: {fileID: 2874953272988577836, guid: 4f633d41a4ccc0d4280202d49ae5e02d, type: 3}
   enemyTurnDuration: 2

@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
     [SerializeField] private DamageIndicatorApplier _damageIndicatorApplier;
     [SerializeField] public Transform HPOrigin;
     [Header("Audio")]
-    [SerializeField] private AudioClip _hitSound;
-    [SerializeField] private AudioClip _onHitShieldSound;
-    [SerializeField] private AudioClip _deathSound;
+    [SerializeField] private EventReference _hitSound;
+    [SerializeField] private EventReference _onHitShieldSound;
+    [SerializeField] private EventReference _deathSound;
 
     [SerializeField, ReadOnly] private int CurrentHealth;
     [SerializeField, ReadOnly] private int CurrentShield;
@@ -36,17 +37,22 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
 
     public void TakeDamage(int damage)
     {
+        if (IsDead())
+        {
+            return;
+        }
+
         int finalDamage = DamageShield(damage);
         OnShieldChanged?.Invoke();
 
         if (finalDamage != damage)
         {
-            AudioManager.OnPlaySoundEffct?.Invoke(_onHitShieldSound);
+            AudioManager.PlayAudioOneShot?.Invoke(_onHitShieldSound);
         }
 
         if (finalDamage > 0)
         {
-            AudioManager.OnPlaySoundEffct?.Invoke(_hitSound);
+            AudioManager.PlayAudioOneShot?.Invoke(_hitSound);
         }
 
         bool isDead = SetCurrentHealth(CurrentHealth - finalDamage);
@@ -55,7 +61,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
 
         if (isDead)
         {
-            AudioManager.OnPlaySoundEffct?.Invoke(_deathSound);
+            AudioManager.PlayAudioOneShot?.Invoke(_deathSound);
             OnDeath?.Invoke();
         }
     }

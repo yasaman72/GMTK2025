@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : CombatCharacter
@@ -6,6 +7,7 @@ public class Enemy : CombatCharacter
     public Action<EnemyAction> OnIntentionChanged;
 
     [Header("Visualas and Animation")]
+    [SerializeField] private float _playActionDelay;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private Animator _parentAnimator;

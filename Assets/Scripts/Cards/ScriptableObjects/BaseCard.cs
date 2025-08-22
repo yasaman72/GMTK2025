@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using UnityEngine;
 
@@ -11,8 +12,8 @@ namespace Cards.ScriptableObjects
         public string description;
         public Sprite cardIcon;
         public bool isNegativeItem;
-        public Color onSelectColor = Color.green;
-        public AudioClip onUseSound;
+        public Color OnSelectColor = Color.green;
+        public EventReference OnUseSound;
         [SerializeField] protected bool shouldLog;
 
         [Header("Prefab")]

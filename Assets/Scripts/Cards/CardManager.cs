@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using Random = UnityEngine.Random;
 using System;
+using FMODUnity;
 
 namespace Cards
 {
@@ -39,8 +40,8 @@ namespace Cards
         [SerializeField] private ComboCard comboCard;
 
         [Header("Audio Settings")]
-        public AudioClip throwSound;
-        public AudioClip throwStartSound;
+        public EventReference throwSound;
+        public EventReference throwStartSound;
 
         [Header("UI Elements")]
         public Button throwButton;
@@ -123,7 +124,7 @@ namespace Cards
 
             ClearThrownCards();
 
-            AudioManager.OnPlaySoundEffct?.Invoke(throwStartSound);
+            AudioManager.PlayAudioOneShot?.Invoke(throwStartSound);
 
             cardsToThrow = ShuffleCards(cardsToThrow);
 
@@ -131,7 +132,7 @@ namespace Cards
             for (int i = 0; i < cardsToThrow.Count; i++)
             {
                 ThrowCard(cardsToThrow[i]);
-                AudioManager.OnPlaySoundEffct?.Invoke(throwSound);
+                AudioManager.PlayAudioOneShot?.Invoke(throwSound);
                 yield return new WaitForSeconds(delayBetweenThrows); // Small delay between throws
             }
 

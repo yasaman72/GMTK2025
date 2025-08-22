@@ -16,8 +16,14 @@ MonoBehaviour:
   description: If you wants to keep the combo, always loop this item in
   cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
   isNegativeItem: 0
-  onSelectColor: {r: 1, g: 0, b: 0.6675987, a: 1}
-  onUseSound: {fileID: 8300000, guid: 80eceb73a326fce4e8bd1712fbdb101e, type: 3}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
+  OnUseSound:
+    Guid:
+      Data1: -339645739
+      Data2: 1302875660
+      Data3: -840307062
+      Data4: 521687609
+    Path: event:/Gameplay/Throwables_Items/Items_Heal
   shouldLog: 0
   cardPrefab: {fileID: 4009389148060104062, guid: 0d2fd57997970864ea640a848ec95d1f, type: 3}
   isConsumable: 0

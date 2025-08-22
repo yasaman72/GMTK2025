@@ -83,9 +83,27 @@ MonoBehaviour:
   Stats: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
   _damageIndicatorApplier: {fileID: 7617898554937828164}
   HPOrigin: {fileID: 5968923113537092227}
-  _hitSound: {fileID: 8300000, guid: fb4db43ccb74a3c4dbe338843a8bc571, type: 3}
-  _onHitShieldSound: {fileID: 8300000, guid: 65556e632c1225c40ae99e4e160a4240, type: 3}
-  _deathSound: {fileID: 8300000, guid: 7936f13ea3bc57f498a4817942e2a7b8, type: 3}
+  _hitSound:
+    Guid:
+      Data1: 1423277174
+      Data2: 1115044803
+      Data3: 1769756337
+      Data4: -1609735435
+    Path: event:/Gameplay/Enemy/Enemy_Hit
+  _onHitShieldSound:
+    Guid:
+      Data1: -1245045586
+      Data2: 1268602549
+      Data3: -539647593
+      Data4: -1284980756
+    Path: event:/Gameplay/Enemy/Enemy_Hit_Shield
+  _deathSound:
+    Guid:
+      Data1: 163039215
+      Data2: 1173786266
+      Data3: 553153441
+      Data4: -97422675
+    Path: event:/Gameplay/Enemy/Enemy_Death
   CurrentHealth: 0
   CurrentShield: 0
   _spriteRenderer: {fileID: 7354075033553675505}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{a75de2ea-cbd4-486f-be3b-caca3e1ed15f}">
+		<property name="assetPath">
+			<value>Gameplay/Throwable_Items/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{eb90e886-d840-4d3c-b21f-73050a981995}</destination>
+		</relationship>
+	</object>
+</objects>

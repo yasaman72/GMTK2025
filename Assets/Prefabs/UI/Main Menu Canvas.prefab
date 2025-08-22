@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1693872444021263603}
   - component: {fileID: 5544626830316968320}
   - component: {fileID: 2376791642274827743}
-  - component: {fileID: 4107307099421499442}
+  - component: {fileID: 2838974523860672974}
   m_Layer: 5
   m_Name: Itch
   m_TagString: Untagged
@@ -134,7 +134,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4107307099421499442
+--- !u!114 &2838974523860672974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,11 +143,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 343526241085007309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e7335fbec7454e86cbb88071a8026, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 80eceb73a326fce4e8bd1712fbdb101e, type: 3}
-  _isButton: 1
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -541188052
+      Data2: 1143024327
+      Data3: -1921858118
+      Data4: -1210588403
+    Path: event:/UI/Button_Click
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1036841045127014138
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +566,7 @@ GameObject:
   - component: {fileID: 4500342692148791661}
   - component: {fileID: 7932513722050975958}
   - component: {fileID: 3442247231057470378}
-  - component: {fileID: 3246331694934880293}
+  - component: {fileID: 1486138053210159793}
   m_Layer: 5
   m_Name: Exit Button
   m_TagString: Untagged
@@ -655,7 +672,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 8394271178722488505}
+  m_TargetGraphic: {fileID: 7932513722050975958}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -671,7 +688,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3246331694934880293
+--- !u!114 &1486138053210159793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -680,11 +697,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4294759038109327791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e7335fbec7454e86cbb88071a8026, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 80eceb73a326fce4e8bd1712fbdb101e, type: 3}
-  _isButton: 1
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -541188052
+      Data2: 1143024327
+      Data3: -1921858118
+      Data4: -1210588403
+    Path: event:/UI/Button_Click
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5431541160924039560
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +731,7 @@ GameObject:
   - component: {fileID: 8856523053949722647}
   - component: {fileID: 8394271178722488505}
   - component: {fileID: 3736904791042884335}
-  - component: {fileID: 4819366506184322256}
+  - component: {fileID: 3004185451709924808}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -819,7 +853,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4819366506184322256
+--- !u!114 &3004185451709924808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -828,11 +862,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5431541160924039560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e7335fbec7454e86cbb88071a8026, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 62f9ecb2ef762c64a88d3de50dfa2265, type: 3}
-  _isButton: 1
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1323362688
+      Data2: 1083107134
+      Data3: 541710478
+      Data4: -1076371390
+    Path: event:/UI/Game_Start_Click
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7188283387377323493
 GameObject:
   m_ObjectHideFlags: 0

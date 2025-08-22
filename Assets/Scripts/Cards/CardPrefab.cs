@@ -51,7 +51,7 @@ namespace Cards
             // Visual feedback
             if (cardRenderer != null)
             {
-                cardRenderer.color = cardData.onSelectColor; // Show it's selected
+                cardRenderer.color = cardData.OnSelectColor; // Show it's selected
             }
 
             // Stop physics

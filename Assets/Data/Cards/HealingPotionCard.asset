@@ -16,8 +16,14 @@ MonoBehaviour:
   description: Deals 5 heal
   cardIcon: {fileID: 21300000, guid: f71b2108ef39daa46912ef2a1702692c, type: 3}
   isNegativeItem: 0
-  onSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
-  onUseSound: {fileID: 8300000, guid: d931d2008bd41ad459957f25902e0418, type: 3}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
+  OnUseSound:
+    Guid:
+      Data1: -339645739
+      Data2: 1302875660
+      Data3: -840307062
+      Data4: 521687609
+    Path: event:/Gameplay/Throwables_Items/Items_Heal
   shouldLog: 0
   cardPrefab: {fileID: 4009389148060104062, guid: f0b4bf1bbab207040a3099cf777acfcb, type: 3}
   isConsumable: 1

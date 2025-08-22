@@ -16,8 +16,14 @@ MonoBehaviour:
   description: deals 3 damage to you
   cardIcon: {fileID: 21300000, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
   isNegativeItem: 1
-  onSelectColor: {r: 0.36862746, g: 0.023529412, b: 0.023529412, a: 1}
-  onUseSound: {fileID: 8300000, guid: 6d1f06708c36d6b4f92844f399405962, type: 3}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
+  OnUseSound:
+    Guid:
+      Data1: -1386874473
+      Data2: 1080169783
+      Data3: 105296270
+      Data4: -1116211678
+    Path: event:/Gameplay/Throwables_Items/Items_Bomb
   shouldLog: 0
   cardPrefab: {fileID: 4009389148060104062, guid: bfca1e57867cb6c44a0c9e87b31f2571, type: 3}
   isConsumable: 0

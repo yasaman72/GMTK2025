@@ -15,3 +15,10 @@ MonoBehaviour:
   ItemName: Coin
   Description: use in shop
   Icon: {fileID: 8901616816120197635, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
+  OnLootSound:
+    Guid:
+      Data1: -541188052
+      Data2: 1143024327
+      Data3: -1921858118
+      Data4: -1210588403
+    Path: event:/UI/Button_Click

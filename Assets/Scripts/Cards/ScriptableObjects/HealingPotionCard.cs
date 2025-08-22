@@ -38,7 +38,7 @@ namespace Cards.ScriptableObjects
             }
 
             Player.PlayerCombatCharacter.Heal(healAmount);
-            AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
+            AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             callBack?.Invoke();
         }

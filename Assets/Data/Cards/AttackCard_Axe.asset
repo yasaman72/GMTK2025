@@ -16,8 +16,14 @@ MonoBehaviour:
   description: Deals 3 damage
   cardIcon: {fileID: 21300000, guid: 9e53bc01c0eec174f839fcb42affd5da, type: 3}
   isNegativeItem: 0
-  onSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
-  onUseSound: {fileID: 8300000, guid: 900d351379628994a8acb967c99535f3, type: 3}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
+  OnUseSound:
+    Guid:
+      Data1: 1986245944
+      Data2: 1272102872
+      Data3: 1914618017
+      Data4: 1756598346
+    Path: event:/Gameplay/Throwables_Items/Items_Axe
   shouldLog: 0
   cardPrefab: {fileID: 4009389148060104062, guid: 2650f0187dc5af246b32d7ad1dec5fbe, type: 3}
   isConsumable: 0

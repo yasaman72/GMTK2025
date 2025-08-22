@@ -33,7 +33,7 @@ namespace Cards.ScriptableObjects
             }
 
             Player.PlayerCombatCharacter.AddShield(shieldAmount);
-            AudioManager.OnPlaySoundEffct?.Invoke(onUseSound);
+            AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
 
             callBack?.Invoke();

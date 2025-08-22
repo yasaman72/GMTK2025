@@ -1,12 +1,14 @@
+using FMODUnity;
 using System;
 using UnityEngine;
 
+
+[HelpURL("https://fmod.com/docs/2.02/api/core-api.html")]
 public class AudioManager : MonoBehaviour
 {
-    public static Action<AudioClip> OnPlaySoundEffct;
+    public static Action<EventReference> PlayAudioOneShot;
     public static AudioManager Instance { get; private set; }
 
-    [SerializeField] private AudioSource _sfxAudioSource;
     private void Awake()
     {
         // Ensure only one instance of MusicManager exists
@@ -25,22 +27,16 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        OnPlaySoundEffct += PlayEffect;
+        PlayAudioOneShot += PlayOneShot;
     }
 
     private void OnDisable()
     {
-        OnPlaySoundEffct -= PlayEffect;
+        PlayAudioOneShot -= PlayOneShot;
     }
 
-    private void PlayEffect(AudioClip clip)
+    private void PlayOneShot(EventReference clip)
     {
-        if (clip == null)
-        {
-            Debug.LogWarning("Attempted to play a null audio clip.");
-            return;
-        }
-        _sfxAudioSource.clip = clip;
-        _sfxAudioSource.Play();
+        RuntimeManager.PlayOneShot(clip);
     }
 }
