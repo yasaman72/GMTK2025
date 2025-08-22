@@ -106,6 +106,7 @@ MonoBehaviour:
     Path: event:/Gameplay/Enemy/Enemy_Death
   CurrentHealth: 0
   CurrentShield: 0
+  _playActionDelay: 1
   _spriteRenderer: {fileID: 7354075033553675505}
   _animator: {fileID: 7786877394748537071}
   _parentAnimator: {fileID: 8578262144771523568}

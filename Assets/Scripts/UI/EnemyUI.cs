@@ -37,6 +37,7 @@ public class EnemyUI : CombatCharacterUI
     {
         if (nextAction)
         {
+            _intentionIcon.enabled = true;
             _intentionIcon.sprite = nextAction.icon;
             _intentionText.text = nextAction.power.ToString();
         }

@@ -7,7 +7,7 @@ public class Enemy : CombatCharacter
     public Action<EnemyAction> OnIntentionChanged;
 
     [Header("Visualas and Animation")]
-    [SerializeField] private float _playActionDelay;
+    [SerializeField] private float _playActionDelay = 1f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private Animator _parentAnimator;
@@ -49,7 +49,7 @@ public class Enemy : CombatCharacter
             if (nextAction != null)
             {
                 if (!IsDead())
-                    nextAction.TakeAction(this, this, OnActionFinished);
+                    StartCoroutine(PlayNextActionWithDelay());
             }
         }
     }
@@ -59,6 +59,13 @@ public class Enemy : CombatCharacter
         int behaviorIndex = UnityEngine.Random.Range(0, enemyStats.EnemyActions.Count);
         nextAction = enemyStats.EnemyActions[behaviorIndex];
         OnIntentionChanged?.Invoke(nextAction);
+    }
+
+    private IEnumerator PlayNextActionWithDelay()
+    {
+        yield return new WaitForSeconds(_playActionDelay);
+        OnIntentionChanged?.Invoke(null);
+        nextAction.TakeAction(this, this, OnActionFinished);
     }
 
     private void OnActionFinished()
