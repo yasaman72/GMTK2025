@@ -706,11 +706,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: eea1fdd5-fef0-4205-969c-44f22775bc34
+  cloudProjectId: 5c869b47-6d82-4097-8505-c691e4315e1f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: GMTK2025
-  organizationId: mhalizadeh
+  projectName: Deviloop
+  organizationId: tryhards_tests
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7513615650949201208}
   - component: {fileID: 1619617300477394392}
   - component: {fileID: 5675975481632421117}
-  - component: {fileID: 7464408579385504124}
   m_Layer: 5
   m_Name: Exit Button
   m_TagString: Untagged
@@ -134,20 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7464408579385504124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454046247696434685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e7335fbec7454e86cbb88071a8026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 80eceb73a326fce4e8bd1712fbdb101e, type: 3}
-  _isButton: 1
 --- !u!1 &463876735052291717
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +465,6 @@ GameObject:
   - component: {fileID: 8458315740337980523}
   - component: {fileID: 233635553410986769}
   - component: {fileID: 4442582900541383135}
-  - component: {fileID: 717924527820835372}
   m_Layer: 5
   m_Name: Resume Button
   m_TagString: Untagged
@@ -602,20 +586,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &717924527820835372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3433878336461798358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e7335fbec7454e86cbb88071a8026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 80eceb73a326fce4e8bd1712fbdb101e, type: 3}
-  _isButton: 1
 --- !u!1 &3697116612529187632
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +734,6 @@ GameObject:
   - component: {fileID: 2172343469990297274}
   - component: {fileID: 615972093699525431}
   - component: {fileID: 4549390924449143617}
-  - component: {fileID: 4605525919531752074}
   m_Layer: 5
   m_Name: Itch Button
   m_TagString: Untagged
@@ -886,20 +855,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4605525919531752074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4530148082474871709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e7335fbec7454e86cbb88071a8026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 80eceb73a326fce4e8bd1712fbdb101e, type: 3}
-  _isButton: 1
 --- !u!1 &4927326146640293024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,7 +1701,6 @@ GameObject:
   - component: {fileID: 8365384796990361856}
   - component: {fileID: 3071052268768092354}
   - component: {fileID: 2648137298011016990}
-  - component: {fileID: 640903448924554512}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -1868,17 +1822,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &640903448924554512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9116431337828259819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e7335fbec7454e86cbb88071a8026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 80eceb73a326fce4e8bd1712fbdb101e, type: 3}
-  _isButton: 1

@@ -1,6 +1,8 @@
+using Deviloop;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class CombatManager : MonoBehaviour
 {
@@ -40,6 +42,11 @@ public class CombatManager : MonoBehaviour
 
         _defeatedEnemiesCount++;
         _deatedEnemiesCounter.text = _defeatedEnemiesCount.ToString();
+
+        AnalyticsManager.SendCustomEventAction?.Invoke("enemy_defeated", new System.Collections.Generic.Dictionary<string, object>
+        {
+            { "enemy_type", _currentEnemyStats.name }
+        });
     }
 
     IEnumerator EnemyDeathAndRespawn()
