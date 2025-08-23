@@ -1,4 +1,5 @@
 using Cards;
+using Deviloop;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,6 +62,10 @@ public class ShopUI : MonoBehaviour
         {
             CardManager.AddCardToDeckAction?.Invoke(shopItemData.CardEntry);
             RemoveItemFromOffers(shopItemData, itemButton);
+            AnalyticsManager.SendCustomEventAction?.Invoke("shop_item_bought", new Dictionary<string, object>
+            {
+                { "item_name", shopItemData.CardEntry.Card.cardName}
+            });
         }
         else
         {

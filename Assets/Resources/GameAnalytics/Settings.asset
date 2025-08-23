@@ -60,9 +60,10 @@ MonoBehaviour:
   CustomDimensions02: []
   CustomDimensions03: []
   ResourceItemTypes: []
-  ResourceCurrencies: []
+  ResourceCurrencies:
+  - Coin
   LastCreatedGamePlatform: 0
-  Platforms: 0b000000
+  Platforms: 02000000
   CurrentInspectorState: 1
   ClosedHints: 
   DisplayHints: 0
@@ -81,7 +82,7 @@ MonoBehaviour:
   iosIcon: {fileID: 0}
   macIcon: {fileID: 0}
   windowsPhoneIcon: {fileID: 0}
-  UsePlayerSettingsBuildNumber: 0
+  UsePlayerSettingsBuildNumber: 1
   SubmitErrors: 1
   NativeErrorReporting: 0
   MaxErrorCount: 10

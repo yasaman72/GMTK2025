@@ -17,9 +17,8 @@ namespace Deviloop
             DontDestroyOnLoad(this.gameObject);
         }
 
-        private IEnumerator Start()
+        private void Start()
         {
-            yield return new WaitForEndOfFrame();
             GameAnalytics.Initialize();
         }
         private void OnEnable()
