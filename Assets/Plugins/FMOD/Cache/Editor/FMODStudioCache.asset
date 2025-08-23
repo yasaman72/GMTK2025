@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638914884386647608
+  lastModified: 638915493545377258
   FileSizes:
   - Name: Desktop
-    Value: 1594
+    Value: 1898
   Exists: 1
 --- !u!114 &-8320373681748890732
 MonoBehaviour:
@@ -101,6 +101,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-6598503426119415132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFXVolume
+  m_EditorClassIdentifier: 
+  Name: SFXVolume
+  StudioPath: parameter:/SFXVolume
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3438812159
+    data2: 3664110870
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5991911457061687841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +148,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 6866486790444985260}
   MinDistance: 1
   MaxDistance: 20
   Length: 255545
@@ -155,6 +180,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3366738921503508757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicVolume
+  m_EditorClassIdentifier: 
+  Name: MusicVolume
+  StudioPath: parameter:/MusicVolume
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 1525239016
+    data2: 78427039
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-1741078526961196613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,12 +319,14 @@ MonoBehaviour:
   - {fileID: 7119149478575771920}
   - {fileID: -1741078526961196613}
   - {fileID: -3644124738183412079}
-  EditorParameters: []
+  EditorParameters:
+  - {fileID: -6598503426119415132}
+  - {fileID: -3366738921503508757}
   MasterBanks:
   - {fileID: 5691275627885640088}
   StringsBanks:
   - {fileID: -8960630157520396220}
-  cacheTime: 638914884386647608
+  cacheTime: 638915493545606685
   cacheVersion: 131632
 --- !u!114 &39800490294503886
 MonoBehaviour:
@@ -454,10 +505,10 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638914884386623673
+  lastModified: 638915493545357292
   FileSizes:
   - Name: Desktop
-    Value: 3775424
+    Value: 3776896
   Exists: 1
 --- !u!114 &5928298974378751905
 MonoBehaviour:
@@ -501,10 +552,34 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638914872532172612
+  lastModified: 638915493545606685
   FileSizes:
   - Name: Desktop
     Value: 41312
+  Exists: 1
+--- !u!114 &6866486790444985260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/MusicVolume
+  m_EditorClassIdentifier: 
+  Name: MusicVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 1525239016
+    data2: 78427039
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &7119149478575771920
 MonoBehaviour:
