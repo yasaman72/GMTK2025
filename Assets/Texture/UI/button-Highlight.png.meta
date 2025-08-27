@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d9af21b95981665408cf9b40d3471d3a
+guid: d040323bde8c50d4f96a00a33099370c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3269201416099402657
-    second: button-select_0
+      213: -5666772845096314245
+    second: button-Highlight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,37 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button-select_0
+      name: button-Highlight_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a31fc1fd598e5d20800000000000000
-      internalID: 3269201416099402657
+      spriteID: b7a54390f149b51b0800000000000000
+      internalID: -5666772845096314245
       vertices: []
       indices: 
       edges: []
@@ -161,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      button-select_0: 3269201416099402657
+      button-Highlight_0: -5666772845096314245
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
