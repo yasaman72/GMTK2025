@@ -6,6 +6,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
 {
     public Action OnHPChanged;
     public Action OnShieldChanged;
+    public Action OnDamageRecieved;
     public Action OnDeath;
 
     [SerializeField] public CombatCharacterStats Stats;
@@ -53,6 +54,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
         if (finalDamage > 0)
         {
             AudioManager.PlayAudioOneShot?.Invoke(_hitSound);
+            OnDamageRecieved?.Invoke();
         }
 
         bool isDead = SetCurrentHealth(CurrentHealth - finalDamage);

@@ -26,12 +26,14 @@ public class Enemy : CombatCharacter
     {
         TurnManager.OnTurnChanged += HandleTurnChanged;
         base.OnDeath += AfterDeathTrigger;
+        base.OnDamageRecieved += DamageRecieved;
         TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
     }
 
     private void OnDisable()
     {
         base.OnDeath -= AfterDeathTrigger;
+        base.OnDamageRecieved -= DamageRecieved;
         TurnManager.OnTurnChanged -= HandleTurnChanged;
     }
 
@@ -78,5 +80,10 @@ public class Enemy : CombatCharacter
         _parentAnimator.SetTrigger("Death");
         _spriteRenderer.color = Color.gray;
         OnIntentionChanged?.Invoke(null);
+    }
+
+    private void DamageRecieved()
+    {
+        _animator.SetTrigger("Hit");
     }
 }
