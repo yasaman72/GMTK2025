@@ -94,12 +94,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb443afea96b134889e17c9e2e1a28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldLog: 1
   Stats: {fileID: 11400000, guid: cd39f389133948543a2195f1ab539711, type: 2}
   _damageIndicatorApplier: {fileID: 5954276191555633292}
   HPOrigin: {fileID: 1642435378301239536}
-  _hitSound: {fileID: 8300000, guid: c8511709c09f97346a56d9b8152c3784, type: 3}
-  _onHitShieldSound: {fileID: 8300000, guid: 73b6a6c81ed58b042a1bad46165f01a6, type: 3}
-  _deathSound: {fileID: 8300000, guid: 4cdf7d96212e8694c8f7c2d875cc8e7d, type: 3}
+  _hitSound:
+    Guid:
+      Data1: 844693567
+      Data2: 1253057488
+      Data3: 1227236784
+      Data4: 152464936
+    Path: event:/Gameplay/Player/Player_Hit
+  _onHitShieldSound:
+    Guid:
+      Data1: 1916237312
+      Data2: 1295613887
+      Data3: -1473869637
+      Data4: 654814962
+    Path: event:/Gameplay/Player/Player_Hit_Shield
+  _deathSound:
+    Guid:
+      Data1: 1159749298
+      Data2: 1252567079
+      Data3: 1419660727
+      Data4: -622930488
+    Path: event:/Gameplay/Player/Player_Death
+  CurrentHealth: 0
+  CurrentShield: 0
 --- !u!114 &2196125166669418209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,4 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c431ac9d3a19148b94e7d16542a67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldLog: 0
+  shouldLog: 1

@@ -6,6 +6,7 @@ using static LootSet;
 public class RewardView : MonoBehaviour
 {
     public static Action<LootSet> OpenRewards;
+    public static Action OnRewardsClosed;
 
     [SerializeField] private bool _shouldLog;
     [Space]
@@ -55,5 +56,6 @@ public class RewardView : MonoBehaviour
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
+        OnRewardsClosed?.Invoke();
     }
 }

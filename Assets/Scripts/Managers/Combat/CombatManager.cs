@@ -1,4 +1,5 @@
 using Deviloop;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,9 @@ using UnityEngine.Analytics;
 
 public class CombatManager : MonoBehaviour
 {
+    public static Action OnCombatStartEvent;
+    public static Action OnCombatFinishedEvent;
+
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private Transform _enemySpawnPos;
     [SerializeField] private float _waitBeforeNewEnemySpawn = 3;
@@ -15,7 +19,18 @@ public class CombatManager : MonoBehaviour
     private EnemyStats _currentEnemyStats;
     private int _defeatedEnemiesCount = 0;
 
-    private void Start()
+    private void Awake()
+    {
+        OnCombatStartEvent += StartCombat;
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        OnCombatStartEvent -= StartCombat;
+    }
+
+    public void StartCombat()
     {
         var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (var enemy in enemies)
@@ -25,6 +40,7 @@ public class CombatManager : MonoBehaviour
 
         _deatedEnemiesCounter.text = "0";
 
+        gameObject.SetActive(true);
         SpawnNewEnemy();
     }
 
@@ -38,7 +54,8 @@ public class CombatManager : MonoBehaviour
     private void HandleEnemyDeath()
     {
         _currentEnemy.GetComponent<Enemy>().OnDeath -= HandleEnemyDeath;
-        StartCoroutine(EnemyDeathAndRespawn());
+        
+        StartCoroutine(ShowRewards());
 
         _defeatedEnemiesCount++;
         _deatedEnemiesCounter.text = _defeatedEnemiesCount.ToString();
@@ -49,12 +66,25 @@ public class CombatManager : MonoBehaviour
         });
     }
 
-    IEnumerator EnemyDeathAndRespawn()
+    private IEnumerator ShowRewards()
     {
         yield return new WaitForSeconds(_waitBeforeNewEnemySpawn);
         RewardView.OpenRewards?.Invoke(_currentEnemyStats.defeatRewards);
+        RewardView.OnRewardsClosed += FinishCombat;
 
+        //TODO: Re-enable for multiple enemy fights
+        //RespawnEnemy();
+    }
+
+    private void RespawnEnemy()
+    {
         Destroy(_currentEnemy);
         SpawnNewEnemy();
+    }
+
+    private void FinishCombat()
+    {
+        gameObject.SetActive(false);
+        OnCombatFinishedEvent?.Invoke();
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd773790c6dfc34da1e840de0171e2a, type: 3}
+  m_Name: AllAreasData
+  m_EditorClassIdentifier: 
+  Areas:
+  - AreaName: Test Area
+    MaxEncounters: 10
+    Encounters:
+    - {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
+    - {fileID: 11400000, guid: a825de36f2a9a8e4aad1c82b5554e34e, type: 2}
+    BossEncounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}

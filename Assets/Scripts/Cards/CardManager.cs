@@ -84,7 +84,7 @@ namespace Cards
             throwButton.onClick.AddListener(OnThrowButtonClicked);
             UpdateUI();
 
-            throwButton.gameObject.SetActive(TurnManager.TurnMode == TurnManager.ETurnMode.Player);
+            throwButton.gameObject.SetActive(true/*TurnManager.TurnMode == TurnManager.ETurnMode.Player*/);
         }
 
         void UpdateUI()
