@@ -8,6 +8,7 @@ namespace Deviloop
     {
         // TODO: This should be in AreaManager
         public AreaData AllAreas;
+        public EncounterSelectionUI EncounterSelection_UI;
 
         public static Area CurrentArea;
         private static int _currentAreaIndex = -1;
@@ -19,11 +20,11 @@ namespace Deviloop
 
         private void OnEnable()
         {
-            OnEncounterFinished += StartNextEncounter;
+            OnEncounterFinished += EncounterFinished;
         }
         private void OnDisable()
         {
-            OnEncounterFinished -= StartNextEncounter;
+            OnEncounterFinished -= EncounterFinished;
         }
 
         private void Start()
@@ -44,30 +45,18 @@ namespace Deviloop
             CurrentArea = AllAreas.Areas[_currentAreaIndex];
 
             _currentEncounterIndex = 0;
-            StartNextEncounter();
+            EncounterFinished();
         }
 
-        public void StartNextEncounter()
+        public void EncounterFinished()
         {
-            if ((_currentEncounterIndex == 0) || (_currentEncounterIndex == CurrentArea.MaxEncounters - 3))
+            if (_currentEncounterIndex == 0)
             {
-#if DEBUG
-                if (_currentEncounterIndex == 0)
-                    Debug.Log($"Starting encounters in area: {CurrentArea.AreaName}");
-                else
-                    Debug.Log("Starting a combat before pre boss shop encounter.");
-#endif
+                Debug.Log($"Starting encounters in area: {CurrentArea.AreaName}");
+               
                 _currentEncounter = CurrentArea.GetRandomEncounterType<CombatEncounter>();
-            }
-            else if (_currentEncounterIndex == CurrentArea.MaxEncounters - 2)
-            {
-                Debug.Log("Starting pre boss shop encounter.");
-                _currentEncounter = CurrentArea.GetRandomEncounterType<ShopEncounter>();
-            }
-            else if (_currentEncounterIndex == CurrentArea.MaxEncounters - 1)
-            {
-                Debug.Log("Starting boss encounter.");
-                _currentEncounter = CurrentArea.BossEncounter;
+                _currentEncounterIndex++;
+                _currentEncounter.StartEncounter();
             }
             else if (_currentEncounterIndex == CurrentArea.MaxEncounters)
             {
@@ -75,23 +64,53 @@ namespace Deviloop
                 StartNextArea();
                 return;
             }
+            else 
+            {
+                ShowEncounterSelectionUI();
+            }
+        }
+
+        public void ShowEncounterSelectionUI()
+        {
+            List<BaseEncounter> nextEncounters = new List<BaseEncounter>();
+
+            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 3)
+            {
+                Debug.Log("Starting a combat before pre boss shop encounter.");
+
+                nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
+                nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
+            }
+            else if (_currentEncounterIndex == CurrentArea.MaxEncounters - 2)
+            {
+                Debug.Log("Starting pre boss shop/rest encounter.");
+
+                nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>());
+                //_currentEncounter = CurrentArea.GetRandomEncounterType<RestEncounter>();
+            }
+            else if (_currentEncounterIndex == CurrentArea.MaxEncounters - 1)
+            {
+                Debug.Log("Starting boss encounter.");
+                nextEncounters.Add(CurrentArea.BossEncounter);
+            }
             else
             {
                 if (_currentEncounter is ShopEncounter)
                 {
-                    _currentEncounter = CurrentArea.GetRandomEncounterType<CombatEncounter>();
+                    nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
+                    nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
                 }
                 else
                 {
-                    _currentEncounter = CurrentArea.GetRandomEncounter();
+                    nextEncounters.Add(CurrentArea.GetRandomEncounter());
+                    nextEncounters.Add(CurrentArea.GetRandomEncounter());
                 }
 
                 Debug.Log($"Starting encounter {_currentEncounterIndex + 1}/{CurrentArea.MaxEncounters} in area {CurrentArea.AreaName}: {_currentEncounter.name}");
-
             }
 
             _currentEncounterIndex++;
-            _currentEncounter.StartEncounter();
+            EncounterSelection_UI.ShowNextSelections(nextEncounters);
         }
     }
 }
