@@ -11,6 +11,13 @@ namespace Deviloop
         public int MaxEncounters;
         public List<BaseEncounter> Encounters;
         public BaseEncounter BossEncounter;
+        public BaseEncounter GetRandomEncounter()
+        {
+            int randomIndex = Random.Range(0, Encounters.Count);
+            BaseEncounter randomEncounter = Encounters[randomIndex];
+
+            return randomEncounter;
+        }
 
         public BaseEncounter GetRandomEncounterType<T>()
         {
@@ -40,14 +47,6 @@ namespace Deviloop
 
             if(!(randomEncounter is T))
                 return reservedEncounter;
-
-            return randomEncounter;
-        }
-
-        public BaseEncounter GetRandomEncounter()
-        {
-            int randomIndex = Random.Range(0, Encounters.Count);
-            BaseEncounter randomEncounter = Encounters[randomIndex];
 
             return randomEncounter;
         }

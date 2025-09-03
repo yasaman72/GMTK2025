@@ -21,6 +21,7 @@ namespace Deviloop
                     EncounterItems[i].Select_btn.onClick.RemoveAllListeners();
                     EncounterItems[i].Select_btn.onClick.AddListener(() =>
                     {
+                        EncounterManager.CurrentEncounter = encounters[index];
                         encounters[index].StartEncounter();
                         Hide();
                     });

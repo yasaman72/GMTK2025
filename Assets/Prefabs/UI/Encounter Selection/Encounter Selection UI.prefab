@@ -503,6 +503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Encounter Item UI 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9146067303052607513, guid: 8e08e40d0a81bdb45b9c9361eedf3fc2, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
