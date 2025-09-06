@@ -5,12 +5,12 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "Encounter_Combat_A00_00", menuName = "ScriptableObjects/Encounters/Combat Encounter")]
     public class CombatEncounter : BaseEncounter
     {
-        //TODO: Add combat specific data here
-        //[SerializeField] private EncounterData _encounterData;
+        [SerializeField] private int _numberOfEnemiesToSpawn = 1;
+        [SerializeField] private Enemy[] _enemyTypes;
 
         public override void StartEncounter()
         {
-            CombatManager.OnCombatStartEvent?.Invoke();
+            CombatManager.OnCombatStartEvent?.Invoke(_numberOfEnemiesToSpawn, _enemyTypes);
             CombatManager.OnCombatFinishedEvent += FinishEncounter;
         }
 

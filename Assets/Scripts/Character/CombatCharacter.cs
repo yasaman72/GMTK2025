@@ -7,7 +7,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
     public Action OnHPChanged;
     public Action OnShieldChanged;
     public Action OnDamageRecieved;
-    public Action OnDeath;
+    public Action<CombatCharacter> OnDeath;
 
     [SerializeField] public CombatCharacterStats Stats;
     [SerializeField] private DamageIndicatorApplier _damageIndicatorApplier;
@@ -64,7 +64,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
         if (isDead)
         {
             AudioManager.PlayAudioOneShot?.Invoke(_deathSound);
-            OnDeath?.Invoke();
+            OnDeath?.Invoke(this);
         }
     }
 

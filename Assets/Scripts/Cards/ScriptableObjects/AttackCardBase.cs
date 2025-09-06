@@ -22,12 +22,23 @@ namespace Cards.ScriptableObjects
         {
             // Visuals and animation
             var enemy = FindAnyObjectByType<Enemy>();
+            if (enemy == null)
+            {
+                callback?.Invoke();
+                yield break;
+            }
             Transform enemyTransform = enemy.transform;
 
             yield return new WaitForSeconds(delayBeforeMove);
 
             while (Vector2.Distance(cardPrefab.transform.position, enemyTransform.position) > 1)
             {
+                if (enemy == null || enemy.IsDead())
+                {
+                    callback?.Invoke();
+                    yield break;
+                }
+
                 cardPrefab.transform.position = Vector2.MoveTowards(
                     cardPrefab.transform.position,
                     enemyTransform.position,

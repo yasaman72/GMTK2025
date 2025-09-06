@@ -1716,7 +1716,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Each turn, draw a circle around thrown items.\n\r\r\nOnly <color #FFFF00>4</color>
+  m_text: "Each turn, draw a circle around thrown items.\n\r\r\nOnly <color #FFFF00>3</color>
     items can be collected each turn! If you collect more than three items, any extra
     will be discarded randomly. "
   m_isRightToLeft: 0

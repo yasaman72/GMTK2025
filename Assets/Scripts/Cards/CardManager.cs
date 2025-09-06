@@ -13,6 +13,7 @@ namespace Cards
     public class CardManager : MonoBehaviour
     {
         public static Action<CardEntry> AddCardToDeckAction;
+        public static Action<CardEntry> AddCardToHandAction;
 
         [SerializeField] private bool shouldLog = true;
 
@@ -28,6 +29,7 @@ namespace Cards
         {
             get => _discardDeck;
         }
+        public CardDeck _extraHandCards;
 
         [Header("Throwing Settings")]
         public int cardsToThrowPerTurn = 5;
@@ -37,7 +39,6 @@ namespace Cards
         public Vector2 throwForceRange = new Vector2(5f, 15f);
         public Vector2 throwAngleRange = new Vector2(60f, 120f); // Degrees
         public Vector2 torqueRange = new Vector2(-5, 5);
-        [SerializeField] private ComboCard comboCard;
 
         [Header("Audio Settings")]
         public EventReference throwSound;
@@ -62,23 +63,29 @@ namespace Cards
         {
             TurnManager.OnTurnChanged += HandleTurnChanged;
             AddCardToDeckAction += AddCardToDeck;
+            AddCardToHandAction += AddCardToHand;
         }
 
         private void OnDisable()
         {
             TurnManager.OnTurnChanged -= HandleTurnChanged;
             AddCardToDeckAction -= AddCardToDeck;
+            AddCardToHandAction -= AddCardToHand;
         }
 
         void Initialize()
         {
-            // Create runtime copy of deck
+            // TODO: review CardDeck class
             _drawDeck = Instantiate(baseDeck);
             _drawDeck.InitializeDeck();
 
             _discardDeck = Instantiate(baseDeck);
             _discardDeck.InitializeDeck();
             _discardDeck.RemoveAllCards();
+
+            _extraHandCards = Instantiate(baseDeck);
+            _extraHandCards.InitializeDeck();
+            _extraHandCards.RemoveAllCards();
 
             // Setup UI
             throwButton.onClick.AddListener(OnThrowButtonClicked);
@@ -178,7 +185,10 @@ namespace Cards
             UpdateUI();
 
             // always add combo card
-            selectedCards.Add(comboCard);
+            foreach (var card in _extraHandCards.GetAllCardsAsList())
+            {
+                selectedCards.Add(card);
+            }
 
             return selectedCards;
         }
@@ -248,6 +258,15 @@ namespace Cards
                     Destroy(card);
             }
             thrownCards.Clear();
+            _extraHandCards.RemoveAllCards();
+        }
+       
+        public void AddCardToHand(CardEntry card)
+        {
+            for (int i = 0; i < card.Quantity; i++)
+            {
+                _extraHandCards.AddCard(card.Card);
+            }
         }
 
         public void AddCardToDeck(CardEntry card)

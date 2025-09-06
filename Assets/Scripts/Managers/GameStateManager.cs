@@ -35,7 +35,7 @@ public class GameStateManager : MonoBehaviour
         Player.PlayerCombatCharacter.OnDeath -= HandlePlayerDeath;
     }
 
-    private void HandlePlayerDeath()
+    private void HandlePlayerDeath(CombatCharacter combatCharacter)
     {
         Time.timeScale = 0f;
         _gameOverPage.SetActive(true);

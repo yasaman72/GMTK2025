@@ -15,29 +15,29 @@ public class LootSet : ScriptableObject
         public LootItem Item;
         [SerializeField] private int CountMin, CountMax;
         public float Chance;
+        public int Count { private set; get; }
 
-        private int count = -1;
-        public int Count
+        public void Setup()
         {
-            get
-            {
-                if (CountMin == CountMax)
-                    count = CountMin;
-                if (count == -1)
-                    count = Random.Range(CountMin, CountMax + 1);
-                return count;
-            }
-        }
-
-        public void Reset()
-        {
-            count = -1;
+            Count = Random.Range(CountMin, CountMax + 1);
         }
 
         public void Loot()
         {
             AudioManager.PlayAudioOneShot?.Invoke(Item.OnLootSound);
             PlayerInventory.AddToInventoryAction?.Invoke(this);
+        }
+
+        public LootSetData Clone()
+        {
+            return new LootSetData
+            {
+                Item = this.Item,
+                Chance = this.Chance,
+                Count = this.Count,
+                CountMin = this.CountMin,
+                CountMax = this.CountMax
+            };
         }
     }
 

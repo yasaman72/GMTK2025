@@ -1,9 +1,12 @@
+using Cards;
 using System;
 using TMPro;
 using UnityEngine;
 
 public class PlayerComboManager : MonoBehaviour
 {
+    [SerializeField] private bool _isEnabled;
+    [SerializeField] private CardEntry _comboCard;
     [SerializeField] private TextMeshProUGUI _playerComboCounter;
     [SerializeField] private int _minComboToShow = 2;
     [SerializeField] private GameObject _playerComboText;
@@ -16,17 +19,31 @@ public class PlayerComboManager : MonoBehaviour
 
     private void OnEnable()
     {
-        OnPlayerComboBreak += OnComboBreak;
-        UpdatePlayerComboUIAction += UpdatePlayerComboUIA;
-
         _playerComboCounter.text = "";
         _playerComboText.SetActive(false);
+
+        if (!_isEnabled)
+        {
+            this.enabled = false;
+            return;
+        }
+
+        OnPlayerComboBreak += OnComboBreak;
+        UpdatePlayerComboUIAction += UpdatePlayerComboUI;
+        TurnManager.OnTurnChanged += HandleTurnChanged;
+
     }
 
     private void OnDisable()
     {
         OnPlayerComboBreak -= OnComboBreak;
-        UpdatePlayerComboUIAction -= UpdatePlayerComboUIA;
+        UpdatePlayerComboUIAction -= UpdatePlayerComboUI;
+        TurnManager.OnTurnChanged -= HandleTurnChanged;
+    }
+
+    private void HandleTurnChanged(TurnManager.ETurnMode mode)
+    {
+        CardManager.AddCardToHandAction?.Invoke(_comboCard);
     }
 
     private void OnComboBreak()
@@ -41,7 +58,7 @@ public class PlayerComboManager : MonoBehaviour
         UpdatePlayerComboUIAction?.Invoke();
     }
 
-    private void UpdatePlayerComboUIA()
+    private void UpdatePlayerComboUI()
     {
         string text = "";
         bool showCombo = (_playerCombo >= _minComboToShow);

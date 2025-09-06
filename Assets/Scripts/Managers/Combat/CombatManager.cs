@@ -1,23 +1,27 @@
+using Cards;
+using Cards.ScriptableObjects;
 using Deviloop;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Analytics;
+using Random = UnityEngine.Random;
 
 public class CombatManager : MonoBehaviour
 {
-    public static Action OnCombatStartEvent;
+    // argument is the number of enemies to spawn
+    public static Action<int, Enemy[]> OnCombatStartEvent;
     public static Action OnCombatFinishedEvent;
 
-    [SerializeField] private GameObject _enemyPrefab;
-    [SerializeField] private Transform _enemySpawnPos;
-    [SerializeField] private float _waitBeforeNewEnemySpawn = 3;
+    [SerializeField] private Transform _enemySpawnCenter;
+    [SerializeField] private float _waitBeforeShowingRewards = 3;
     [SerializeField] private TextMeshProUGUI _deatedEnemiesCounter;
+    [SerializeField] private float _enemySpawnAreaWidth = 5;
 
-    private GameObject _currentEnemy;
-    private EnemyStats _currentEnemyStats;
-    private int _defeatedEnemiesCount = 0;
+    private List<Enemy> _spawnedEnemies = new List<Enemy>();
+    private List<Enemy> _defeatedEnemies = new List<Enemy>();
 
     private void Awake()
     {
@@ -30,60 +34,82 @@ public class CombatManager : MonoBehaviour
         OnCombatStartEvent -= StartCombat;
     }
 
-    public void StartCombat()
+    public void StartCombat(int numberOfEnemiesToSpawn, Enemy[] enemyTypes)
+    {
+        DestroyCurrentEnemies();
+        _deatedEnemiesCounter.text = "0";
+
+        gameObject.SetActive(true);
+
+        float spacing = _enemySpawnAreaWidth / Mathf.Max(1, numberOfEnemiesToSpawn);
+        Vector2 center = _enemySpawnCenter.position;
+
+        float totalWidth = spacing * (numberOfEnemiesToSpawn - 1);
+        Vector2 startPos = center - new Vector2(totalWidth / 2f, 0);
+
+        for (int i = 0; i < numberOfEnemiesToSpawn; i++)
+        {
+            int enemyTypeIndex = Random.Range(0, enemyTypes.Length);
+            GameObject _enemyPrefab = enemyTypes[enemyTypeIndex].gameObject;
+            Vector2 spawnPosition = startPos + new Vector2(i * spacing, Random.Range(-.5f, .5f));
+
+            SpawnNewEnemy(_enemyPrefab, spawnPosition);
+        }
+    }
+
+    private void DestroyCurrentEnemies()
     {
         var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (var enemy in enemies)
         {
             Destroy(enemy.gameObject);
         }
-
-        _deatedEnemiesCounter.text = "0";
-
-        gameObject.SetActive(true);
-        SpawnNewEnemy();
     }
 
-    private void SpawnNewEnemy()
+    private void SpawnNewEnemy(GameObject enemyToSpawn, Vector2 spawnPosition)
     {
-        _currentEnemy = Instantiate(_enemyPrefab, _enemySpawnPos.position, Quaternion.identity, _enemySpawnPos);
-        _currentEnemy.GetComponent<Enemy>().OnDeath += HandleEnemyDeath;
-        _currentEnemyStats = _currentEnemy.GetComponent<Enemy>().Stats as EnemyStats;
+        GameObject newEnemyObj = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity, _enemySpawnCenter);
+        Enemy newEnemy = newEnemyObj.GetComponent<Enemy>();
+        _spawnedEnemies.Add(newEnemy);
+        newEnemy.OnDeath += HandleEnemyDeath;
     }
 
-    private void HandleEnemyDeath()
+    private void HandleEnemyDeath(CombatCharacter combatCharacter)
     {
-        _currentEnemy.GetComponent<Enemy>().OnDeath -= HandleEnemyDeath;
-        
-        StartCoroutine(ShowRewards());
+        combatCharacter.OnDeath -= HandleEnemyDeath;
 
-        _defeatedEnemiesCount++;
-        _deatedEnemiesCounter.text = _defeatedEnemiesCount.ToString();
 
-        AnalyticsManager.SendCustomEventAction?.Invoke("enemy_defeated", new System.Collections.Generic.Dictionary<string, object>
+        _defeatedEnemies.Add(combatCharacter as Enemy);
+        _deatedEnemiesCounter.text = _defeatedEnemies.Count.ToString();
+        // TODO: add object pooling
+        Destroy(combatCharacter.gameObject);
+
+        if (_defeatedEnemies.Count >= _spawnedEnemies.Count)
         {
-            { "enemy_type", _currentEnemyStats.name }
+            StartCoroutine(ShowRewards(combatCharacter as Enemy));
+        }
+
+        AnalyticsManager.SendCustomEventAction?.Invoke("enemy_defeated", new Dictionary<string, object>
+        {
+            { "enemy_type", combatCharacter.Stats.name }
         });
     }
 
-    private IEnumerator ShowRewards()
+    private IEnumerator ShowRewards(Enemy enemy)
     {
-        yield return new WaitForSeconds(_waitBeforeNewEnemySpawn);
-        RewardView.OpenRewards?.Invoke(_currentEnemyStats.defeatRewards);
+        yield return new WaitForSeconds(_waitBeforeShowingRewards);
+        RewardView.OpenRewards?.Invoke(_defeatedEnemies.Select(enemy => enemy.enemyStats.defeatRewards).ToList());
         RewardView.OnRewardsClosed += FinishCombat;
-
-        //TODO: Re-enable for multiple enemy fights
-        //RespawnEnemy();
-    }
-
-    private void RespawnEnemy()
-    {
-        Destroy(_currentEnemy);
-        SpawnNewEnemy();
     }
 
     private void FinishCombat()
     {
+        RewardView.OnRewardsClosed -= FinishCombat;
+
+        _defeatedEnemies.Clear();
+        _spawnedEnemies.Clear();
+        _deatedEnemiesCounter.text = "";
+
         gameObject.SetActive(false);
         OnCombatFinishedEvent?.Invoke();
     }

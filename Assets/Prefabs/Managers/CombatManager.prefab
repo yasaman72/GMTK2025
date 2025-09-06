@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6756327310851773930}
   - component: {fileID: 4122108260800499862}
-  - component: {fileID: 9209445179678940814}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -47,25 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aab9f5ed2411b49b184a7032720d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 4740664897842006383, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
-  _enemySpawnPos: {fileID: 0}
-  _waitBeforeNewEnemySpawn: 3
+  _enemySpawnCenter: {fileID: 0}
+  _waitBeforeShowingRewards: 3
   _deatedEnemiesCounter: {fileID: 0}
---- !u!114 &9209445179678940814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4075900557494967467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d2da51d0ad76ac40b96fd86d7679fd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerComboCounter: {fileID: 0}
-  _minComboToShow: 1
-  _playerComboText: {fileID: 0}
+  _enemySpawnAreaWidth: 8
 --- !u!1001 &2290181680678089690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,13 +105,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3771842613608920168, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3796293778407239245}
   m_SourcePrefab: {fileID: 100100000, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
 --- !u!4 &446365290369496272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
   m_PrefabInstance: {fileID: 2290181680678089690}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3139038376762247090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3771842613608920168, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+  m_PrefabInstance: {fileID: 2290181680678089690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3796293778407239245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3139038376762247090}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2da51d0ad76ac40b96fd86d7679fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _comboCard:
+    Card: {fileID: 11400000, guid: 2e99b5feed481ef44b9051d4d690e253, type: 2}
+    Quantity: 1
+  _playerComboCounter: {fileID: 0}
+  _minComboToShow: 1
+  _playerComboText: {fileID: 0}
 --- !u!1001 &7872683221053093823
 PrefabInstance:
   m_ObjectHideFlags: 0

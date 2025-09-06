@@ -14,7 +14,7 @@ public class Enemy : CombatCharacter
 
     private EnemyAction nextAction;
 
-    private EnemyStats enemyStats => Stats as EnemyStats;
+    public EnemyStats enemyStats => Stats as EnemyStats;
 
     protected override void Start()
     {
@@ -75,7 +75,7 @@ public class Enemy : CombatCharacter
         TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
     }
 
-    private void AfterDeathTrigger()
+    private void AfterDeathTrigger(CombatCharacter combatCharacter)
     {
         _parentAnimator.SetTrigger("Death");
         _spriteRenderer.color = Color.gray;
