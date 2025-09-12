@@ -39,10 +39,21 @@ namespace Deviloop
             (target as Enemy).OnDeath += ClearTargetOnDeath;
         }
 
-        private void ClearTargetOnDeath(CombatCharacter character)
+        private void ClearTargetOnDeath(CombatCharacter enemy)
         {
             (CurrentTarget as Enemy).OnDeath -= ClearTargetOnDeath;
-            SetTarget(null);
+            CurrentTarget = null;
+            var allEnemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            Enemy nextTarget = null;
+            foreach (var e in allEnemies)
+            {
+                if (!e.IsDead())
+                {
+                    nextTarget = e;
+                    break;
+                }
+            }
+            SetTarget(nextTarget ? nextTarget : null);
         }
     }
 }

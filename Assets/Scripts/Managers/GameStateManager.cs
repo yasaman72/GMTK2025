@@ -11,6 +11,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private Button _throwButton;
 
     public static bool CanPlayerDrawLasso { get; set; }
+    public static bool IsInLassoingState { get; set; }
 
     private void OnEnable()
     {
@@ -41,5 +42,6 @@ public class GameStateManager : MonoBehaviour
     private void OnThrowClicked()
     {
         OnPlayerClickedThrowButton?.Invoke();
+        IsInLassoingState = true;
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using Deviloop;
+using DG.Tweening;
 
 namespace Cards.ScriptableObjects
 {
@@ -12,16 +13,19 @@ namespace Cards.ScriptableObjects
         public int damage = 3;
         public int moveSpeed = 1;
         public float delayBeforeMove = 0.3f;
+        public bool taregtAll = false;
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             runner.StopAllCoroutines();
-            runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
+            if (taregtAll)
+                runner.StartCoroutine(TargetAllEnemies(callback, cardPrefab));
+            else
+                runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }
 
         private IEnumerator ActivateCardEffect(Action callback, CardPrefab cardPrefab)
         {
-            // Visuals and animation
             var enemy = CombatTargetSelection.CurrentTarget;
             if (enemy == null)
             {
@@ -36,8 +40,13 @@ namespace Cards.ScriptableObjects
             {
                 if (enemy == null || enemy.IsDead())
                 {
-                    callback?.Invoke();
-                    yield break;
+                    enemy = CombatTargetSelection.CurrentTarget;
+                    if (enemy == null)
+                    {
+                        callback?.Invoke();
+                        yield break;
+                    }
+                    enemyTransform = enemy.transform;
                 }
 
                 cardPrefab.transform.position = Vector2.MoveTowards(
@@ -47,10 +56,30 @@ namespace Cards.ScriptableObjects
                 yield return null;
             }
 
-            enemy.GetComponentInChildren<DamageIndicatorApplier>()?.ShowDamageIndicator(damage);
-
-            // TODO: update the target selection if more enemies present in one comabt (milestone 2)
             Player.PlayerCombatCharacter.DealDamage(enemy, damage);
+            AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
+
+            yield return new WaitForSeconds(1);
+            callback?.Invoke();
+        }
+
+        private IEnumerator TargetAllEnemies(Action callback, CardPrefab cardPrefab)
+        {
+            yield return new WaitForSeconds(delayBeforeMove);
+
+            // make the card spin a bit with tweening before vanishing
+            // TODO: better animations and wait for end of animation to apply effects
+            cardPrefab.transform.DORotate(new Vector3(0, 0, 360 * 5), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
+
+            yield return new WaitForSeconds(delayBeforeMove * 2);
+
+            var enemies = CombatManager.SpawnedEnemies;
+
+            foreach (var enemy in enemies)
+            {
+                Player.PlayerCombatCharacter.DealDamage(enemy, damage);
+            }
+
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             yield return new WaitForSeconds(1);

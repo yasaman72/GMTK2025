@@ -2,7 +2,6 @@ using Cards;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerLassoManager : MonoBehaviour
 {
@@ -180,6 +179,4 @@ public class PlayerLassoManager : MonoBehaviour
 
         Destroy(temp);
     }
-
-
 }

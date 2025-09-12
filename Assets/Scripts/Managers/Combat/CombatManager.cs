@@ -18,8 +18,9 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _deatedEnemiesCounter;
     [SerializeField] private float _enemySpawnAreaWidth = 5;
 
-    private List<Enemy> _spawnedEnemies = new List<Enemy>();
-    private List<Enemy> _defeatedEnemies = new List<Enemy>();
+    private static List<Enemy> _spawnedEnemies = new List<Enemy>();
+    private static List<Enemy> _defeatedEnemies = new List<Enemy>();
+    public static List<Enemy> SpawnedEnemies => _spawnedEnemies;
 
     private void Awake()
     {
@@ -78,11 +79,8 @@ public class CombatManager : MonoBehaviour
     {
         combatCharacter.OnDeath -= HandleEnemyDeath;
 
-
         _defeatedEnemies.Add(combatCharacter as Enemy);
         _deatedEnemiesCounter.text = _defeatedEnemies.Count.ToString();
-        // TODO: add object pooling
-        Destroy(combatCharacter.gameObject);
 
         if (_defeatedEnemies.Count >= _spawnedEnemies.Count)
         {

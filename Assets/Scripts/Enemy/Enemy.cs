@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Enemy : CombatCharacter, IPointerClickHandler
+public class Enemy : CombatCharacter, IPointerDownHandler
 {
     public Action<EnemyAction> OnIntentionChanged;
 
@@ -97,9 +97,18 @@ public class Enemy : CombatCharacter, IPointerClickHandler
         _animator.SetTrigger("Hit");
     }
 
-    public void OnPointerClick(PointerEventData pointerEventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
+        if (GameStateManager.IsInLassoingState) return;
+
         if (IsDead()) return;
         CombatTargetSelection.SetTargetAction?.Invoke(this);
+    }
+
+
+    public void OnDeathAnimationFinished()
+    {
+        // TODO: add object pooling
+        Destroy(gameObject);
     }
 }

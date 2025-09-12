@@ -1,4 +1,5 @@
 
+
 public class Player : CombatCharacter
 {
     public static CombatCharacter PlayerCombatCharacter { get; private set; }
@@ -6,5 +7,20 @@ public class Player : CombatCharacter
     private void Awake()
     {
         PlayerCombatCharacter = this;
+    }
+
+    private void OnEnable()
+    {
+        CombatManager.OnCombatFinishedEvent += OnCombatFinished;
+    }
+
+    private void OnDisable()
+    {
+        CombatManager.OnCombatFinishedEvent -= OnCombatFinished;
+    }
+
+    private void OnCombatFinished()
+    {
+        RemoveAllShields();
     }
 }

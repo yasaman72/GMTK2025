@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
-  m_Name: AttackCard_Dagger
+  m_Name: AttackCard_Shuriken
   m_EditorClassIdentifier: 
-  cardName: Dagger
-  description: Deals 1 damage
-  cardIcon: {fileID: 21300000, guid: 854c0fd59787b124ba003ffdabdcf06e, type: 3}
+  cardName: Shuriken
+  description: Deals 2 damages to all enemies
+  cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
@@ -25,9 +25,9 @@ MonoBehaviour:
       Data4: 421807944
     Path: event:/Gameplay/Throwables_Items/Items_Dagger
   shouldLog: 0
-  cardPrefab: {fileID: 4009389148060104062, guid: 81a3d55b829add4468aaf915c58adea5, type: 3}
+  cardPrefab: {fileID: 4009389148060104062, guid: 2d8374ee635de184a84881bc80c70d04, type: 3}
   isConsumable: 0
-  damage: 1
+  damage: 2
   moveSpeed: 2
   delayBeforeMove: 0.3
-  taregtAll: 0
+  taregtAll: 1

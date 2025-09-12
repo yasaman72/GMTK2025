@@ -120,4 +120,10 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
         CurrentShield += amount;
         OnShieldChanged?.Invoke();
     }
+
+    protected void RemoveAllShields()
+    { 
+        CurrentShield = 0;
+        OnShieldChanged?.Invoke();
+    }
 }

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102e4f0d30788e249b5372f30d916ffa, type: 3}
-  m_Name: EnemyBehavior_Shield_BasicEnemy
+  m_Name: EnemyBehavior_Shield_1_BasicEnemy
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
-  power: 2
+  power: 1
   actionDuration: 2

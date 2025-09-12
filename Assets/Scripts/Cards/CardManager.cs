@@ -283,6 +283,7 @@ namespace Cards
         {
             throwButton.gameObject.SetActive(false);
             TurnManager.ChangeTurn(TurnManager.ETurnMode.Enemy);
+            GameStateManager.IsInLassoingState = false;
 
             if (_drawDeck.GetTotalCardCount() <= 0)
                 ReturnCardsToDrawDeck();
