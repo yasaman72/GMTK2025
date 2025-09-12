@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using Deviloop;
 
 namespace Cards.ScriptableObjects
 {
@@ -21,7 +22,7 @@ namespace Cards.ScriptableObjects
         private IEnumerator ActivateCardEffect(Action callback, CardPrefab cardPrefab)
         {
             // Visuals and animation
-            var enemy = FindAnyObjectByType<Enemy>();
+            var enemy = CombatTargetSelection.CurrentTarget;
             if (enemy == null)
             {
                 callback?.Invoke();

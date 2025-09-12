@@ -1,28 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
     // After items are thrown, these values change to allow player start drawing the lasso
     public static Action OnPlayerClickedThrowButton;
-    private static bool _canPlayerDrawLasso = false;
 
     [SerializeField] private GameObject _gameOverPage;
+    [SerializeField] private Button _throwButton;
 
-    public static bool CanPlayerDrawLasso
+    public static bool CanPlayerDrawLasso { get; set; }
+
+    private void OnEnable()
     {
-        get
-        {
-            return _canPlayerDrawLasso;
-        }
-        set
-        {
-            if (value)
-            {
-                OnPlayerClickedThrowButton?.Invoke();
-            }
-            _canPlayerDrawLasso = value;
-        }
+        _throwButton.onClick.AddListener(OnThrowClicked);
+    }
+
+    private void OnDisable()
+    {
+        _throwButton.onClick.RemoveListener(OnThrowClicked);
     }
 
     private void Start()
@@ -39,5 +36,10 @@ public class GameStateManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         _gameOverPage.SetActive(true);
+    }
+
+    private void OnThrowClicked()
+    {
+        OnPlayerClickedThrowButton?.Invoke();
     }
 }

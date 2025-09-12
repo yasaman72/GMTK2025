@@ -1,5 +1,3 @@
-using Cards;
-using Cards.ScriptableObjects;
 using Deviloop;
 using System;
 using System.Collections;
@@ -55,6 +53,8 @@ public class CombatManager : MonoBehaviour
 
             SpawnNewEnemy(_enemyPrefab, spawnPosition);
         }
+
+        CombatTargetSelection.SetTargetAction?.Invoke(_spawnedEnemies[0]);
     }
 
     private void DestroyCurrentEnemies()

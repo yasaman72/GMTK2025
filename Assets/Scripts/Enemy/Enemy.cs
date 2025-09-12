@@ -1,8 +1,10 @@
+using Deviloop;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Enemy : CombatCharacter
+public class Enemy : CombatCharacter, IPointerClickHandler
 {
     public Action<EnemyAction> OnIntentionChanged;
 
@@ -12,6 +14,7 @@ public class Enemy : CombatCharacter
     [SerializeField] private Animator _animator;
     [SerializeField] private Animator _parentAnimator;
 
+    private Color _grayColor = new Color(.5f, .5f, .5f);
     private EnemyAction nextAction;
 
     public EnemyStats enemyStats => Stats as EnemyStats;
@@ -27,6 +30,8 @@ public class Enemy : CombatCharacter
         TurnManager.OnTurnChanged += HandleTurnChanged;
         base.OnDeath += AfterDeathTrigger;
         base.OnDamageRecieved += DamageRecieved;
+        GameStateManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
+
         TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
     }
 
@@ -35,12 +40,12 @@ public class Enemy : CombatCharacter
         base.OnDeath -= AfterDeathTrigger;
         base.OnDamageRecieved -= DamageRecieved;
         TurnManager.OnTurnChanged -= HandleTurnChanged;
+        GameStateManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
     }
 
     private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
     {
-        Color newColor = turnMode == TurnManager.ETurnMode.Player ? new Color(.5f, .5f, .5f) : Color.white;
-        _spriteRenderer.color = newColor;
+        _spriteRenderer.color = Color.white;
 
         if (turnMode == TurnManager.ETurnMode.Player)
         {
@@ -54,6 +59,11 @@ public class Enemy : CombatCharacter
                     StartCoroutine(PlayNextActionWithDelay());
             }
         }
+    }
+
+    private void OnPlayerClickedThrow()
+    {
+        _spriteRenderer.color = _grayColor;
     }
 
     private void PickNextAction()
@@ -85,5 +95,11 @@ public class Enemy : CombatCharacter
     private void DamageRecieved()
     {
         _animator.SetTrigger("Hit");
+    }
+
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        if (IsDead()) return;
+        CombatTargetSelection.SetTargetAction?.Invoke(this);
     }
 }

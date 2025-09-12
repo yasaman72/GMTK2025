@@ -2,6 +2,7 @@ using Cards;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerLassoManager : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class PlayerLassoManager : MonoBehaviour
         GameStateManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
         TurnManager.OnTurnChanged -= OnTurnChanged;
     }
+
 
     private void OnTurnChanged(TurnManager.ETurnMode turnMode)
     {
@@ -150,6 +152,7 @@ public class PlayerLassoManager : MonoBehaviour
             if (hit != null)
             {
                 CardPrefab card = hit.gameObject.GetComponent<CardPrefab>();
+                if (card == null || card.isLassoed) continue;
                 lassoedCards.Add(card);
                 Logger.Log($"Detected: {hit.gameObject.name}", shouldLog);
                 card.OnLassoed();
@@ -177,4 +180,6 @@ public class PlayerLassoManager : MonoBehaviour
 
         Destroy(temp);
     }
+
+
 }

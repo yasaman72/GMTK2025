@@ -70,6 +70,8 @@ namespace Deviloop
             }
         }
 
+        // TODO: Refactor this method to make it more modular. For example use a list in the AreaData to pick the next encounters.
+        // Too many nested conditions
         public void ShowEncounterSelectionUI()
         {
             List<BaseEncounter> nextEncounters = new List<BaseEncounter>();
@@ -78,6 +80,7 @@ namespace Deviloop
             {
                 Debug.Log("Starting a combat before pre boss shop encounter.");
 
+                // TODO: check that thy're not the same encounter
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
             }

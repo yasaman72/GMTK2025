@@ -10,12 +10,14 @@ namespace Deviloop
 
         public override void StartEncounter()
         {
+            CombatTargetSelection.SetTargetAction?.Invoke(null);
             CombatManager.OnCombatStartEvent?.Invoke(_numberOfEnemiesToSpawn, _enemyTypes);
             CombatManager.OnCombatFinishedEvent += FinishEncounter;
         }
 
         public override void FinishEncounter()
         {
+            CombatTargetSelection.SetTargetAction?.Invoke(null);
             CombatManager.OnCombatFinishedEvent -= FinishEncounter;
             EncounterManager.OnEncounterFinished?.Invoke();
         }

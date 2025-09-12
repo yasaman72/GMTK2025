@@ -1,4 +1,5 @@
 using Cards;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,9 +18,13 @@ public class HudManager : CustomMonoBehavior
     [SerializeField] private DeckView _deckView;
     [SerializeField] private RewardView _rewardView;
 
+    private Color _grayColor = new Color(.5f, .5f, .5f);
+
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += UpdateTurnText;
+        GameStateManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
+
         _pauseMenu.SetActive(false);
         _deckView.Initialize();
         _rewardView.Initialize();
@@ -28,7 +33,9 @@ public class HudManager : CustomMonoBehavior
     private void OnDisable()
     {
         TurnManager.OnTurnChanged -= UpdateTurnText;
+        GameStateManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
     }
+
 
     private void Start()
     {
@@ -44,8 +51,12 @@ public class HudManager : CustomMonoBehavior
         bool isPlayerTurn = turnMode == TurnManager.ETurnMode.Player;
         _turnText.text = isPlayerTurn ? "Your Turn!" : "Enemy Turn!";
         _turnBg.color = isPlayerTurn ? Color.black : Color.red;
-        Color newColor = isPlayerTurn ? new Color(.5f, .5f, .5f) : Color.white;
-        _bgImage.color = newColor;
+        _bgImage.color = Color.white;
+    }
+
+    private void OnPlayerClickedThrow()
+    {
+        _bgImage.color = _grayColor;
     }
 
     public void OnPause()
