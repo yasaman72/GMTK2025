@@ -14,6 +14,7 @@ namespace Cards
     {
         public static Action<CardEntry> AddCardToDeckAction;
         public static Action<CardEntry> AddCardToHandAction;
+        public static Action ReturnAllCardsToHand;
 
         [SerializeField] private bool shouldLog = true;
 
@@ -64,6 +65,7 @@ namespace Cards
             TurnManager.OnTurnChanged += HandleTurnChanged;
             AddCardToDeckAction += AddCardToDeck;
             AddCardToHandAction += AddCardToHand;
+            ReturnAllCardsToHand += ReturnCardsToDrawDeck;
         }
 
         private void OnDisable()
@@ -71,6 +73,7 @@ namespace Cards
             TurnManager.OnTurnChanged -= HandleTurnChanged;
             AddCardToDeckAction -= AddCardToDeck;
             AddCardToHandAction -= AddCardToHand;
+            ReturnAllCardsToHand -= ReturnCardsToDrawDeck;
         }
 
         void Initialize()
@@ -269,7 +272,7 @@ namespace Cards
             }
         }
 
-        public void AddCardToDeck(CardEntry card)
+        private void AddCardToDeck(CardEntry card)
         {
             for (int i = 0; i < card.Quantity; i++)
             {

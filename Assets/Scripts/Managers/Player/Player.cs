@@ -1,5 +1,7 @@
 
 
+using Cards;
+
 public class Player : CombatCharacter
 {
     public static CombatCharacter PlayerCombatCharacter { get; private set; }
@@ -22,5 +24,6 @@ public class Player : CombatCharacter
     private void OnCombatFinished()
     {
         RemoveAllShields();
+        CardManager.ReturnAllCardsToHand?.Invoke();
     }
 }

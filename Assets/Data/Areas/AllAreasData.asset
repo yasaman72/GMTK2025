@@ -18,5 +18,4 @@ MonoBehaviour:
     Encounters:
     - {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
     - {fileID: 11400000, guid: a825de36f2a9a8e4aad1c82b5554e34e, type: 2}
-    - {fileID: 11400000, guid: 79bd2a45f5616194db3972a686c2a67d, type: 2}
     BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}
