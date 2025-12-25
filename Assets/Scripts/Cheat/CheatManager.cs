@@ -59,4 +59,14 @@ public class CheatManager : MonoBehaviour
         _enemies.SetActive(!_enemies.activeInHierarchy);
         _shop.SetActive(!_enemies.activeInHierarchy);
     }
+
+    public void DamageAllEnemies(int damageAmount)
+    {
+        var enemies = CombatManager.SpawnedEnemies;
+
+        foreach (var enemy in enemies)
+        {
+            Player.PlayerCombatCharacter.DealDamage(enemy, damageAmount);
+        }
+    }
 }

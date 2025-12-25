@@ -1,6 +1,5 @@
-using Cards.ScriptableObjects;
 using UnityEngine;
-using MaterialFlag = Cards.ScriptableObjects.MaterialType;
+using MaterialFlag = Cards.MaterialType;
 
 namespace Deviloop
 {

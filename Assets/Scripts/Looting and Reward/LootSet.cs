@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LootSet", menuName = "Scriptable Objects/Loots/LootSet", order = 1)]
 public class LootSet : ScriptableObject
 {
+    public int minLootPicked = 2;
     public List<LootSetData> rewards;
 
 
@@ -15,11 +16,19 @@ public class LootSet : ScriptableObject
         public LootItem Item;
         [SerializeField] private int CountMin, CountMax;
         public float Chance;
-        public int Count { private set; get; }
 
-        public void Setup()
+        private int _count = 0;
+        public int Count
         {
-            Count = Random.Range(CountMin, CountMax + 1);
+            set { _count = value; }
+            get
+            {
+                if ((_count == 0))
+                {
+                    Count = Random.Range(CountMin, CountMax + 1);
+                }
+                return _count;
+            }
         }
 
         public void Loot()
@@ -41,16 +50,32 @@ public class LootSet : ScriptableObject
         }
     }
 
-    public List<LootSetData> GetPickedLoots()
+    public List<LootSetData> GetPickedLoots(int count = 1)
     {
+        count = Mathf.Max(count, minLootPicked);
+
         List<LootSetData> pickedLoots = new List<LootSetData>();
+
+        float totalChance = 0f;
         foreach (var loot in rewards)
+            totalChance += loot.Chance;
+
+        for (int i = 0; i < count; i++)
         {
-            if (Random.Range(0f, 1f) <= loot.Chance)
+            float roll = Random.Range(0f, totalChance);
+            float cumulative = 0f;
+
+            foreach (var loot in rewards)
             {
-                pickedLoots.Add(loot);
+                cumulative += loot.Chance;
+                if (roll <= cumulative)
+                {
+                    pickedLoots.Add(loot);
+                    break;
+                }
             }
         }
+
         return pickedLoots;
     }
 

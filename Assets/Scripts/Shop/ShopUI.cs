@@ -70,7 +70,7 @@ public class ShopUI : MonoBehaviour
     {
         if (PlayerInventory.SpendCoin(shopItemData.Price))
         {
-            CardManager.AddCardToDeckAction?.Invoke(shopItemData.CardEntry);
+            CardManager.AddCardToDeckAction?.Invoke(shopItemData.CardEntry.Card, shopItemData.CardEntry.Quantity);
             RemoveItemFromOffers(shopItemData, itemButton);
             AnalyticsManager.SendCustomEventAction?.Invoke("shop_item_bought", new Dictionary<string, object>
             {

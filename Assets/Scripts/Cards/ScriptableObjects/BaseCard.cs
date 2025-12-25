@@ -2,7 +2,7 @@ using FMODUnity;
 using System;
 using UnityEngine;
 
-namespace Cards.ScriptableObjects
+namespace Cards
 {
     [System.Flags]
     public enum MaterialType
@@ -20,6 +20,7 @@ namespace Cards.ScriptableObjects
     [CreateAssetMenu(fileName = "BaseCard", menuName = "Cards/Base Card")]
     public abstract class BaseCard : ScriptableObject
     {
+        public bool isInGame = true;
         [Header("Card Info")]
         public string cardName;
         public string description;

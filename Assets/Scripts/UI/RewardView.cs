@@ -1,5 +1,7 @@
+using Deviloop;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using static LootSet;
@@ -10,16 +12,18 @@ public class RewardView : MonoBehaviour
     public static Action OnRewardsClosed;
 
     [SerializeField] private bool _shouldLog;
+    [SerializeField] private int _maxLoot = 3;
     [Space]
     [SerializeField] private Transform _deckContentHolder;
     [SerializeField] private GameObject _rewardItemPrefab;
 
-    List<LootSetData> _finalRewards = new List<LootSetData>();
+    Dictionary<LootSetData, GameObject> _allCurrentLoots = new Dictionary<LootSetData, GameObject>();
 
     public void Initialize()
     {
         OpenRewards += onDeckOpen;
         gameObject.SetActive(false);
+        _allCurrentLoots.Clear();
     }
 
     private void OnDestroy()
@@ -27,7 +31,7 @@ public class RewardView : MonoBehaviour
         OpenRewards -= onDeckOpen;
     }
 
-    private void onDeckOpen(List<LootSet> loot)
+    private void onDeckOpen(List<LootSet> loots)
     {
         Time.timeScale = 0;
 
@@ -38,35 +42,95 @@ public class RewardView : MonoBehaviour
                 Destroy(item.gameObject);
         }
 
-        List<LootSetData> pickedRewards = new List<LootSetData>();
+        List<LootSetData> allRewards = loots
+            .SelectMany(l => l.GetPickedLoots())
+            .ToList();
+        ListUtilities.ShuffleItems(allRewards);
 
-        foreach (var l in loot)
+        // TODO: better algorithm to pick the rewards, based on rarity, seed and luck
+        List<LootSetData> pickedRewards = allRewards.GetRange(0, Mathf.Min(_maxLoot, allRewards.Count));
+
+        // if more than one reward is coin, combine them into one
+        if (pickedRewards.Count(r => r.Item is CoinLoot) > 1)
         {
-            pickedRewards.AddRange(l.GetPickedLoots());
+            int totalCoins = pickedRewards.Sum(r => r.Count);
+            CoinLoot coinItemCopy = pickedRewards.First(r => r.Item is CoinLoot).Item as CoinLoot;
+            // remove all coin rewards
+            pickedRewards = pickedRewards.Where(r => !(r.Item is CoinLoot)).ToList();
+            pickedRewards.Add(
+                new LootSetData
+                {
+                    Item = coinItemCopy,
+                    Count = totalCoins,
+                    Chance = 1f
+                });
         }
+
 
         foreach (var reward in pickedRewards)
         {
+            // reset card duplicates
+            if (reward.Item is ItemLoot item)
+            {
+                int safety = 50;
+
+                while (safety-- > 0 &&
+                       _allCurrentLoots.Any(l =>
+                           l.Key.Item is ItemLoot itemLoot &&
+                           itemLoot.Card == item.Card))
+                {
+                    (reward.Item as ItemLoot).ResetCard();
+                }
+
+                if (safety <= 0)
+                {
+                    Debug.LogWarning("Failed to find unique card for loot item.");
+                }
+            }
+
             LootSetData rewardCopy = reward.Clone();
-            rewardCopy.Setup();
 
             var newRewardPrefab = Instantiate(_rewardItemPrefab, _deckContentHolder);
             var rewardItem = newRewardPrefab.GetComponent<RewardItem>().Setup(rewardCopy);
-            _finalRewards.Add(rewardCopy);
+            newRewardPrefab.GetComponent<Button>().onClick.AddListener(() => CollectReward(rewardCopy, newRewardPrefab));
+            _allCurrentLoots.Add(rewardCopy, newRewardPrefab);
         }
         gameObject.SetActive(true);
     }
 
-    public void CollectRewards()
+    public void CollectReward(LootSetData rewardItem, GameObject rewardPrefab)
     {
-        foreach (var _lootItem in _finalRewards)
+        rewardItem.Loot();
+        _allCurrentLoots.Remove(rewardItem);
+
+        if (rewardItem.Item is ItemLoot)
         {
-            if (_lootItem.Item == null)
+            // remove all other item rewards from the option
+            var initialLoots = new Dictionary<LootSetData, GameObject>(_allCurrentLoots);
+            foreach (var reward in initialLoots)
+            {
+                if (reward.Key.Item is ItemLoot)
+                {
+                    _allCurrentLoots.Remove(reward.Key);
+                    Destroy(reward.Value);
+                }
+            }
+        }
+
+        // TODO: use pooling
+        Destroy(rewardPrefab);
+    }
+
+    public void CollectAllRewards()
+    {
+        foreach (var _lootItem in _allCurrentLoots)
+        {
+            if (_lootItem.Key.Item == null)
             {
                 Debug.LogError("LootItem is not set up");
                 return;
             }
-            _lootItem.Loot();
+            _lootItem.Key.Loot();
         }
 
         Close();
@@ -76,6 +140,7 @@ public class RewardView : MonoBehaviour
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
+        _allCurrentLoots.Clear();
         OnRewardsClosed?.Invoke();
     }
 }

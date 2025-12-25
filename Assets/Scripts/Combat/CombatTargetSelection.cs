@@ -22,6 +22,8 @@ namespace Deviloop
 
         private void SetTarget(CombatCharacter target)
         {
+            if (gameObject == null) return;
+
             if (CurrentTarget != null)
             {
                 (CurrentTarget as Enemy).OnDeath -= ClearTargetOnDeath;

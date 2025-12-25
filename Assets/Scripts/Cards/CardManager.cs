@@ -12,7 +12,7 @@ namespace Cards
 {
     public class CardManager : MonoBehaviour
     {
-        public static Action<CardEntry> AddCardToDeckAction;
+        public static Action<BaseCard, int> AddCardToDeckAction;
         public static Action<BaseCard> RemoveCardFromDeckAction;
         public static Action<CardEntry> AddCardToHandAction;
         public static Action ReturnAllCardsToHand;
@@ -258,6 +258,8 @@ namespace Cards
 
         void ClearThrownCards()
         {
+            if(gameObject == null) return;
+
             foreach (var card in thrownCards)
             {
                 if (card != null)
@@ -266,7 +268,7 @@ namespace Cards
             thrownCards.Clear();
             _extraHandCards.RemoveAllCards();
         }
-       
+
         public void AddCardToHand(CardEntry card)
         {
             for (int i = 0; i < card.Quantity; i++)
@@ -275,11 +277,11 @@ namespace Cards
             }
         }
 
-        private void AddCardToDeck(CardEntry card)
+        private void AddCardToDeck(BaseCard card, int quantity)
         {
-            for (int i = 0; i < card.Quantity; i++)
+            for (int i = 0; i < quantity; i++)
             {
-                _drawDeck.AddCard(card.Card);
+                _drawDeck.AddCard(card);
             }
 
             UpdateUI();

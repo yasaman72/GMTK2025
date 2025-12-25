@@ -1,3 +1,4 @@
+using Cards;
 using UnityEngine;
 
 namespace Deviloop
@@ -6,5 +7,6 @@ namespace Deviloop
     public class GameDatabase : ScriptableObject
     {
         public Material[] materials;
+        public BaseCard[] Cards;
     }
 }

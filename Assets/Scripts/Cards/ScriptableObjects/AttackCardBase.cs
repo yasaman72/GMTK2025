@@ -72,7 +72,7 @@ namespace Cards.ScriptableObjects
 
             // make the card spin a bit with tweening before vanishing
             // TODO: better animations and wait for end of animation to apply effects
-            cardPrefab.transform.DORotate(new Vector3(0, 0, 360 * 5), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
+            var tween = cardPrefab.transform.DORotate(new Vector3(0, 0, 360 * 5), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
 
             yield return new WaitForSeconds(delayBeforeMove * 2);
 
@@ -86,6 +86,7 @@ namespace Cards.ScriptableObjects
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             yield return new WaitForSeconds(1);
+            tween.Kill();
             callback?.Invoke();
         }
     }

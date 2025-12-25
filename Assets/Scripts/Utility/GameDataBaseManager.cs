@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Cards;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -38,11 +40,7 @@ namespace Deviloop
         [MenuItem("Deviloop/Update All Data")]
         public static void UpdateAllData()
         {
-            var guids = AssetDatabase.FindAssets("t:Material", new[] { "Assets/Data/Materials" });
-
-            var database = AssetDatabase.LoadAssetAtPath<GameDatabase>(
-                "Assets/Resources/Database/Database.asset"
-            );
+            var database = AssetDatabase.LoadAssetAtPath<GameDatabase>("Assets/Resources/Database/Database.asset");
 
             if (database == null)
             {
@@ -50,22 +48,36 @@ namespace Deviloop
                 return;
             }
 
-            var list = new List<Material>();
+            var materialsGuids = AssetDatabase.FindAssets("t:Material", new[] { "Assets/Data/Materials" });
+            var itemsGuids = AssetDatabase.FindAssets("t:BaseCard", new[] { "Assets/Data/Items" });
 
-            foreach (var guid in guids)
+            var materialsList = new List<Material>();
+            var itemsList = new List<BaseCard>();
+
+            foreach (var guid in materialsGuids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 var asset = AssetDatabase.LoadAssetAtPath<Material>(path);
                 if (asset != null)
-                    list.Add(asset);
+                    materialsList.Add(asset);
             }
 
-            database.materials = list.ToArray();
+            database.materials = materialsList.ToArray();
+
+
+            foreach (var guid in itemsGuids)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                var asset = AssetDatabase.LoadAssetAtPath<BaseCard>(path);
+                if (asset != null && asset.isInGame)
+                    itemsList.Add(asset);
+            }
+            database.Cards = itemsList.ToArray();
 
             EditorUtility.SetDirty(database);
             AssetDatabase.SaveAssets();
 
-            Debug.Log($"GameDatabase updated: {list.Count} materials.");
+            Debug.Log($"GameDatabase updated: {materialsList.Count} materials.");
         }
 #endif
     }

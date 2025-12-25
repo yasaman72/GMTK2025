@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5846bb01bfee84090f90dd9cc4efde, type: 3}
   m_Name: _Combo
   m_EditorClassIdentifier: 
+  isInGame: 0
   cardName: Combo
   description: If you wants to keep the combo, always loop this item in
   cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
+  materialType: 0
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:

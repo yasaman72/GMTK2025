@@ -1,3 +1,5 @@
+using Cards;
+using Deviloop;
 using System;
 using UnityEngine;
 using static LootSet;
@@ -43,6 +45,10 @@ public class PlayerInventory : CustomMonoBehavior
         {
             CoinCount += loot.Count;
             Logger.Log($"Added {loot.Count} coins to inventory. Total coins: {CoinCount}", shouldLog);
+        }
+        if (loot.Item is ItemLoot cardLoot)
+        {
+            CardManager.AddCardToDeckAction?.Invoke(cardLoot.Card, 1);
         }
         else
         {
