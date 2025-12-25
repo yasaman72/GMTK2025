@@ -6,6 +6,7 @@ using UnityEngine;
 public class ShopData : ScriptableObject
 {
     public List<ShopItem> Items;
+    public int itemDeletionPrice = 20;
 
     [System.Serializable]
     public struct ShopItem
@@ -14,8 +15,9 @@ public class ShopData : ScriptableObject
         public int Price;
     }
 
-    public List<ShopItem> Copy()
+    public ShopData Copy()
     {
+        var copy = new ShopData();
         var _shopOffers = new List<ShopItem>();
         foreach (var item in this.Items)
         {
@@ -26,6 +28,8 @@ public class ShopData : ScriptableObject
             };
             _shopOffers.Add(newItem);
         }
-        return _shopOffers;
+        copy.Items = _shopOffers;
+        copy.itemDeletionPrice = itemDeletionPrice;
+        return copy;
     }
 }

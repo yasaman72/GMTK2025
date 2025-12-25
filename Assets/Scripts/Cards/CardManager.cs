@@ -13,6 +13,7 @@ namespace Cards
     public class CardManager : MonoBehaviour
     {
         public static Action<CardEntry> AddCardToDeckAction;
+        public static Action<BaseCard> RemoveCardFromDeckAction;
         public static Action<CardEntry> AddCardToHandAction;
         public static Action ReturnAllCardsToHand;
 
@@ -66,6 +67,7 @@ namespace Cards
             AddCardToDeckAction += AddCardToDeck;
             AddCardToHandAction += AddCardToHand;
             ReturnAllCardsToHand += ReturnCardsToDrawDeck;
+            RemoveCardFromDeckAction += RemoveCardFromDeck;
         }
 
         private void OnDisable()
@@ -74,6 +76,7 @@ namespace Cards
             AddCardToDeckAction -= AddCardToDeck;
             AddCardToHandAction -= AddCardToHand;
             ReturnAllCardsToHand -= ReturnCardsToDrawDeck;
+            RemoveCardFromDeckAction -= RemoveCardFromDeck;
         }
 
         void Initialize()
@@ -279,6 +282,12 @@ namespace Cards
                 _drawDeck.AddCard(card.Card);
             }
 
+            UpdateUI();
+        }
+
+        private void RemoveCardFromDeck(BaseCard card)
+        {
+            _drawDeck.RemoveCard(card);
             UpdateUI();
         }
 

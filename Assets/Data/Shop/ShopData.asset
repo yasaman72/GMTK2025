@@ -29,3 +29,4 @@ MonoBehaviour:
       Card: {fileID: 11400000, guid: 70940d97283be90479f245d3b56ff600, type: 2}
       Quantity: 1
     Price: 100
+  itemDeletionPrice: 30

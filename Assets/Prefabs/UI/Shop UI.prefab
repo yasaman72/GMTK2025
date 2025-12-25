@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shopItemParent: {fileID: 3758351111571782105}
-  _shopItem: {fileID: 8666278385128463733, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}
+  _shopItemOption: {fileID: 8666278385128463733, guid: 453dcc08b22f9b342b0f99e6d54f903b, type: 3}
+  _shopRemoveItemOption: {fileID: 8666278385128463733, guid: 75a26475baa8ebc489f1d57dcf91db72, type: 3}
 --- !u!1001 &2256364747108498762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,7 +316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 18.800003
+      value: 18.799988
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -336,6 +337,10 @@ PrefabInstance:
     - target: {fileID: 6024798262253909017, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084467437035848963, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
+      propertyPath: m_fontSize
+      value: 20.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

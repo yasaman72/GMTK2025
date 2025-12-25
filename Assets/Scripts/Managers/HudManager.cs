@@ -68,11 +68,11 @@ public class HudManager : CustomMonoBehavior
     // TODO: find a single solution for opening any deck
     public void OpenDrawDeck()
     {
-        DeckView.OpenDeck?.Invoke(CardManager.DrawDeck);
+        DeckView.OpenDeck?.Invoke(CardManager.DrawDeck, null);
     }
 
     public void OpenDiscardDeck()
     {
-        DeckView.OpenDeck?.Invoke(CardManager.DiscardDeck);
+        DeckView.OpenDeck?.Invoke(CardManager.DiscardDeck, null);
     }
 }

@@ -14,6 +14,7 @@ public class DeckViewItem : MonoBehaviour
     [Header("Shop")]
     [SerializeField] private GameObject _priceParent;
     [SerializeField] private TextMeshProUGUI _priceText;
+    [SerializeField] private Button _button;
 
 
     public void Setup(BaseCard card)
@@ -28,10 +29,22 @@ public class DeckViewItem : MonoBehaviour
         Setup(card.Card);
         _countText.text = card.Quantity.ToString() + "X";
     }
+
     public void Setup(ShopItem shopItem)
     {
         Setup(shopItem.CardEntry);
         _priceParent.SetActive(true);
         _priceText.text = shopItem.Price.ToString();
+    }
+
+    public void Setup(int price)
+    {
+        _priceText.text = price.ToString();
+    }
+
+    public void Deactivate()
+    {
+        _button.onClick.RemoveAllListeners();
+        _descriptionText.text = "SOLD!";
     }
 }
