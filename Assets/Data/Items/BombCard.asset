@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: 'Bomb '
   description: deals 3 damage to you
   cardIcon: {fileID: 21300000, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
+  materialType: 128
   isNegativeItem: 1
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:

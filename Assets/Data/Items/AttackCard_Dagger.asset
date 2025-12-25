@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Dagger
   description: Deals 1 damage
   cardIcon: {fileID: 21300000, guid: 854c0fd59787b124ba003ffdabdcf06e, type: 3}
+  materialType: 2
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:

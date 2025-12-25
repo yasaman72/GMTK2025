@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "Encounter_Combat_A00_00", menuName = "ScriptableObjects/Encounters/Combat Encounter")]
+    [CreateAssetMenu(fileName = "Encounter_Combat_A00_00", menuName = "Scriptable Objects/Encounters/Combat Encounter")]
     public class CombatEncounter : BaseEncounter
     {
         [SerializeField] private int _numberOfEnemiesToSpawn = 1;

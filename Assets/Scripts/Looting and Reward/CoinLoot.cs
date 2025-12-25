@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CoinLoot", menuName = "ScriptableObjects/Loots/LootType/Coin")]
+[CreateAssetMenu(fileName = "CoinLoot", menuName = "Scriptable Objects/Loots/LootType/Coin")]
 public class CoinLoot : LootItem
 {
 

@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
-  m_Name: AttackCard_Shuriken
+  m_Name: AttackCard_Axe
   m_EditorClassIdentifier: 
-  cardName: Shuriken
-  description: Deals 2 damages to all enemies
-  cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
+  cardName: 'Axe '
+  description: Deals 3 damage
+  cardIcon: {fileID: 21300000, guid: 9e53bc01c0eec174f839fcb42affd5da, type: 3}
+  materialType: 10
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
-      Data1: -1042154850
-      Data2: 1290496717
-      Data3: 280597907
-      Data4: 421807944
-    Path: event:/Gameplay/Throwables_Items/Items_Dagger
+      Data1: 1986245944
+      Data2: 1272102872
+      Data3: 1914618017
+      Data4: 1756598346
+    Path: event:/Gameplay/Throwables_Items/Items_Axe
   shouldLog: 0
-  cardPrefab: {fileID: 4009389148060104062, guid: 2d8374ee635de184a84881bc80c70d04, type: 3}
+  cardPrefab: {fileID: 4009389148060104062, guid: 2650f0187dc5af246b32d7ad1dec5fbe, type: 3}
   isConsumable: 0
-  damage: 2
+  damage: 3
   moveSpeed: 2
   delayBeforeMove: 0.3
-  taregtAll: 1
+  taregtAll: 0

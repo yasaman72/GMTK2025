@@ -2,7 +2,7 @@ using Cards;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShopData", menuName = "ScriptableObjects/ShopData")]
+[CreateAssetMenu(fileName = "ShopData", menuName = "Scriptable Objects/ShopData")]
 public class ShopData : ScriptableObject
 {
     public List<ShopItem> Items;

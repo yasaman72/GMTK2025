@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyAction_Attack_[EnemyType]", menuName = "ScriptableObjects/EnemyActions/Attack", order = 1)]
+[CreateAssetMenu(fileName = "EnemyAction_Attack_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Attack", order = 1)]
 public class EnemyAction_Attack : EnemyAction
 {
 

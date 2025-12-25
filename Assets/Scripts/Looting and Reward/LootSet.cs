@@ -3,7 +3,7 @@ using System.Threading;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "LootSet", menuName = "ScriptableObjects/Loots/LootSet", order = 1)]
+[CreateAssetMenu(fileName = "LootSet", menuName = "Scriptable Objects/Loots/LootSet", order = 1)]
 public class LootSet : ScriptableObject
 {
     public List<LootSetData> rewards;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "AreasData", menuName = "ScriptableObjects/AreaData")]
+    [CreateAssetMenu(fileName = "AreasData", menuName = "Scriptable Objects/AreaData")]
     public class AreaData : ScriptableObject
     {
         public List<Area> Areas;

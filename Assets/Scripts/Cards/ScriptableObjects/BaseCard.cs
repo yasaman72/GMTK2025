@@ -4,6 +4,19 @@ using UnityEngine;
 
 namespace Cards.ScriptableObjects
 {
+    [System.Flags]
+    public enum MaterialType
+    {
+        Unknown = 1 << 0,
+        Metal = 1 << 1,
+        Stone = 1 << 2,
+        Wood = 1 << 3,
+        Fabric = 1 << 4,
+        Flesh = 1 << 5,
+        Glass = 1 << 6,
+        Explosive = 1 << 7
+    }
+
     [CreateAssetMenu(fileName = "BaseCard", menuName = "Cards/Base Card")]
     public abstract class BaseCard : ScriptableObject
     {
@@ -11,6 +24,7 @@ namespace Cards.ScriptableObjects
         public string cardName;
         public string description;
         public Sprite cardIcon;
+        public MaterialType materialType;
         public bool isNegativeItem;
         public Color OnSelectColor = Color.green;
         public EventReference OnUseSound;

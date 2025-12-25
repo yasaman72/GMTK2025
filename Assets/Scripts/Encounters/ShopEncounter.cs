@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "Encounter_Shop_A00_00", menuName = "ScriptableObjects/Encounters/Shop Encounter")]
+    [CreateAssetMenu(fileName = "Encounter_Shop_A00_00", menuName = "Scriptable Objects/Encounters/Shop Encounter")]
     public class ShopEncounter : BaseEncounter
     {
         [SerializeField] private ShopData _shopData;

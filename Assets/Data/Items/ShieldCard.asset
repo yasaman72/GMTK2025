@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: 'Shield '
   description: Provide 2 shield
   cardIcon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
+  materialType: 10
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
