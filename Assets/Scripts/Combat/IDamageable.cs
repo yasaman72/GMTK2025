@@ -5,6 +5,7 @@ public interface IDamageable
     int GetCurrentHealth { get; }
     bool SetCurrentHealth(int health);
     void Heal(int amount);
+    void FullyHeal();
     void AddShield(int amount);
     int DamageShield(int damageAmount);
 }

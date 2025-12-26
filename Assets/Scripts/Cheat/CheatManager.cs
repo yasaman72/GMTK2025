@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using static LootSet;
 
@@ -25,7 +26,13 @@ public class CheatManager : MonoBehaviour
     {
         string formattedLog = $"[{type}] {logString}";
         if (type == LogType.Error || type == LogType.Exception)
-            formattedLog += $"\n{stackTrace}";
+        {
+            formattedLog = $"<color=red>{formattedLog}</color>";
+            formattedLog += $"\n{stackTrace}"; 
+        }else if(type == LogType.Warning)
+        {
+            formattedLog = $"<color=yellow>{formattedLog}</color>";
+        }
 
         logQueue.Enqueue(formattedLog);
 
@@ -68,5 +75,17 @@ public class CheatManager : MonoBehaviour
         {
             Player.PlayerCombatCharacter.DealDamage(enemy, damageAmount);
         }
+    }
+
+    public void FullyHealPlayer()
+    {
+        Player.PlayerCombatCharacter.FullyHeal();
+    }
+
+    public void ClearLogs()
+    {
+        logQueue.Clear();
+        if (_logText != null)
+            _logText.text = string.Empty;
     }
 }

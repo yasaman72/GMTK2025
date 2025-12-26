@@ -17,7 +17,7 @@ public class ShopData : ScriptableObject
 
     public ShopData Copy()
     {
-        var copy = new ShopData();
+        var copy = CreateInstance(nameof(ShopData)) as ShopData;
         var _shopOffers = new List<ShopItem>();
         foreach (var item in this.Items)
         {

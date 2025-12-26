@@ -1,21 +1,18 @@
+using Deviloop;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "LootSet", menuName = "Scriptable Objects/Loots/LootSet", order = 1)]
 public class LootSet : ScriptableObject
 {
-    public int minLootPicked = 2;
-    public List<LootSetData> rewards;
-
+    [SerializeField] private List<LootSetData> _rewards;
 
     [System.Serializable]
     public class LootSetData
     {
-        public LootItem Item;
-        [SerializeField] private int CountMin, CountMax;
-        public float Chance;
+        public LootItem item;
+        [SerializeField] private int countMin, countMax;
 
         private int _count = 0;
         public int Count
@@ -25,7 +22,7 @@ public class LootSet : ScriptableObject
             {
                 if ((_count == 0))
                 {
-                    Count = Random.Range(CountMin, CountMax + 1);
+                    Count = Random.Range(countMin, countMax + 1);
                 }
                 return _count;
             }
@@ -33,7 +30,7 @@ public class LootSet : ScriptableObject
 
         public void Loot()
         {
-            AudioManager.PlayAudioOneShot?.Invoke(Item.OnLootSound);
+            AudioManager.PlayAudioOneShot?.Invoke(item.OnLootSound);
             PlayerInventory.AddToInventoryAction?.Invoke(this);
         }
 
@@ -41,42 +38,69 @@ public class LootSet : ScriptableObject
         {
             return new LootSetData
             {
-                Item = this.Item,
-                Chance = this.Chance,
+                item = this.item,
                 Count = this.Count,
-                CountMin = this.CountMin,
-                CountMax = this.CountMax
+                countMin = this.countMin,
+                countMax = this.countMax
             };
+        }
+
+        public CoinLootResult IsCoinLoot()
+        {
+            if (item is CoinLoot coinLoot)
+                return new CoinLootResult(coinLoot);
+
+            return new CoinLootResult(null);
+        }
+
+        public class CoinLootResult
+        {
+            public CoinLoot Coin { get; }
+            public bool IsCoin => Coin != null;
+
+            public CoinLootResult(CoinLoot coin)
+            {
+                Coin = coin;
+            }
+
+            // Implicit conversion to bool
+            public static implicit operator bool(CoinLootResult result)
+            {
+                return result != null && result.IsCoin;
+            }
         }
     }
 
-    public List<LootSetData> GetPickedLoots(int count = 1)
+    public List<LootSetData> GetAllRewards()
     {
-        count = Mathf.Max(count, minLootPicked);
-
-        List<LootSetData> pickedLoots = new List<LootSetData>();
-
-        float totalChance = 0f;
-        foreach (var loot in rewards)
-            totalChance += loot.Chance;
-
-        for (int i = 0; i < count; i++)
+        foreach (var reward in _rewards)
         {
-            float roll = Random.Range(0f, totalChance);
-            float cumulative = 0f;
+            reward.Count = 0;
+        }
 
-            foreach (var loot in rewards)
+        List<LootSetData> rewards = new List<LootSetData>();
+
+        foreach (var reward in _rewards)
+        {
+            if (reward.item is CoinLoot coinLoot)
             {
-                cumulative += loot.Chance;
-                if (roll <= cumulative)
+                // readd the coin, the count will be the number of coins rewarded
+                var rewardsCopy = reward.Clone();
+                rewards.Add(rewardsCopy);
+            }
+            else if (reward.item is ItemLoot itemLoot)
+            {
+                // add multiple card rewards
+                for (int i = 0; i < reward.Count; i++)
                 {
-                    pickedLoots.Add(loot);
-                    break;
+                    // create a copy of the LootSetData so we don't reuse the same object at runtime
+                    var rewardsCopy = reward.Clone();
+                    rewardsCopy.item = Object.Instantiate(itemLoot);
+                    rewards.Add(rewardsCopy);
                 }
             }
         }
 
-        return pickedLoots;
+        return rewards;
     }
-
 }

@@ -17,7 +17,7 @@ namespace Deviloop
             {
                 if (_card == null)
                 {
-                    _card = ListUtilities.GetRandomElement<BaseCard>(GameDataBaseManager.GameDatabase.Cards.ToList());
+                    ResetCard();
                 }
                 return _card;
             }
@@ -30,14 +30,30 @@ namespace Deviloop
 
             do
             {
-                _card = ListUtilities.GetRandomElement<BaseCard>(GameDataBaseManager.GameDatabase.Cards.ToList());
+                float totalChance = 0f;
+                foreach (var card in GameDataBaseManager.GameDatabase.Cards)
+                    totalChance += (int)card.cardRarity;
+
+                float roll = Random.Range(0f, totalChance);
+                float cumulative = 0f;
+
+                foreach (var loot in GameDataBaseManager.GameDatabase.Cards)
+                {
+                    cumulative += (int)loot.cardRarity;
+                    if (roll <= cumulative)
+                    {
+                        _card = loot;
+                        break;
+                    }
+                }
+
                 safety--;
                 if (safety <= 0)
                 {
                     Debug.LogWarning("Failed to find unique card for loot item.");
                     break;
                 }
-            } while (_card == null || _card.isNegativeItem);
+            } while (_card == null || _card.isNegativeItem || !_card.isInGame);
         }
     }
 }

@@ -15,7 +15,7 @@ public class RewardItem : MonoBehaviour
 
     public RewardItem Setup(LootSetData lootSetData)
     {
-        if (lootSetData.Item is ItemLoot item)
+        if (lootSetData.item is ItemLoot item)
         {
             var card = item.Card;
             _title.text = card.cardName;
@@ -26,10 +26,10 @@ public class RewardItem : MonoBehaviour
         }
         else
         {
-            _title.text = lootSetData.Item.itemName;
-            _description.text = lootSetData.Item.description;
+            _title.text = lootSetData.item.itemName;
+            _description.text = lootSetData.item.description;
             _count.text = lootSetData.Count.ToString();
-            _icon.sprite = lootSetData.Item.icon;
+            _icon.sprite = lootSetData.item.icon;
         }
 
         return this;

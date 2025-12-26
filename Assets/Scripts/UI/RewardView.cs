@@ -1,7 +1,6 @@
 using Deviloop;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using static LootSet;
@@ -12,7 +11,7 @@ public class RewardView : MonoBehaviour
     public static Action OnRewardsClosed;
 
     [SerializeField] private bool _shouldLog;
-    [SerializeField] private int _maxLoot = 3;
+    [SerializeField] private int _maxItemOption = 2;
     [Space]
     [SerializeField] private Transform _deckContentHolder;
     [SerializeField] private GameObject _rewardItemPrefab;
@@ -42,58 +41,14 @@ public class RewardView : MonoBehaviour
                 Destroy(item.gameObject);
         }
 
-        List<LootSetData> allRewards = loots
-            .SelectMany(l => l.GetPickedLoots())
-            .ToList();
-        ListUtilities.ShuffleItems(allRewards);
+        List<LootSetData> allRewards = RewardManager.SelectRewards(loots, _maxItemOption);
 
-        // TODO: better algorithm to pick the rewards, based on rarity, seed and luck
-        List<LootSetData> pickedRewards = allRewards.GetRange(0, Mathf.Min(_maxLoot, allRewards.Count));
-
-        // if more than one reward is coin, combine them into one
-        if (pickedRewards.Count(r => r.Item is CoinLoot) > 1)
+        foreach (var reward in allRewards)
         {
-            int totalCoins = pickedRewards.Sum(r => r.Count);
-            CoinLoot coinItemCopy = pickedRewards.First(r => r.Item is CoinLoot).Item as CoinLoot;
-            // remove all coin rewards
-            pickedRewards = pickedRewards.Where(r => !(r.Item is CoinLoot)).ToList();
-            pickedRewards.Add(
-                new LootSetData
-                {
-                    Item = coinItemCopy,
-                    Count = totalCoins,
-                    Chance = 1f
-                });
-        }
-
-
-        foreach (var reward in pickedRewards)
-        {
-            // reset card duplicates
-            if (reward.Item is ItemLoot item)
-            {
-                int safety = 50;
-
-                while (safety-- > 0 &&
-                       _allCurrentLoots.Any(l =>
-                           l.Key.Item is ItemLoot itemLoot &&
-                           itemLoot.Card == item.Card))
-                {
-                    (reward.Item as ItemLoot).ResetCard();
-                }
-
-                if (safety <= 0)
-                {
-                    Debug.LogWarning("Failed to find unique card for loot item.");
-                }
-            }
-
-            LootSetData rewardCopy = reward.Clone();
-
             var newRewardPrefab = Instantiate(_rewardItemPrefab, _deckContentHolder);
-            var rewardItem = newRewardPrefab.GetComponent<RewardItem>().Setup(rewardCopy);
-            newRewardPrefab.GetComponent<Button>().onClick.AddListener(() => CollectReward(rewardCopy, newRewardPrefab));
-            _allCurrentLoots.Add(rewardCopy, newRewardPrefab);
+            var rewardItem = newRewardPrefab.GetComponent<RewardItem>().Setup(reward);
+            newRewardPrefab.GetComponent<Button>().onClick.AddListener(() => CollectReward(reward, newRewardPrefab));
+            _allCurrentLoots.Add(reward, newRewardPrefab);
         }
         gameObject.SetActive(true);
     }
@@ -103,13 +58,13 @@ public class RewardView : MonoBehaviour
         rewardItem.Loot();
         _allCurrentLoots.Remove(rewardItem);
 
-        if (rewardItem.Item is ItemLoot)
+        // remove all other item rewards from the option
+        if (rewardItem.item is ItemLoot)
         {
-            // remove all other item rewards from the option
             var initialLoots = new Dictionary<LootSetData, GameObject>(_allCurrentLoots);
             foreach (var reward in initialLoots)
             {
-                if (reward.Key.Item is ItemLoot)
+                if (reward.Key.item is ItemLoot)
                 {
                     _allCurrentLoots.Remove(reward.Key);
                     Destroy(reward.Value);
@@ -125,7 +80,7 @@ public class RewardView : MonoBehaviour
     {
         foreach (var _lootItem in _allCurrentLoots)
         {
-            if (_lootItem.Key.Item == null)
+            if (_lootItem.Key.item == null)
             {
                 Debug.LogError("LootItem is not set up");
                 return;

@@ -91,12 +91,17 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
             return;
         }
         SetCurrentHealth(CurrentHealth + amount);
-        OnHPChanged?.Invoke();
+    }
+
+    public void FullyHeal()
+    {
+        SetCurrentHealth(MaxHealth);
     }
 
     public bool SetCurrentHealth(int health)
     {
         CurrentHealth = Mathf.Clamp(health, 0, MaxHealth);
+        OnHPChanged?.Invoke();
         return CurrentHealth <= 0;
     }
 

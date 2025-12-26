@@ -1,3 +1,4 @@
+using Deviloop;
 using FMODUnity;
 using System;
 using UnityEngine;
@@ -17,6 +18,15 @@ namespace Cards
         Explosive = 1 << 7
     }
 
+    public enum Rarity
+    {
+        Common = 50,
+        Uncommon = 30,
+        Rare = 15,
+        Epic = 4,
+        Legendary = 1
+    }
+
     [CreateAssetMenu(fileName = "BaseCard", menuName = "Cards/Base Card")]
     public abstract class BaseCard : ScriptableObject
     {
@@ -25,11 +35,15 @@ namespace Cards
         public string cardName;
         public string description;
         public Sprite cardIcon;
+        public Rarity cardRarity;
         public MaterialType materialType;
         public bool isNegativeItem;
         public Color OnSelectColor = Color.green;
         public EventReference OnUseSound;
         [SerializeField] protected bool shouldLog;
+
+        [DeveloperNotes, SerializeField]
+        private string developerNotes;
 
         [Header("Prefab")]
         public GameObject cardPrefab;

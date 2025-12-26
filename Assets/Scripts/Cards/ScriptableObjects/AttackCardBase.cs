@@ -6,9 +6,6 @@ using DG.Tweening;
 
 namespace Cards.ScriptableObjects
 {
-
-
-
     [CreateAssetMenu(fileName = "AttackCard_[attack name]", menuName = "Cards/Attack Card")]
     public class AttackCardBase : BaseCard
     {

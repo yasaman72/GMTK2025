@@ -12,13 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa8485d67e8da44cbb7f3c36f14a180, type: 3}
   m_Name: Basic_Enemy_LootSet
   m_EditorClassIdentifier: 
-  minLootPicked: 2
-  rewards:
-  - Item: {fileID: 11400000, guid: 400b5fbbdde999147a3911e21b4f1185, type: 2}
-    CountMin: 5
-    CountMax: 15
-    Chance: 50
-  - Item: {fileID: 11400000, guid: 41fb66f3ed861274aacfd4fbec14b56a, type: 2}
-    CountMin: 0
-    CountMax: 1
-    Chance: 50
+  _rewards:
+  - item: {fileID: 11400000, guid: 400b5fbbdde999147a3911e21b4f1185, type: 2}
+    countMin: 5
+    countMax: 15
+  - item: {fileID: 11400000, guid: 41fb66f3ed861274aacfd4fbec14b56a, type: 2}
+    countMin: 2
+    countMax: 2

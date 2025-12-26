@@ -41,12 +41,11 @@ public class PlayerInventory : CustomMonoBehavior
 
     private void Add(LootSetData loot)
     {
-        if (loot.Item is CoinLoot coinLoot)
+        if (loot.IsCoinLoot())
         {
             CoinCount += loot.Count;
-            Logger.Log($"Added {loot.Count} coins to inventory. Total coins: {CoinCount}", shouldLog);
         }
-        if (loot.Item is ItemLoot cardLoot)
+        else if (loot.item is ItemLoot cardLoot)
         {
             CardManager.AddCardToDeckAction?.Invoke(cardLoot.Card, 1);
         }
