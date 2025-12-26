@@ -1,3 +1,4 @@
+using Deviloop;
 using FMODUnity;
 using UnityEngine;
 
@@ -8,4 +9,7 @@ public abstract class LootItem: ScriptableObject
     public string description;
     public Sprite icon;
     public EventReference OnLootSound;
+
+    [DeveloperNotes, SerializeField]
+    private string developerNotes;
 }
