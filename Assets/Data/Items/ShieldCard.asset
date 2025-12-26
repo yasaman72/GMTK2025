@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99336f57b129402ba2fe8232d446f541, type: 3}
   m_Name: ShieldCard
   m_EditorClassIdentifier: 
+  isInGame: 1
   cardName: 'Shield '
   description: Provide 2 shield
   cardIcon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
+  cardRarity: 50
   materialType: 10
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}

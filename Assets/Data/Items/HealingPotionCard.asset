@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe31db5fc2e4afe837d2589fb18d143, type: 3}
   m_Name: HealingPotionCard
   m_EditorClassIdentifier: 
+  isInGame: 1
   cardName: Healing Potion
   description: Deals 5 heal
   cardIcon: {fileID: 21300000, guid: f71b2108ef39daa46912ef2a1702692c, type: 3}
+  cardRarity: 50
   materialType: 64
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}

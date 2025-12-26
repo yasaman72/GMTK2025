@@ -71,11 +71,17 @@ public class DeveloperNotesInspector : Editor
         {
             GUILayout.Space(_noteSettings.SpaceBefore);
             EditorGUILayout.BeginVertical(_noteBox);
-            EditorGUILayout.LabelField("⚠ DESIGNER NOTES", _noteHeader);
+            EditorGUILayout.LabelField("⚠ DEVELOPER NOTES", _noteHeader);
             if (_noteSettings != null)
             {
+                var textAreaStyle = new GUIStyle(EditorStyles.textArea)
+                {
+                    wordWrap = true
+                };
+
                 _notesProp.stringValue = EditorGUILayout.TextArea(
                     _notesProp.stringValue,
+                    textAreaStyle,
                     GUILayout.MinHeight(EditorGUIUtility.singleLineHeight * _noteSettings.MinLines),
                     GUILayout.MaxHeight(EditorGUIUtility.singleLineHeight * _noteSettings.MaxLines)
                 );

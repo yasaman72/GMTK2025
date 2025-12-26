@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
-  m_Name: AttackCard_Shuriken
+  m_Name: Shuriken
   m_EditorClassIdentifier: 
+  isInGame: 1
   cardName: Shuriken
   description: Deals 2 damages to all enemies
   cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
+  cardRarity: 30
   materialType: 2
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}

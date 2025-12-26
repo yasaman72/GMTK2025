@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
   m_Name: AttackCard_Dagger
   m_EditorClassIdentifier: 
+  isInGame: 1
   cardName: Dagger
   description: Deals 1 damage
   cardIcon: {fileID: 21300000, guid: 854c0fd59787b124ba003ffdabdcf06e, type: 3}
+  cardRarity: 50
   materialType: 2
   isNegativeItem: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
