@@ -27,6 +27,11 @@ public class DeveloperNotesInspector : Editor
 
             foreach (var field in type.GetFields(flags))
             {
+                // Respect Unity's HideInInspector
+                if (field.IsDefined(typeof(HideInInspector), true))
+                    continue;
+
+                // Respect serialization rules
                 if (!field.IsPublic && !field.IsDefined(typeof(SerializeField), true))
                     continue;
 

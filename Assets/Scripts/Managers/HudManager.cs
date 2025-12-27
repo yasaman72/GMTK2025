@@ -11,7 +11,7 @@ public class HudManager : CustomMonoBehavior
     [SerializeField] private Slider _playerHpSlider;
     [SerializeField] private TextMeshProUGUI _playerHpText;
     [SerializeField] private TextMeshProUGUI _playerShield;
-    [SerializeField] private Image _bgImage;
+    [SerializeField] private SpriteRenderer _bgImage;
     [SerializeField] private GameObject _pauseMenu;
     [Space]
     // TODO: this is a dirty fix

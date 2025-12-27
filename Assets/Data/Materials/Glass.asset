@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc883bf3a3c3ea34882cb53c276ab380, type: 3}
   m_Name: Glass
   m_EditorClassIdentifier: Deviloop::Deviloop.Material
-  materialName: glass
+  materialName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 9452264402944
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  translatedName: glass
   type: 64
   color: {r: 0.51152545, g: 0.85274434, b: 0.8962264, a: 1}
   icon: {fileID: 21300000, guid: c1774644508b17d409ef8e31a7fa56b4, type: 3}
+  developerNotes: 
+  references:
+    version: 2
+    RefIds: []

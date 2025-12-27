@@ -247,7 +247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000017881}
+  m_AnchoredPosition: {x: 0, y: 0.0000019073486}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4456127974476504412
@@ -272,8 +272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.9339623, g: 0.49916127, b: 0.16300285, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 2, y: 2, z: 2, w: 2}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -298,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541895471894045576}
   - component: {fileID: 8199691935438997088}
+  - component: {fileID: 274206360302291616}
   m_Layer: 5
   m_Name: Material
   m_TagString: Untagged
@@ -341,3 +342,27 @@ MonoBehaviour:
   _image: {fileID: 673768116361694499}
   _name: {fileID: 2175510308932448471}
   _testMaterial: {fileID: 11400000, guid: bb18539827c596a48a1d03cad732b3aa, type: 2}
+--- !u!114 &274206360302291616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9052834213894006538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae1128c4dfac44db776ac763e5402a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.TooltipTrigger
+  _tooltipText:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

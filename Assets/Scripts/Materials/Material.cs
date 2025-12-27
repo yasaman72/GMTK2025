@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 using MaterialFlag = Cards.MaterialType;
 
 namespace Deviloop
@@ -19,10 +20,25 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "Material", menuName = "Scriptable Objects/Material")]
     public class Material : ScriptableObject
     {
-        public string materialName;
+        public LocalizedString materialName;
+        [HideInInspector] public string translatedName;
         public MaterialType type;
         public Color color;
-        public Sprite icon;
+        public Sprite icon; 
+        
+        [DeveloperNotes, SerializeField]
+        private string developerNotes;
+
+        private void OnValidate()
+        {
+            translatedName = materialName.GetLocalizedString();
+            materialName.StringChanged += ValueChanged;
+        }
+
+        private void ValueChanged(string value)
+        {
+            translatedName = value;
+        }
 
         private MaterialFlag ToFlag(MaterialType type)
         {

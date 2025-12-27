@@ -1,3 +1,4 @@
+using Deviloop;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class EnemyUI : CombatCharacterUI
     [Header("Intention")]
     [SerializeField] private Image _intentionIcon;
     [SerializeField] private TextMeshProUGUI _intentionText;
+    [SerializeField] private TooltipTrigger _toolTipTrigger;
 
     private GameObject _canvas;
     private void Awake()
@@ -46,5 +48,7 @@ public class EnemyUI : CombatCharacterUI
             _intentionIcon.enabled = false;
             _intentionText.text = "";
         }
+
+        _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
     }
 }

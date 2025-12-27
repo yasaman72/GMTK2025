@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public abstract class EnemyAction : ScriptableObject
 {
     public Sprite icon;
     public int power = 10;
     public int actionDuration = 2;
+    // TODO: turn this into smart localized string that can take parameters like power, etc.
+    public LocalizedString translatedDescription;
 
     public virtual void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
     {

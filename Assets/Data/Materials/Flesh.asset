@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc883bf3a3c3ea34882cb53c276ab380, type: 3}
   m_Name: Flesh
   m_EditorClassIdentifier: Deviloop::Deviloop.Material
-  materialName: flesh
+  materialName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 9396580823040
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  translatedName: flesh
   type: 32
   color: {r: 0.7075472, g: 0.29162765, b: 0.19691172, a: 1}
   icon: {fileID: 21300000, guid: d2bb84a122569b44d83e242582bb78c2, type: 3}
+  developerNotes: 
+  references:
+    version: 2
+    RefIds: []

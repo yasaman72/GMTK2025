@@ -15,3 +15,15 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
   power: 1
   actionDuration: 2
+  translatedDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 8016466063360
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc883bf3a3c3ea34882cb53c276ab380, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: Deviloop::Deviloop.Material
-  materialName: stone
+  materialName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 9138463354880
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  translatedName: stone
   type: 4
   color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   icon: {fileID: 21300000, guid: 0bdd2277b14f5f847af18396640de914, type: 3}
+  developerNotes: 
+  references:
+    version: 2
+    RefIds: []

@@ -9,9 +9,8 @@ namespace Deviloop
         [Space]
         [SerializeField] private Image _image;
         [SerializeField] private TextMeshProUGUI _name;
-        [SerializeField] private Material _testMaterial;
-
-        private Material _material;
+        [ReadOnly, SerializeField] private Material _material;
+        [ReadOnly, SerializeField] private TooltipTrigger _toolTipTrigger;
 
         public void Setup(Material material)
         {
@@ -26,17 +25,23 @@ namespace Deviloop
                 }
                 if (_name != null)
                 {
-                    _name.text = _material.materialName;
+                    _name.text = _material.translatedName;
                 }
             }
 
+            if (_toolTipTrigger == null)
+            {
+                _toolTipTrigger = GetComponent<TooltipTrigger>();
+            }
+
+            _toolTipTrigger.SetLocalizedString(_material.materialName);
         }
 
         private void OnValidate()
         {
-            if (_testMaterial != null)
+            if (_toolTipTrigger == null)
             {
-                Setup(_testMaterial);
+                _toolTipTrigger = GetComponent<TooltipTrigger>();
             }
         }
     }
