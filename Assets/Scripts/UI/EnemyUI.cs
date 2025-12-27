@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class EnemyUI : CombatCharacterUI
 {
     [Header("Intention")]
+    [SerializeField] private GameObject _intentionObject;
     [SerializeField] private Image _intentionIcon;
     [SerializeField] private TextMeshProUGUI _intentionText;
     [SerializeField] private TooltipTrigger _toolTipTrigger;
@@ -39,16 +40,17 @@ public class EnemyUI : CombatCharacterUI
     {
         if (nextAction)
         {
+            _intentionObject.SetActive(true);
             _intentionIcon.enabled = true;
             _intentionIcon.sprite = nextAction.icon;
             _intentionText.text = nextAction.power.ToString();
+            _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
         }
         else
         {
+            _intentionObject.SetActive(false);
             _intentionIcon.enabled = false;
             _intentionText.text = "";
         }
-
-        _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
     }
 }

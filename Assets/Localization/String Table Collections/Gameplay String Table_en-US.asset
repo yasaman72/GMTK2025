@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en-US
   m_SharedData: {fileID: 11400000, guid: b9ce7a0ae83848d49ba09c791e109edf, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 5144960777497608280
   m_TableData:
   - m_Id: 9087846494208
     m_Localized: wood
@@ -47,13 +48,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7840938635264
-    m_Localized: deal {5} damage
+    m_Localized: deals {ActionPower} damage
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 5144960777497608280
   - m_Id: 8016466063360
-    m_Localized: get {2} shield
+    m_Localized: gets {ActionPower} shield
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 5144960777497608280
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5144960777497608280
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 7840938635264
+        - id: 8016466063360

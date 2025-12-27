@@ -17,7 +17,19 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: c09aa27be35e10b4a928b3a80086938f, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 61717738205184
+    m_Localized: Unity!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61262853353472
+    m_Localized: Kauf etwas oder lass mich in Ruhe!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61262853353473
+    m_Localized: Dies ist nur ein Testdialog!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

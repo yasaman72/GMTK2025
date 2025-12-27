@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -30,5 +31,11 @@ public abstract class EnemyAction : ScriptableObject
     {
         yield return new WaitForSeconds(actionDuration);
         callback?.Invoke();
+    }
+
+    private void OnValidate()
+    {
+        var dict = new Dictionary<string, string>() { { "ActionPower",  power.ToString()} };
+        translatedDescription.Arguments = new object[] { dict };
     }
 }

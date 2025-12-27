@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
   m_TableCollectionName: Dialogue String Table
   m_TableCollectionNameGuidString: c09aa27be35e10b4a928b3a80086938f
-  m_Entries: []
+  m_Entries:
+  - m_Id: 61262853353472
+    m_Key: Dialogue_Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61262853353473
+    m_Key: Dialogue_test
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61717738205184
+    m_Key: Dialogue_test_2
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

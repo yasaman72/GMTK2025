@@ -30,6 +30,49 @@ MonoBehaviour:
     m_Localized: Ablagestapel
     m_Metadata:
       m_Items: []
+  - m_Id: 47697052348416
+    m_Localized: fortsetzen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47761254559744
+    m_Localized: Deutsch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49852740055040
+    m_Localized: wie man spielt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49939662811136
+    m_Localized: Audioeinstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50037524312064
+    m_Localized: Meister
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50060903362560
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50121381031936
+    m_Localized: "Zeichne in jeder Runde einen Kreis um die geworfenen Gegenst\xE4nde.\r\n\r\nIn
+      jeder Runde k\xF6nnen nur <color #FFFF00>3</color> Gegenst\xE4nde eingesammelt
+      werden! Wenn du mehr als drei Gegenst\xE4nde einsammelst, werden die \xFCbersch\xFCssigen
+      zuf\xE4llig verworfen. "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50262116708352
+    m_Localized: Das Spiel beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50295062966272
+    m_Localized: "Hauptmen\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50345113595904
+    m_Localized: "Pausenmen\xFC"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

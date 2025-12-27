@@ -1,8 +1,12 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
 {
-
     public void OnResume()
     {
         Time.timeScale = 1f;
@@ -34,5 +38,12 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
         UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    public void OnLanguageChange()
+    {
+        int currentLocaleIndex = LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.SelectedLocale);
+        int localeCount = LocalizationSettings.AvailableLocales.Locales.Count;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[++currentLocaleIndex % localeCount];
     }
 }
