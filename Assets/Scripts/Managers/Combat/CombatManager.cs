@@ -22,6 +22,8 @@ public class CombatManager : MonoBehaviour
     private static List<Enemy> _defeatedEnemies = new List<Enemy>();
     public static List<Enemy> SpawnedEnemies => _spawnedEnemies;
 
+    public static int CombatRoundCounter = 0;
+
     private void Awake()
     {
         OnCombatStartEvent += StartCombat;
@@ -31,6 +33,24 @@ public class CombatManager : MonoBehaviour
     private void OnDestroy()
     {
         OnCombatStartEvent -= StartCombat;
+    }
+
+    private void OnEnable()
+    {
+        TurnManager.OnTurnChanged += HandleTurnChanged;
+    }
+
+    private void OnDisable()
+    {
+        TurnManager.OnTurnChanged -= HandleTurnChanged;
+    }
+
+    private void HandleTurnChanged(TurnManager.ETurnMode mode)
+    {
+        if (mode == TurnManager.ETurnMode.Player)
+        {
+            CombatRoundCounter++;
+        }
     }
 
     public void StartCombat(int numberOfEnemiesToSpawn, Enemy[] enemyTypes)
@@ -84,6 +104,7 @@ public class CombatManager : MonoBehaviour
 
         if (_defeatedEnemies.Count >= _spawnedEnemies.Count)
         {
+            AfterAllEnemiesDefeated();
             StartCoroutine(ShowRewards(combatCharacter as Enemy));
         }
 
@@ -91,6 +112,11 @@ public class CombatManager : MonoBehaviour
         {
             { "enemy_type", combatCharacter.Stats.name }
         });
+    }
+
+    private void AfterAllEnemiesDefeated()
+    {
+        ApplyOnCombatEndRelicEffects();
     }
 
     private IEnumerator ShowRewards(Enemy enemy)
@@ -110,5 +136,14 @@ public class CombatManager : MonoBehaviour
 
         gameObject.SetActive(false);
         OnCombatFinishedEvent?.Invoke();
+    }
+
+    private void ApplyOnCombatEndRelicEffects()
+    {
+        var effects = RelicManager.GetEffectsForEvent<OnCombatEndEvent>();
+        foreach (var effect in effects)
+        {
+            effect.Apply(this);
+        }
     }
 }

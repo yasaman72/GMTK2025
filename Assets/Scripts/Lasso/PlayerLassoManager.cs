@@ -1,4 +1,5 @@
 using Cards;
+using Deviloop;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,15 @@ public class PlayerLassoManager : MonoBehaviour
 
     private List<Vector2> _points = new();
     private bool _hasAlreadyDrawn = false;
+
+    // TODO: a more generic to handle values modified by relics
+    public static int maxedAllowedItems;
+    public static int lassoedCardsCount = 0;
+
+    private void Start()
+    {
+        maxedAllowedItems = _maxAllowedItems;
+    }
 
     private void OnEnable()
     {
@@ -121,6 +131,7 @@ public class PlayerLassoManager : MonoBehaviour
 
     void CloseLoop()
     {
+
         _spellParticleSystem.Stop();
         _spellParticleSystem.gameObject.SetActive(false);
 
@@ -132,6 +143,7 @@ public class PlayerLassoManager : MonoBehaviour
         _hasAlreadyDrawn = true;
 
         StartCoroutine(DetectInsidePoints(_points));
+        ApplyOnLoopClosedEffects();
         ClearLasso();
     }
 
@@ -142,7 +154,7 @@ public class PlayerLassoManager : MonoBehaviour
         poly.isTrigger = true;
         poly.points = loopPoints.ToArray();
         List<Collider2D> hits = new List<Collider2D>();
-        Physics2D.OverlapCollider(poly, new ContactFilter2D().NoFilter(), hits);
+        Physics2D.OverlapCollider(poly, ContactFilter2D.noFilter, hits);
 
         List<CardPrefab> lassoedCards = new List<CardPrefab>();
 
@@ -158,10 +170,10 @@ public class PlayerLassoManager : MonoBehaviour
             }
         }
 
-        if (lassoedCards.Count > _maxAllowedItems)
+        if (lassoedCards.Count > maxedAllowedItems)
         {
             // force remove a random card to match the max allowed items
-            int itemsToRemove = lassoedCards.Count - _maxAllowedItems;
+            int itemsToRemove = lassoedCards.Count - maxedAllowedItems;
             for (int i = 0; i < itemsToRemove; i++)
             {
                 int randomIndex = Random.Range(0, lassoedCards.Count);
@@ -177,6 +189,17 @@ public class PlayerLassoManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
+        lassoedCardsCount = lassoedCards.Count;
+
         Destroy(temp);
+    }
+
+    private void ApplyOnLoopClosedEffects()
+    {
+        var effects = RelicManager.GetEffectsForEvent<OnLoopClosedEvent>();
+        foreach(var effect in effects)
+        {
+            effect.Apply(this); 
+        }
     }
 }

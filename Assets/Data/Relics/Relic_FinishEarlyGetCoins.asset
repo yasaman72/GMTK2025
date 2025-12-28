@@ -22,14 +22,19 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  relicEffect:
+  - gameplayEvent: {fileID: 11400000, guid: 158aaeb925947654d94f89dbc8d1a883, type: 2}
+    relicEffect:
+    - {fileID: 11400000, guid: 7a483d82b5aedb44085ce57effa7df9b, type: 2}
   icon: {fileID: 2362377622564846777, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
   rarity: 50
   isNegative: 0
+  canHaveDuplicates: 0
   description:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352181221634048
+      m_KeyId: 415894985289728
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -38,12 +43,12 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352469823303680
+      m_KeyId: 415938337615872
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  _developerNotes: adds 1 to the amount of items that can be circled around.
+  _developerNotes: 
   references:
     version: 2
     RefIds: []

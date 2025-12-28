@@ -30,13 +30,17 @@ namespace Deviloop
 
         public static void AddRelic(Relic relic)
         {
-            if(relic == null)
+            if (relic == null)
             {
                 Debug.LogWarning("Attempted to add a null relic.");
                 return;
             }
 
             _ownedRelics.Add(relic);
+            relic.relicEffect.ForEach(compound =>
+            {
+                compound.relicEffect.ForEach(effect => effect.OnAdded());
+            });
             OnRelicAdded?.Invoke(relic);
             Debug.Log($"Added relic: {relic.name}. Total relics now: {_ownedRelics.Count}");
         }
@@ -46,11 +50,30 @@ namespace Deviloop
             if (_ownedRelics.Remove(relic))
             {
                 OnRelicRemoved?.Invoke(relic);
+                relic.relicEffect.ForEach(compound =>
+                {
+                    compound.relicEffect.ForEach(effect => effect.OnRemoved());
+                });
                 Debug.Log($"Removed relic: {relic.name}. Total relics now: {_ownedRelics.Count}");
             }
             else
             {
                 Debug.LogWarning($"Attempted to remove relic: {relic.name}, but it was not found in owned relics.");
+            }
+        }
+
+        public static IEnumerable<BaseRelicEffect> GetEffectsForEvent<T>() where T : BaseGameplayEvent
+        {
+            foreach (var relic in _ownedRelics)
+            {
+                foreach (var compound in relic.relicEffect)
+                {
+                    if (compound.gameplayEvent is T)
+                    {
+                        foreach (var effect in compound.relicEffect)
+                            yield return effect;
+                    }
+                }
             }
         }
     }

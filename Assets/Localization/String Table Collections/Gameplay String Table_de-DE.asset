@@ -118,6 +118,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
+  - m_Id: 415625614503936
+    m_Localized: damage all enemies if the player looped exactly one item.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415758083207168
+    m_Localized: damage all on 1 loop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415894985289728
+    m_Localized: if you finish a combat in less than 3 turns, earn 10 coins.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415938337615872
+    m_Localized: 10 coins if finished before turn 3
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

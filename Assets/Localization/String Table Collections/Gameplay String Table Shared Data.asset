@@ -107,6 +107,22 @@ MonoBehaviour:
     m_Key: card/description/DamagingManyEnemies
     m_Metadata:
       m_Items: []
+  - m_Id: 415625614503936
+    m_Key: relic/description/long/extraDamageIfLoopedOne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415758083207168
+    m_Key: relic/description/short/extraDamageIfLoopedOne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415894985289728
+    m_Key: relic/description/long/finishedEarlyGetCoins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415938337615872
+    m_Key: relic/description/lshort/finishedEarlyGetCoins
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

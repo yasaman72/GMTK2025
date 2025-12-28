@@ -43,7 +43,7 @@ namespace Deviloop
                 var playerRelics = RelicManager.OwnedRelics;
 
                 // filter out owned relics
-                allRelics = allRelics.Where(r => !playerRelics.Contains(r)).ToList();
+                allRelics = allRelics.Where(r => !playerRelics.Contains(r) && !r.canHaveDuplicates).ToList();
 
                 if (allRelics.Count <= 0)
                 {
