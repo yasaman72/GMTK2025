@@ -18,16 +18,8 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 61717738205184
-    m_Localized: Unity!
-    m_Metadata:
-      m_Items: []
   - m_Id: 61262853353472
     m_Localized: Kauf etwas oder lass mich in Ruhe!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 61262853353473
-    m_Localized: Dies ist nur ein Testdialog!
     m_Metadata:
       m_Items: []
   references:

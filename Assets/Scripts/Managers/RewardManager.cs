@@ -7,8 +7,7 @@ namespace Deviloop
 {
     public static class RewardManager
     {
-
-        public static List<LootSetData> SelectRewards(List<LootSet> loots, int maxItems)
+        public static List<LootSetData> SelectRewards(List<LootSet> loots, int maxCards = 2, int maxRelics = 1)
         {
             List<LootSetData> allRewards = loots.SelectMany(l => l.GetAllRewards()).ToList();
 
@@ -33,31 +32,47 @@ namespace Deviloop
             // TODO: better algorithm to pick the rewards, based on rarity, chance, seed and luck
             // right now the rarity of cards are taken into account in ItemLoot.ResetCard()
             ListUtilities.ShuffleItems(allRewards);
-            allRewards = allRewards.GetRange(0, maxItems);
+
+            // only limit the number of card loots, not the relics
+            // TODO: refactor
+            allRewards = allRewards.Where(r => !(r.item is CardLoot)).ToList()
+                .Concat(allRewards.Where(r => r.item is CardLoot).Take(maxCards))
+                .ToList();
+
+            allRewards = allRewards.Where(r => !(r.item is RelicLoot)).ToList()
+                .Concat(allRewards.Where(r => r.item is RelicLoot).Take(maxRelics))
+                .ToList();
+
             allRewards.Add(coinReward);
 
-            // reset card duplicates
+            // reset card or relic duplicates
             foreach (var reward in allRewards)
             {
-                if (reward.item is ItemLoot item)
+                if (reward.item is NonCoinLootItem item)
                 {
                     int safety = 50;
 
                     while (safety-- > 0 &&
                            allRewards.Any(l =>
                                l != reward &&
-                               l.item is ItemLoot itemLoot &&
-                               itemLoot.Card == item.Card))
+                               l.item is NonCoinLootItem itemLoot &&
+                               itemLoot.IsSameLoot(item)))
                     {
-                        (reward.item as ItemLoot).ResetCard();
+                        (reward.item as NonCoinLootItem).ResetLoot();
                     }
 
                     if (safety <= 0)
                     {
-                        Debug.LogWarning("Failed to find unique card for loot item.");
+                        Debug.LogWarning("Failed to find unique non coin loots.");
                     }
                 }
             }
+
+            // if card or relic loots are null, remove them
+            allRewards = allRewards.Where(r =>
+                !(r.item is CardLoot cardLoot && cardLoot.Card == null) &&
+                !(r.item is RelicLoot relicLoot && relicLoot.Relic == null)
+            ).ToList();
 
             return allRewards;
         }

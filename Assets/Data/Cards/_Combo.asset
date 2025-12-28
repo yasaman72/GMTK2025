@@ -13,12 +13,28 @@ MonoBehaviour:
   m_Name: _Combo
   m_EditorClassIdentifier: 
   isInGame: 0
-  cardName: Combo
-  description: If you wants to keep the combo, always loop this item in
+  cardName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 352756407513088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 354266491170816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
-  cardRarity: 0
+  rarity: 50
   materialType: 0
-  isNegativeItem: 0
+  isNegative: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
@@ -31,3 +47,6 @@ MonoBehaviour:
   developerNotes: this is a test item, not yet used anywhere in the project.
   cardPrefab: {fileID: 4009389148060104062, guid: 0d2fd57997970864ea640a848ec95d1f, type: 3}
   isConsumable: 0
+  references:
+    version: 2
+    RefIds: []

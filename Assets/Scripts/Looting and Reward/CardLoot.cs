@@ -1,11 +1,10 @@
 using Cards;
-using System.Linq;
 using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "ItemLoot", menuName = "Scriptable Objects/Loots/LootType/Item")]
-    public class ItemLoot : LootItem
+    [CreateAssetMenu(fileName = "CardLoot", menuName = "Scriptable Objects/Loots/LootType/Card")]
+    public class CardLoot : NonCoinLootItem
     {
         // TODO: consider the rarity of cards when generating loot
         // TODO: randomly pick a card based on rarity instead of assigning a specific card
@@ -17,29 +16,39 @@ namespace Deviloop
             {
                 if (_card == null)
                 {
-                    ResetCard();
+                    ResetLoot();
                 }
                 return _card;
             }
         }
 
-        public void ResetCard()
+        public override bool IsSameLoot(NonCoinLootItem other)
+        {
+            if (other is CardLoot otherItemLoot)
+            {
+                return this.Card == otherItemLoot.Card;
+            }
+            return false;
+        }
+
+        public override void ResetLoot()
         {
             // TODO: write a utility safe while and do while loops
             int safety = 50;
 
             do
             {
+                var allCards = GameDataBaseManager.GameDatabase.cards;
                 float totalChance = 0f;
-                foreach (var card in GameDataBaseManager.GameDatabase.Cards)
-                    totalChance += (int)card.cardRarity;
+                foreach (var card in allCards)
+                    totalChance += (int)card.rarity;
 
                 float roll = Random.Range(0f, totalChance);
                 float cumulative = 0f;
 
-                foreach (var loot in GameDataBaseManager.GameDatabase.Cards)
+                foreach (var loot in allCards)
                 {
-                    cumulative += (int)loot.cardRarity;
+                    cumulative += (int)loot.rarity;
                     if (roll <= cumulative)
                     {
                         _card = loot;
@@ -50,10 +59,10 @@ namespace Deviloop
                 safety--;
                 if (safety <= 0)
                 {
-                    Debug.LogWarning("Failed to find unique card for loot item.");
+                    Debug.LogWarning("Failed to find unique card for loot card.");
                     break;
                 }
-            } while (_card == null || _card.isNegativeItem || !_card.isInGame);
+            } while (_card == null || _card.isNegative || !_card.isInGame);
         }
     }
 }

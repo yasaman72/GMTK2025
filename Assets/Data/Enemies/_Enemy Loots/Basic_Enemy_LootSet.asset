@@ -16,6 +16,9 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 400b5fbbdde999147a3911e21b4f1185, type: 2}
     countMin: 5
     countMax: 15
-  - item: {fileID: 11400000, guid: 41fb66f3ed861274aacfd4fbec14b56a, type: 2}
+  - item: {fileID: 11400000, guid: 4259326b125d31b49b55ddb62a8bf120, type: 2}
     countMin: 2
     countMax: 2
+  - item: {fileID: 11400000, guid: 270f9aa5269ae7c41b6befba9a1fc384, type: 2}
+    countMin: 1
+    countMax: 1

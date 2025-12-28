@@ -75,5 +75,23 @@ namespace Deviloop
         {
             _tooltip.SetActive(false);
         }
+
+        private void Update()
+        {
+            if (_tooltip.activeSelf)
+            {
+                Vector2 position = Input.mousePosition;
+                var canvasSize = _canvas.renderingDisplaySize;
+                if (position.x > canvasSize.x / 2)
+                {
+                    _tooltipRect.pivot = new Vector2(1, .5f);
+                }
+                else
+                {
+                    _tooltipRect.pivot = new Vector2(0, .5f);
+                }
+                _tooltip.transform.position = position;
+            }
+        }
     }
 }

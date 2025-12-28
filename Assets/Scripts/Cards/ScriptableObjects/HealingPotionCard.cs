@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards.ScriptableObjects
@@ -41,6 +42,12 @@ namespace Cards.ScriptableObjects
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             callBack?.Invoke();
+        }
+
+        private void OnValidate()
+        {
+            var dict = new Dictionary<string, string>() { { "heal", healAmount.ToString() } };
+            description.Arguments = new object[] { dict };
         }
     }
 }

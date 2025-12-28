@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards.ScriptableObjects
@@ -37,6 +38,12 @@ namespace Cards.ScriptableObjects
 
 
             callBack?.Invoke();
+        }
+
+        private void OnValidate()
+        {
+            var dict = new Dictionary<string, string>() { { "shield", shieldAmount.ToString() } };
+            description.Arguments = new object[] { dict };
         }
     }
 }

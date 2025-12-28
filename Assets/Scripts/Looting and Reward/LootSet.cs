@@ -88,14 +88,14 @@ public class LootSet : ScriptableObject
                 var rewardsCopy = reward.Clone();
                 rewards.Add(rewardsCopy);
             }
-            else if (reward.item is ItemLoot itemLoot)
+            else if (reward.item is NonCoinLootItem itemLoot)
             {
                 // add multiple card rewards
                 for (int i = 0; i < reward.Count; i++)
                 {
                     // create a copy of the LootSetData so we don't reuse the same object at runtime
                     var rewardsCopy = reward.Clone();
-                    rewardsCopy.item = Object.Instantiate(itemLoot);
+                    rewardsCopy.item = Instantiate(itemLoot);
                     rewards.Add(rewardsCopy);
                 }
             }

@@ -18,16 +18,8 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 61717738205184
-    m_Localized: this has been created in Unity! WOW!
-    m_Metadata:
-      m_Items: []
   - m_Id: 61262853353472
     m_Localized: buy something or leave me alone!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 61262853353473
-    m_Localized: this is just a test dialogue!
     m_Metadata:
       m_Items: []
   references:

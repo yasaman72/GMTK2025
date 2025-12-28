@@ -3788,7 +3788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8834292126406227904, guid: ad82ebd1a1b62254e91fe3cbf5722723, type: 3}
       propertyPath: m_Name
-      value: Relics
+      value: RelicsUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

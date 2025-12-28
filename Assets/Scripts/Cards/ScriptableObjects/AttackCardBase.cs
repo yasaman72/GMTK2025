@@ -1,8 +1,9 @@
-using UnityEngine;
-using System.Collections;
-using System;
 using Deviloop;
 using DG.Tweening;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Cards.ScriptableObjects
 {
@@ -85,6 +86,12 @@ namespace Cards.ScriptableObjects
             yield return new WaitForSeconds(1);
             tween.Kill();
             callback?.Invoke();
+        }
+
+        private void OnValidate()
+        {
+            var dict = new Dictionary<string, string>() { { "damage", damage.ToString() } };
+            description.Arguments = new object[] { dict };
         }
     }
 }

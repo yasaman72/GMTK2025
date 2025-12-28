@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7677ed59bac6e1a43a77e4b2ee1ad1f1, type: 3}
+  m_Name: CardLoot
+  m_EditorClassIdentifier: Deviloop::Deviloop.CardLoot
+  itemName: Card
+  description: 
+  icon: {fileID: 0}
+  OnLootSound:
+    Guid:
+      Data1: -541188052
+      Data2: 1143024327
+      Data3: -1921858118
+      Data4: -1210588403
+    Path: event:/UI/Button_Click
+  developerNotes: the type of the card is generated based on the rarity of the items.

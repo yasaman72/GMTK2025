@@ -13,12 +13,28 @@ MonoBehaviour:
   m_Name: Bomb_Neg
   m_EditorClassIdentifier: 
   isInGame: 1
-  cardName: 'Bomb '
-  description: deals 3 damage to you
+  cardName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 352855116263424
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 355639295258624
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   cardIcon: {fileID: 21300000, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
-  cardRarity: 50
+  rarity: 50
   materialType: 128
-  isNegativeItem: 1
+  isNegative: 1
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
@@ -28,6 +44,10 @@ MonoBehaviour:
       Data4: -1116211678
     Path: event:/Gameplay/Throwables_Items/Items_Bomb
   shouldLog: 0
+  developerNotes: 
   cardPrefab: {fileID: 4009389148060104062, guid: bfca1e57867cb6c44a0c9e87b31f2571, type: 3}
   isConsumable: 0
   damage: 3
+  references:
+    version: 2
+    RefIds: []

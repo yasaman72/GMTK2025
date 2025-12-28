@@ -23,8 +23,8 @@ public class DeckViewItem : MonoBehaviour
 
     public void Setup(BaseCard card)
     {
-        _nameText.text = card.cardName;
-        _descriptionText.text = card.description;
+        _nameText.text = card.cardName.GetLocalizedString();
+        _descriptionText.text = card.description.GetLocalizedString();
         _icon.sprite = card.cardIcon;
 
         foreach (Transform child in _materialsParent)

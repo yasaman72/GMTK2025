@@ -59,12 +59,12 @@ public class RewardView : MonoBehaviour
         _allCurrentLoots.Remove(rewardItem);
 
         // remove all other item rewards from the option
-        if (rewardItem.item is ItemLoot)
+        if (rewardItem.item is CardLoot)
         {
             var initialLoots = new Dictionary<LootSetData, GameObject>(_allCurrentLoots);
             foreach (var reward in initialLoots)
             {
-                if (reward.Key.item is ItemLoot)
+                if (reward.Key.item is CardLoot)
                 {
                     _allCurrentLoots.Remove(reward.Key);
                     Destroy(reward.Value);

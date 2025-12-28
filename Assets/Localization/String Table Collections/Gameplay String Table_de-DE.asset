@@ -57,6 +57,67 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
+  - m_Id: 351896151568384
+    m_Localized: Long Rope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352181221634048
+    m_Localized: adds 1 to the amount of items that can be circled around.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352469823303680
+    m_Localized: +1 to looped items
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352756407513088
+    m_Localized: Axe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352808312025088
+    m_Localized: Dagger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352855116263424
+    m_Localized: Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352983684263936
+    m_Localized: Healing Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353034049466368
+    m_Localized: Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353091901501440
+    m_Localized: Shuriken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 354266491170816
+    m_Localized: deals {damage} damage
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 355639295258624
+    m_Localized: deals {damage} damage to you
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 355861694033920
+    m_Localized: '{heal} heal'
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 356081282625536
+    m_Localized: '{shield} shield'
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 356214648909824
+    m_Localized: deal {damage} to all enemies
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
   references:
     version: 2
     RefIds:
@@ -67,3 +128,8 @@ MonoBehaviour:
         m_SharedEntries:
         - id: 7840938635264
         - id: 8016466063360
+        - id: 354266491170816
+        - id: 355639295258624
+        - id: 355861694033920
+        - id: 356081282625536
+        - id: 356214648909824

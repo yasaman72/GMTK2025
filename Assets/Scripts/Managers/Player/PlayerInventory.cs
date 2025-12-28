@@ -45,9 +45,13 @@ public class PlayerInventory : CustomMonoBehavior
         {
             CoinCount += loot.Count;
         }
-        else if (loot.item is ItemLoot cardLoot)
+        else if (loot.item is CardLoot cardLoot)
         {
             CardManager.AddCardToDeckAction?.Invoke(cardLoot.Card, 1);
+        }
+        else if (loot.item is RelicLoot relicLoot && relicLoot.Relic != null)
+        {
+            RelicManager.AddRelic(relicLoot.Relic);
         }
         else
         {

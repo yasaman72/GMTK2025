@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 namespace Cards.ScriptableObjects
 {
@@ -32,6 +33,12 @@ namespace Cards.ScriptableObjects
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             callback?.Invoke();
+        }
+
+        private void OnValidate()
+        {
+            var dict = new Dictionary<string, string>() { { "damage", damage.ToString() } };
+            description.Arguments = new object[] { dict };
         }
     }
 }

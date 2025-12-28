@@ -1,22 +1,8 @@
 using UnityEngine;
 using UnityEngine.Localization;
-using MaterialFlag = Cards.MaterialType;
 
 namespace Deviloop
 {
-
-    public enum MaterialType
-    {
-        Unknown = MaterialFlag.Unknown,
-        Metal = MaterialFlag.Metal,
-        Stone = MaterialFlag.Stone,
-        Wood = MaterialFlag.Wood,
-        Fabric = MaterialFlag.Fabric,
-        Flesh = MaterialFlag.Flesh,
-        Glass = MaterialFlag.Glass,
-        Explosive = MaterialFlag.Explosive,
-    }
-
     [CreateAssetMenu(fileName = "Material", menuName = "Scriptable Objects/Material")]
     public class Material : ScriptableObject
     {
@@ -40,14 +26,14 @@ namespace Deviloop
             translatedName = value;
         }
 
-        private MaterialFlag ToFlag(MaterialType type)
+        private F_MaterialType ToFlag(MaterialType type)
         {
-            return System.Enum.TryParse(type.ToString(), out MaterialFlag flag)
+            return System.Enum.TryParse(type.ToString(), out F_MaterialType flag)
                 ? flag
-                : MaterialFlag.Unknown;
+                : F_MaterialType.Unknown;
         }
 
-        public bool CompareMaterials(MaterialFlag flag)
+        public bool CompareMaterials(F_MaterialType flag)
         {
             var enumToflag = ToFlag(type);
             return (flag & enumToflag) == enumToflag;

@@ -13,12 +13,28 @@ MonoBehaviour:
   m_Name: AttackCard_Dagger
   m_EditorClassIdentifier: 
   isInGame: 1
-  cardName: Dagger
-  description: Deals 1 damage
+  cardName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 352808312025088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 354266491170816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   cardIcon: {fileID: 21300000, guid: 854c0fd59787b124ba003ffdabdcf06e, type: 3}
-  cardRarity: 50
+  rarity: 50
   materialType: 2
-  isNegativeItem: 0
+  isNegative: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
@@ -28,9 +44,13 @@ MonoBehaviour:
       Data4: 421807944
     Path: event:/Gameplay/Throwables_Items/Items_Dagger
   shouldLog: 0
+  developerNotes: 
   cardPrefab: {fileID: 4009389148060104062, guid: 81a3d55b829add4468aaf915c58adea5, type: 3}
   isConsumable: 0
   damage: 1
   moveSpeed: 2
   delayBeforeMove: 0.3
   taregtAll: 0
+  references:
+    version: 2
+    RefIds: []

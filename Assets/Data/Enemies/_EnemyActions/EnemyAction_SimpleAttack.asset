@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41cf3d2c25c9ee844b52e92c4805b9ac, type: 3}
-  m_Name: EnemyBehavior_HeavyAttack_BasicEnemy
+  m_Name: EnemyAction_SimpleAttack
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 696119623708c7948bd881a5b38a18e4, type: 3}
-  power: 3
+  icon: {fileID: 21300000, guid: 7334fc6263ace5d4ca2e1db0d21d2051, type: 3}
+  power: 1
   actionDuration: 2
   translatedDescription:
     m_TableReference:

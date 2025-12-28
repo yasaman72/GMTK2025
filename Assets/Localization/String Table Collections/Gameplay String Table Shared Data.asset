@@ -16,39 +16,95 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: b9ce7a0ae83848d49ba09c791e109edf
   m_Entries:
   - m_Id: 9087846494208
-    m_Key: material_wood
+    m_Key: material/wood
     m_Metadata:
       m_Items: []
   - m_Id: 9138463354880
-    m_Key: material_stone
+    m_Key: material/stone
     m_Metadata:
       m_Items: []
   - m_Id: 9200060903424
-    m_Key: material_explosive
+    m_Key: material/explosive
     m_Metadata:
       m_Items: []
   - m_Id: 9285154942976
-    m_Key: material_fabric
+    m_Key: material/fabric
     m_Metadata:
       m_Items: []
   - m_Id: 9396580823040
-    m_Key: material_flesh
+    m_Key: material/flesh
     m_Metadata:
       m_Items: []
   - m_Id: 9452264402944
-    m_Key: material_glass
+    m_Key: material/glass
     m_Metadata:
       m_Items: []
   - m_Id: 9522418331648
-    m_Key: material_metal
+    m_Key: material/metal
     m_Metadata:
       m_Items: []
   - m_Id: 7840938635264
-    m_Key: enemy_intention_attack
+    m_Key: enemy/intention/attack
     m_Metadata:
       m_Items: []
   - m_Id: 8016466063360
-    m_Key: enemy_intention_shield
+    m_Key: enemy/intention/shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 351896151568384
+    m_Key: relic/relic4Item/title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352181221634048
+    m_Key: relic/description/long/relic4Item
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352469823303680
+    m_Key: relic/description/short/relic4Item
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352756407513088
+    m_Key: card/title/axe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352808312025088
+    m_Key: card/title/dagger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352855116263424
+    m_Key: card/title/bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352983684263936
+    m_Key: card/title/healPotion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353034049466368
+    m_Key: card/title/shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353091901501440
+    m_Key: card/title/shuriken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 354266491170816
+    m_Key: card/description/damagingEnemy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 355639295258624
+    m_Key: card/description/DamagingPlayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 355861694033920
+    m_Key: card/description/HealingPlayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 356081282625536
+    m_Key: card/description/ShieldingPlayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 356214648909824
+    m_Key: card/description/DamagingManyEnemies
     m_Metadata:
       m_Items: []
   m_Metadata:
