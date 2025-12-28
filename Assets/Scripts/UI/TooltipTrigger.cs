@@ -20,25 +20,12 @@ namespace Deviloop
                 StopCoroutine(_hideCoroutine);
                 _hideCoroutine = null;
             }
-            _tooltipText.StringChanged -= ValueChanged;
             TooltipManager.Instance.HideTooltip();
-        }
-
-        void Start()
-        {
-            _tooltipText.StringChanged += ValueChanged;
-            TranslatedValue = _tooltipText.GetLocalizedString();
-        }
-
-        private void ValueChanged(string value)
-        {
-            TranslatedValue = value;
         }
 
         public void SetLocalizedString(LocalizedString newString)
         {
             _tooltipText = newString;
-            TranslatedValue = _tooltipText.GetLocalizedString();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -52,7 +39,7 @@ namespace Deviloop
                 _hideCoroutine = null;
             }
 
-            TooltipManager.Instance.ShowTooltipUnderMouse(TranslatedValue);
+            TooltipManager.Instance.ShowTooltipUnderMouse(_tooltipText.GetLocalizedString());
         }
 
         public void OnPointerExit(PointerEventData eventData)

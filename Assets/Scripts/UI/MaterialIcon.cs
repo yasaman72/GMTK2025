@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,8 @@ namespace Deviloop
         [SerializeField] private Image _image;
         [SerializeField] private TextMeshProUGUI _name;
         [ReadOnly, SerializeField] private Material _material;
-        [ReadOnly, SerializeField] private TooltipTrigger _toolTipTrigger;
+        
+        private TooltipTrigger _toolTipTrigger;
 
         public void Setup(Material material)
         {
@@ -31,7 +33,7 @@ namespace Deviloop
 
             if (_toolTipTrigger == null)
             {
-                _toolTipTrigger = GetComponent<TooltipTrigger>();
+                _toolTipTrigger = gameObject.AddComponent<TooltipTrigger>();
             }
 
             _toolTipTrigger.SetLocalizedString(_material.materialName);
