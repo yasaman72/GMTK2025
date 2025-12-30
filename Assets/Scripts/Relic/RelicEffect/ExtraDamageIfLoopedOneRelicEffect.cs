@@ -10,17 +10,11 @@ namespace Deviloop
 
         public override void Apply(MonoBehaviour caller)
         {
-            if (caller is PlayerLassoManager)
-            {
-                if (PlayerLassoManager.lassoedCardsCount == 1)
-                {
-                    var enemies = CombatManager.SpawnedEnemies;
+            var enemies = CombatManager.SpawnedEnemies;
 
-                    foreach (var enemy in enemies)
-                    {
-                        Player.PlayerCombatCharacter.DealDamage(enemy, _extraDamage);
-                    }
-                }
+            foreach (var enemy in enemies)
+            {
+                Player.PlayerCombatCharacter.DealDamage(enemy, _extraDamage);
             }
         }
 

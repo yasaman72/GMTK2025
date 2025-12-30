@@ -22,11 +22,12 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  relicEffect:
+  relicEffectCompound:
   - gameplayEvent:
-      rid: 5144960849631248602
+      rid: 5144960849631248617
+    predicates: []
     relicEffect:
-    - {fileID: 11400000, guid: 9ace2ec5d4ffd014baaf0f5165ceaea3, type: 2}
+    - rid: 5144960849631248630
   icon: {fileID: 9166712023175037457, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
   rarity: 50
   isNegative: 0
@@ -56,6 +57,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5144960849631248602
+    - rid: 5144960849631248617
       type: {class: AfterLoopClosedEvent, ns: Deviloop, asm: Deviloop}
       data: 
+    - rid: 5144960849631248630
+      type: {class: AddToItemsToCircle, ns: Deviloop, asm: Deviloop}
+      data:
+        amountToAdd: 1

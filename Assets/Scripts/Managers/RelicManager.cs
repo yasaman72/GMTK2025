@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Deviloop
@@ -72,7 +73,12 @@ namespace Deviloop
                     {
                         // TODO: consider the priority of effects to apply
                         foreach (var effect in compound.relicEffect)
-                            effect.Apply(caller);
+                        {
+                            // apply the effect is there's no predicates or all predicates are met
+                            if ((compound.predicates.Count == 0 || compound.predicates == null)
+                                || compound.predicates.All(p => p.Check()))
+                                effect.Apply(caller);
+                        }
                     }
                 }
             }

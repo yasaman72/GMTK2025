@@ -22,11 +22,13 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  relicEffect:
+  relicEffectCompound:
   - gameplayEvent:
-      rid: 5144960849631248599
+      rid: 5144960849631248619
+    predicates:
+    - rid: 5144960849631248663
     relicEffect:
-    - {fileID: 11400000, guid: 7a483d82b5aedb44085ce57effa7df9b, type: 2}
+    - rid: 5144960849631248632
   icon: {fileID: 2362377622564846777, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
   rarity: 50
   isNegative: 0
@@ -39,7 +41,13 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables: []
+    m_LocalVariables:
+    - name: turn
+      variable:
+        rid: 5144960850776293467
+    - name: coin
+      variable:
+        rid: 5144960850776293470
   shortDescription:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -48,7 +56,13 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables: []
+    m_LocalVariables:
+    - name: turn
+      variable:
+        rid: 5144960850776293468
+    - name: coin
+      variable:
+        rid: 5144960850776293469
   _developerNotes: 'on combat end
 
     if you finish a combat in less than 3 turns,
@@ -56,6 +70,30 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5144960849631248599
+    - rid: 5144960849631248619
       type: {class: OnCombatEndEvent, ns: Deviloop, asm: Deviloop}
       data: 
+    - rid: 5144960849631248632
+      type: {class: FinishedEarlyGetCoin, ns: Deviloop, asm: Deviloop}
+      data:
+        _coinAmount: 10
+    - rid: 5144960849631248663
+      type: {class: CombatTurnCountLessThanOrEqual, ns: Deviloop, asm: Deviloop}
+      data:
+        _amountToMatch: 3
+    - rid: 5144960850776293467
+      type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 3
+    - rid: 5144960850776293468
+      type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 3
+    - rid: 5144960850776293469
+      type: {class: ULongVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 10
+    - rid: 5144960850776293470
+      type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 10

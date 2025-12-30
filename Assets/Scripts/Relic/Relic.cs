@@ -30,6 +30,9 @@ namespace Deviloop
             public BaseGameplayEvent gameplayEvent;
 
             [SerializeReference, SubclassSelector]
+            public List<BasePredicate> predicates;
+
+            [SerializeReference, SubclassSelector]
             public List<BaseRelicEffect> relicEffect;
         }
     }

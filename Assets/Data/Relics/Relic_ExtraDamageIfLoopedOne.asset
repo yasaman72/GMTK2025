@@ -22,11 +22,13 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  relicEffect:
+  relicEffectCompound:
   - gameplayEvent:
-      rid: 5144960849631248603
+      rid: 5144960849631248618
+    predicates:
+    - rid: 5144960849631248659
     relicEffect:
-    - {fileID: 11400000, guid: 0a5e140be3eb16a4a9f186c00e72e112, type: 2}
+    - rid: 5144960849631248631
   icon: {fileID: 21300000, guid: 48c6e06cd32b9e347959551e430f6ff1, type: 3}
   rarity: 50
   isNegative: 0
@@ -39,7 +41,10 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables: []
+    m_LocalVariables:
+    - name: damage
+      variable:
+        rid: 5144960850776293466
   shortDescription:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -48,7 +53,10 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables: []
+    m_LocalVariables:
+    - name: damage
+      variable:
+        rid: 5144960850776293465
   _developerNotes: 'after loop closed
 
     damage all enemies if the player looped
@@ -56,6 +64,22 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5144960849631248603
+    - rid: 5144960849631248618
       type: {class: AfterLoopClosedEvent, ns: Deviloop, asm: Deviloop}
       data: 
+    - rid: 5144960849631248631
+      type: {class: ExtraDamageIfLoopedOne, ns: Deviloop, asm: Deviloop}
+      data:
+        _extraDamage: 3
+    - rid: 5144960849631248659
+      type: {class: CollectedCardsCountEqual, ns: Deviloop, asm: Deviloop}
+      data:
+        _amountToMatch: 1
+    - rid: 5144960850776293465
+      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 3
+    - rid: 5144960850776293466
+      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 1

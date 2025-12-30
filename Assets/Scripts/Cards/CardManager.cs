@@ -266,7 +266,8 @@ namespace Cards
                     Destroy(card);
             }
             thrownCards.Clear();
-            _extraHandCards.RemoveAllCards();
+            if(_extraHandCards != null)
+                _extraHandCards.RemoveAllCards();
         }
 
         public void AddCardToHand(CardEntry card)

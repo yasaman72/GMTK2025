@@ -118,6 +118,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.2d.tooling": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "12.0.1",
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.addressables": {
       "version": "2.7.4",
       "depth": 1,

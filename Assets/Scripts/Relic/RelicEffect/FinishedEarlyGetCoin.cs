@@ -10,9 +10,7 @@ namespace Deviloop
 
         public override void Apply(MonoBehaviour caller)
         {
-            // TODO: extract the predicates
-            if (CombatManager.CombatRoundCounter <= 3)
-                PlayerInventory.CoinCount += _coinAmount;
+            PlayerInventory.CoinCount += _coinAmount;
         }
 
         public override void OnAdded()
