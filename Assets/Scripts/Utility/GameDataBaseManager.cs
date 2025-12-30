@@ -29,7 +29,7 @@ namespace Deviloop
 
         private void Start()
         {
-            GameDatabase = AssetDatabase.LoadAssetAtPath<GameDatabase>("Assets/Resources/Database/Database.asset");
+            GameDatabase = Resources.Load<GameDatabase>("Database/Database");
             DontDestroyOnLoad(this.gameObject);
         }
     }

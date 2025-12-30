@@ -73,6 +73,8 @@ namespace Deviloop
 
         public void HideTooltip()
         {
+            if(_tooltip == null)
+                return;
             _tooltip.SetActive(false);
         }
 
