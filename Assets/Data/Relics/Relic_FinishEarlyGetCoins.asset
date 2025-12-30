@@ -23,7 +23,8 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   relicEffect:
-  - gameplayEvent: {fileID: 11400000, guid: 158aaeb925947654d94f89dbc8d1a883, type: 2}
+  - gameplayEvent:
+      rid: 5144960849631248599
     relicEffect:
     - {fileID: 11400000, guid: 7a483d82b5aedb44085ce57effa7df9b, type: 2}
   icon: {fileID: 2362377622564846777, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
@@ -48,7 +49,13 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  _developerNotes: 
+  _developerNotes: 'on combat end
+
+    if you finish a combat in less than 3 turns,
+    earn 10 coins.'
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5144960849631248599
+      type: {class: OnCombatEndEvent, ns: Deviloop, asm: Deviloop}
+      data: 

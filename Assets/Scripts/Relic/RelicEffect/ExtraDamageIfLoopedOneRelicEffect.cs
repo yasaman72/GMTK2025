@@ -2,14 +2,15 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "ExtraDamageIfLoopedOneRelicEffect", menuName = "Scriptable Objects/Relic Effects/Extra Damage If Looped One")]
-    public class ExtraDamageIfLoopedOneRelicEffect : BaseRelicEffect
+    [AddTypeMenu("ExtraDamageIfLoopedOne")]
+    [System.Serializable]
+    public class ExtraDamageIfLoopedOne : BaseRelicEffect
     {
         [SerializeField] private int _extraDamage = 3;
 
         public override void Apply(MonoBehaviour caller)
         {
-            if(caller is PlayerLassoManager)
+            if (caller is PlayerLassoManager)
             {
                 if (PlayerLassoManager.lassoedCardsCount == 1)
                 {

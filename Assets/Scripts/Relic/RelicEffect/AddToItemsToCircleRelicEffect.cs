@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "AddToItemsToCircleRelicEffect", menuName = "Scriptable Objects/Relic Effects/Add to Items to Circle")]
-    public class AddToItemsToCircleRelicEffect : BaseRelicEffect
+    [AddTypeMenu("AddToItemsToCircle")]
+    [System.Serializable]
+    public class AddToItemsToCircle : BaseRelicEffect
     {
         public int amountToAdd = 1;
 

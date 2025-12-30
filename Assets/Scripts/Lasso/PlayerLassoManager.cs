@@ -131,7 +131,6 @@ public class PlayerLassoManager : MonoBehaviour
 
     void CloseLoop()
     {
-
         _spellParticleSystem.Stop();
         _spellParticleSystem.gameObject.SetActive(false);
 
@@ -143,7 +142,6 @@ public class PlayerLassoManager : MonoBehaviour
         _hasAlreadyDrawn = true;
 
         StartCoroutine(DetectInsidePoints(_points));
-        ApplyOnLoopClosedEffects();
         ClearLasso();
     }
 
@@ -190,16 +188,8 @@ public class PlayerLassoManager : MonoBehaviour
         }
 
         lassoedCardsCount = lassoedCards.Count;
+        RelicManager.ApplyEffectsForEvent<AfterLoopClosedEvent>(this);
 
         Destroy(temp);
-    }
-
-    private void ApplyOnLoopClosedEffects()
-    {
-        var effects = RelicManager.GetEffectsForEvent<OnLoopClosedEvent>();
-        foreach(var effect in effects)
-        {
-            effect.Apply(this); 
-        }
     }
 }

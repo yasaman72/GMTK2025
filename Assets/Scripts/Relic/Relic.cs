@@ -11,7 +11,7 @@ namespace Deviloop
         [Space]
         public LocalizedString relicName;
         [Space]
-        public List<RelicEffectCompound> relicEffect;
+        public List<RelicEffectCompound> relicEffectCompound;
         [Space]
         public Sprite icon;
         public Rarity rarity;
@@ -26,7 +26,10 @@ namespace Deviloop
         [System.Serializable]
         public struct RelicEffectCompound
         {
+            [SerializeReference, SubclassSelector]
             public BaseGameplayEvent gameplayEvent;
+
+            [SerializeReference, SubclassSelector]
             public List<BaseRelicEffect> relicEffect;
         }
     }

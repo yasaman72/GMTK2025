@@ -37,7 +37,7 @@ namespace Deviloop
             }
 
             _ownedRelics.Add(relic);
-            relic.relicEffect.ForEach(compound =>
+            relic.relicEffectCompound.ForEach(compound =>
             {
                 compound.relicEffect.ForEach(effect => effect.OnAdded());
             });
@@ -50,7 +50,7 @@ namespace Deviloop
             if (_ownedRelics.Remove(relic))
             {
                 OnRelicRemoved?.Invoke(relic);
-                relic.relicEffect.ForEach(compound =>
+                relic.relicEffectCompound.ForEach(compound =>
                 {
                     compound.relicEffect.ForEach(effect => effect.OnRemoved());
                 });
@@ -62,16 +62,17 @@ namespace Deviloop
             }
         }
 
-        public static IEnumerable<BaseRelicEffect> GetEffectsForEvent<T>() where T : BaseGameplayEvent
+        public static void ApplyEffectsForEvent<T>(MonoBehaviour caller) where T : BaseGameplayEvent
         {
             foreach (var relic in _ownedRelics)
             {
-                foreach (var compound in relic.relicEffect)
+                foreach (var compound in relic.relicEffectCompound)
                 {
                     if (compound.gameplayEvent is T)
                     {
+                        // TODO: consider the priority of effects to apply
                         foreach (var effect in compound.relicEffect)
-                            yield return effect;
+                            effect.Apply(caller);
                     }
                 }
             }

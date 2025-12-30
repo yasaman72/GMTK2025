@@ -1,10 +1,21 @@
-using UnityEngine;
-
 namespace Deviloop
 {
-    // TODO: replace scriptable object with normal class if possible. need to create editor drawer to show the effects
     [System.Serializable]
-    public abstract class BaseGameplayEvent : ScriptableObject
+    public abstract class BaseGameplayEvent
+    {
+
+    }
+
+    [AddTypeMenu("OnCombatEndEvent")]
+    [System.Serializable]
+    public class OnCombatEndEvent : BaseGameplayEvent
+    {
+
+    }
+
+    [AddTypeMenu("AfterLoopClosedEvent")]
+    [System.Serializable]
+    public class AfterLoopClosedEvent : BaseGameplayEvent
     {
 
     }

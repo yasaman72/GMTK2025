@@ -55,6 +55,7 @@ public class CombatManager : MonoBehaviour
 
     public void StartCombat(int numberOfEnemiesToSpawn, Enemy[] enemyTypes)
     {
+        CombatRoundCounter = 0;
         DestroyCurrentEnemies();
         _deatedEnemiesCounter.text = "0";
 
@@ -116,7 +117,7 @@ public class CombatManager : MonoBehaviour
 
     private void AfterAllEnemiesDefeated()
     {
-        ApplyOnCombatEndRelicEffects();
+        RelicManager.ApplyEffectsForEvent<OnCombatEndEvent>(this);
     }
 
     private IEnumerator ShowRewards(Enemy enemy)
@@ -136,14 +137,5 @@ public class CombatManager : MonoBehaviour
 
         gameObject.SetActive(false);
         OnCombatFinishedEvent?.Invoke();
-    }
-
-    private void ApplyOnCombatEndRelicEffects()
-    {
-        var effects = RelicManager.GetEffectsForEvent<OnCombatEndEvent>();
-        foreach (var effect in effects)
-        {
-            effect.Apply(this);
-        }
     }
 }
