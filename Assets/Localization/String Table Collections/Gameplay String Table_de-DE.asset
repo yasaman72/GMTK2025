@@ -119,8 +119,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 415625614503936
-    m_Localized: deal {damage} damage to all enemies if the you looped exactly 1
-      item.
+    m_Localized: deal {damage} damage to all enemies if looped exactly 1 item.
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279

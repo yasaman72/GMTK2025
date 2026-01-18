@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Relic_FinishEarlyGetCoins
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
   isInGame: 1
+  relicGUID: 390866e15e919e24cbfb5f3a9a90df62
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -23,12 +24,13 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   relicEffectCompound:
-  - gameplayEvent:
-      rid: 5144960849631248619
+    isPassive: 0
+    gameplayEvent:
+      rid: 686207827826966675
     predicates:
-    - rid: 5144960849631248663
+    - rid: 686207827826966676
     relicEffect:
-    - rid: 5144960849631248632
+    - rid: 686207827826966677
   icon: {fileID: 2362377622564846777, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
   rarity: 50
   isNegative: 0
@@ -65,22 +67,28 @@ MonoBehaviour:
         rid: 5144960850776293469
   _developerNotes: 'on combat end
 
-    if you finish a combat in less than 3 turns,
-    earn 10 coins.'
+    predicate: combat turn count less than or
+    equal 3
+
+    effect: fisnished early get coin
+
+
+    if you finish a combat in
+    less than 3 turns, earn 10 coins.'
   references:
     version: 2
     RefIds:
-    - rid: 5144960849631248619
+    - rid: 686207827826966675
       type: {class: OnCombatEndEvent, ns: Deviloop, asm: Deviloop}
       data: 
-    - rid: 5144960849631248632
-      type: {class: FinishedEarlyGetCoin, ns: Deviloop, asm: Deviloop}
-      data:
-        _coinAmount: 10
-    - rid: 5144960849631248663
+    - rid: 686207827826966676
       type: {class: CombatTurnCountLessThanOrEqual, ns: Deviloop, asm: Deviloop}
       data:
         _amountToMatch: 3
+    - rid: 686207827826966677
+      type: {class: FinishedEarlyGetCoin, ns: Deviloop, asm: Deviloop}
+      data:
+        _coinAmount: 10
     - rid: 5144960850776293467
       type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:

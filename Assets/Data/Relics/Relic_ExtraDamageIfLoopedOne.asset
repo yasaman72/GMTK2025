@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Relic_ExtraDamageIfLoopedOne
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
   isInGame: 1
+  relicGUID: 1a94b119cc6888e45acf488d75c5093e
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -23,12 +24,13 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   relicEffectCompound:
-  - gameplayEvent:
-      rid: 5144960849631248618
+    isPassive: 0
+    gameplayEvent:
+      rid: 686207827826966672
     predicates:
-    - rid: 5144960849631248659
+    - rid: 686207827826966673
     relicEffect:
-    - rid: 5144960849631248631
+    - rid: 686207827826966674
   icon: {fileID: 21300000, guid: 48c6e06cd32b9e347959551e430f6ff1, type: 3}
   rarity: 50
   isNegative: 0
@@ -59,22 +61,28 @@ MonoBehaviour:
         rid: 5144960850776293465
   _developerNotes: 'after loop closed
 
-    damage all enemies if the player looped
-    exactly one item.'
+    predicate: collected cards count equal
+    1
+
+    effect: extra damage if looped one
+
+
+    damage all enemies if the player
+    looped exactly one item.'
   references:
     version: 2
     RefIds:
-    - rid: 5144960849631248618
+    - rid: 686207827826966672
       type: {class: AfterLoopClosedEvent, ns: Deviloop, asm: Deviloop}
       data: 
-    - rid: 5144960849631248631
-      type: {class: ExtraDamageIfLoopedOne, ns: Deviloop, asm: Deviloop}
-      data:
-        _extraDamage: 3
-    - rid: 5144960849631248659
+    - rid: 686207827826966673
       type: {class: CollectedCardsCountEqual, ns: Deviloop, asm: Deviloop}
       data:
         _amountToMatch: 1
+    - rid: 686207827826966674
+      type: {class: ExtraDamageIfLoopedOne, ns: Deviloop, asm: Deviloop}
+      data:
+        _extraDamage: 3
     - rid: 5144960850776293465
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:

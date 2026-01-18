@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Deviloop
@@ -9,5 +10,6 @@ namespace Deviloop
 
         public abstract void OnAdded();
         public abstract void OnRemoved();
+        public abstract bool IsPassive();
     }
 }

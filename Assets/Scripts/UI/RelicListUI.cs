@@ -16,9 +16,7 @@ namespace Deviloop
             var relics = RelicManager.OwnedRelics;
             foreach (var relic in relics)
             {
-                var relicUIObj = Instantiate(_relicPrefab, transform);
-                var relicUI = relicUIObj.GetComponent<RelicInstanceUI>();
-                relicUI.Setup(relic);
+                OnRelicAdded(relic);
             }
 
             RelicManager.OnRelicAdded += OnRelicAdded;

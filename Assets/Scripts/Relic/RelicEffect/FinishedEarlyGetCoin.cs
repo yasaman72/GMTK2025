@@ -20,5 +20,7 @@ namespace Deviloop
         public override void OnRemoved()
         {
         }
+
+        public override bool IsPassive() => false;
     }
 }

@@ -22,5 +22,7 @@ namespace Deviloop
         {
             PlayerLassoManager.maxedAllowedItems -= amountToAdd;
         }
+
+        public override bool IsPassive() => true;
     }
 }

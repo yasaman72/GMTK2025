@@ -37,13 +37,12 @@ namespace Deviloop
                 return;
             }
 
-            _ownedRelics.Add(relic);
-            relic.relicEffectCompound.ForEach(compound =>
-            {
-                compound.relicEffect.ForEach(effect => effect.OnAdded());
-            });
-            OnRelicAdded?.Invoke(relic);
-            Debug.Log($"Added relic: {relic.name}. Total relics now: {_ownedRelics.Count}");
+            var relicCopy = Instantiate(relic);
+
+            _ownedRelics.Add(relicCopy);
+            relicCopy.relicEffectCompound.relicEffect.ForEach(effect => effect.OnAdded());
+            OnRelicAdded?.Invoke(relicCopy);
+            Debug.Log($"Added relic: {relicCopy.name}. Total relics now: {_ownedRelics.Count}");
         }
 
         public static void RemoveRelic(Relic relic)
@@ -51,10 +50,7 @@ namespace Deviloop
             if (_ownedRelics.Remove(relic))
             {
                 OnRelicRemoved?.Invoke(relic);
-                relic.relicEffectCompound.ForEach(compound =>
-                {
-                    compound.relicEffect.ForEach(effect => effect.OnRemoved());
-                });
+                relic.relicEffectCompound.relicEffect.ForEach(effect => effect.OnRemoved());
                 Debug.Log($"Removed relic: {relic.name}. Total relics now: {_ownedRelics.Count}");
             }
             else
@@ -67,21 +63,29 @@ namespace Deviloop
         {
             foreach (var relic in _ownedRelics)
             {
-                foreach (var compound in relic.relicEffectCompound)
+                var compound = relic.relicEffectCompound;
+
+                if (compound.gameplayEvent is T)
                 {
-                    if (compound.gameplayEvent is T)
+                    // TODO: consider the priority of effects to apply
+                    foreach (var effect in compound.relicEffect)
                     {
-                        // TODO: consider the priority of effects to apply
-                        foreach (var effect in compound.relicEffect)
+                        // apply the effect is there's no predicates or all predicates are met
+                        if ((compound.predicates.Count == 0 || compound.predicates == null)
+                            || compound.predicates.All(p => p.Check()))
                         {
-                            // apply the effect is there's no predicates or all predicates are met
-                            if ((compound.predicates.Count == 0 || compound.predicates == null)
-                                || compound.predicates.All(p => p.Check()))
-                                effect.Apply(caller);
+                            effect.Apply(caller);
+                            if (!relic.relicEffectCompound.isPassive)
+                                relic.AfterApply?.Invoke();
                         }
                     }
                 }
             }
+        }
+
+        public static bool HasRelic(Relic relic)
+        {
+            return _ownedRelics.Where(r => r.relicGUID == relic.relicGUID).Any();
         }
     }
 }

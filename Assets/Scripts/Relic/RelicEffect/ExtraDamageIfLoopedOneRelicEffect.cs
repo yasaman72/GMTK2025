@@ -16,6 +16,7 @@ namespace Deviloop
             {
                 Player.PlayerCombatCharacter.DealDamage(enemy, _extraDamage);
             }
+
         }
 
         public override void OnAdded()
@@ -25,5 +26,7 @@ namespace Deviloop
         public override void OnRemoved()
         {
         }
+
+        public override bool IsPassive() => false;
     }
 }

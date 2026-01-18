@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Relic_AddToItemsToCircle
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
   isInGame: 1
+  relicGUID: 5791f2c428cfeee45a7d83a421c712bb
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -23,11 +24,12 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   relicEffectCompound:
-  - gameplayEvent:
-      rid: 5144960849631248617
+    isPassive: 1
+    gameplayEvent:
+      rid: 686207827826966645
     predicates: []
     relicEffect:
-    - rid: 5144960849631248630
+    - rid: 686207827826966671
   icon: {fileID: 9166712023175037457, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
   rarity: 50
   isNegative: 0
@@ -52,15 +54,18 @@ MonoBehaviour:
     m_LocalVariables: []
   _developerNotes: 'after loop closed
 
-    adds 1 to the amount of items that can
-    be circled around.'
+    effect: add to items to circle
+
+
+    adds
+    1 to the amount of items that can be circled around.'
   references:
     version: 2
     RefIds:
-    - rid: 5144960849631248617
+    - rid: 686207827826966645
       type: {class: AfterLoopClosedEvent, ns: Deviloop, asm: Deviloop}
       data: 
-    - rid: 5144960849631248630
+    - rid: 686207827826966671
       type: {class: AddToItemsToCircle, ns: Deviloop, asm: Deviloop}
       data:
         amountToAdd: 1
