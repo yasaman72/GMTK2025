@@ -49,7 +49,7 @@ MonoBehaviour:
   shouldLog: 0
   developerNotes: 
   cardPrefab: {fileID: 4009389148060104062, guid: bfca1e57867cb6c44a0c9e87b31f2571, type: 3}
-  isConsumable: 0
+  isConsumable: 1
   damage: 3
   references:
     version: 2

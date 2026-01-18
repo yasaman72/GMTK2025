@@ -20,9 +20,9 @@ MonoBehaviour:
   - Card: {fileID: 11400000, guid: 361380270d81ae14c993159898d1a690, type: 2}
     Quantity: 3
   - Card: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
-    Quantity: 2
+    Quantity: 4
   - Card: {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
     Quantity: 2
   - Card: {fileID: 11400000, guid: 70940d97283be90479f245d3b56ff600, type: 2}
     Quantity: 1
-  totalCards: 16
+  totalCards: 18

@@ -1,19 +1,20 @@
-﻿using System.Collections;
+﻿using Cards.ScriptableObjects;
+using FMODUnity;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using Cards.ScriptableObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using Random = UnityEngine.Random;
-using System;
-using FMODUnity;
 
 namespace Cards
 {
     public class CardManager : MonoBehaviour
     {
         public static Action<BaseCard, int> AddCardToDeckAction;
-        public static Action<BaseCard> RemoveCardFromDeckAction;
+        public delegate void RemoveCardFromDeck(BaseCard card, bool removeFromDiscard);
+        public static RemoveCardFromDeck RemoveCardFromDeckAction;
         public static Action<CardEntry> AddCardToHandAction;
         public static Action ReturnAllCardsToHand;
 
@@ -67,7 +68,7 @@ namespace Cards
             AddCardToDeckAction += AddCardToDeck;
             AddCardToHandAction += AddCardToHand;
             ReturnAllCardsToHand += ReturnCardsToDrawDeck;
-            RemoveCardFromDeckAction += RemoveCardFromDeck;
+            RemoveCardFromDeckAction += RemoveCard;
         }
 
         private void OnDisable()
@@ -76,7 +77,7 @@ namespace Cards
             AddCardToDeckAction -= AddCardToDeck;
             AddCardToHandAction -= AddCardToHand;
             ReturnAllCardsToHand -= ReturnCardsToDrawDeck;
-            RemoveCardFromDeckAction -= RemoveCardFromDeck;
+            RemoveCardFromDeckAction -= RemoveCard;
         }
 
         void Initialize()
@@ -258,7 +259,7 @@ namespace Cards
 
         void ClearThrownCards()
         {
-            if(gameObject == null) return;
+            if (gameObject == null) return;
 
             foreach (var card in thrownCards)
             {
@@ -266,7 +267,7 @@ namespace Cards
                     Destroy(card);
             }
             thrownCards.Clear();
-            if(_extraHandCards != null)
+            if (_extraHandCards != null)
                 _extraHandCards.RemoveAllCards();
         }
 
@@ -288,9 +289,13 @@ namespace Cards
             UpdateUI();
         }
 
-        private void RemoveCardFromDeck(BaseCard card)
+        private void RemoveCard(BaseCard card, bool removeFromDiscardDeck = false)
         {
-            _drawDeck.RemoveCard(card);
+            if (removeFromDiscardDeck)
+                _discardDeck.RemoveCard(card);
+            else
+                _drawDeck.RemoveCard(card);
+
             UpdateUI();
         }
 

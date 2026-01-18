@@ -9,6 +9,7 @@ namespace Cards.ScriptableObjects
     {
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
+            callback += AfterCardActivated;
             PlayerComboManager.OnCombo();
             runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }

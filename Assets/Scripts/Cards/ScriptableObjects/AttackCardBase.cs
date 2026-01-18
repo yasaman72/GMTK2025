@@ -18,6 +18,8 @@ namespace Cards.ScriptableObjects
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
+            callback += AfterCardActivated;
+
             runner.StopAllCoroutines();
             if (taregtAll)
                 runner.StartCoroutine(TargetAllEnemies(callback, cardPrefab));
@@ -88,8 +90,9 @@ namespace Cards.ScriptableObjects
             callback?.Invoke();
         }
 
-        private void OnValidate()
+        private new void OnValidate()
         {
+            base.OnValidate();
             var dict = new Dictionary<string, string>() { { "damage", damage.ToString() } };
             description.Arguments = new object[] { dict };
         }

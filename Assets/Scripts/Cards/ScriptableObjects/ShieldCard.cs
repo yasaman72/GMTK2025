@@ -14,7 +14,7 @@ namespace Cards.ScriptableObjects
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
-            Logger.Log($"Shield provides {shieldAmount} protection", shouldLog);
+            callback += AfterCardActivated;
             runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }
 
@@ -40,8 +40,10 @@ namespace Cards.ScriptableObjects
             callBack?.Invoke();
         }
 
-        private void OnValidate()
+        private new void OnValidate()
         {
+            base.OnValidate();
+
             var dict = new Dictionary<string, string>() { { "shield", shieldAmount.ToString() } };
             description.Arguments = new object[] { dict };
         }

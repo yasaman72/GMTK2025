@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d25b7eb9e02704ca2bda09cdc914db, type: 3}
   m_Name: Relic_ExtraDamageIfLoopedOne
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
+  GUID: 1a94b119cc6888e45acf488d75c5093e
   isInGame: 1
-  relicGUID: 1a94b119cc6888e45acf488d75c5093e
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -82,7 +82,7 @@ MonoBehaviour:
     - rid: 686207827826966674
       type: {class: ExtraDamageIfLoopedOne, ns: Deviloop, asm: Deviloop}
       data:
-        _extraDamage: 3
+        _extraDamage: 1
     - rid: 5144960850776293465
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:

@@ -12,14 +12,9 @@ namespace Cards.ScriptableObjects
         public int healAmount = 5;
         public float moveSpeed = 1f;
 
-        private void Awake()
-        {
-            isConsumable = true; // Potions are always consumable
-        }
-
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
-            Logger.Log($"Healing Potion heals player for {healAmount} HP", shouldLog);
+            callback += AfterCardActivated;
             runner.StopAllCoroutines();
             runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
         }
@@ -44,8 +39,9 @@ namespace Cards.ScriptableObjects
             callBack?.Invoke();
         }
 
-        private void OnValidate()
+        private new void OnValidate()
         {
+            base.OnValidate();
             var dict = new Dictionary<string, string>() { { "heal", healAmount.ToString() } };
             description.Arguments = new object[] { dict };
         }

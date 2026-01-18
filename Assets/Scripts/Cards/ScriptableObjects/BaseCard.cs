@@ -33,6 +33,8 @@ namespace Cards
         [Header("Prefab")]
         public GameObject cardPrefab;
 
+        // TODO: update the consumable cards logic to consume before adding the card back to discard deck
+        // TODO: try adding usage time to consumables
         [Header("Card Properties")]
         public bool isConsumable = false;
 
@@ -40,11 +42,14 @@ namespace Cards
         public virtual void OnCardActivated(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             UseCard(runner, callback, cardPrefab);
+        }
 
+        // TODO: a better architecture to remove the consumables
+        public virtual void AfterCardActivated()
+        {
             if (isConsumable)
             {
-                // TODO: Implement logic to consume card
-                Logger.Log($"{cardName} consumed and removed from deck", shouldLog);
+                CardManager.RemoveCardFromDeckAction?.Invoke(this, true);
             }
         }
 

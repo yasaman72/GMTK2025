@@ -58,7 +58,7 @@ public class DeckView : MonoBehaviour
     {
         onDeckOpen(deck, (card) =>
         {
-            CardManager.RemoveCardFromDeckAction?.Invoke(card);
+            CardManager.RemoveCardFromDeckAction?.Invoke(card, false);
             CloseDeck();
         });
         _deckTitle.text = "select an item to permanently delete from your deck";
