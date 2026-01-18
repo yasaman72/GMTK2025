@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
   m_Name: AttackCard_Axe
   m_EditorClassIdentifier: 
+  GUID: 4391da219602b584da8f5a7e46dd3e39
   isInGame: 1
   cardName:
     m_TableReference:
@@ -35,6 +36,8 @@ MonoBehaviour:
   rarity: 50
   materialType: 10
   isNegative: 0
+  price: 30
+  overridePrice: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:

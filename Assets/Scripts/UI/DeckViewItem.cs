@@ -1,11 +1,8 @@
 using Cards;
-using Cards.ScriptableObjects;
 using Deviloop;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using static ShopData;
 
 public class DeckViewItem : MonoBehaviour
 {
@@ -42,19 +39,8 @@ public class DeckViewItem : MonoBehaviour
                 materialIcon.Setup(material);
             }
         }
-    }
 
-    public void Setup(CardEntry card)
-    {
-        Setup(card.Card);
-        _countText.text = card.Quantity.ToString() + "X";
-    }
-
-    public void Setup(ShopItem shopItem)
-    {
-        Setup(shopItem.CardEntry);
-        _priceParent.SetActive(true);
-        _priceText.text = shopItem.Price.ToString();
+        _priceText.text = card.price.ToString();
     }
 
     public void Setup(int price)

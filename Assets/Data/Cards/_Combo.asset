@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5846bb01bfee84090f90dd9cc4efde, type: 3}
   m_Name: _Combo
   m_EditorClassIdentifier: 
+  GUID: 2e99b5feed481ef44b9051d4d690e253
   isInGame: 0
   cardName:
     m_TableReference:
@@ -35,6 +36,8 @@ MonoBehaviour:
   rarity: 50
   materialType: 0
   isNegative: 0
+  price: 30
+  overridePrice: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:

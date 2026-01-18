@@ -85,7 +85,7 @@ namespace Deviloop
 
         public static bool HasRelic(Relic relic)
         {
-            return _ownedRelics.Where(r => r.relicGUID == relic.relicGUID).Any();
+            return _ownedRelics.Where(r => r.GUID == relic.GUID).Any();
         }
     }
 }

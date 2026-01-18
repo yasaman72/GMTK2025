@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99336f57b129402ba2fe8232d446f541, type: 3}
   m_Name: ShieldCard
   m_EditorClassIdentifier: 
+  GUID: c1a83539c8c05cb42a7a1173aa765d52
   isInGame: 1
   cardName:
     m_TableReference:
@@ -35,6 +36,8 @@ MonoBehaviour:
   rarity: 50
   materialType: 10
   isNegative: 0
+  price: 30
+  overridePrice: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:

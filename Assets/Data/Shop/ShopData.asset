@@ -12,21 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcedd8ce1cb0df4394b559ec7a007e3, type: 3}
   m_Name: ShopData
   m_EditorClassIdentifier: 
-  Items:
-  - CardEntry:
-      Card: {fileID: 11400000, guid: 3be46b6e043980248b5dbe63afbae9f2, type: 2}
-      Quantity: 1
-    Price: 20
-  - CardEntry:
-      Card: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
-      Quantity: 1
-    Price: 40
-  - CardEntry:
-      Card: {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
-      Quantity: 1
-    Price: 50
-  - CardEntry:
-      Card: {fileID: 11400000, guid: 70940d97283be90479f245d3b56ff600, type: 2}
-      Quantity: 1
-    Price: 100
+  shopCardsCount: 3
+  shopPossibleCardOffers:
+  - {fileID: 11400000, guid: 4391da219602b584da8f5a7e46dd3e39, type: 2}
+  - {fileID: 11400000, guid: 3be46b6e043980248b5dbe63afbae9f2, type: 2}
+  - {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
+  - {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
+  - {fileID: 11400000, guid: 70940d97283be90479f245d3b56ff600, type: 2}
+  sellingCards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   itemDeletionPrice: 30
+  rerollPrice: 10

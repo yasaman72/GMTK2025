@@ -9,12 +9,11 @@ using UnityEngine.Localization;
 namespace Deviloop
 {
     [CreateAssetMenu(fileName = "Relic", menuName = "Scriptable Objects/Relic")]
-    public class Relic : ScriptableObject
+    public class Relic : GUIDScriptableObject
     {
         public Action AfterApply;
 
         public bool isInGame = true;
-        public string relicGUID;
         [Space]
         public LocalizedString relicName;
         [Space]
@@ -45,9 +44,9 @@ namespace Deviloop
         }
 
 #if UNITY_EDITOR
-        private void OnValidate()
+        protected new void OnValidate()
         {
-            SetGuid();
+            base.OnValidate();
 
             if (relicEffectCompound.relicEffect == null || relicEffectCompound.relicEffect.Count == 0)
             {
@@ -59,14 +58,6 @@ namespace Deviloop
             relicEffectCompound.isPassive = relicEffectCompound.relicEffect.TrueForAll(effect => effect.IsPassive());
         }
 
-        private void SetGuid()
-        {
-            string path = AssetDatabase.GetAssetPath(this);
-            if (!string.IsNullOrEmpty(path))
-            {
-                relicGUID = AssetDatabase.AssetPathToGUID(path);
-            }
-        }
 #endif
     }
 }

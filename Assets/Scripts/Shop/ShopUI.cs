@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static ShopData;
 
 public class ShopUI : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private Transform _shopItemParent;
     [SerializeField] private GameObject _shopItemOption;
     [SerializeField] private GameObject _shopRemoveItemOption;
+    [SerializeField] private GameObject _shoprerollOption;
+    private List<GameObject> _currentShopCardButtons = new List<GameObject>();
 
     ShopData _shopData;
 
@@ -32,30 +33,47 @@ public class ShopUI : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        _shopData = shopData.Copy();
+        _shopData = shopData.SetupInstance();
         // TODO: pooling
         foreach (Transform child in _shopItemParent)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (var shopItem in _shopData.Items)
-        {
-            CreateShopItemOption(shopItem);
-        }
         CreateDeleteItemOption();
+        CreateRerollOption();
+        SetupCardOffers();
     }
+
     public void CloseShop()
     {
         gameObject.SetActive(false);
         OnShopClosedEvent?.Invoke();
     }
 
-    private void CreateShopItemOption(ShopItem shopItemData)
+
+    private void SetupCardOffers()
+    {
+        _shopData = _shopData.SetupInstance();
+
+        // TODO: pooling or reset
+        foreach (GameObject child in _currentShopCardButtons)
+        {
+            Destroy(child);
+        }
+
+        foreach (var shopItem in _shopData.sellingCards)
+        {
+            CreateShopCardOption(shopItem);
+        }
+    }
+
+    private void CreateShopCardOption(CardLoot cardLoot)
     {
         var shopItemButton = Instantiate(_shopItemOption, _shopItemParent);
-        shopItemButton.GetComponent<DeckViewItem>().Setup(shopItemData);
-        shopItemButton.GetComponent<Button>().onClick.AddListener(() => OnItemClick(shopItemData, shopItemButton));
+        _currentShopCardButtons.Add(shopItemButton);
+        shopItemButton.GetComponent<DeckViewItem>().Setup(cardLoot.Card);
+        shopItemButton.GetComponent<Button>().onClick.AddListener(() => OnItemClick(cardLoot.Card, shopItemButton));
     }
 
     private void CreateDeleteItemOption()
@@ -66,15 +84,33 @@ public class ShopUI : MonoBehaviour
         deleteItemButton.GetComponent<Button>().onClick.AddListener(() => OnDeleteItemClick(deckViewItem));
     }
 
-    private void OnItemClick(ShopItem shopItemData, GameObject itemButton)
+    private void CreateRerollOption()
     {
-        if (PlayerInventory.SpendCoin(shopItemData.Price))
+        var rerollButton = Instantiate(_shoprerollOption, _shopItemParent);
+        rerollButton.GetComponent<DeckViewItem>().Setup(_shopData.rerollPrice);
+        rerollButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            CardManager.AddCardToDeckAction?.Invoke(shopItemData.CardEntry.Card, shopItemData.CardEntry.Quantity);
-            RemoveItemFromOffers(shopItemData, itemButton);
+            if (PlayerInventory.SpendCoin(_shopData.rerollPrice))
+            {
+                SetupCardOffers();
+                AnalyticsManager.SendCustomEventAction?.Invoke("shop_rerolled", new Dictionary<string, object>());
+            }
+            else
+            {
+                Debug.Log("Not enough coins to reroll.");
+            }
+        });
+    }
+
+    private void OnItemClick(BaseCard card, GameObject itemButton)
+    {
+        if (PlayerInventory.SpendCoin(card.price))
+        {
+            CardManager.AddCardToDeckAction?.Invoke(card, 1);
+            RemoveItemFromOffers(card, itemButton);
             AnalyticsManager.SendCustomEventAction?.Invoke("shop_item_bought", new Dictionary<string, object>
             {
-                { "item_name", shopItemData.CardEntry.Card.cardName}
+                { "item_name", card.cardName}
             });
         }
         else
@@ -98,19 +134,10 @@ public class ShopUI : MonoBehaviour
         }
     }
 
-    private void RemoveItemFromOffers(ShopItem shopItem, GameObject itemButton)
+    private void RemoveItemFromOffers(BaseCard card, GameObject itemButton)
     {
-        var offer = _shopData.Items.Find(o => o.CardEntry.Card == shopItem.CardEntry.Card);
+        var offer = _shopData.sellingCards.Find(c => c == card);
 
-        offer.CardEntry.Quantity -= shopItem.CardEntry.Quantity;
-
-        if (offer.CardEntry.Quantity > 0)
-        {
-            itemButton.GetComponent<DeckViewItem>().Setup(shopItem);
-        }
-        else
-        {
-            Destroy(itemButton);
-        }
+        Destroy(itemButton);
     }
 }

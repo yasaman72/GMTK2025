@@ -1,4 +1,6 @@
 using Cards;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Deviloop
@@ -31,14 +33,24 @@ namespace Deviloop
             return false;
         }
 
+        public CardLoot ResetLoot(List<BaseCard> allCards)
+        {
+            PickRandomCard(allCards);
+            return this;
+        }
+
         public override void ResetLoot()
+        {
+            PickRandomCard(GameDataBaseManager.GameDatabase.cards);
+        }
+
+        private void PickRandomCard(List<BaseCard> allCards)
         {
             // TODO: write a utility safe while and do while loops
             int safety = 50;
 
             do
             {
-                var allCards = GameDataBaseManager.GameDatabase.cards;
                 float totalChance = 0f;
                 foreach (var card in allCards)
                     totalChance += (int)card.rarity;

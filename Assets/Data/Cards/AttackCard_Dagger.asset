@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
   m_Name: AttackCard_Dagger
   m_EditorClassIdentifier: 
+  GUID: 3be46b6e043980248b5dbe63afbae9f2
   isInGame: 1
   cardName:
     m_TableReference:
@@ -35,6 +36,8 @@ MonoBehaviour:
   rarity: 50
   materialType: 2
   isNegative: 0
+  price: 30
+  overridePrice: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
