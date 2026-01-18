@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 47697052348416
-    m_Localized: fortsetzen
+    m_Localized: resume
     m_Metadata:
       m_Items: []
   - m_Id: 47761254559744
@@ -71,6 +71,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 50345113595904
     m_Localized: "Pausenmen\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1225344713273344
+    m_Localized: neustart
     m_Metadata:
       m_Items: []
   references:

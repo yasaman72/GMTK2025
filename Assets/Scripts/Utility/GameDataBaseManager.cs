@@ -29,6 +29,7 @@ namespace Deviloop
 
         private void Start()
         {
+            // TODO: could use addressables here instead of Resources.Load
             GameDatabase = Resources.Load<GameDatabase>("Database/Database");
             DontDestroyOnLoad(this.gameObject);
         }
