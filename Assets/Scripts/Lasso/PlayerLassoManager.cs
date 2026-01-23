@@ -9,6 +9,7 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private bool shouldLog = true;
     [Space]
     [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private ContactFilter2D _itemsFilter;
     [SerializeField] private float _pointSpacing = 0.1f;
     [SerializeField] private float _loopCloseThreshold = 0.5f;
     [SerializeField] private Gradient _defaultColor;
@@ -21,6 +22,7 @@ public class PlayerLassoManager : MonoBehaviour
 
     private List<Vector2> _points = new();
     private bool _hasAlreadyDrawn = false;
+    private bool _startNewLine = false;
 
     // TODO: a more generic to handle values modified by relics
     public static int maxedAllowedItems;
@@ -68,16 +70,23 @@ public class PlayerLassoManager : MonoBehaviour
 
     private void Update()
     {
-        if (!GameStateManager.CanPlayerDrawLasso || _hasAlreadyDrawn) return;
+        if (!GameStateManager.CanPlayerDrawLasso || _hasAlreadyDrawn)
+        {
+            Time.timeScale = 1f;
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
-
+            _startNewLine = true;
+            Debug.Log("Started drawing lasso.");
             Time.timeScale = _slowMotionTimeScale;
         }
 
         if (Input.GetMouseButton(0))
         {
+            if (!_startNewLine) return;
+
             _spellParticleSystem.gameObject.SetActive(true);
             if (!_spellParticleSystem.isPlaying)
                 _spellParticleSystem.Play();
@@ -104,19 +113,24 @@ public class PlayerLassoManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            _startNewLine = false;
             Time.timeScale = 1f;
 
             if (IsLineNearOtherEnd())
             {
                 CloseLoop();
             }
-
-            ClearLasso();
+            else
+            {
+                ClearLasso();
+            }
         }
     }
 
     private void ClearLasso()
     {
+        _startNewLine = false;
+
         _spellParticleSystem.Stop();
         _spellParticleSystem.gameObject.SetActive(false);
         _spellParticleSystem.transform.position = Vector2.one * 1000;
@@ -133,17 +147,13 @@ public class PlayerLassoManager : MonoBehaviour
 
     void CloseLoop()
     {
-        _spellParticleSystem.Stop();
-        _spellParticleSystem.gameObject.SetActive(false);
-
         Logger.Log("Loop closed!", shouldLog);
         Time.timeScale = 1f;
+
         _points.Add(_points[0]);
         _lineRenderer.positionCount = _points.Count;
         _lineRenderer.SetPosition(_points.Count - 1, _points[0]);
-        _hasAlreadyDrawn = true;
 
-        RecordTheShapeOfLasso(_points);
         StartCoroutine(DetectInsidePoints(_points));
         ClearLasso();
     }
@@ -155,9 +165,23 @@ public class PlayerLassoManager : MonoBehaviour
         poly.isTrigger = true;
         poly.points = loopPoints.ToArray();
         List<Collider2D> hits = new List<Collider2D>();
-        Physics2D.OverlapCollider(poly, ContactFilter2D.noFilter, hits);
+        Physics2D.OverlapCollider(poly, _itemsFilter, hits);
 
         List<CardPrefab> lassoedCards = new List<CardPrefab>();
+
+        if (hits.Count <= 0 || hits.Count > maxedAllowedItems)
+        {
+            if (hits.Count > maxedAllowedItems)
+                MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}.", 2);
+
+            Time.timeScale = 1f;
+            Destroy(temp);
+            yield break;
+        }
+
+        _hasAlreadyDrawn = true;
+        _spellParticleSystem.Stop();
+        RecordTheShapeOfLasso(_points);
 
         foreach (var hit in hits)
         {
@@ -166,28 +190,14 @@ public class PlayerLassoManager : MonoBehaviour
                 CardPrefab card = hit.gameObject.GetComponent<CardPrefab>();
                 if (card == null || card.isLassoed) continue;
                 lassoedCards.Add(card);
-                Logger.Log($"Detected: {hit.gameObject.name}", shouldLog);
                 card.OnLassoed();
-            }
-        }
-
-        if (lassoedCards.Count > maxedAllowedItems)
-        {
-            // force remove a random card to match the max allowed items
-            int itemsToRemove = lassoedCards.Count - maxedAllowedItems;
-            for (int i = 0; i < itemsToRemove; i++)
-            {
-                int randomIndex = Random.Range(0, lassoedCards.Count);
-                lassoedCards[randomIndex].OnDropedForBeingExtra();
-                lassoedCards.RemoveAt(randomIndex);
-                yield return new WaitForSeconds(0.5f);
             }
         }
 
         foreach (var card in lassoedCards)
         {
             card.OnActivate();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitUntil(() => card == null);
         }
 
         lassoedCardsCount = lassoedCards.Count;
@@ -201,5 +211,4 @@ public class PlayerLassoManager : MonoBehaviour
         recordedLassoShape = _gestureRecognizerController.RecordPoints(points);
         Logger.Log($"Lasso shape: {recordedLassoShape}", shouldLog);
     }
-
 }

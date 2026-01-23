@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7142599115855705853}
   - component: {fileID: 4664502192828920617}
   - component: {fileID: 9149384676272495391}
+  - component: {fileID: 3665309597393065959}
   m_Layer: 0
   m_Name: LassoManager
   m_TagString: Untagged
@@ -45,10 +46,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf9fb7e2812fc42939438c051c5c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldLog: 0
+  shouldLog: 1
   _lineRenderer: {fileID: 9149384676272495391}
+  _itemsFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   _pointSpacing: 0.5
-  _loopCloseThreshold: 2
+  _loopCloseThreshold: 1
   _defaultColor:
     serializedVersion: 2
     key0: {r: 0.8976976, g: 0.9150943, b: 0.6517889, a: 0.6901961}
@@ -110,11 +125,12 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _slowMotionTimeScale: 0.4
-  _maxAllowedItems: 4
+  _maxAllowedItems: 3
   _spellParticleSystem: {fileID: 0}
+  _gestureRecognizerController: {fileID: 3665309597393065959}
 --- !u!120 &9149384676272495391
 LineRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -133,6 +149,8 @@ LineRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -154,9 +172,11 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
+  m_MaskInteraction: 0
   m_Positions:
   - {x: 0.7695807, y: -1.2564701, z: -95.01}
   - {x: 2.2727962, y: -0.46030062, z: -95.01}
@@ -216,7 +236,20 @@ LineRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MaskInteraction: 0
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &3665309597393065959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471165421731587253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93b000f2f10d9c41a14531baac1d3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.GestureRecognizerController
+  _patterns:
+  - {fileID: 11400000, guid: 4aaabd975f87ea7418c3fbcda46a88a3, type: 2}

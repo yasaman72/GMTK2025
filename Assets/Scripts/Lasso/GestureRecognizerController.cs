@@ -54,6 +54,9 @@ namespace Deviloop
 
             Clear();
 
+            if (result.Score < 0.8f)
+                return LassoShape.Unknown;
+
             return result.Pattern.Shape;
         }
 

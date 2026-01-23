@@ -12,6 +12,7 @@ namespace Deviloop
         private TextMeshProUGUI _text;
         private Canvas _canvas;
         private RectTransform _tooltipRect;
+        private MesssageDisplayer _messsageDisplayer;
 
         private void Awake()
         {
@@ -26,7 +27,7 @@ namespace Deviloop
             gameObject.SetActive(true);
             _canvas = GetComponentInParent<Canvas>();
             _tooltip = Instantiate(_tooltipPrefab, _canvas.transform);
-            _text = _tooltip.GetComponentInChildren<TextMeshProUGUI>();
+            _messsageDisplayer = _tooltip.GetComponentInChildren<MesssageDisplayer>();
             _tooltipRect = _tooltip.GetComponent<RectTransform>();
             _tooltip.SetActive(false);
         }
@@ -43,15 +44,16 @@ namespace Deviloop
 
         private void ShowTooltip(string content, Vector2 position)
         {
-            if(content == null || content == "")
+            if (GameStateManager.IsInLassoingState) return;
+
+            if (content == null || content == "")
             {
                 Debug.LogWarning("Tooltip content is null or empty, hiding tooltip.");
                 HideTooltip();
                 return;
             }
 
-            _text.SetText(content);
-            _text.ForceMeshUpdate();
+            _messsageDisplayer.ShowText(content);
             _tooltip.SetActive(true);
 
             // TODO: clamp the tooltip position to be within the canvas bounds

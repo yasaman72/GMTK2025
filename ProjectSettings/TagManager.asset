@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - ThrowableCard
   - Card
+  - ThrowableCard
   layers:
   - Default
   - TransparentFX
