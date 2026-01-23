@@ -110,7 +110,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
         return CurrentHealth <= 0;
     }
 
-    public void DealDamage(IDamageable target, int damage)
+    public virtual void DealDamage(IDamageable target, int damage)
     {
         if (target == null)
         {

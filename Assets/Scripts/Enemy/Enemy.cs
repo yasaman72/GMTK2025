@@ -111,4 +111,10 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         // TODO: add object pooling
         Destroy(gameObject);
     }
+
+    public override void DealDamage(IDamageable target, int damage)
+    {
+        base.DealDamage(target, damage);
+        _animator.SetTrigger("Attack");
+    }
 }

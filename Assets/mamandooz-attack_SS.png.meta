@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 509e25cfd06847b409ad19ffdbf548de
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2583811407338247802
+    second: mamandooz-attack_SS_0
+  - first:
+      213: -43490907120465967
+    second: mamandooz-attack_SS_1
+  - first:
+      213: 6912902367517771948
+    second: mamandooz-attack_SS_2
+  - first:
+      213: -7536216767349931875
+    second: mamandooz-attack_SS_3
+  - first:
+      213: -2713962627467160349
+    second: mamandooz-attack_SS_4
+  - first:
+      213: -2308821509803184842
+    second: mamandooz-attack_SS_5
+  - first:
+      213: 8014682036566089182
+    second: mamandooz-attack_SS_6
+  - first:
+      213: -3246443531887058893
+    second: mamandooz-attack_SS_7
+  - first:
+      213: -6083981660976253586
+    second: mamandooz-attack_SS_8
+  - first:
+      213: -469662646036561902
+    second: mamandooz-attack_SS_9
+  - first:
+      213: -3879339126447606501
+    second: mamandooz-attack_SS_10
+  - first:
+      213: 8676035440884362349
+    second: mamandooz-attack_SS_11
+  - first:
+      213: 1376848576580857678
+    second: mamandooz-attack_SS_12
+  - first:
+      213: 1849742655506744153
+    second: mamandooz-attack_SS_13
+  - first:
+      213: 6954279276276813021
+    second: mamandooz-attack_SS_14
+  - first:
+      213: 5948938108570351135
+    second: mamandooz-attack_SS_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_0
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 3313
+        width: 373
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a769ffc09ca8bd320800000000000000
+      internalID: 2583811407338247802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_1
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 3313
+        width: 408
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d7002a104d756ff0800000000000000
+      internalID: -43490907120465967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_2
+      rect:
+        serializedVersion: 2
+        x: 2318
+        y: 3313
+        width: 431
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca88adeb3109fef50800000000000000
+      internalID: 6912902367517771948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_3
+      rect:
+        serializedVersion: 2
+        x: 3343
+        y: 3313
+        width: 436
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d90c3c757caf96790800000000000000
+      internalID: -7536216767349931875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 2287
+        width: 422
+        height: 573
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e452289e51165ad0800000000000000
+      internalID: -2713962627467160349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_5
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 2287
+        width: 394
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63d666ac11b65ffd0800000000000000
+      internalID: -2308821509803184842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_6
+      rect:
+        serializedVersion: 2
+        x: 2372
+        y: 2287
+        width: 363
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eddd93149ded93f60800000000000000
+      internalID: 8014682036566089182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_7
+      rect:
+        serializedVersion: 2
+        x: 3393
+        y: 2287
+        width: 363
+        height: 567
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 330e182eec052f2d0800000000000000
+      internalID: -3246443531887058893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_8
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 1261
+        width: 365
+        height: 564
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e65f485e9ea519ba0800000000000000
+      internalID: -6083981660976253586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_9
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 1261
+        width: 366
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21088b2df4c6b79f0800000000000000
+      internalID: -469662646036561902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_10
+      rect:
+        serializedVersion: 2
+        x: 2331
+        y: 1261
+        width: 366
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b15f0dc3e91d92ac0800000000000000
+      internalID: -3879339126447606501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_11
+      rect:
+        serializedVersion: 2
+        x: 3348
+        y: 1261
+        width: 365
+        height: 564
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6cac901448776870800000000000000
+      internalID: 8676035440884362349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_12
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 235
+        width: 365
+        height: 568
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4faa9c4c7c8b1310800000000000000
+      internalID: 1376848576580857678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_13
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 235
+        width: 365
+        height: 568
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9530e53152b9ba910800000000000000
+      internalID: 1849742655506744153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_14
+      rect:
+        serializedVersion: 2
+        x: 2335
+        y: 235
+        width: 366
+        height: 567
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddc075b0820928060800000000000000
+      internalID: 6954279276276813021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mamandooz-attack_SS_15
+      rect:
+        serializedVersion: 2
+        x: 3367
+        y: 235
+        width: 366
+        height: 568
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16be10e0bfde8250800000000000000
+      internalID: 5948938108570351135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mamandooz-attack_SS_0: 2583811407338247802
+      mamandooz-attack_SS_1: -43490907120465967
+      mamandooz-attack_SS_10: -3879339126447606501
+      mamandooz-attack_SS_11: 8676035440884362349
+      mamandooz-attack_SS_12: 1376848576580857678
+      mamandooz-attack_SS_13: 1849742655506744153
+      mamandooz-attack_SS_14: 6954279276276813021
+      mamandooz-attack_SS_15: 5948938108570351135
+      mamandooz-attack_SS_2: 6912902367517771948
+      mamandooz-attack_SS_3: -7536216767349931875
+      mamandooz-attack_SS_4: -2713962627467160349
+      mamandooz-attack_SS_5: -2308821509803184842
+      mamandooz-attack_SS_6: 8014682036566089182
+      mamandooz-attack_SS_7: -3246443531887058893
+      mamandooz-attack_SS_8: -6083981660976253586
+      mamandooz-attack_SS_9: -469662646036561902
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
