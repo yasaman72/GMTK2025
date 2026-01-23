@@ -17,6 +17,7 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private float _slowMotionTimeScale = 0.2f;
     [SerializeField] private int _maxAllowedItems = 3;
     [SerializeField] private ParticleSystem _spellParticleSystem;
+    [SerializeField] private GestureRecognizerController _gestureRecognizerController;
 
     private List<Vector2> _points = new();
     private bool _hasAlreadyDrawn = false;
@@ -24,6 +25,7 @@ public class PlayerLassoManager : MonoBehaviour
     // TODO: a more generic to handle values modified by relics
     public static int maxedAllowedItems;
     public static int lassoedCardsCount = 0;
+    public static LassoShape recordedLassoShape = LassoShape.Unknown;
 
     private void Start()
     {
@@ -141,6 +143,7 @@ public class PlayerLassoManager : MonoBehaviour
         _lineRenderer.SetPosition(_points.Count - 1, _points[0]);
         _hasAlreadyDrawn = true;
 
+        RecordTheShapeOfLasso(_points);
         StartCoroutine(DetectInsidePoints(_points));
         ClearLasso();
     }
@@ -192,4 +195,11 @@ public class PlayerLassoManager : MonoBehaviour
 
         Destroy(temp);
     }
+
+    private void RecordTheShapeOfLasso(List<Vector2> points)
+    {
+        recordedLassoShape = _gestureRecognizerController.RecordPoints(points);
+        Logger.Log($"Lasso shape: {recordedLassoShape}", shouldLog);
+    }
+
 }

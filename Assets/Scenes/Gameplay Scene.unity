@@ -415,6 +415,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!1 &546946337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1471165421731587253, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+  m_PrefabInstance: {fileID: 4019621324865817169}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &546946338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546946337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93b000f2f10d9c41a14531baac1d3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.GestureRecognizerController
+  _patterns:
+  - {fileID: 11400000, guid: 4aaabd975f87ea7418c3fbcda46a88a3, type: 2}
 --- !u!114 &651095158 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4119353285427057102, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
@@ -6411,6 +6430,10 @@ PrefabInstance:
       value: LassoManager
       objectReference: {fileID: 0}
     - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: shouldLog
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: _maxAllowedItems
       value: 3
       objectReference: {fileID: 0}
@@ -6418,6 +6441,10 @@ PrefabInstance:
       propertyPath: _spellParticleSystem
       value: 
       objectReference: {fileID: 1446824177}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _gestureRecognizerController
+      value: 
+      objectReference: {fileID: 546946338}
     - target: {fileID: 7142599115855705853, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6461,7 +6488,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1471165421731587253, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 546946338}
   m_SourcePrefab: {fileID: 100100000, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
 --- !u!1001 &4264110672744075795
 PrefabInstance:

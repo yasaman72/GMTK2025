@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e6cbfd98bc0dd4cbfea252c097bdb8, type: 3}
+  m_Name: Circle
+  m_EditorClassIdentifier: Deviloop::Deviloop.GesturePattern
+  _path:
+  - {x: 0.48697916, y: 1}
+  - {x: 0.7135417, y: 0.9609375}
+  - {x: 0.8619792, y: 0.8489583}
+  - {x: 0.9661458, y: 0.7005209}
+  - {x: 0.9921875, y: 0.5026041}
+  - {x: 0.9791667, y: 0.3177083}
+  - {x: 0.90625, y: 0.18229169}
+  - {x: 0.7604167, y: 0.059895813}
+  - {x: 0.5494792, y: 0}
+  - {x: 0.34635416, y: 0.013020813}
+  - {x: 0.15885417, y: 0.08854169}
+  - {x: 0.0390625, y: 0.22135419}
+  - {x: 0.0078125, y: 0.4140625}
+  - {x: 0.0078125, y: 0.6067709}
+  - {x: 0.067708336, y: 0.7890625}
+  - {x: 0.23958333, y: 0.9375}
+  - {x: 0.48697916, y: 0.9947917}
+  _scalingMode: 0
+  _directionSensitivity: 0
+  _rotationSensitivity: 0
+  _editorPath:
+  - {x: 198, y: 6}
+  - {x: 285, y: 21}
+  - {x: 342, y: 64}
+  - {x: 382, y: 121}
+  - {x: 392, y: 197}
+  - {x: 387, y: 268}
+  - {x: 359, y: 320}
+  - {x: 303, y: 367}
+  - {x: 222, y: 390}
+  - {x: 144, y: 385}
+  - {x: 72, y: 356}
+  - {x: 26, y: 305}
+  - {x: 14, y: 231}
+  - {x: 14, y: 157}
+  - {x: 37, y: 87}
+  - {x: 103, y: 30}
+  - {x: 198, y: 8}
+  _editorLineColor: {r: 0, g: 0, b: 1, a: 1}
+  _shape: 3
