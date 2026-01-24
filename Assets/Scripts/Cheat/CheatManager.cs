@@ -1,4 +1,4 @@
-using System.Linq;
+using Deviloop;
 using UnityEngine;
 using static LootSet;
 
@@ -8,6 +8,7 @@ public class CheatManager : MonoBehaviour
     [SerializeField] GameObject _enemies;
     [Header("logging")]
     [SerializeField] TMPro.TextMeshProUGUI _logText;
+    [SerializeField] TMPro.TextMeshProUGUI _logLassoShape;
     [SerializeField] int maxLines = 50;
 
     private readonly System.Collections.Generic.Queue<string> logQueue = new();
@@ -15,11 +16,21 @@ public class CheatManager : MonoBehaviour
     private void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
+        PlayerLassoManager.OnLassoShapeRecognized += LogLassoShape;
     }
 
     private void OnDisable()
     {
         Application.logMessageReceived -= HandleLog;
+        PlayerLassoManager.OnLassoShapeRecognized -= LogLassoShape;
+    }
+
+    private void LogLassoShape(LassoShape shape)
+    {
+        if (_logLassoShape != null)
+        {
+            _logLassoShape.text = shape.ToString();
+        }
     }
 
     private void HandleLog(string logString, string stackTrace, LogType type)
@@ -28,8 +39,9 @@ public class CheatManager : MonoBehaviour
         if (type == LogType.Error || type == LogType.Exception)
         {
             formattedLog = $"<color=red>{formattedLog}</color>";
-            formattedLog += $"\n{stackTrace}"; 
-        }else if(type == LogType.Warning)
+            formattedLog += $"\n{stackTrace}";
+        }
+        else if (type == LogType.Warning)
         {
             formattedLog = $"<color=yellow>{formattedLog}</color>";
         }

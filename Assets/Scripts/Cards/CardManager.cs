@@ -142,6 +142,7 @@ namespace Cards
 
             cardsToThrow = ShuffleCards(cardsToThrow);
 
+            GameStateManager.CanPlayerDrawLasso = true;
             // Throw cards with slight delays
             for (int i = 0; i < cardsToThrow.Count; i++)
             {
@@ -150,7 +151,6 @@ namespace Cards
                 yield return new WaitForSeconds(delayBetweenThrows); // Small delay between throws
             }
 
-            GameStateManager.CanPlayerDrawLasso = true;
             while (thrownCards.Count > 0)
             {
                 // Wait until all thrown cards are out of view or destroyed

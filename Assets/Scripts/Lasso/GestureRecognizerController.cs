@@ -7,6 +7,7 @@ namespace Deviloop
     public class GestureRecognizerController : MonoBehaviour
     {
         // Set of patterns for recognition
+        [SerializeField, Range(0,1)] private float _scoreThreshold = 0.9f;
         [SerializeField] private List<GesturePattern> _patterns;
 
         private IGestureRecorder _gestureRecorder;
@@ -54,7 +55,7 @@ namespace Deviloop
 
             Clear();
 
-            if (result.Score < 0.8f)
+            if (result.Score < _scoreThreshold)
                 return LassoShape.Unknown;
 
             return result.Pattern.Shape;

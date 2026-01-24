@@ -1,11 +1,13 @@
 using Cards;
 using Deviloop;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLassoManager : MonoBehaviour
 {
+    public static Action<LassoShape> OnLassoShapeRecognized;
     [SerializeField] private bool shouldLog = true;
     [Space]
     [SerializeField] private LineRenderer _lineRenderer;
@@ -27,7 +29,7 @@ public class PlayerLassoManager : MonoBehaviour
     // TODO: a more generic to handle values modified by relics
     public static int maxedAllowedItems;
     public static int lassoedCardsCount = 0;
-    public static LassoShape recordedLassoShape = LassoShape.Unknown;
+    public LassoShape recordedLassoShape = LassoShape.Unknown;
 
     private void Start()
     {
@@ -209,6 +211,6 @@ public class PlayerLassoManager : MonoBehaviour
     private void RecordTheShapeOfLasso(List<Vector2> points)
     {
         recordedLassoShape = _gestureRecognizerController.RecordPoints(points);
-        Logger.Log($"Lasso shape: {recordedLassoShape}", shouldLog);
+        OnLassoShapeRecognized?.Invoke(recordedLassoShape);
     }
 }

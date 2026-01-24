@@ -4128,17 +4128,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2721990244803047427}
     m_Modifications:
-    - target: {fileID: 120825487900894987, guid: 267e45d3f6693bf469926c8e7bb8e9e7, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 57.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 808145977097635742, guid: 267e45d3f6693bf469926c8e7bb8e9e7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1643037911719360717, guid: 267e45d3f6693bf469926c8e7bb8e9e7, type: 3}
       propertyPath: m_Name
       value: CheatUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329267402934922867, guid: 267e45d3f6693bf469926c8e7bb8e9e7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 36.23
       objectReference: {fileID: 0}
     - target: {fileID: 3815034369861242607, guid: 267e45d3f6693bf469926c8e7bb8e9e7, type: 3}
       propertyPath: m_Pivot.x
@@ -4219,10 +4215,6 @@ PrefabInstance:
     - target: {fileID: 3815034369861242607, guid: 267e45d3f6693bf469926c8e7bb8e9e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8564823502994532753, guid: 267e45d3f6693bf469926c8e7bb8e9e7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 32.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
