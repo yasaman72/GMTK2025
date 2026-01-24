@@ -3,8 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using Random = UnityEngine.Random;
 
 public class CombatManager : MonoBehaviour
@@ -15,17 +17,35 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField] private Transform _enemySpawnCenter;
     [SerializeField] private float _waitBeforeShowingRewards = 3;
-    [SerializeField] private TextMeshProUGUI _deatedEnemiesCounter;
     [SerializeField] private float _enemySpawnAreaWidth = 5;
-
     private static List<Enemy> _spawnedEnemies = new List<Enemy>();
     private static List<Enemy> _defeatedEnemies = new List<Enemy>();
     public static List<Enemy> SpawnedEnemies => _spawnedEnemies;
 
-    public static int CombatRoundCounter = 0;
+
+    private static int _combatRoundCounter = 0;
+    public static int CombatRoundCounter
+    {
+        get => _combatRoundCounter;
+
+        private set
+        {
+            _combatRoundCounter = value;
+            CombatRoundCounterVariable.Value = _combatRoundCounter;
+        }
+    }
+    private static IntVariable CombatRoundCounterVariable;
+    private static BoolVariable IsInCombatVariable;
 
     private void Awake()
     {
+        var source = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
+        IsInCombatVariable = source["global"]["IsInCombat"] as BoolVariable;
+        IsInCombatVariable.Value = false;
+
+        CombatRoundCounterVariable = source["global"]["CurrentCombatRoundCounter"] as IntVariable;
+        CombatRoundCounterVariable.Value = 0;
+
         OnCombatStartEvent += StartCombat;
         gameObject.SetActive(false);
     }
@@ -55,9 +75,10 @@ public class CombatManager : MonoBehaviour
 
     public void StartCombat(int numberOfEnemiesToSpawn, Enemy[] enemyTypes)
     {
+        IsInCombatVariable.Value = true;
+
         CombatRoundCounter = 0;
         DestroyCurrentEnemies();
-        _deatedEnemiesCounter.text = "0";
 
         gameObject.SetActive(true);
 
@@ -101,7 +122,6 @@ public class CombatManager : MonoBehaviour
         combatCharacter.OnDeath -= HandleEnemyDeath;
 
         _defeatedEnemies.Add(combatCharacter as Enemy);
-        _deatedEnemiesCounter.text = _defeatedEnemies.Count.ToString();
 
         if (_defeatedEnemies.Count >= _spawnedEnemies.Count)
         {
@@ -117,6 +137,7 @@ public class CombatManager : MonoBehaviour
 
     private void AfterAllEnemiesDefeated()
     {
+        IsInCombatVariable.Value = false;
         RelicManager.ApplyEffectsForEvent<OnCombatEndEvent>(this);
     }
 
@@ -133,7 +154,6 @@ public class CombatManager : MonoBehaviour
 
         _defeatedEnemies.Clear();
         _spawnedEnemies.Clear();
-        _deatedEnemiesCounter.text = "";
 
         gameObject.SetActive(false);
         OnCombatFinishedEvent?.Invoke();

@@ -26,6 +26,7 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cc3d90e59c61e144fb0fcff793b45180
     m_Address: Dialogue String Table_en-US

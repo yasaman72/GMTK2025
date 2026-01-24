@@ -62,9 +62,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 352181221634048
-    m_Localized: adds 1 to the amount of items that can be circled around.
+    m_Localized: "adds 1 to the amount of items that can be circled around. \n{global.IsInCombat:cond:<br>Current
+      {global.MaxedAllowedItems}|}"
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 5144960777497608279
   - m_Id: 352469823303680
     m_Localized: +1 to looped items
     m_Metadata:
@@ -129,7 +131,10 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 415894985289728
-    m_Localized: if you finish a combat in less than {turn} turns, earn {coin} coins.
+    m_Localized: 'if you finish a combat in less than {turn} turns, earn {coin} coins.
+
+      {global.IsInCombat:cond:<br>current
+      turns {global.CurrentCombatRoundCounter}|}'
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
@@ -173,3 +178,4 @@ MonoBehaviour:
         - id: 415938337615872
         - id: 10107076598345728
         - id: 10106929495715840
+        - id: 352181221634048

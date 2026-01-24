@@ -15,12 +15,12 @@ namespace Deviloop
 
         public override void OnAdded()
         {
-            PlayerLassoManager.maxedAllowedItems += amountToAdd;
+            PlayerLassoManager.MaxedAllowedItems += amountToAdd;
         }
 
         public override void OnRemoved()
         {
-            PlayerLassoManager.maxedAllowedItems -= amountToAdd;
+            PlayerLassoManager.MaxedAllowedItems -= amountToAdd;
         }
 
         public override bool IsPassive() => true;

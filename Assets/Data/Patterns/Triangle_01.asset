@@ -27,4 +27,4 @@ MonoBehaviour:
   - {x: 199, y: 11}
   _editorLineColor: {r: 0, g: 0, b: 1, a: 1}
   _shape: 1
-  _scoreAccuracy: 0.7
+  _scoreAccuracy: 0.8

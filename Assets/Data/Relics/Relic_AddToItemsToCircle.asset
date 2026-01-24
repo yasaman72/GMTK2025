@@ -41,7 +41,7 @@ MonoBehaviour:
       m_KeyId: 352181221634048
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
     m_LocalVariables: []
   shortDescription:
     m_TableReference:

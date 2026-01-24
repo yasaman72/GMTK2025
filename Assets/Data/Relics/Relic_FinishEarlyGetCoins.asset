@@ -42,7 +42,7 @@ MonoBehaviour:
       m_KeyId: 415894985289728
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
     m_LocalVariables:
     - name: turn
       variable:
@@ -57,7 +57,7 @@ MonoBehaviour:
       m_KeyId: 415938337615872
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
     m_LocalVariables:
     - name: turn
       variable:

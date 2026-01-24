@@ -4,6 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class PlayerLassoManager : MonoBehaviour
 {
@@ -23,13 +26,33 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private GestureRecognizerController _gestureRecognizerController;
 
     private List<Vector2> _points = new();
-    private bool _hasAlreadyDrawn = false;
+    private static bool _hasAlreadyDrawn = false;
+    public static bool HasAlreadyDrawn => _hasAlreadyDrawn;
     private bool _startNewLine = false;
 
     // TODO: a more generic to handle values modified by relics
-    public static int maxedAllowedItems;
+    private static int maxedAllowedItems;
+    public static int MaxedAllowedItems
+    {
+        get => maxedAllowedItems;
+        set
+        {
+            maxedAllowedItems = value;
+            MaxedAllowedItemsVariable.Value = maxedAllowedItems;
+        }
+
+    }
+    private static IntVariable MaxedAllowedItemsVariable;
+
     public static int lassoedCardsCount = 0;
     public static LassoShape recordedLassoShape = LassoShape.Unknown;
+
+    private void Awake()
+    {
+        var source = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
+        MaxedAllowedItemsVariable = source["global"]["MaxedAllowedItems"] as IntVariable;
+        MaxedAllowedItemsVariable.Value = 0;
+    }
 
     private void Start()
     {
@@ -61,7 +84,10 @@ public class PlayerLassoManager : MonoBehaviour
     private void OnTurnChanged(TurnManager.ETurnMode turnMode)
     {
         if (turnMode != TurnManager.ETurnMode.Player)
+        {
             ClearLasso();
+            _hasAlreadyDrawn = true;
+        }
     }
 
     private void OnPlayerDrawTurnStart()
@@ -181,7 +207,6 @@ public class PlayerLassoManager : MonoBehaviour
 
         _hasAlreadyDrawn = true;
         _spellParticleSystem.Stop();
-        RecordTheShapeOfLasso(_points);
         Invoke(nameof(ClearLasso), .5f); // delay to see the closed shape
 
         foreach (var hit in hits)
@@ -195,13 +220,14 @@ public class PlayerLassoManager : MonoBehaviour
             }
         }
 
+        lassoedCardsCount = lassoedCards.Count;
+        RecordTheShapeOfLasso(_points);
+
         foreach (var card in lassoedCards)
         {
             card.OnActivate();
             yield return new WaitUntil(() => card == null);
         }
-
-        lassoedCardsCount = lassoedCards.Count;
 
         Destroy(temp);
     }

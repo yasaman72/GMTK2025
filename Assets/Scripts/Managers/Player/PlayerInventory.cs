@@ -7,6 +7,7 @@ using static LootSet;
 public class PlayerInventory : CustomMonoBehavior
 {
     public static Action<LootSetData> AddToInventoryAction;
+    public static Action OnNotEnoughGold;
 
     private static int coinCount;
     public static int CoinCount
@@ -69,6 +70,7 @@ public class PlayerInventory : CustomMonoBehavior
         if (CoinCount < amount)
         {
             Debug.Log($"Not enough coins to spend. Current coins: {CoinCount}, Attempted to spend: {amount}");
+            OnNotEnoughGold?.Invoke();
             return false;
         }
         CoinCount -= amount;

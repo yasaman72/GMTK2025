@@ -44,7 +44,7 @@ namespace Deviloop
 
         private void ShowTooltip(string content, Vector2 position)
         {
-            if (GameStateManager.IsInLassoingState) return;
+            if (!PlayerLassoManager.HasAlreadyDrawn) return;
 
             if (content == null || content == "")
             {
