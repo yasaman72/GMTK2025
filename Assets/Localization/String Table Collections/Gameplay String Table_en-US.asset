@@ -138,6 +138,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
+  - m_Id: 10106698603474944
+    m_Localized: Bubble
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10106929495715840
+    m_Localized: draw circle get {coin} coin
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608280
+  - m_Id: 10107076598345728
+    m_Localized: get {coin} coin when you draw circle
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608280
   references:
     version: 2
     RefIds:
@@ -157,3 +171,5 @@ MonoBehaviour:
         - id: 415625614503936
         - id: 415894985289728
         - id: 415938337615872
+        - id: 10107076598345728
+        - id: 10106929495715840

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d25b7eb9e02704ca2bda09cdc914db, type: 3}
   m_Name: Relic_FinishEarlyGetCoins
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
+  GUID: 390866e15e919e24cbfb5f3a9a90df62
   isInGame: 1
-  relicGUID: 390866e15e919e24cbfb5f3a9a90df62
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -30,7 +30,7 @@ MonoBehaviour:
     predicates:
     - rid: 686207827826966676
     relicEffect:
-    - rid: 686207827826966677
+    - rid: 686207956737327226
   icon: {fileID: 2362377622564846777, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
   rarity: 50
   isNegative: 0
@@ -85,8 +85,8 @@ MonoBehaviour:
       type: {class: CombatTurnCountLessThanOrEqual, ns: Deviloop, asm: Deviloop}
       data:
         _amountToMatch: 3
-    - rid: 686207827826966677
-      type: {class: FinishedEarlyGetCoin, ns: Deviloop, asm: Deviloop}
+    - rid: 686207956737327226
+      type: {class: GetCoin, ns: Deviloop, asm: Deviloop}
       data:
         _coinAmount: 10
     - rid: 5144960850776293467

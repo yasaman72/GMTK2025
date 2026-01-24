@@ -29,7 +29,7 @@ public class PlayerLassoManager : MonoBehaviour
     // TODO: a more generic to handle values modified by relics
     public static int maxedAllowedItems;
     public static int lassoedCardsCount = 0;
-    public LassoShape recordedLassoShape = LassoShape.Unknown;
+    public static LassoShape recordedLassoShape = LassoShape.Unknown;
 
     private void Start()
     {
@@ -81,7 +81,6 @@ public class PlayerLassoManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _startNewLine = true;
-            Debug.Log("Started drawing lasso.");
             Time.timeScale = _slowMotionTimeScale;
         }
 
@@ -149,7 +148,6 @@ public class PlayerLassoManager : MonoBehaviour
 
     void CloseLoop()
     {
-        Logger.Log("Loop closed!", shouldLog);
         Time.timeScale = 1f;
 
         _points.Add(_points[0]);
@@ -157,7 +155,6 @@ public class PlayerLassoManager : MonoBehaviour
         _lineRenderer.SetPosition(_points.Count - 1, _points[0]);
 
         StartCoroutine(DetectInsidePoints(_points));
-        ClearLasso();
     }
 
     private IEnumerator DetectInsidePoints(List<Vector2> loopPoints)
@@ -176,6 +173,7 @@ public class PlayerLassoManager : MonoBehaviour
             if (hits.Count > maxedAllowedItems)
                 MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}.", 2);
 
+            ClearLasso();
             Time.timeScale = 1f;
             Destroy(temp);
             yield break;
@@ -184,6 +182,7 @@ public class PlayerLassoManager : MonoBehaviour
         _hasAlreadyDrawn = true;
         _spellParticleSystem.Stop();
         RecordTheShapeOfLasso(_points);
+        Invoke(nameof(ClearLasso), .5f); // delay to see the closed shape
 
         foreach (var hit in hits)
         {
@@ -203,14 +202,17 @@ public class PlayerLassoManager : MonoBehaviour
         }
 
         lassoedCardsCount = lassoedCards.Count;
-        RelicManager.ApplyEffectsForEvent<AfterLoopClosedEvent>(this);
 
         Destroy(temp);
     }
 
     private void RecordTheShapeOfLasso(List<Vector2> points)
     {
-        recordedLassoShape = _gestureRecognizerController.RecordPoints(points);
-        OnLassoShapeRecognized?.Invoke(recordedLassoShape);
+        StartCoroutine(_gestureRecognizerController.RecordPoints(points, shape =>
+           {
+               recordedLassoShape = shape;
+               OnLassoShapeRecognized?.Invoke(recordedLassoShape);
+               RelicManager.ApplyEffectsForEvent<AfterLoopClosedEventWithItam>(this);
+           }));
     }
 }

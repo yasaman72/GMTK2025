@@ -9,5 +9,7 @@ namespace Deviloop
         [SerializeField]
         private LassoShape _shape;
         public LassoShape Shape => _shape;
+        [SerializeField, Range(0, 1)] private float _scoreAccuracy = 0.8f;
+        public float ScoreAccuracy => _scoreAccuracy;
     }
 }

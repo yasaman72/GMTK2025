@@ -123,6 +123,22 @@ MonoBehaviour:
     m_Key: relic/description/lshort/finishedEarlyGetCoins
     m_Metadata:
       m_Items: []
+  - m_Id: 10106698603474944
+    m_Key: relic/title/Bubble
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10106929495715840
+    m_Key: 'relic/description/short/Bubble
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10107076598345728
+    m_Key: 'relic/description/long/Bubble
+
+'
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

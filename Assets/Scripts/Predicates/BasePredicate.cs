@@ -33,4 +33,17 @@ namespace Deviloop
             return CombatManager.CombatRoundCounter <= _amountToMatch;
         }
     }
+
+    [AddTypeMenu("ShapeRecognizedEquals")]
+    [System.Serializable]
+    public class ShapeRecognizedEquals : BasePredicate
+    {
+        [SerializeField]
+        private LassoShape _shape;
+
+        public override bool Check()
+        {
+            return PlayerLassoManager.recordedLassoShape == _shape;
+        }
+    }
 }

@@ -13,9 +13,9 @@ namespace Deviloop
 
     }
 
-    [AddTypeMenu("AfterLoopClosedEvent")]
+    [AddTypeMenu("AfterLoopClosedEventWithItam")]
     [System.Serializable]
-    public class AfterLoopClosedEvent : BaseGameplayEvent
+    public class AfterLoopClosedEventWithItam : BaseGameplayEvent
     {
 
     }

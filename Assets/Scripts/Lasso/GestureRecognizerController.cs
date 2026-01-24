@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnistrokeGestureRecognition;
 using UnityEngine;
@@ -6,31 +8,15 @@ namespace Deviloop
 {
     public class GestureRecognizerController : MonoBehaviour
     {
-        // Set of patterns for recognition
-        [SerializeField, Range(0,1)] private float _scoreThreshold = 0.9f;
         [SerializeField] private List<GesturePattern> _patterns;
+        [SerializeField] private bool _logResults = true;
+        [Header("Config")]
+        [SerializeField] private int _recorderPathMaxLength = 128;
+        [SerializeField] private float _newPointMinDistance = 0.2f;
+        [SerializeField] private int _resamplePointsNumber = 128;
 
         private IGestureRecorder _gestureRecorder;
         private IGestureRecognizer<GesturePattern> _recognizer;
-
-
-        private void Awake()
-        {
-            // Use this class to record the gesture path.
-            // It uses a resampling algorithm to capture long paths to a limited size buffer.
-            // The first value specifies the maximum number of points in the path buffer.
-            // A higher value gives a more accurate path, but requires more memory.
-            // The second value specifies the minimum distance between the previous and new point to record.
-            // If the distance is less than required, the new point will not be added to the recorded path.
-            // Useful when you want to exclude points from a path when the user keeps the cursor in one place.
-            _gestureRecorder = new GestureRecorder(256, 0.1f);
-
-            // Pass your patterns to the recognizer constructor.
-            // You can also choose the number of points to resample.
-            // A higher value gives more accurate results but takes longer to process.
-            // 128 is the default and gives good results, but you can choose a better value for your pattern set.
-            _recognizer = new GestureRecognizer<GesturePattern>(_patterns, 256);
-        }
 
         private void OnDestroy()
         {
@@ -44,33 +30,55 @@ namespace Deviloop
             _gestureRecorder.Reset();
         }
 
-        public LassoShape RecordPoints(List<Vector2> points)
+        public IEnumerator RecordPoints(
+            List<Vector2> points,
+            Action<LassoShape> onResult)
         {
-            foreach (var p in points)
+            var patternsCopy = new List<GesturePattern>(_patterns);
+            _gestureRecorder = new GestureRecorder(_recorderPathMaxLength, _newPointMinDistance);
+
+            for (int i = 0; i < points.Count; i++)
             {
-                _gestureRecorder.RecordPoint(new Vector2(p.x, p.y));
+                Vector2 p = points[i];
+                var Vec = new Vector2(p.x, p.y);
+                _gestureRecorder.RecordPoint(Vec);
             }
+
+            yield return StartCoroutine(RecognizeShape(points, patternsCopy, onResult));
+        }
+
+        private IEnumerator RecognizeShape(
+            List<Vector2> points,
+            List<GesturePattern> patterns,
+            Action<LassoShape> onResult)
+        {
+            // You can also choose the number of points to resample.
+            // A higher value gives more accurate results but takes longer to process.
+            // 128 is the default and gives good results, but you can choose a better value for your pattern set.
+            _recognizer = new GestureRecognizer<GesturePattern>(patterns, _resamplePointsNumber);
 
             var result = _recognizer.Recognize(_gestureRecorder.Path);
 
-            Clear();
+            yield return null;
 
-            if (result.Score < _scoreThreshold)
-                return LassoShape.Unknown;
-
-            return result.Pattern.Shape;
-        }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (Application.isPlaying && _recognizer != null)
+            if (result.Score < result.Pattern.ScoreAccuracy)
             {
-                _recognizer.Dispose();
-                _recognizer = new GestureRecognizer<GesturePattern>(_patterns);
-            }
-        }
+                Logger.Log($"failed shape: {result.Pattern.Shape}, score: {result.Score}", _logResults);
 
-#endif
+                if (patterns.Count > 1)
+                {
+                    patterns.Remove(result.Pattern);
+                    yield return StartCoroutine(
+                        RecognizeShape(points, patterns, onResult));
+                    yield break;
+                }
+
+                onResult?.Invoke(LassoShape.Unknown);
+                yield break;
+            }
+
+            Clear();
+            onResult?.Invoke(result.Pattern.Shape);
+        }
     }
 }

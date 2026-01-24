@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d25b7eb9e02704ca2bda09cdc914db, type: 3}
   m_Name: Relic_Test
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
+  GUID: 2d4662d77fd599a4eb2f497fbbe62c3b
   isInGame: 0
   relicName:
     m_TableReference:
@@ -22,7 +23,12 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  relicEffect: []
+  relicEffectCompound:
+    isPassive: 1
+    gameplayEvent:
+      rid: 686207956737327235
+    predicates: []
+    relicEffect: []
   icon: {fileID: 2750705142841656183, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
   rarity: 50
   isNegative: 0
@@ -48,4 +54,7 @@ MonoBehaviour:
   _developerNotes: 
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 686207956737327235
+      type: {class: AfterLoopClosedEventWithItam, ns: Deviloop, asm: Deviloop}
+      data: 

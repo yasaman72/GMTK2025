@@ -1,11 +1,12 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Logger : MonoBehaviour
 {
-    public static void Log(string message, bool inEnabled = true)
+    public static void Log(string message, bool inEnabled = true, [CallerMemberName] string caller = "")
     {
         if (!inEnabled) return;
-        Debug.Log(message);
+        Debug.Log(caller + ":" + message);
     }
     public static void LogWarning(string message, bool inEnabled = true)
     {

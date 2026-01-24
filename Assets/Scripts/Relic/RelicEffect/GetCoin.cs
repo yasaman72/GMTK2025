@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [AddTypeMenu("FinishedEarlyGetCoin")]
+    [AddTypeMenu("GetCoin")]
     [System.Serializable]
-    public class FinishedEarlyGetCoin : BaseRelicEffect
+    public class GetCoin : BaseRelicEffect
     {
         [SerializeField] private int _coinAmount = 10;
 
