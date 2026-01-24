@@ -29,6 +29,7 @@ public class PlayerLassoManager : MonoBehaviour
     private static bool _hasAlreadyDrawn = false;
     public static bool HasAlreadyDrawn => _hasAlreadyDrawn;
     private bool _startNewLine = false;
+    private Coroutine clearCoroutine;
 
     // TODO: a more generic to handle values modified by relics
     private static int maxedAllowedItems;
@@ -65,7 +66,9 @@ public class PlayerLassoManager : MonoBehaviour
         {
             _lineRenderer = GetComponent<LineRenderer>();
         }
-        ClearLasso();
+
+        ImmediateLassoClear();
+
         GameStateManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
         TurnManager.OnTurnChanged += OnTurnChanged;
 
@@ -85,14 +88,17 @@ public class PlayerLassoManager : MonoBehaviour
     {
         if (turnMode != TurnManager.ETurnMode.Player)
         {
-            ClearLasso();
             _hasAlreadyDrawn = true;
+        }
+        else if (turnMode == TurnManager.ETurnMode.Player)
+        {
+            ImmediateLassoClear();
         }
     }
 
     private void OnPlayerDrawTurnStart()
     {
-        ClearLasso();
+        StartCoroutine(InvertLasso(true));
         _hasAlreadyDrawn = false;
     }
 
@@ -106,6 +112,7 @@ public class PlayerLassoManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            StopCoroutine(InvertLasso());
             _startNewLine = true;
             Time.timeScale = _slowMotionTimeScale;
         }
@@ -149,22 +156,50 @@ public class PlayerLassoManager : MonoBehaviour
             }
             else
             {
-                ClearLasso();
+                StartCoroutine(InvertLasso());
             }
         }
     }
 
-    private void ClearLasso()
+    private void ImmediateLassoClear(float dealy = 0)
+    {
+        if (clearCoroutine != null)
+            StopCoroutine(clearCoroutine);
+        clearCoroutine = StartCoroutine(InvertLasso(true, dealy));
+    }
+
+    private IEnumerator InvertLasso(bool immediate = false, float delay = 0)
     {
         _startNewLine = false;
 
+        yield return new WaitForSeconds(delay);
+
+        CancelParticles();
+
+        if (immediate)
+        {
+            _lineRenderer.positionCount = 0;
+            _points.Clear();
+            _lineRenderer.colorGradient = _defaultColor;
+            yield break;
+        }
+
+        // Gradually remove points from the end
+        while (_lineRenderer.positionCount > 0)
+        {
+            _lineRenderer.positionCount--;
+            yield return null;
+        }
+
+        _points.Clear();
+        _lineRenderer.colorGradient = _defaultColor;
+    }
+
+    private void CancelParticles()
+    {
         _spellParticleSystem.Stop();
         _spellParticleSystem.gameObject.SetActive(false);
         _spellParticleSystem.transform.position = Vector2.one * 1000;
-
-        _lineRenderer.positionCount = 0;
-        _points.Clear();
-        _lineRenderer.colorGradient = _defaultColor;
     }
 
     private bool IsLineNearOtherEnd()
@@ -199,15 +234,15 @@ public class PlayerLassoManager : MonoBehaviour
             if (hits.Count > maxedAllowedItems)
                 MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}.", 2);
 
-            ClearLasso();
             Time.timeScale = 1f;
             Destroy(temp);
+            StartCoroutine(InvertLasso());
             yield break;
         }
 
         _hasAlreadyDrawn = true;
         _spellParticleSystem.Stop();
-        Invoke(nameof(ClearLasso), .5f); // delay to see the closed shape
+        ImmediateLassoClear(0.5f);
 
         foreach (var hit in hits)
         {
