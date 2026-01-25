@@ -1,6 +1,7 @@
 using Cards;
 using System.Collections.Generic;
 using UnityEngine;
+using static Deviloop.Area;
 
 namespace Deviloop
 {
@@ -17,7 +18,7 @@ namespace Deviloop
                 var newArea = new Area
                 {
                     AreaName = area.AreaName,
-                    Encounters = new List<BaseEncounter>(area.Encounters),
+                    Encounters = new List<EncounterProbability>(area.Encounters),
                     BossEncounter = area.BossEncounter
                 };
                 _newAreasList.Add(newArea);

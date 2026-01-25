@@ -6,6 +6,9 @@ namespace Deviloop
 {
     public class EncounterManager : MonoBehaviour
     {
+        [Tooltip("Enable endless mode for testing purposes.")]
+        public bool EndlessMode = false;
+
         // TODO: This should be in AreaManager
         public AreaData AllAreas;
         public EncounterSelectionUI EncounterSelection_UI;
@@ -53,21 +56,30 @@ namespace Deviloop
             if (_currentEncounterIndex == 0)
             {
                 Debug.Log($"Starting encounters in area: {CurrentArea.AreaName}");
-               
+
                 CurrentEncounter = CurrentArea.GetRandomEncounterType<CombatEncounter>();
                 _currentEncounterIndex++;
                 CurrentEncounter.StartEncounter();
+                return;
             }
-            else if (_currentEncounterIndex == CurrentArea.MaxEncounters)
+
+            if (_currentEncounterIndex == CurrentArea.MaxEncounters)
             {
+#if DEBUG
+                if (EndlessMode)
+                {
+                    Debug.Log("Endless mode enabled - restarting area.");
+                    _currentEncounterIndex = 0;
+                    EncounterFinished();
+                    return;
+                }
+#endif
                 Debug.Log("All encounters completed in area.");
                 StartNextArea();
                 return;
             }
-            else 
-            {
-                ShowEncounterSelectionUI();
-            }
+
+            ShowEncounterSelectionUI();
         }
 
         // TODO: Refactor this method to make it more modular. For example use a list in the AreaData to pick the next encounters.

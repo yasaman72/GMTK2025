@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +10,45 @@ namespace Deviloop
         public string AreaName;
         [Min(5)]
         public int MaxEncounters;
-        public List<BaseEncounter> Encounters;
+        [Serializable]
+        public class EncounterProbability
+        {
+            public BaseEncounter Encounter;
+            [Range(1, 100)]
+            public int Probability;
+        }
+        [Header("Sum of all Probabilities should be 100.")]
+        public List<EncounterProbability> Encounters;
         public BaseEncounter BossEncounter;
+
+        public int TotalWeight { get; private set; } = -1;
+
         public BaseEncounter GetRandomEncounter()
         {
-            int randomIndex = Random.Range(0, Encounters.Count);
-            BaseEncounter randomEncounter = Encounters[randomIndex];
+            if(TotalWeight == -1)
+            {
+                TotalWeight = 0;
+                foreach (var encounter in Encounters)
+                {
+                    TotalWeight += encounter.Probability;
+                }
+            }
+
+            int randomIndex = 0;
+            int randomValue = UnityEngine.Random.Range(0, TotalWeight);
+            int cumulativeWeight = 0;
+
+            for (int i = 0; i < Encounters.Count; i++)
+            {
+                cumulativeWeight += Encounters[i].Probability;
+                if (randomValue < cumulativeWeight)
+                {
+                    randomIndex = i;
+                    break;
+                }
+            }
+
+            BaseEncounter randomEncounter = Encounters[randomIndex].Encounter;
 
             return randomEncounter;
         }
@@ -24,9 +58,9 @@ namespace Deviloop
             BaseEncounter reservedEncounter = null;
             foreach (var encounter in Encounters)
             {
-                if (encounter is T)
+                if (encounter.Encounter is T)
                 {
-                    reservedEncounter = encounter;
+                    reservedEncounter = encounter.Encounter;
                     break;
                 }
             }
