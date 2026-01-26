@@ -2,16 +2,22 @@ using UnityEngine;
 
 namespace Deviloop
 {
+    [System.Serializable]
+    public struct EnemyType
+    {
+        public EnemyData EnemyData;
+        public int Quantity;
+    }
+
     [CreateAssetMenu(fileName = "Encounter_Combat_A00_00", menuName = "Scriptable Objects/Encounters/Combat Encounter")]
     public class CombatEncounter : BaseEncounter
     {
-        [SerializeField] private int _numberOfEnemiesToSpawn = 1;
-        [SerializeField] private Enemy[] _enemyTypes;
+        [SerializeField] private EnemyType[] _enemyTypes;
 
         public override void StartEncounter()
         {
             CombatTargetSelection.SetTargetAction?.Invoke(null);
-            CombatManager.OnCombatStartEvent?.Invoke(_numberOfEnemiesToSpawn, _enemyTypes);
+            CombatManager.OnCombatStartEvent?.Invoke(_enemyTypes);
             CombatManager.OnCombatFinishedEvent += FinishEncounter;
         }
 

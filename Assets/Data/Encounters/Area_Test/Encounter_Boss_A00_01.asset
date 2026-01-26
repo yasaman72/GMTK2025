@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EncounterName: Hunt a Deev
   EncounterIcon: {fileID: 21300000, guid: ac9dafa1c2804694e91c2dd8f761f6c9, type: 3}
-  _numberOfEnemiesToSpawn: 1
   _enemyTypes:
-  - {fileID: 868586431597869176, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
+  - EnemyData: {fileID: 0}
+    Quantity: 0

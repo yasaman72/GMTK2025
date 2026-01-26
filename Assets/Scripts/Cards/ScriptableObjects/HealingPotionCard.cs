@@ -39,11 +39,13 @@ namespace Cards.ScriptableObjects
             callBack?.Invoke();
         }
 
+#if UNITY_EDITOR
         private new void OnValidate()
         {
             base.OnValidate();
             var dict = new Dictionary<string, string>() { { "heal", healAmount.ToString() } };
             description.Arguments = new object[] { dict };
         }
+#endif
     }
 }

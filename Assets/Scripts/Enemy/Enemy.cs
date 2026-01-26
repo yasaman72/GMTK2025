@@ -17,7 +17,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
     private Color _grayColor = new Color(.5f, .5f, .5f);
     private EnemyAction nextAction;
 
-    public EnemyStats enemyStats => Stats as EnemyStats;
+    public EnemyData enemyStats => Stats as EnemyData;
 
     protected override void Start()
     {

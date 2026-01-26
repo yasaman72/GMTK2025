@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 public class CombatManager : MonoBehaviour
 {
     // argument is the number of enemies to spawn
-    public static Action<int, Enemy[]> OnCombatStartEvent;
+    public static Action<EnemyType[]> OnCombatStartEvent;
     public static Action OnCombatFinishedEvent;
 
     [SerializeField] private Transform _enemySpawnCenter;
@@ -73,7 +73,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void StartCombat(int numberOfEnemiesToSpawn, Enemy[] enemyTypes)
+    public void StartCombat(EnemyType[] enemyTypes)
     {
         IsInCombatVariable.Value = true;
 
@@ -82,19 +82,19 @@ public class CombatManager : MonoBehaviour
 
         gameObject.SetActive(true);
 
+        int numberOfEnemiesToSpawn = enemyTypes.Sum(et => et.Quantity);
+
         float spacing = _enemySpawnAreaWidth / Mathf.Max(1, numberOfEnemiesToSpawn);
         Vector2 center = _enemySpawnCenter.position;
 
         float totalWidth = spacing * (numberOfEnemiesToSpawn - 1);
         Vector2 startPos = center - new Vector2(totalWidth / 2f, 0);
 
-        for (int i = 0; i < numberOfEnemiesToSpawn; i++)
+        int i = -1;
+        foreach (var enemyType in enemyTypes)
         {
-            int enemyTypeIndex = Random.Range(0, enemyTypes.Length);
-            GameObject _enemyPrefab = enemyTypes[enemyTypeIndex].gameObject;
-            Vector2 spawnPosition = startPos + new Vector2(i * spacing, Random.Range(-.5f, .5f));
-
-            SpawnNewEnemy(_enemyPrefab, spawnPosition);
+            Vector2 spawnPosition = startPos + new Vector2(++i * spacing, Random.Range(-.5f, .5f));
+            SpawnNewEnemy(enemyType.EnemyData.prefab, spawnPosition);
         }
 
         CombatTargetSelection.SetTargetAction?.Invoke(_spawnedEnemies[0]);

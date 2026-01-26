@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
-  m_Name: Enemy_Basic
+  m_Name: Enemy_Mamandooz
   m_EditorClassIdentifier: 
   MaxHealth: 10
+  prefab: {fileID: 5064271856674936583, guid: 632c78b4cf667ec42911350c8acfcfb2, type: 3}
   defeatRewards: {fileID: 11400000, guid: f6c73efaa50e2ea4fa9e294408eeec09, type: 2}
   EnemyActions:
   - {fileID: 11400000, guid: 5a4e5e583e3211048b53c5e382d48c01, type: 2}

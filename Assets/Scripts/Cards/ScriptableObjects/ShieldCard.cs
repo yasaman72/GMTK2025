@@ -40,6 +40,7 @@ namespace Cards.ScriptableObjects
             callBack?.Invoke();
         }
 
+#if UNITY_EDITOR
         private new void OnValidate()
         {
             base.OnValidate();
@@ -47,5 +48,6 @@ namespace Cards.ScriptableObjects
             var dict = new Dictionary<string, string>() { { "shield", shieldAmount.ToString() } };
             description.Arguments = new object[] { dict };
         }
+#endif
     }
 }

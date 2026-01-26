@@ -90,11 +90,13 @@ namespace Cards.ScriptableObjects
             callback?.Invoke();
         }
 
+#if UNITY_EDITOR
         private new void OnValidate()
         {
             base.OnValidate();
             var dict = new Dictionary<string, string>() { { "damage", damage.ToString() } };
             description.Arguments = new object[] { dict };
         }
+#endif
     }
 }
