@@ -58,7 +58,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608280
   - m_Id: 351896151568384
-    m_Localized: Long Rope
+    m_Localized: Chestnut
     m_Metadata:
       m_Items: []
   - m_Id: 352181221634048
@@ -179,6 +179,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
+  - m_Id: 10947568097603584
+    m_Localized: Bone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10947777926049792
+    m_Localized: Egg Timer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -1,5 +1,4 @@
 using Cards;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +12,7 @@ public class HudManager : CustomMonoBehavior
     [SerializeField] private TextMeshProUGUI _playerShield;
     [SerializeField] private SpriteRenderer _bgImage;
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private TextMeshProUGUI _buildNumber;
     [Space]
     // TODO: this is a dirty fix
     [SerializeField] private DeckView _deckView;
@@ -48,8 +48,10 @@ public class HudManager : CustomMonoBehavior
 
     private void Start()
     {
+        _buildNumber.text = "Build: " + Application.version;
         InitializeHud();
     }
+
     private void InitializeHud()
     {
         UpdateTurnText(TurnManager.TurnMode);

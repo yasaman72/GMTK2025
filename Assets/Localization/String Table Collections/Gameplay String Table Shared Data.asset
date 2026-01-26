@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 351896151568384
-    m_Key: relic/relic4Item/title
+    m_Key: relic/name/DrawCircle
     m_Metadata:
       m_Items: []
   - m_Id: 352181221634048
@@ -155,6 +155,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10872071271526400
     m_Key: characterEffect/AttackBuff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10947568097603584
+    m_Key: relic/name/extraDamage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10947777926049792
+    m_Key: relic/name/getCoin
     m_Metadata:
       m_Items: []
   m_Metadata:
