@@ -23,9 +23,9 @@ namespace Deviloop
 
         public int TotalWeight { get; private set; } = -1;
 
-        public BaseEncounter GetRandomEncounter()
+        public BaseEncounter GetRandomEncounter(BaseEncounter[] encountersToIgnore = null)
         {
-            if(TotalWeight == -1)
+            if (TotalWeight == -1)
             {
                 TotalWeight = 0;
                 foreach (var encounter in Encounters)
@@ -50,10 +50,15 @@ namespace Deviloop
 
             BaseEncounter randomEncounter = Encounters[randomIndex].Encounter;
 
+            if(encountersToIgnore != null && Array.Exists(encountersToIgnore, e => e == randomEncounter))
+            {
+                return GetRandomEncounter(encountersToIgnore);
+            }
+
             return randomEncounter;
         }
 
-        public BaseEncounter GetRandomEncounterType<T>()
+        public BaseEncounter GetRandomEncounterType<T>(BaseEncounter[] encountersToIgnore = null)
         {
             BaseEncounter reservedEncounter = null;
             foreach (var encounter in Encounters)
@@ -65,21 +70,25 @@ namespace Deviloop
                 }
             }
 
-            if(reservedEncounter == null)
+            if (reservedEncounter == null)
             {
                 Debug.LogError($"No encounter of type {typeof(T).Name} found in area {AreaName}.");
                 return null;
             }
 
-            BaseEncounter randomEncounter = GetRandomEncounter();
+            BaseEncounter randomEncounter = null;
 
             // Try to get a random encounter of type T, but limit the number of attempts to avoid infinite loops
             for (int i = 0; !(randomEncounter is T) && i < 5; i++)
             {
                 randomEncounter = GetRandomEncounter();
+                if (encountersToIgnore != null && Array.Exists(encountersToIgnore, e => e == randomEncounter))
+                {
+                    randomEncounter = null; // Ignore this encounter and try again
+                }
             }
 
-            if(!(randomEncounter is T))
+            if (!(randomEncounter is T))
                 return reservedEncounter;
 
             return randomEncounter;

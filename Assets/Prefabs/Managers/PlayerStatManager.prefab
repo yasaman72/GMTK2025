@@ -145,11 +145,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.74751
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38462996
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -185,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3771842613608920168, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_Name
-      value: CardManager (1)
+      value: CardManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

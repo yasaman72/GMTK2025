@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4055f6cc53942640931523b3fb65e86, type: 3}
-  m_Name: EnemyAction_AddBombToHand
+  m_Name: EnemyAction_AddBombToHand_q1
   m_EditorClassIdentifier: Deviloop::Deviloop.EnemyAction_AddToHand
-  icon: {fileID: -4975520578640395922, guid: fffdbc027ac9398498db28f7ffbbe6be, type: 3}
+  icon: {fileID: 21300000, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
   actionDuration: 2
   translatedDescription:
     m_TableReference:
@@ -23,6 +23,9 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  cardToAdd:
+    Card: {fileID: 11400000, guid: 361380270d81ae14c993159898d1a690, type: 2}
+    Quantity: 3
   references:
     version: 2
     RefIds: []

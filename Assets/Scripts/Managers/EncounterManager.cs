@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Codice.Utils;
 
 namespace Deviloop
 {
@@ -10,8 +11,8 @@ namespace Deviloop
         public bool EndlessMode = false;
 
         // TODO: This should be in AreaManager
-        public AreaData AllAreas;
-        public EncounterSelectionUI EncounterSelection_UI;
+        [SerializeField] private AreaData AllAreas;
+        [SerializeField] private EncounterSelectionUI EncounterSelection_UI;
 
         public static Area CurrentArea;
         private static int _currentAreaIndex = -1;
@@ -44,7 +45,7 @@ namespace Deviloop
                 Debug.Log("All areas completed. Game finished!");
                 return;
             }
-            
+
             CurrentArea = AllAreas.Areas[_currentAreaIndex];
 
             _currentEncounterIndex = 0;
@@ -110,25 +111,9 @@ namespace Deviloop
             }
             else
             {
-                if (CurrentEncounter is ShopEncounter)
-                {
-                    nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
-                    nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
-                }
-                else
-                {
-                    BaseEncounter firstEncounter = CurrentArea.GetRandomEncounter();
-                    nextEncounters.Add(firstEncounter);
-
-                    if(firstEncounter is ShopEncounter)
-                    {
-                        nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
-                    }
-                    else
-                    {
-                        nextEncounters.Add(CurrentArea.GetRandomEncounter());
-                    }
-                }
+                nextEncounters.Add(CurrentArea.GetRandomEncounter());
+                BaseEncounter[] currentEncounters = { nextEncounters[0] };
+                nextEncounters.Add(CurrentArea.GetRandomEncounter(currentEncounters));
 
                 Debug.Log($"Starting encounter {_currentEncounterIndex + 1}/{CurrentArea.MaxEncounters} in area {CurrentArea.AreaName}: {CurrentEncounter.name}");
             }

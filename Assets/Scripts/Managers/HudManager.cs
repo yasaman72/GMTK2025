@@ -20,6 +20,15 @@ public class HudManager : CustomMonoBehavior
 
     private Color _grayColor = new Color(.5f, .5f, .5f);
 
+    private void Update()
+    {
+        // TODO: replace with the new input manager and a event based system
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnPause();
+        }
+    }
+
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += UpdateTurnText;

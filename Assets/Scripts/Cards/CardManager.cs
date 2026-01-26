@@ -115,7 +115,6 @@ namespace Cards
             {
                 throwButton.gameObject.SetActive(true);
                 UpdateUI();
-                ClearThrownCards();
             }
             else
             {
@@ -135,8 +134,6 @@ namespace Cards
             throwButton.gameObject.SetActive(false);
 
             List<BaseCard> cardsToThrow = SelectCardsToThrow();
-
-            ClearThrownCards();
 
             AudioManager.PlayAudioOneShot?.Invoke(throwStartSound);
 
@@ -162,6 +159,7 @@ namespace Cards
             }
             GameStateManager.CanPlayerDrawLasso = false;
 
+            ClearThrownCards();
             AfterPlayerTurnEnd();
         }
 
