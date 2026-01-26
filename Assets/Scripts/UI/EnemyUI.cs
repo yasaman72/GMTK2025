@@ -22,11 +22,14 @@ public class EnemyUI : CombatCharacterUI
     {
         base.OnEnable();
         (combatCharacter as Enemy).OnIntentionChanged += UpdateIntentionUI;
+        combatCharacter.OnEffectApply += UpdateUIText;
     }
+
     protected override void OnDisable()
     {
         base.OnDisable();
         (combatCharacter as Enemy).OnIntentionChanged -= UpdateIntentionUI;
+        combatCharacter.OnEffectApply -= UpdateUIText;
     }
 
     private IEnumerator Start()
@@ -43,7 +46,7 @@ public class EnemyUI : CombatCharacterUI
             _intentionObject.SetActive(true);
             _intentionIcon.enabled = true;
             _intentionIcon.sprite = nextAction.icon;
-            _intentionText.text = nextAction.IntentionNumber().ToString();
+            _intentionText.text = nextAction.IntentionNumber();
             _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
         }
         else
@@ -51,6 +54,32 @@ public class EnemyUI : CombatCharacterUI
             _intentionObject.SetActive(false);
             _intentionIcon.enabled = false;
             _intentionText.text = "";
+        }
+    }
+
+    public void UpdateUIText()
+    {
+        EnemyAction nextAction = (combatCharacter as Enemy).NextAction;
+
+        if (string.IsNullOrEmpty(nextAction.IntentionNumber()))
+        {
+            _intentionText.text = "";
+            _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
+        }
+        else
+        {
+            int intentionNumber = int.Parse(nextAction.IntentionNumber());
+            intentionNumber += combatCharacter.CurrentAttackBuff;
+            _intentionText.text = intentionNumber.ToString();
+
+            if (combatCharacter.CurrentAttackBuff > 0)
+            {
+                _intentionText.color = Color.red;
+            }
+            else
+            {
+                _intentionText.color = Color.white;
+            }
         }
     }
 }

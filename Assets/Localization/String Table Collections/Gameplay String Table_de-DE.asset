@@ -169,6 +169,16 @@ MonoBehaviour:
       and enemy'
     m_Metadata:
       m_Items: []
+  - m_Id: 10870378471403520
+    m_Localized: apply {Duration} {EffectName}
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 10872071271526400
+    m_Localized: Attack+{Buff} Buff
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
   references:
     version: 2
     RefIds:
@@ -192,3 +202,5 @@ MonoBehaviour:
         - id: 10106929495715840
         - id: 352181221634048
         - id: 10835021449179136
+        - id: 10870378471403520
+        - id: 10872071271526400

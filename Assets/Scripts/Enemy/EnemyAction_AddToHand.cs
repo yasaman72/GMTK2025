@@ -1,5 +1,4 @@
 using Cards;
-using Cards.ScriptableObjects;
 using System;
 using UnityEngine;
 
@@ -10,9 +9,9 @@ namespace Deviloop
     {
         [SerializeField] private CardEntry cardToAdd;
 
-        public override int IntentionNumber()
+        public override string IntentionNumber()
         {
-            return cardToAdd.Quantity;
+            return "";
         }
 
         public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)

@@ -8,8 +8,8 @@ namespace Deviloop
 {
     public class GestureRecognizerController : MonoBehaviour
     {
-        [SerializeField] private List<GesturePattern> _patterns;
         [SerializeField] private bool _logResults = true;
+        [SerializeField] private List<GesturePattern> _patterns;
         [Header("Config")]
         [SerializeField] private int _recorderPathMaxLength = 128;
         [SerializeField] private float _newPointMinDistance = 0.2f;

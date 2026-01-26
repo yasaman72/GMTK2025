@@ -1,10 +1,13 @@
+using Deviloop;
 using FMODUnity;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatCharacter : Character, IDamageDealer, IDamageable
+public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectReceiver
 {
     public Action OnHPChanged;
+    public Action OnEffectApply;
     public Action OnShieldChanged;
     public Action OnDamageRecieved;
     public Action<CombatCharacter> OnDeath;
@@ -16,13 +19,20 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
     [SerializeField] private EventReference _hitSound;
     [SerializeField] private EventReference _onHitShieldSound;
     [SerializeField] private EventReference _deathSound;
+    [Header("Effect")]
+    [SerializeField] private GameObject _effectUIIcon;
+    [SerializeField] private Transform _effectsHolder;
 
-    [SerializeField, ReadOnly] private int CurrentHealth;
-    [SerializeField, ReadOnly] private int CurrentShield;
+    [SerializeField, ReadOnly] private int _currentHealth;
+    [SerializeField, ReadOnly] private int _currentShield;
+    [SerializeField, ReadOnly] private List<CharacterEffectBase> _currentEffects;
+    [SerializeField, ReadOnly] private int _currentAttackBuff;
+    public int CurrentAttackBuff => _currentAttackBuff;
 
     public int MaxHealth => Stats.MaxHealth;
-    public int GetCurrentHealth => CurrentHealth;
-    public int GetCurrentShield => CurrentShield;
+    public int GetCurrentHealth => _currentHealth;
+    public int GetCurrentShield => _currentShield;
+    public List<CharacterEffectBase> GetCurrentEffects => _currentEffects;
 
     protected virtual void Start()
     {
@@ -32,8 +42,8 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
 
     public void ResetStats()
     {
-        CurrentHealth = MaxHealth;
-        CurrentShield = 0;
+        _currentHealth = MaxHealth;
+        _currentShield = 0;
     }
 
     public void TakeDamage(int damage)
@@ -57,7 +67,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
             OnDamageRecieved?.Invoke();
         }
 
-        bool isDead = SetCurrentHealth(CurrentHealth - finalDamage);
+        bool isDead = SetCurrentHealth(_currentHealth - finalDamage);
         OnHPChanged?.Invoke();
         _damageIndicatorApplier.ShowDamageIndicator(finalDamage);
 
@@ -70,15 +80,15 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
 
     public int DamageShield(int damageAmount)
     {
-        if (CurrentShield >= damageAmount)
+        if (_currentShield >= damageAmount)
         {
-            CurrentShield -= damageAmount;
+            _currentShield -= damageAmount;
             return 0;
         }
         else
         {
-            int remainingDamage = damageAmount - CurrentShield;
-            CurrentShield = 0;
+            int remainingDamage = damageAmount - _currentShield;
+            _currentShield = 0;
             return remainingDamage;
         }
     }
@@ -90,7 +100,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
             Logger.LogWarning("Heal amount cannot be negative");
             return;
         }
-        SetCurrentHealth(CurrentHealth + amount);
+        SetCurrentHealth(_currentHealth + amount);
     }
 
     public void FullyHeal()
@@ -100,14 +110,14 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
 
     public bool SetCurrentHealth(int health)
     {
-        CurrentHealth = Mathf.Clamp(health, 0, MaxHealth);
+        _currentHealth = Mathf.Clamp(health, 0, MaxHealth);
         OnHPChanged?.Invoke();
-        return CurrentHealth <= 0;
+        return _currentHealth <= 0;
     }
 
     public bool IsDead()
     {
-        return CurrentHealth <= 0;
+        return _currentHealth <= 0;
     }
 
     public virtual void DealDamage(IDamageable target, int damage)
@@ -117,18 +127,135 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
             Debug.LogWarning("Target is null");
             return;
         }
-        target.TakeDamage(damage);
+        target.TakeDamage(damage + _currentAttackBuff);
     }
 
     public void AddShield(int amount)
     {
-        CurrentShield += amount;
+        _currentShield += amount;
         OnShieldChanged?.Invoke();
     }
 
     protected void RemoveAllShields()
-    { 
-        CurrentShield = 0;
+    {
+        _currentShield = 0;
         OnShieldChanged?.Invoke();
     }
+
+    // TODO: replace architecture with composition over inheritance
+    #region Effects
+    public void AddEffect(CharacterEffectBase effect, int duration)
+    {
+        if (effect == null)
+        {
+            Logger.LogWarning("Effect is null", shouldLog);
+            return;
+        }
+        // create a copy of the effect to avoid shared state issues
+        var effectCopy = Instantiate(effect);
+        effectCopy.OnAddEffect(this, duration);
+        _currentEffects.Add(effectCopy);
+
+        AddEffectIcon(effectCopy, duration);
+    }
+
+    public void RemoveEffect(CharacterEffectBase effect)
+    {
+        if (effect == null)
+        {
+            Logger.LogWarning("Effect is null", shouldLog);
+            return;
+        }
+        effect.OnRemoveEffect(this);
+        _currentEffects.Remove(effect);
+        RemoveEffectIcon(effect);
+    }
+
+    public void ApplyAllEffects(EnemyAction enemyAction)
+    {
+        int effectsCount = _currentEffects.Count;
+        if (effectsCount <= 0)
+        {
+            return;
+        }
+
+        for (int i = effectsCount - 1; i >= 0; i--)
+        {
+            var _currentEffect = _currentEffects[i];
+            if (_currentEffect.CanBeApplied(enemyAction))
+            {
+                ApplyEffect(_currentEffects[i]);
+            }
+        }
+
+        OnEffectApply?.Invoke();
+    }
+
+    public void ApplyEffect(CharacterEffectBase effect)
+    {
+        if (effect == null)
+        {
+            Logger.LogWarning("Effect is null", shouldLog);
+            return;
+        }
+        int remainedDuration;
+        effect.OnApplyEffect(this, out remainedDuration);
+        if (remainedDuration <= 0)
+        {
+            RemoveEffect(effect);
+            return;
+        }
+
+        UpdateEffectIcons();
+    }
+
+    private void AddEffectIcon(CharacterEffectBase effect, int duration)
+    {
+        var iconObject = Instantiate(_effectUIIcon, _effectsHolder);
+        var iconComponent = iconObject.GetComponent<EffectIcon>();
+        if (iconComponent != null)
+        {
+            iconComponent.Initialize(effect, duration);
+            iconComponent.AssociatedEffect = effect;
+        }
+    }
+
+    private void RemoveEffectIcon(CharacterEffectBase effect)
+    {
+        foreach (Transform child in _effectsHolder)
+        {
+            var iconComponent = child.GetComponent<EffectIcon>();
+            if (iconComponent != null && iconComponent.AssociatedEffect == effect)
+            {
+                Destroy(child.gameObject);
+                break;
+            }
+        }
+    }
+
+    private void UpdateEffectIcons()
+    {
+        foreach (Transform child in _effectsHolder)
+        {
+            var iconComponent = child.GetComponent<EffectIcon>();
+            if (iconComponent != null)
+            {
+                var effect = iconComponent.AssociatedEffect;
+                int duration = effect.GetRemainingDuration();
+                iconComponent.UpdateDurationText(duration);
+            }
+        }
+    }
+
+    public void AddAttackBuff(int amount)
+    {
+        _currentAttackBuff = amount;
+    }
+
+    public void RemoveAttackBuff(int amount)
+    {
+        _currentAttackBuff -= amount;
+    }
+
+    #endregion
 }

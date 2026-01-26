@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
-  m_Name: Enemy_Mamandooz
+  m_Name: Enemy_Mamandooz_Basic
   m_EditorClassIdentifier: 
   MaxHealth: 10
   prefab: {fileID: 5064271856674936583, guid: 632c78b4cf667ec42911350c8acfcfb2, type: 3}

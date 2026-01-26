@@ -16,6 +16,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
 
     private Color _grayColor = new Color(.5f, .5f, .5f);
     private EnemyAction nextAction;
+    public EnemyAction NextAction => nextAction;
 
     public EnemyData enemyStats => Stats as EnemyData;
 
@@ -70,12 +71,18 @@ public class Enemy : CombatCharacter, IPointerDownHandler
     {
         int behaviorIndex = UnityEngine.Random.Range(0, enemyStats.EnemyActions.Count);
         nextAction = enemyStats.EnemyActions[behaviorIndex];
+        if (nextAction.CanBeTaken() == false)
+        {
+            PickNextAction();
+            return;
+        }
         OnIntentionChanged?.Invoke(nextAction);
     }
 
     private IEnumerator PlayNextActionWithDelay()
     {
         yield return new WaitForSeconds(_playActionDelay);
+        ApplyAllEffects(nextAction);
         OnIntentionChanged?.Invoke(null);
         nextAction.TakeAction(this, this, OnActionFinished);
     }

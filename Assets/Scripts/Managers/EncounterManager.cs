@@ -112,7 +112,8 @@ namespace Deviloop
             else
             {
                 List<BaseEncounter> currentEncounters = new List<BaseEncounter>();
-                
+
+                // Don't allow two shops in a row
                 if (CurrentEncounter is ShopEncounter)
                     currentEncounters.Add(CurrentEncounter);
 

@@ -149,6 +149,14 @@ MonoBehaviour:
     m_Key: enemy/intention/bomb
     m_Metadata:
       m_Items: []
+  - m_Id: 10870378471403520
+    m_Key: enemy/intention/effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10872071271526400
+    m_Key: characterEffect/AttackBuff
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

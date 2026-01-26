@@ -7,17 +7,15 @@ namespace Deviloop
     {
         public int power = 10;
 
-        public override int IntentionNumber()
+        public override string IntentionNumber()
         {
-            return power;
+            return power.ToString();
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
+        protected override void ApplyOnValidate()
         {
             var dict = new Dictionary<string, string>() { { "ActionPower", power.ToString() } };
             translatedDescription.Arguments = new object[] { dict };
         }
-#endif
     }
 }

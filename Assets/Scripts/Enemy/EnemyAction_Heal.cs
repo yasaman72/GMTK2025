@@ -8,12 +8,20 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "EnemyAction_Heal_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Heal", order = 1)]
     public class EnemyAction_Heal : EnemyActionPowered
     {
+        public override bool CanBeTaken()
+        {
+            List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
+            // remove any enemy has full HP
+            aliveEnemies.Where(e => e.GetCurrentHealth >= e.MaxHealth).ToList().ForEach(e => aliveEnemies.Remove(e));
+            return aliveEnemies.Any();
+        }
+
         public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
         {
             // TODO: better logic for choosing who to heal
-            List<Enemy> enemyAsEnemy = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
-            enemyAsEnemy.Sort((a, b) => a.GetCurrentHealth.CompareTo(b.GetCurrentHealth));
-            var targetToHeal = enemyAsEnemy[0];
+            List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
+            aliveEnemies.Sort((a, b) => a.GetCurrentHealth.CompareTo(b.GetCurrentHealth));
+            var targetToHeal = aliveEnemies[0];
             targetToHeal.Heal(power);
 
             base.TakeAction(enemy, runner, callback);

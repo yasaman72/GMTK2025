@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 7617898554937828164}
   - component: {fileID: 2985385277867156807}
   m_Layer: 0
-  m_Name: Basic Enemy
+  m_Name: Base_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,8 +221,12 @@ MonoBehaviour:
       Data3: 553153441
       Data4: -97422675
     Path: event:/Gameplay/Enemy/Enemy_Death
-  CurrentHealth: 0
-  CurrentShield: 0
+  _effectUIIcon: {fileID: 2273403993632354761, guid: d3dfd79ce33b66e46b1cc240eea32da8, type: 3}
+  _effectsHolder: {fileID: 3156726286304596375}
+  _currentHealth: 0
+  _currentShield: 0
+  _currentEffects: []
+  _currentAttackBuff: 0
   _playActionDelay: 1
   _spriteRenderer: {fileID: 7354075033553675505}
   _animator: {fileID: 1468386346923432247}
@@ -732,38 +736,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4826984992345656382}
     m_Modifications:
-    - target: {fileID: 92353007835986793, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -2.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 1125373658592839688, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -1.2991
-      objectReference: {fileID: 0}
-    - target: {fileID: 1125373658592839688, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.9708003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1125373658592839688, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.23988935
-      objectReference: {fileID: 0}
-    - target: {fileID: 1125373658592839688, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1125373658592839688, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1125373658592839688, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -27.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 1612225998264015211, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.17999983
-      objectReference: {fileID: 0}
     - target: {fileID: 1875570016595670833, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
       propertyPath: m_Name
       value: Enemy UI
@@ -808,9 +780,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3669224896358400548, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.31
+    - target: {fileID: 3788649323926661097, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788649323926661097, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8102370033064795382, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
       propertyPath: combatCharacter
@@ -821,6 +797,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
+--- !u!224 &3156726286304596375 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5472043684631128368, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
+  m_PrefabInstance: {fileID: 6935098571247679655}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5916938025593948676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3612806783557317283, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
