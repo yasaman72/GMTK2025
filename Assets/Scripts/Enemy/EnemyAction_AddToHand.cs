@@ -10,6 +10,11 @@ namespace Deviloop
     {
         [SerializeField] private CardEntry cardToAdd;
 
+        public override int IntentionNumber()
+        {
+            return cardToAdd.Quantity;
+        }
+
         public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
         {
             CardManager.AddCardToHandAction?.Invoke(cardToAdd);

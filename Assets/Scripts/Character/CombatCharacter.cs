@@ -83,7 +83,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable
         }
     }
 
-    public void Heal(int amount)
+    public virtual void Heal(int amount)
     {
         if (amount < 0)
         {

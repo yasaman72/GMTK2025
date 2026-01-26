@@ -7,6 +7,11 @@ namespace Deviloop
     {
         public int power = 10;
 
+        public override int IntentionNumber()
+        {
+            return power;
+        }
+
 #if UNITY_EDITOR
         private void OnValidate()
         {

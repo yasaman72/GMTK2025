@@ -31,5 +31,7 @@ namespace Deviloop
             yield return new WaitForSeconds(actionDuration);
             callback?.Invoke();
         }
+
+        public abstract int IntentionNumber();
     }
 }

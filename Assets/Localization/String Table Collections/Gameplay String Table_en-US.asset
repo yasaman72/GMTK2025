@@ -163,7 +163,10 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608280
   - m_Id: 10835290035630080
-    m_Localized: add a bomb to your hand for the next round
+    m_Localized: 'add bomb to your hand for the next round.
+
+      bombs damage you
+      and enemy'
     m_Metadata:
       m_Items: []
   references:

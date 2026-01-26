@@ -259,5 +259,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4aaabd975f87ea7418c3fbcda46a88a3, type: 2}
   _logResults: 1
   _recorderPathMaxLength: 256
-  _newPointMinDistance: 0.1
+  _newPointMinDistance: 0.05
   _resamplePointsNumber: 256

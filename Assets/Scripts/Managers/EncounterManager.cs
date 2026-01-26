@@ -111,8 +111,13 @@ namespace Deviloop
             }
             else
             {
-                nextEncounters.Add(CurrentArea.GetRandomEncounter());
-                BaseEncounter[] currentEncounters = { nextEncounters[0] };
+                List<BaseEncounter> currentEncounters = new List<BaseEncounter>();
+                
+                if (CurrentEncounter is ShopEncounter)
+                    currentEncounters.Add(CurrentEncounter);
+
+                nextEncounters.Add(CurrentArea.GetRandomEncounter(currentEncounters));
+                currentEncounters.Add(nextEncounters[0]);
                 nextEncounters.Add(CurrentArea.GetRandomEncounter(currentEncounters));
 
                 Debug.Log($"Starting encounter {_currentEncounterIndex + 1}/{CurrentArea.MaxEncounters} in area {CurrentArea.AreaName}: {CurrentEncounter.name}");

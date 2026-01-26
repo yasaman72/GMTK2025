@@ -117,4 +117,10 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         base.DealDamage(target, damage);
         _animator.SetTrigger("Attack");
     }
+
+    public override void Heal(int amount)
+    {
+        base.Heal(amount);
+        _animator.SetTrigger("GetHeal");
+    }
 }
