@@ -7,7 +7,7 @@ using UnityEngine;
 public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectReceiver
 {
     public Action OnHPChanged;
-    public Action OnEffectApply;
+    public Action OnEffectAdded;
     public Action OnShieldChanged;
     public Action OnDamageRecieved;
     public Action<CombatCharacter> OnDeath;
@@ -157,6 +157,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         _currentEffects.Add(effectCopy);
 
         AddEffectIcon(effectCopy, duration);
+        OnEffectAdded?.Invoke();
     }
 
     public void RemoveEffect(CharacterEffectBase effect)
@@ -187,8 +188,6 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
                 ApplyEffect(_currentEffects[i]);
             }
         }
-
-        OnEffectApply?.Invoke();
     }
 
     public void ApplyEffect(CharacterEffectBase effect)

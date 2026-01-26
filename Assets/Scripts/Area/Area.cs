@@ -23,8 +23,9 @@ namespace Deviloop
 
         public int TotalWeight { get; private set; } = -1;
 
-        public BaseEncounter GetRandomEncounter(List<BaseEncounter> encountersToIgnore = null)
+        public BaseEncounter GetRandomEncounter(List<BaseEncounter> encountersToSkip = null)
         {
+            // TODO: accumilate total weight for all encounters
             if (TotalWeight == -1)
             {
                 TotalWeight = 0;
@@ -50,15 +51,15 @@ namespace Deviloop
 
             BaseEncounter randomEncounter = Encounters[randomIndex].Encounter;
 
-            if(encountersToIgnore != null && encountersToIgnore.Contains(randomEncounter))
+            if(encountersToSkip != null && encountersToSkip.Contains(randomEncounter))
             {
-                return GetRandomEncounter(encountersToIgnore);
+                return GetRandomEncounter(encountersToSkip);
             }
 
             return randomEncounter;
         }
 
-        public BaseEncounter GetRandomEncounterType<T>(List<BaseEncounter> encountersToIgnore = null)
+        public BaseEncounter GetRandomEncounterType<T>(List<BaseEncounter> encountersToSkip = null)
         {
             BaseEncounter reservedEncounter = null;
             foreach (var encounter in Encounters)
@@ -82,7 +83,7 @@ namespace Deviloop
             for (int i = 0; !(randomEncounter is T) && i < 5; i++)
             {
                 randomEncounter = GetRandomEncounter();
-                if (encountersToIgnore != null && encountersToIgnore.Contains(randomEncounter))
+                if (encountersToSkip != null && encountersToSkip.Contains(randomEncounter))
                 {
                     randomEncounter = null; // Ignore this encounter and try again
                 }

@@ -20,7 +20,9 @@ namespace Deviloop
         {
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
             // Remove enemies that already have the effect
-            aliveEnemies.Where(e => e.GetCurrentEffects.Any(effect => effect.GetType() == _characterEffect.GetType())).ToList()
+            aliveEnemies
+                .Where(e => e.GetCurrentEffects.Any(effect => effect.GetType() == _characterEffect.GetType()))
+                .ToList()
                 .ForEach(e => aliveEnemies.Remove(e));
             return aliveEnemies.Count > 0;
         }

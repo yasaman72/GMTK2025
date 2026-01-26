@@ -22,14 +22,14 @@ public class EnemyUI : CombatCharacterUI
     {
         base.OnEnable();
         (combatCharacter as Enemy).OnIntentionChanged += UpdateIntentionUI;
-        combatCharacter.OnEffectApply += UpdateUIText;
+        combatCharacter.OnEffectAdded += UpdateUIText;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
         (combatCharacter as Enemy).OnIntentionChanged -= UpdateIntentionUI;
-        combatCharacter.OnEffectApply -= UpdateUIText;
+        combatCharacter.OnEffectAdded -= UpdateUIText;
     }
 
     private IEnumerator Start()

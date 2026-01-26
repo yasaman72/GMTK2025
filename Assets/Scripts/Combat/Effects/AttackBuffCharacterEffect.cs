@@ -15,9 +15,14 @@ namespace Deviloop
             return false;
         }
 
+        public override void OnAddEffect(CombatCharacter character, int duration)
+        {
+            base.OnAddEffect(character, duration);
+            character.AddAttackBuff(_attackBuffPower);
+        }
+
         public override void OnApplyEffect(CombatCharacter character, out int remainedDuration)
         {
-            character.AddAttackBuff(_attackBuffPower);
             remainedDuration = --_effectCurrentDuration;
         }
 

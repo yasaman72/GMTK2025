@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using Codice.Utils;
 
 namespace Deviloop
 {
@@ -66,15 +65,14 @@ namespace Deviloop
 
             if (_currentEncounterIndex == CurrentArea.MaxEncounters)
             {
-#if DEBUG
+                // TODO: put this endless somewhere better
                 if (EndlessMode)
                 {
-                    Debug.Log("Endless mode enabled - restarting area.");
+                    Logger.Log("Endless mode enabled - restarting area.");
                     _currentEncounterIndex = 0;
                     EncounterFinished();
                     return;
                 }
-#endif
                 Debug.Log("All encounters completed in area.");
                 StartNextArea();
                 return;
