@@ -3,13 +3,11 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "EnemyAction_Shield_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Shield", order = 1)]
-    public class EnemyAction_Shield : EnemyActionPowered
+    [CreateAssetMenu(fileName = "EnemyAction_Add[Item]ToHand_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/AddToHand", order = 1)]
+    public class EnemyAction_AddToHand : EnemyAction
     {
         public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
         {
-            (enemy as IDamageable).AddShield(power);
-
             base.TakeAction(enemy, runner, callback);
         }
     }

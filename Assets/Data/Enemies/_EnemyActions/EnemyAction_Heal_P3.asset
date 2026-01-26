@@ -9,21 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41cf3d2c25c9ee844b52e92c4805b9ac, type: 3}
-  m_Name: EnemyAction_HeavyAttack
-  m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 696119623708c7948bd881a5b38a18e4, type: 3}
-  power: 3
+  m_Script: {fileID: 11500000, guid: bf2078e52a6e5ed4cb38be9cac93a0c8, type: 3}
+  m_Name: EnemyAction_Heal_P3
+  m_EditorClassIdentifier: Deviloop::Deviloop.EnemyAction_Heal
+  icon: {fileID: 21300000, guid: f71b2108ef39daa46912ef2a1702692c, type: 3}
   actionDuration: 2
   translatedDescription:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 7840938635264
+      m_KeyId: 10835021449179136
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  power: 3
   references:
     version: 2
     RefIds: []

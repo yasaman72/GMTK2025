@@ -20,8 +20,11 @@ namespace Deviloop
 
         private void OnDestroy()
         {
-            _recognizer.Dispose();
-            _gestureRecorder.Dispose();
+            if (_recognizer != null)
+                _recognizer.Dispose();
+
+            if (_gestureRecorder != null)
+                _gestureRecorder.Dispose();
         }
 
         private void Clear()

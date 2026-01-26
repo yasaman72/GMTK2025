@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55706623c5b38564894d6d5467c6a1f0, type: 3}
-  m_Name: Encounter_Combat_Hard_A00_01
+  m_Name: Encounter_Combat_Mamandooz2Healer1_A00_01 1
   m_EditorClassIdentifier: 
-  EncounterName: Bigger Challenge
+  EncounterName: Healer
   EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
   _enemyTypes:
   - EnemyData: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
-    Quantity: 3
+    Quantity: 2
+  - EnemyData: {fileID: 11400000, guid: 88d2274c109f82d4aa1c43b19ede66f3, type: 2}
+    Quantity: 1

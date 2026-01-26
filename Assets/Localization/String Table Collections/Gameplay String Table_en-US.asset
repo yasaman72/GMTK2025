@@ -157,6 +157,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
+  - m_Id: 10835021449179136
+    m_Localized: heal a unit for {ActionPower}
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608280
+  - m_Id: 10835290035630080
+    m_Localized: add a bomb to your hand for the next round
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -179,3 +188,4 @@ MonoBehaviour:
         - id: 10107076598345728
         - id: 10106929495715840
         - id: 352181221634048
+        - id: 10835021449179136

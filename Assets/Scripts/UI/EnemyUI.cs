@@ -43,7 +43,9 @@ public class EnemyUI : CombatCharacterUI
             _intentionObject.SetActive(true);
             _intentionIcon.enabled = true;
             _intentionIcon.sprite = nextAction.icon;
-            _intentionText.text = nextAction.power.ToString();
+
+            if(nextAction is EnemyActionPowered nextActionPowered)
+                _intentionText.text = nextActionPowered.power.ToString();
             _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
         }
         else

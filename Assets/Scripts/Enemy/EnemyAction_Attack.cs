@@ -1,26 +1,28 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyAction_Attack_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Attack", order = 1)]
-public class EnemyAction_Attack : EnemyAction
+namespace Deviloop
 {
-
-    public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
+    [CreateAssetMenu(fileName = "EnemyAction_Attack_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Attack", order = 1)]
+    public class EnemyAction_Attack : EnemyActionPowered
     {
-        if (enemy == null)
+        public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
         {
-            Logger.LogWarning("Enemy is null");
-            return;
-        }
+            if (enemy == null)
+            {
+                Logger.LogWarning("Enemy is null");
+                return;
+            }
 
-        IDamageable target = Player.PlayerCombatCharacter;
-        if (target == null)
-        {
-            Logger.LogWarning("No valid target to attack.");
-            return;
-        }
-        enemy.DealDamage(target, power);
+            IDamageable target = Player.PlayerCombatCharacter;
+            if (target == null)
+            {
+                Logger.LogWarning("No valid target to attack.");
+                return;
+            }
+            enemy.DealDamage(target, power);
 
-        base.TakeAction(enemy, runner, callback);
+            base.TakeAction(enemy, runner, callback);
+        }
     }
 }

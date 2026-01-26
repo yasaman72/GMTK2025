@@ -93,8 +93,11 @@ public class CombatManager : MonoBehaviour
         int i = -1;
         foreach (var enemyType in enemyTypes)
         {
-            Vector2 spawnPosition = startPos + new Vector2(++i * spacing, Random.Range(-.5f, .5f));
-            SpawnNewEnemy(enemyType.EnemyData.prefab, spawnPosition);
+            for (int j = 0; j < enemyType.Quantity; j++)
+            {
+                Vector2 spawnPosition = startPos + new Vector2(++i * spacing, Random.Range(-.5f, .5f));
+                SpawnNewEnemy(enemyType, spawnPosition);
+            }
         }
 
         CombatTargetSelection.SetTargetAction?.Invoke(_spawnedEnemies[0]);
@@ -109,10 +112,11 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    private void SpawnNewEnemy(GameObject enemyToSpawn, Vector2 spawnPosition)
+    private void SpawnNewEnemy(EnemyType enemyToSpawn, Vector2 spawnPosition)
     {
-        GameObject newEnemyObj = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity, _enemySpawnCenter);
+        GameObject newEnemyObj = Instantiate(enemyToSpawn.EnemyData.prefab, spawnPosition, Quaternion.identity, _enemySpawnCenter);
         Enemy newEnemy = newEnemyObj.GetComponent<Enemy>();
+        newEnemy.Stats = enemyToSpawn.EnemyData;
         _spawnedEnemies.Add(newEnemy);
         newEnemy.OnDeath += HandleEnemyDeath;
     }

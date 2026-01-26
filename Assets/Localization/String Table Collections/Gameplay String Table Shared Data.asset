@@ -139,6 +139,16 @@ MonoBehaviour:
 '
     m_Metadata:
       m_Items: []
+  - m_Id: 10835021449179136
+    m_Key: 'enemy/intention/heal
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10835290035630080
+    m_Key: enemy/intention/bomb
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
