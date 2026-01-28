@@ -206,6 +206,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
+  - m_Id: 11705589086072832
+    m_Localized: Triangle Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11705704152608768
+    m_Localized: draw triangle to deal {damage} to the target enemy
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 11705980414636032
+    m_Localized: draw triangle deal {damage} to target
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
   references:
     version: 2
     RefIds:
@@ -233,3 +247,5 @@ MonoBehaviour:
         - id: 10872071271526400
         - id: 11699745242001408
         - id: 11700011978764288
+        - id: 11705704152608768
+        - id: 11705980414636032

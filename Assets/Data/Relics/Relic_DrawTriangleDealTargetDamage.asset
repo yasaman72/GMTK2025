@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11d25b7eb9e02704ca2bda09cdc914db, type: 3}
-  m_Name: Relic_ExtraDamageIfLoopedOne
+  m_Name: Relic_DrawTriangleDealTargetDamage
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
-  GUID: 1a94b119cc6888e45acf488d75c5093e
+  GUID: b96a0aefbcd47e848adecb82b828cc5f
   isInGame: 1
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 10947568097603584
+      m_KeyId: 11705589086072832
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -26,68 +26,60 @@ MonoBehaviour:
   relicEffectCompound:
     isPassive: 0
     gameplayEvent:
-      rid: 686207956737327234
+      rid: 686207956737327233
     predicates:
-    - rid: 686207827826966673
+    - rid: 686207956737327222
     relicEffect:
-    - rid: 686208056379572339
-  icon: {fileID: 21300000, guid: 48c6e06cd32b9e347959551e430f6ff1, type: 3}
-  rarity: 50
+    - rid: 686208056379572350
+  icon: {fileID: 1534907846572558616, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
+  rarity: 30
   isNegative: 0
   canHaveDuplicates: 0
   description:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 415625614503936
+      m_KeyId: 11705980414636032
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 1
     m_LocalVariables:
     - name: damage
       variable:
-        rid: 5144960850776293466
+        rid: 686207956737327236
   shortDescription:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 415758083207168
+      m_KeyId: 11705704152608768
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables:
     - name: damage
       variable:
-        rid: 5144960850776293465
-  _developerNotes: 'after loop closed
-
-    predicate: collected cards count equal
-    1
-
-    effect: extra damage if looped one
-
-
-    damage all enemies if the player
-    looped exactly one item.'
+        rid: 686207956737327237
+  _developerNotes: "after loop closed\nif shape is circle\neffect: get 1 coin \n\nget
+    1 coin when draw circle"
   references:
     version: 2
     RefIds:
-    - rid: 686207827826966673
-      type: {class: CollectedCardsCountEqual, ns: Deviloop, asm: Deviloop}
+    - rid: 686207956737327222
+      type: {class: ShapeRecognizedEquals, ns: Deviloop, asm: Deviloop}
       data:
-        _amountToMatch: 1
-    - rid: 686207956737327234
+        _shape: 1
+    - rid: 686207956737327233
       type: {class: AfterLoopClosedEventWithItam, ns: Deviloop, asm: Deviloop}
       data: 
-    - rid: 686208056379572339
-      type: {class: DealDamageToAllEnemies, ns: Deviloop, asm: Deviloop}
-      data:
-        _damage: 1
-    - rid: 5144960850776293465
+    - rid: 686207956737327236
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
         m_Value: 3
-    - rid: 5144960850776293466
+    - rid: 686207956737327237
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 1
+        m_Value: 3
+    - rid: 686208056379572350
+      type: {class: DealDamageToTarget, ns: Deviloop, asm: Deviloop}
+      data:
+        _damage: 3

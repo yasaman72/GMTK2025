@@ -53,4 +53,4 @@ MonoBehaviour:
   - {x: 198, y: 8}
   _editorLineColor: {r: 0, g: 0, b: 1, a: 1}
   _shape: 3
-  _scoreAccuracy: 0.82
+  _scoreAccuracy: 0.7

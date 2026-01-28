@@ -56,6 +56,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         {
             if (nextAction != null)
             {
+                // TODO: move this to an enemy controller and activate them one by one
                 if (!IsDead())
                     StartCoroutine(PlayNextActionWithDelay());
             }
@@ -81,7 +82,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
 
     private IEnumerator PlayNextActionWithDelay()
     {
-        yield return new WaitForSeconds(_playActionDelay);
+        yield return new WaitForSeconds(nextAction.actionDelay);
         ApplyAllEffects(nextAction);
         OnIntentionChanged?.Invoke(null);
         nextAction.TakeAction(this, this, OnActionFinished);

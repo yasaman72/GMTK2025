@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: Triangle_02
   m_EditorClassIdentifier: Deviloop::Deviloop.GesturePattern
   _path:
-  - {x: 0.50427353, y: 1}
+  - {x: 0.02710027, y: 1}
   - {x: 1, y: 0}
-  - {x: 0, y: 0.003472209}
-  - {x: 0.5014245, y: 0.9965278}
+  - {x: 0, y: 0.008287311}
+  - {x: 0.01897019, y: 1}
   _scalingMode: 1
   _directionSensitivity: 0
   _rotationSensitivity: 0
   _editorPath:
-  - {x: 200, y: 10}
-  - {x: 374, y: 298}
-  - {x: 23, y: 297}
-  - {x: 199, y: 11}
+  - {x: 29, y: 21}
+  - {x: 388, y: 383}
+  - {x: 19, y: 380}
+  - {x: 26, y: 21}
   _editorLineColor: {r: 0, g: 0, b: 1, a: 1}
   _shape: 1
-  _scoreAccuracy: 0.8
+  _scoreAccuracy: 0.7

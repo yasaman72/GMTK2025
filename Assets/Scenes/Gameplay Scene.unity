@@ -6436,6 +6436,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: LassoManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3665309597393065959, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _logResults
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665309597393065959, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _patterns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665309597393065959, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: '_patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 006da8a3c6358464291be5c6ab13721c, type: 2}
+    - target: {fileID: 3665309597393065959, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: '_patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d34a5bf920ca69c499545b293bd04c79, type: 2}
+    - target: {fileID: 3665309597393065959, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: '_patterns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b8a4dba56a800cd449774f1b0f1131bf, type: 2}
+    - target: {fileID: 3665309597393065959, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: '_patterns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aaabd975f87ea7418c3fbcda46a88a3, type: 2}
     - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: _spellParticleSystem
       value: 

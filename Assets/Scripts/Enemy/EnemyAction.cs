@@ -8,6 +8,7 @@ namespace Deviloop
     public abstract class EnemyAction : ScriptableObject
     {
         public Sprite icon;
+        public int actionDelay = 1;
         public int actionDuration = 2;
         public LocalizedString translatedDescription;
 

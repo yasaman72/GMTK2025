@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [AddTypeMenu("ExtraDamageIfLoopedOne")]
+    [AddTypeMenu("DealDamageToAllEnemies")]
     [System.Serializable]
-    public class ExtraDamageIfLoopedOne : BaseRelicEffect
+    public class DealDamageToAllEnemies : BaseRelicEffect
     {
-        [SerializeField] private int _extraDamage = 3;
+        [SerializeField] private int _damage = 3;
 
         public override void Apply(MonoBehaviour caller)
         {
@@ -14,7 +14,7 @@ namespace Deviloop
 
             foreach (var enemy in enemies)
             {
-                Player.PlayerCombatCharacter.DealDamage(enemy, _extraDamage);
+                Player.PlayerCombatCharacter.DealDamage(enemy, _damage);
             }
 
         }

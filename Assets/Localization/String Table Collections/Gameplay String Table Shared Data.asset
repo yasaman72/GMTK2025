@@ -177,6 +177,18 @@ MonoBehaviour:
     m_Key: relic/description/short/addToThrown
     m_Metadata:
       m_Items: []
+  - m_Id: 11705589086072832
+    m_Key: relic/title/triangleTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11705704152608768
+    m_Key: relic/description/short/triangleTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11705980414636032
+    m_Key: relic/description/long/triangleTarget
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
