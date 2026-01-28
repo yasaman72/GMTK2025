@@ -120,8 +120,12 @@ MonoBehaviour:
       Data3: 1419660727
       Data4: -622930488
     Path: event:/Gameplay/Player/Player_Death
-  CurrentHealth: 0
-  CurrentShield: 0
+  _effectUIIcon: {fileID: 0}
+  _effectsHolder: {fileID: 0}
+  _currentHealth: 0
+  _currentShield: 0
+  _currentEffects: []
+  _currentAttackBuff: 0
 --- !u!114 &2196125166669418209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +190,14 @@ PrefabInstance:
     - target: {fileID: 3771842613608920168, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_Name
       value: CardManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwForceRange.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: throwForceRange.y
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

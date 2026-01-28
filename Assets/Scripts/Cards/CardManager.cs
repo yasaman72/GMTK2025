@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -35,7 +38,16 @@ namespace Cards
         public CardDeck _extraHandCards;
 
         [Header("Throwing Settings")]
-        public int cardsToThrowPerTurn = 5;
+        private static int _cardsToThrowPerTurn = 5;
+        public static int CardsToThrowPerTurn
+        {
+            set
+            {
+                _cardsToThrowPerTurn = Mathf.Max(1, value);
+                CombatRoundCounterVariable.Value = CardsToThrowPerTurn;
+            }
+            get => _cardsToThrowPerTurn;
+        }
         public Transform throwOrigin; // Bottom of screen
         public float delayBetweenThrows = 0.2f;
         public Vector2 throwRange = new Vector2(-5f, 5f);
@@ -57,6 +69,16 @@ namespace Cards
         // Runtime variables
         private List<GameObject> thrownCards = new();
 
+        // TODO: move all the global localized variables to another class
+        private static IntVariable CombatRoundCounterVariable;
+
+
+        private void Awake()
+        {
+            var source = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
+            CombatRoundCounterVariable = source["global"]["CurrentThrownItemsCount"] as IntVariable;
+            CombatRoundCounterVariable.Value = CardsToThrowPerTurn;
+        }
         void Start()
         {
             Initialize();
@@ -168,7 +190,7 @@ namespace Cards
             List<BaseCard> allCards = _drawDeck.GetAllCardsAsList();
             List<BaseCard> selectedCards = new List<BaseCard>();
 
-            for (int i = 0; i < cardsToThrowPerTurn; i++)
+            for (int i = 0; i < CardsToThrowPerTurn; i++)
             {
                 if (allCards.Count <= 0)
                 {

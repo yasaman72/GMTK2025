@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
   m_Name: Enemy_AttackBuffer
   m_EditorClassIdentifier: 
-  MaxHealth: 25
+  MaxHealth: 20
   prefab: {fileID: 5064271856674936583, guid: 205c518db8a5e1c4c998504c13fd789c, type: 3}
   defeatRewards: {fileID: 11400000, guid: f6c73efaa50e2ea4fa9e294408eeec09, type: 2}
   EnemyActions:

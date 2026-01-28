@@ -165,6 +165,18 @@ MonoBehaviour:
     m_Key: relic/name/getCoin
     m_Metadata:
       m_Items: []
+  - m_Id: 11699342932750336
+    m_Key: relic/name/addToThrown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11699745242001408
+    m_Key: relic/description/long/addToThrown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11700011978764288
+    m_Key: relic/description/short/addToThrown
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

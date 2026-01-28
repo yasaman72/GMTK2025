@@ -187,6 +187,25 @@ MonoBehaviour:
     m_Localized: Egg Timer
     m_Metadata:
       m_Items: []
+  - m_Id: 11699342932750336
+    m_Localized: Extra Fingers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11699745242001408
+    m_Localized: 'add {amount} to the number of items thrown.
+
+      {global.IsInCombat:cond:<br>Current
+      {global.CurrentThrownItemsCount}|}'
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 11700011978764288
+    m_Localized: '+{amount} to throw
+
+      {global.IsInCombat:cond:<br>Current {global.CurrentThrownItemsCount}|}'
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
   references:
     version: 2
     RefIds:
@@ -212,3 +231,5 @@ MonoBehaviour:
         - id: 10835021449179136
         - id: 10870378471403520
         - id: 10872071271526400
+        - id: 11699745242001408
+        - id: 11700011978764288

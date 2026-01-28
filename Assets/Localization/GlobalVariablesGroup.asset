@@ -22,18 +22,25 @@ MonoBehaviour:
   - name: IsInCombat
     variable:
       rid: 686207959008804956
+  - name: CurrentThrownItemsCount
+    variable:
+      rid: 686208056379572333
   references:
     version: 2
     RefIds:
     - rid: 686207956737327291
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 0
+        m_Value: 2
     - rid: 686207959008804954
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 4
+        m_Value: 0
     - rid: 686207959008804956
       type: {class: BoolVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 1
+    - rid: 686208056379572333
+      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
         m_Value: 0

@@ -7,11 +7,11 @@ namespace Deviloop
     public class EncounterManager : MonoBehaviour
     {
         [Tooltip("Enable endless mode for testing purposes.")]
-        [SerializeField] private bool EndlessMode = true;
+        [SerializeField] private bool _endlessMode = true;
 
         // TODO: This should be in AreaManager
-        [SerializeField] private AreaData AllAreas;
-        [SerializeField] private EncounterSelectionUI EncounterSelection_UI;
+        [SerializeField] private AreaData _allAreas;
+        [SerializeField] private EncounterSelectionUI _encounterSelectionUI;
 
         public static Area CurrentArea;
         private static int _currentAreaIndex = -1;
@@ -41,13 +41,13 @@ namespace Deviloop
             _currentAreaIndex++;
 
 
-            if (!EndlessMode && _currentAreaIndex >= AllAreas.Areas.Count)
+            if (!_endlessMode && _currentAreaIndex >= _allAreas.Areas.Count)
             {
                 Debug.Log("All areas completed. Game finished!");
                 return;
             }
 
-            CurrentArea = AllAreas.Areas[_currentAreaIndex];
+            CurrentArea = _allAreas.Areas[_currentAreaIndex];
 
             _currentEncounterIndex = 0;
             EncounterFinished();
@@ -68,7 +68,7 @@ namespace Deviloop
             if (_currentEncounterIndex == CurrentArea.MaxEncounters)
             {
                 // TODO: put this endless somewhere better
-                if (EndlessMode)
+                if (_endlessMode)
                 {
                     Logger.Log("Endless mode enabled - restarting area.");
                     _currentEncounterIndex = 0;
@@ -89,7 +89,7 @@ namespace Deviloop
         {
             List<BaseEncounter> nextEncounters = new List<BaseEncounter>();
 
-            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 3)
+            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 3)
             {
                 Debug.Log("Starting a combat before pre boss shop encounter.");
 
@@ -97,14 +97,14 @@ namespace Deviloop
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
             }
-            else if (_currentEncounterIndex == CurrentArea.MaxEncounters - 2)
+            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
             {
                 Debug.Log("Starting pre boss shop/rest encounter.");
 
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>());
                 //nextEncounters.Add(CurrentArea.GetRandomEncounterType<RestEncounter>());
             }
-            else if (_currentEncounterIndex == CurrentArea.MaxEncounters - 1)
+            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
             {
                 Debug.Log("Starting boss encounter.");
                 nextEncounters.Add(CurrentArea.BossEncounter);
@@ -125,7 +125,7 @@ namespace Deviloop
             }
 
             _currentEncounterIndex++;
-            EncounterSelection_UI.ShowNextSelections(nextEncounters);
+            _encounterSelectionUI.ShowNextSelections(nextEncounters);
         }
     }
 }

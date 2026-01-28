@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d25b7eb9e02704ca2bda09cdc914db, type: 3}
+  m_Name: Relic_AddToThrownCards
+  m_EditorClassIdentifier: Deviloop::Deviloop.Relic
+  GUID: 239befc5ab2dce44690b7089061348f2
+  isInGame: 1
+  relicName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 11699342932750336
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  relicEffectCompound:
+    isPassive: 1
+    gameplayEvent:
+      rid: -2
+    predicates: []
+    relicEffect:
+    - rid: 686208056379572330
+  icon: {fileID: 8839868912199988019, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
+  rarity: 15
+  isNegative: 0
+  canHaveDuplicates: 0
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 11699745242001408
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+    m_LocalVariables:
+    - name: amount
+      variable:
+        rid: 5144960850776293467
+  shortDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 11700011978764288
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+    m_LocalVariables:
+    - name: amount
+      variable:
+        rid: 5144960850776293468
+  _developerNotes: 'after pick up
+
+    add 2 to the number of cards thrown.'
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 686208056379572330
+      type: {class: AddToItemsThrown, ns: Deviloop, asm: Deviloop}
+      data:
+        _amountToAdd: 2
+    - rid: 5144960850776293467
+      type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 2
+    - rid: 5144960850776293468
+      type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 2

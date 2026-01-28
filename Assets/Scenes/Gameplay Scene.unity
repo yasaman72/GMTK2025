@@ -6437,10 +6437,6 @@ PrefabInstance:
       value: LassoManager
       objectReference: {fileID: 0}
     - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
-      propertyPath: _loopCloseThreshold
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: _spellParticleSystem
       value: 
       objectReference: {fileID: 1446824177}
@@ -6580,11 +6576,7 @@ PrefabInstance:
       value: EncounterManager
       objectReference: {fileID: 0}
     - target: {fileID: 3584646999949904365, guid: f7495825d714bea4dbe24ea0b074c692, type: 3}
-      propertyPath: EndlessMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3584646999949904365, guid: f7495825d714bea4dbe24ea0b074c692, type: 3}
-      propertyPath: EncounterSelection_UI
+      propertyPath: _encounterSelectionUI
       value: 
       objectReference: {fileID: 3915370811910431694}
     - target: {fileID: 5724403777430250744, guid: f7495825d714bea4dbe24ea0b074c692, type: 3}
