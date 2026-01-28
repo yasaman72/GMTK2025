@@ -7,7 +7,8 @@ using UnityEngine;
 public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectReceiver
 {
     public Action OnHPChanged;
-    public Action OnEffectAdded;
+    public delegate void AttackBuffAppliedHandler(bool isApplied);
+    public AttackBuffAppliedHandler OnAttackBuffApplied;
     public Action OnShieldChanged;
     public Action OnDamageRecieved;
     public Action<CombatCharacter> OnDeath;
@@ -157,7 +158,6 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         _currentEffects.Add(effectCopy);
 
         AddEffectIcon(effectCopy, duration);
-        OnEffectAdded?.Invoke();
     }
 
     public void RemoveEffect(CharacterEffectBase effect)
@@ -249,11 +249,13 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
     public void AddAttackBuff(int amount)
     {
         _currentAttackBuff = amount;
+        OnAttackBuffApplied?.Invoke(true);
     }
 
     public void RemoveAttackBuff(int amount)
     {
         _currentAttackBuff -= amount;
+        OnAttackBuffApplied?.Invoke(false);
     }
 
     #endregion

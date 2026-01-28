@@ -13,6 +13,13 @@ public class EnemyUI : CombatCharacterUI
     [SerializeField] private TooltipTrigger _toolTipTrigger;
 
     private GameObject _canvas;
+    private IntentionUIData _intentionUIData;
+
+    public struct IntentionUIData
+    {
+        public bool isAttackBuffed;
+    }
+
     private void Awake()
     {
         _canvas = transform.GetChild(0).gameObject;
@@ -22,14 +29,16 @@ public class EnemyUI : CombatCharacterUI
     {
         base.OnEnable();
         (combatCharacter as Enemy).OnIntentionChanged += UpdateIntentionUI;
-        combatCharacter.OnEffectAdded += UpdateUIText;
+        combatCharacter.OnAttackBuffApplied += OnAttackBuffApplied;
     }
+
+
 
     protected override void OnDisable()
     {
         base.OnDisable();
         (combatCharacter as Enemy).OnIntentionChanged -= UpdateIntentionUI;
-        combatCharacter.OnEffectAdded -= UpdateUIText;
+        combatCharacter.OnAttackBuffApplied -= OnAttackBuffApplied;
     }
 
     private IEnumerator Start()
@@ -48,6 +57,19 @@ public class EnemyUI : CombatCharacterUI
             _intentionIcon.sprite = nextAction.icon;
             _intentionText.text = nextAction.IntentionNumber();
             _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
+
+            if (_intentionUIData.isAttackBuffed && nextAction is EnemyAction_Attack)
+            {
+                int intentionNumber = int.Parse(nextAction.IntentionNumber());
+                intentionNumber += combatCharacter.CurrentAttackBuff;
+                _intentionText.text = intentionNumber.ToString();
+
+                _intentionText.color = Color.red;
+            }
+            else
+            {
+                _intentionText.color = Color.white;
+            }
         }
         else
         {
@@ -57,29 +79,9 @@ public class EnemyUI : CombatCharacterUI
         }
     }
 
-    public void UpdateUIText()
+    private void OnAttackBuffApplied(bool isApplied)
     {
-        EnemyAction nextAction = (combatCharacter as Enemy).NextAction;
-
-        if (string.IsNullOrEmpty(nextAction.IntentionNumber()))
-        {
-            _intentionText.text = "";
-            _toolTipTrigger.SetLocalizedString(nextAction.translatedDescription);
-        }
-        else
-        {
-            int intentionNumber = int.Parse(nextAction.IntentionNumber());
-            intentionNumber += combatCharacter.CurrentAttackBuff;
-            _intentionText.text = intentionNumber.ToString();
-
-            if (combatCharacter.CurrentAttackBuff > 0)
-            {
-                _intentionText.color = Color.red;
-            }
-            else
-            {
-                _intentionText.color = Color.white;
-            }
-        }
+        _intentionUIData.isAttackBuffed = isApplied;
+        UpdateIntentionUI((combatCharacter as Enemy).NextAction);
     }
 }

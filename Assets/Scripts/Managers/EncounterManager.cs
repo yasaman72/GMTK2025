@@ -7,7 +7,7 @@ namespace Deviloop
     public class EncounterManager : MonoBehaviour
     {
         [Tooltip("Enable endless mode for testing purposes.")]
-        public bool EndlessMode = false;
+        [SerializeField] private bool EndlessMode = true;
 
         // TODO: This should be in AreaManager
         [SerializeField] private AreaData AllAreas;
@@ -39,7 +39,9 @@ namespace Deviloop
         public void StartNextArea()
         {
             _currentAreaIndex++;
-            if (_currentAreaIndex >= AllAreas.Areas.Count)
+
+
+            if (!EndlessMode && _currentAreaIndex >= AllAreas.Areas.Count)
             {
                 Debug.Log("All areas completed. Game finished!");
                 return;
