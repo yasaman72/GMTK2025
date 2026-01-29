@@ -3881,6 +3881,10 @@ PrefabInstance:
       propertyPath: m_Spacing.y
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 2572843767606179655, guid: ad82ebd1a1b62254e91fe3cbf5722723, type: 3}
+      propertyPath: m_ConstraintCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8834292126406227904, guid: ad82ebd1a1b62254e91fe3cbf5722723, type: 3}
       propertyPath: m_Name
       value: RelicsUI

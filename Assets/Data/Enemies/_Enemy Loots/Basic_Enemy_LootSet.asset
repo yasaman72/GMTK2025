@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rewards:
   - item: {fileID: 11400000, guid: 400b5fbbdde999147a3911e21b4f1185, type: 2}
-    countMin: 5
-    countMax: 15
+    countMin: 3
+    countMax: 7
   - item: {fileID: 11400000, guid: 4259326b125d31b49b55ddb62a8bf120, type: 2}
     countMin: 2
     countMax: 2
