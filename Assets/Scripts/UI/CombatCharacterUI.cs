@@ -31,8 +31,8 @@ public abstract class CombatCharacterUI : CustomMonoBehavior
         _hpBar.gameObject.SetActive(combatCharacter.GetCurrentHealth > 0);
         _hpAmountText.gameObject.SetActive(combatCharacter.GetCurrentHealth > 0);
 
-        _hpAmountText.text = $"{combatCharacter.GetCurrentHealth}/{combatCharacter.Stats.MaxHealth}";
-        _hpBar.value = (float)combatCharacter.GetCurrentHealth / combatCharacter.Stats.MaxHealth;
+        _hpAmountText.text = $"{combatCharacter.GetCurrentHealth}/{combatCharacter.MaxHealth}";
+        _hpBar.value = (float)combatCharacter.GetCurrentHealth / combatCharacter.MaxHealth;
 
         _shieldAmountText.text = combatCharacter.GetCurrentShield.ToString();
         _shieldIcon.SetActive(combatCharacter.GetCurrentShield > 0);

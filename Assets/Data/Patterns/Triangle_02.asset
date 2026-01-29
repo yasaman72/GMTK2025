@@ -14,16 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.GesturePattern
   _path:
   - {x: 0.02710027, y: 1}
+  - {x: 0.52234054, y: 0.4909647}
   - {x: 1, y: 0}
+  - {x: 0.4687817, y: 0.004402399}
   - {x: 0, y: 0.008287311}
+  - {x: 0.009403291, y: 0.49986702}
   - {x: 0.01897019, y: 1}
   _scalingMode: 1
   _directionSensitivity: 0
   _rotationSensitivity: 0
   _editorPath:
   - {x: 29, y: 21}
+  - {x: 211.74367, y: 205.27078}
   - {x: 388, y: 383}
+  - {x: 191.98045, y: 381.40634}
   - {x: 19, y: 380}
+  - {x: 22.469814, y: 202.04814}
   - {x: 26, y: 21}
   _editorLineColor: {r: 0, g: 0, b: 1, a: 1}
   _shape: 1

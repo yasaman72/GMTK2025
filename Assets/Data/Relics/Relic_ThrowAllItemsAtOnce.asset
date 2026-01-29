@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11d25b7eb9e02704ca2bda09cdc914db, type: 3}
-  m_Name: Relic_AddToItemsToCircle
+  m_Name: Relic_ThrowAllItemsAtOnce
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
-  GUID: 5791f2c428cfeee45a7d83a421c712bb
+  GUID: 48a482db718a36d41b68cd4a428dd4ab
   isInGame: 1
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 351896151568384
+      m_KeyId: 11903497840406528
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -26,19 +26,19 @@ MonoBehaviour:
   relicEffectCompound:
     isPassive: 1
     gameplayEvent:
-      rid: 686207956737327232
+      rid: -2
     predicates: []
     relicEffect:
-    - rid: 686207827826966671
-  icon: {fileID: 21300000, guid: 21cb212daacbc75479b8fc33e2babed8, type: 3}
-  rarity: 30
+    - rid: 686208069802917989
+  icon: {fileID: 21300000, guid: f29b114a424fd954b82b8eb0a5527b6d, type: 3}
+  rarity: 50
   isNegative: 0
   canHaveDuplicates: 0
   description:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352181221634048
+      m_KeyId: 11903727595991040
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 1
@@ -47,25 +47,19 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352469823303680
+      m_KeyId: 11903679843840000
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
     m_LocalVariables: []
-  _developerNotes: 'after loop closed
+  _developerNotes: 'on pick up
 
-    effect: add to items to circle
-
-
-    adds
-    1 to the amount of items that can be circled around.'
+    throw all items at once'
   references:
     version: 2
     RefIds:
-    - rid: 686207827826966671
-      type: {class: AddToItemsToCircle, ns: Deviloop, asm: Deviloop}
-      data:
-        amountToAdd: 1
-    - rid: 686207956737327232
-      type: {class: AfterLoopClosedEventWithItam, ns: Deviloop, asm: Deviloop}
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 686208069802917989
+      type: {class: ThrowAtOnce, ns: Deviloop, asm: Deviloop}
       data: 

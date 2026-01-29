@@ -31,7 +31,7 @@ MonoBehaviour:
     - rid: 686207956737327222
     relicEffect:
     - rid: 686208056379572350
-  icon: {fileID: 1534907846572558616, guid: 4735af73ca884994fa9b923b9fffd94a, type: 3}
+  icon: {fileID: 21300000, guid: 9d28d5c751ad9eb4ea055fedd795dbab, type: 3}
   rarity: 30
   isNegative: 0
   canHaveDuplicates: 0

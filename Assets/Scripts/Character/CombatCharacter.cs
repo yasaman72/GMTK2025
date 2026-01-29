@@ -30,7 +30,8 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
     [SerializeField, ReadOnly] private int _currentAttackBuff;
     public int CurrentAttackBuff => _currentAttackBuff;
 
-    public int MaxHealth => Stats.MaxHealth;
+    public int ExtraMaxHealth { get; set; } = 0;
+    public int MaxHealth => Stats.MaxHealth + ExtraMaxHealth;
     public int GetCurrentHealth => _currentHealth;
     public int GetCurrentShield => _currentShield;
     public List<CharacterEffectBase> GetCurrentEffects => _currentEffects;

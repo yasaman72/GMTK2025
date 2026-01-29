@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: Deviloop::Deviloop.GameDatabase
   relics:
+  - {fileID: 11400000, guid: 679e3b8a3d57c6e41a48b1d5b75a171f, type: 2}
   - {fileID: 11400000, guid: 5791f2c428cfeee45a7d83a421c712bb, type: 2}
   - {fileID: 11400000, guid: 239befc5ab2dce44690b7089061348f2, type: 2}
   - {fileID: 11400000, guid: 00f4f5068d6902c409b9a294bd2d1195, type: 2}
   - {fileID: 11400000, guid: b96a0aefbcd47e848adecb82b828cc5f, type: 2}
   - {fileID: 11400000, guid: 1a94b119cc6888e45acf488d75c5093e, type: 2}
   - {fileID: 11400000, guid: 390866e15e919e24cbfb5f3a9a90df62, type: 2}
+  - {fileID: 11400000, guid: 48a482db718a36d41b68cd4a428dd4ab, type: 2}
   materials:
   - {fileID: 11400000, guid: a304d654828b0c84db3c3d8e675c20a4, type: 2}
   - {fileID: 11400000, guid: 3138750d40b343b4fb19ac15655d5124, type: 2}

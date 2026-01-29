@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2785ca8a9a20042479c83c3cc75d2b1e
+guid: 1d622c26444fcda4aab3d9a4f04087b3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4560642953142831431
-    second: glass-ball_0
+      213: -3683004140809926483
+    second: tooth_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: glass-ball_0
+      name: tooth_0
       rect:
         serializedVersion: 2
-        x: 68
-        y: 68
-        width: 376
-        height: 376
+        x: 103
+        y: 64
+        width: 311
+        height: 380
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b6788eb56755b0c0800000000000000
-      internalID: -4560642953142831431
+      spriteID: da84bb05f3753ecc0800000000000000
+      internalID: -3683004140809926483
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      glass-ball_0: -4560642953142831431
+      tooth_0: -3683004140809926483
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

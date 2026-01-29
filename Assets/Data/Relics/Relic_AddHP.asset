@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11d25b7eb9e02704ca2bda09cdc914db, type: 3}
-  m_Name: Relic_Test
+  m_Name: Relic_AddHP
   m_EditorClassIdentifier: Deviloop::Deviloop.Relic
-  GUID: 2d4662d77fd599a4eb2f497fbbe62c3b
-  isInGame: 0
+  GUID: 679e3b8a3d57c6e41a48b1d5b75a171f
+  isInGame: 1
   relicName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 351896151568384
+      m_KeyId: 11907345715867648
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -26,10 +26,11 @@ MonoBehaviour:
   relicEffectCompound:
     isPassive: 1
     gameplayEvent:
-      rid: 686207956737327235
+      rid: -2
     predicates: []
-    relicEffect: []
-  icon: {fileID: 2750705142841656183, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
+    relicEffect:
+    - rid: 686208069802917983
+  icon: {fileID: 21300000, guid: 36b1313cc7242a64baaf2c7ebf93a023, type: 3}
   rarity: 50
   isNegative: 0
   canHaveDuplicates: 0
@@ -37,24 +38,43 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352181221634048
+      m_KeyId: 11907441530548224
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+    m_WaitForCompletion: 1
+    m_LocalVariables:
+    - name: amount
+      variable:
+        rid: 686208069802917977
   shortDescription:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352469823303680
+      m_KeyId: 11907406801711104
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  _developerNotes: 
+    m_WaitForCompletion: 1
+    m_LocalVariables:
+    - name: amount
+      variable:
+        rid: 686208069802917978
+  _developerNotes: 'on pick up
+
+    add 10 to hp'
   references:
     version: 2
     RefIds:
-    - rid: 686207956737327235
-      type: {class: AfterLoopClosedEventWithItam, ns: Deviloop, asm: Deviloop}
-      data: 
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 686208069802917977
+      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 10
+    - rid: 686208069802917978
+      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 10
+    - rid: 686208069802917983
+      type: {class: AddHP, ns: Deviloop, asm: Deviloop}
+      data:
+        hpToAdd: 10

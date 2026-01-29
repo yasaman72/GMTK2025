@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 351896151568384
-    m_Key: relic/name/DrawCircle
+    m_Key: relic/name/drawCircle
     m_Metadata:
       m_Items: []
   - m_Id: 352181221634048
@@ -124,17 +124,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10106698603474944
-    m_Key: relic/title/Bubble
+    m_Key: relic/title/drawCircle
     m_Metadata:
       m_Items: []
   - m_Id: 10106929495715840
-    m_Key: 'relic/description/short/Bubble
+    m_Key: 'relic/description/short/drawCircle
 
 '
     m_Metadata:
       m_Items: []
   - m_Id: 10107076598345728
-    m_Key: 'relic/description/long/Bubble
+    m_Key: 'relic/description/long/drawCircle
 
 '
     m_Metadata:
@@ -187,6 +187,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 11705980414636032
     m_Key: relic/description/long/triangleTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11903497840406528
+    m_Key: relic/title/throwAllAtOnce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11903679843840000
+    m_Key: relic/description/short/throwAllAtOnce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11903727595991040
+    m_Key: relic/description/long/throwAllAtOnce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11907345715867648
+    m_Key: relic/title/addHP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11907406801711104
+    m_Key: relic/description/short/addHP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11907441530548224
+    m_Key: relic/description/long/addHP
     m_Metadata:
       m_Items: []
   m_Metadata:

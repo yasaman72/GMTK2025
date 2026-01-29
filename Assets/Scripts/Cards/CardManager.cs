@@ -48,6 +48,7 @@ namespace Cards
             }
             get => _cardsToThrowPerTurn;
         }
+        public static bool ShouldThrowAtOnce = false;
         public Transform throwOrigin; // Bottom of screen
         public float delayBetweenThrows = 0.2f;
         public Vector2 throwRange = new Vector2(-5f, 5f);
@@ -167,7 +168,7 @@ namespace Cards
             {
                 ThrowCard(cardsToThrow[i]);
                 AudioManager.PlayAudioOneShot?.Invoke(throwSound);
-                yield return new WaitForSeconds(delayBetweenThrows); // Small delay between throws
+                yield return new WaitForSeconds(ShouldThrowAtOnce ? 0 : delayBetweenThrows);
             }
 
             while (thrownCards.Count > 0)

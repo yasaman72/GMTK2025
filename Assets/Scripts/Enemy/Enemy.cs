@@ -57,6 +57,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
             if (nextAction != null)
             {
                 // TODO: move this to an enemy controller and activate them one by one
+                // TODO: can use a initiative system later on for the order of actions
                 if (!IsDead())
                     StartCoroutine(PlayNextActionWithDelay());
             }
