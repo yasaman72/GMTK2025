@@ -82,6 +82,13 @@ public class CombatManager : MonoBehaviour
 
         gameObject.SetActive(true);
 
+        StartCoroutine(SpawnEnemies(enemyTypes));
+
+        CombatTargetSelection.SetTargetAction?.Invoke(_spawnedEnemies[0]);
+    }
+
+    private IEnumerator SpawnEnemies(EnemyType[] enemyTypes)
+    {
         int numberOfEnemiesToSpawn = enemyTypes.Sum(et => et.Quantity);
 
         float spacing = _enemySpawnAreaWidth / Mathf.Max(1, numberOfEnemiesToSpawn);
@@ -97,10 +104,9 @@ public class CombatManager : MonoBehaviour
             {
                 Vector2 spawnPosition = startPos + new Vector2(++i * spacing, Random.Range(-.5f, .5f));
                 SpawnNewEnemy(enemyType, spawnPosition);
+                yield return new WaitForSeconds(0.3f);
             }
         }
-
-        CombatTargetSelection.SetTargetAction?.Invoke(_spawnedEnemies[0]);
     }
 
     private void DestroyCurrentEnemies()
