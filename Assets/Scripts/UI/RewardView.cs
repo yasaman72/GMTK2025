@@ -14,15 +14,29 @@ public class RewardView : MonoBehaviour
     [SerializeField] private int _maxItemOption = 2;
     [Space]
     [SerializeField] private Transform _deckContentHolder;
+    [SerializeField] private Transform _itemsSelectionContent;
     [SerializeField] private GameObject _rewardItemPrefab;
 
     Dictionary<LootSetData, GameObject> _allCurrentLoots = new Dictionary<LootSetData, GameObject>();
 
+    private List<GameObject> _rewardPrefabs = new List<GameObject>();
     public void Initialize()
     {
         OpenRewards += onDeckOpen;
         gameObject.SetActive(false);
         _allCurrentLoots.Clear();
+
+        _rewardPrefabs.Clear();
+        for (int i = 0; i < _deckContentHolder.transform.childCount; i++)
+        {
+            if (_deckContentHolder.transform.GetChild(i).GetComponent<RewardItem>() != null)
+                _rewardPrefabs.Add(_deckContentHolder.transform.GetChild(i).gameObject);
+        }
+        for (int i = 0; i < _itemsSelectionContent.transform.childCount; i++)
+        {
+            if (_itemsSelectionContent.transform.GetChild(i).GetComponent<RewardItem>() != null)
+                _rewardPrefabs.Add(_itemsSelectionContent.transform.GetChild(i).gameObject);
+        }
     }
 
     private void OnDestroy()
@@ -34,22 +48,43 @@ public class RewardView : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        // TODO: pooling and not reseting everytime UI is opened
-        foreach (Transform item in _deckContentHolder)
-        {
-            if (item)
-                Destroy(item.gameObject);
-        }
-
         List<LootSetData> allRewards = RewardManager.SelectRewards(loots, _maxItemOption);
 
-        foreach (var reward in allRewards)
+        for (int i = 0; i < allRewards.Count; i++)
         {
-            var newRewardPrefab = Instantiate(_rewardItemPrefab, _deckContentHolder);
+            GameObject newRewardPrefab = null;
+            LootSetData reward = allRewards[i];
+
+            if (_rewardPrefabs.Count > i)
+            {
+                if (reward.item is CardLoot && _rewardPrefabs[i].transform.parent.gameObject != _itemsSelectionContent)
+                {
+                    _rewardPrefabs[i].transform.SetParent(_itemsSelectionContent);
+                    _itemsSelectionContent.gameObject.SetActive(true);
+                }
+                else
+                    _rewardPrefabs[i].transform.SetParent(_deckContentHolder);
+                newRewardPrefab = _rewardPrefabs[i];
+                _rewardPrefabs[i].SetActive(true);
+            }
+            else
+            {
+                if (reward.item is CardLoot)
+                {
+                    newRewardPrefab = Instantiate(_rewardItemPrefab, _itemsSelectionContent);
+                    _itemsSelectionContent.gameObject.SetActive(true);
+                }
+                else
+                    newRewardPrefab = Instantiate(_rewardItemPrefab, _deckContentHolder);
+
+                _rewardPrefabs.Add(newRewardPrefab);
+            }
+
             var rewardItem = newRewardPrefab.GetComponent<RewardItem>().Setup(reward);
             newRewardPrefab.GetComponent<Button>().onClick.AddListener(() => CollectReward(reward, newRewardPrefab));
             _allCurrentLoots.Add(reward, newRewardPrefab);
         }
+
         gameObject.SetActive(true);
     }
 
@@ -67,13 +102,13 @@ public class RewardView : MonoBehaviour
                 if (reward.Key.item is CardLoot)
                 {
                     _allCurrentLoots.Remove(reward.Key);
-                    Destroy(reward.Value);
                 }
             }
+
+            _itemsSelectionContent.gameObject.SetActive(false);
         }
 
-        // TODO: use pooling
-        Destroy(rewardPrefab);
+        rewardPrefab.gameObject.SetActive(false);
     }
 
     public void CollectAllRewards()

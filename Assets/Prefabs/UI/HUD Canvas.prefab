@@ -4334,10 +4334,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2721990244803047427}
     m_Modifications:
-    - target: {fileID: 1396384076141426448, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1563795048338525211, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4361,10 +4357,6 @@ PrefabInstance:
     - target: {fileID: 2379669517032491970, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2573703330287621046, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
-      propertyPath: m_text
-      value: pick 1 Item to add to your deck
       objectReference: {fileID: 0}
     - target: {fileID: 2642938915064373503, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_SizeDelta.x
