@@ -14,7 +14,8 @@ namespace Deviloop
 
         private void OnDisable()
         {
-            _relic.AfterApply -= OnActivate;
+            if(_relic != null)
+                _relic.AfterApply -= OnActivate;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
