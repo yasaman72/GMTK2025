@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c1d26e4ede0ff694ca76493f4203c14a
+guid: 982bb8b1ad9c89f4caacadc65653defd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7495843532613458824
-    second: perspective-dice-six-faces-random_0
+      213: -1831593338004564596
+    second: fire-iris_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: perspective-dice-six-faces-random_0
+      name: fire-iris_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88b955d6af5960860800000000000000
-      internalID: 7495843532613458824
+      spriteID: c851443309fd496e0800000000000000
+      internalID: -1831593338004564596
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      perspective-dice-six-faces-random_0: 7495843532613458824
+      fire-iris_0: -1831593338004564596
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

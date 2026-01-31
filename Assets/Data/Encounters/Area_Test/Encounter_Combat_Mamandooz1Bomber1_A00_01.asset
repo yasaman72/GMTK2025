@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Encounter_Combat_Mamandooz1Bomber1_A00_01
   m_EditorClassIdentifier: 
   EncounterName: Bomber
-  EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
+  EncounterIcon: {fileID: 21300000, guid: 73cae238a50c5ed49981dbcf64940521, type: 3}
   _enemyTypes:
   - EnemyData: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
     Quantity: 1

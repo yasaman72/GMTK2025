@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Encounter_Combat_Mamandooz2Healer1_A00_01
   m_EditorClassIdentifier: 
   EncounterName: Healer
-  EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
+  EncounterIcon: {fileID: 21300000, guid: a511b4eb36c67d44cb97f419d802c6ac, type: 3}
   _enemyTypes:
   - EnemyData: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
     Quantity: 2

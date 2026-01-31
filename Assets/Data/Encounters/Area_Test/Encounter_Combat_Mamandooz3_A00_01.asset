@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Encounter_Combat_Mamandooz3_A00_01
   m_EditorClassIdentifier: 
   EncounterName: Bigger Challenge
-  EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
+  EncounterIcon: {fileID: 21300000, guid: 1cb68716eb8b9d149b0b0f58ea521755, type: 3}
   _enemyTypes:
   - EnemyData: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
     Quantity: 3
