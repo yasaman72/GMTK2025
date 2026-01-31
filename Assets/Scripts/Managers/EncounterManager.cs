@@ -59,7 +59,7 @@ namespace Deviloop
             {
                 Debug.Log($"Starting encounters in area: {CurrentArea.AreaName}");
 
-                CurrentEncounter = CurrentArea.GetRandomEncounterType<CombatEncounter>();
+                CurrentEncounter = CurrentArea.GetRandomEncounterType<CombatEncounter>(true);
                 _currentEncounterIndex++;
                 CurrentEncounter.StartEncounter();
                 return;
@@ -80,51 +80,63 @@ namespace Deviloop
                 return;
             }
 
-            ShowEncounterSelectionUI();
+            ShowEncounterSelectionUI(DeterminNextEncounter());
         }
 
-        // TODO: Refactor this method to make it more modular. For example use a list in the AreaData to pick the next encounters.
-        // Too many nested conditions
-        public void ShowEncounterSelectionUI()
+        public List<BaseEncounter> DeterminNextEncounter()
         {
             List<BaseEncounter> nextEncounters = new List<BaseEncounter>();
 
-            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 3)
+            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 3)
             {
                 Debug.Log("Starting a combat before pre boss shop encounter.");
 
-                // TODO: check that thy're not the same encounter
-                nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
-                nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>());
+                // Avoiding having the same encounter
+                nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false));
+                nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false, new List<BaseEncounter>() { nextEncounters[0] }));
+
+                _currentEncounterIndex++;
+                return nextEncounters;
             }
-            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
+
+            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 2)
             {
                 Debug.Log("Starting pre boss shop/rest encounter.");
 
-                nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>());
+                nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>(false));
                 //nextEncounters.Add(CurrentArea.GetRandomEncounterType<RestEncounter>());
+
+                _currentEncounterIndex++;
+                return nextEncounters;
             }
-            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
+            
+            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 1)
             {
                 Debug.Log("Starting boss encounter.");
                 nextEncounters.Add(CurrentArea.BossEncounter);
+
+                _currentEncounterIndex++;
+                return nextEncounters;
             }
-            else
-            {
-                List<BaseEncounter> currentEncounters = new List<BaseEncounter>();
 
-                // Don't allow two shops in a row
-                if (CurrentEncounter is ShopEncounter)
-                    currentEncounters.Add(CurrentEncounter);
+            List<BaseEncounter> skippingEncounters = new List<BaseEncounter>();
 
-                nextEncounters.Add(CurrentArea.GetRandomEncounter(currentEncounters));
-                currentEncounters.Add(nextEncounters[0]);
-                nextEncounters.Add(CurrentArea.GetRandomEncounter(currentEncounters));
+            // Don't allow two shops in a row
+            if (CurrentEncounter is ShopEncounter)
+                skippingEncounters.Add(CurrentEncounter);
 
-                Debug.Log($"Starting encounter {_currentEncounterIndex + 1}/{CurrentArea.MaxEncounters} in area {CurrentArea.AreaName}: {CurrentEncounter.name}");
-            }
+            nextEncounters.Add(CurrentArea.GetRandomEncounter(false, skippingEncounters));
+            skippingEncounters.Add(nextEncounters[0]);
+            nextEncounters.Add(CurrentArea.GetRandomEncounter(false, skippingEncounters));
+
+            Debug.Log($"Starting encounter {_currentEncounterIndex + 1}/{CurrentArea.MaxEncounters} in area {CurrentArea.AreaName}: {CurrentEncounter.name}");
 
             _currentEncounterIndex++;
+            return nextEncounters;
+        }
+
+        public void ShowEncounterSelectionUI(List<BaseEncounter> nextEncounters)
+        {
             _encounterSelectionUI.ShowNextSelections(nextEncounters);
         }
     }

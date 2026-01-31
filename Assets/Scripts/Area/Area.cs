@@ -14,18 +14,16 @@ namespace Deviloop
         public class EncounterProbability
         {
             public BaseEncounter Encounter;
-            [Range(1, 100)]
             public int Probability;
+            public bool IsStartingEncounter;
         }
-        [Header("Sum of all Probabilities should be 100.")]
         public List<EncounterProbability> Encounters;
         public BaseEncounter BossEncounter;
 
         public int TotalWeight { get; private set; } = -1;
 
-        public BaseEncounter GetRandomEncounter(List<BaseEncounter> encountersToSkip = null)
+        public BaseEncounter GetRandomEncounter(bool isStartingEncounter = false, List<BaseEncounter> encountersToSkip = null)
         {
-            // TODO: accumilate total weight for all encounters
             if (TotalWeight == -1)
             {
                 TotalWeight = 0;
@@ -44,6 +42,9 @@ namespace Deviloop
                 cumulativeWeight += Encounters[i].Probability;
                 if (randomValue < cumulativeWeight)
                 {
+                    if (isStartingEncounter && !Encounters[i].IsStartingEncounter)
+                        continue; // Skip non-starting encounters if we need a starting encounter
+                    
                     randomIndex = i;
                     break;
                 }
@@ -53,13 +54,13 @@ namespace Deviloop
 
             if(encountersToSkip != null && encountersToSkip.Contains(randomEncounter))
             {
-                return GetRandomEncounter(encountersToSkip);
+                return GetRandomEncounter(isStartingEncounter, encountersToSkip);
             }
 
             return randomEncounter;
         }
 
-        public BaseEncounter GetRandomEncounterType<T>(List<BaseEncounter> encountersToSkip = null)
+        public BaseEncounter GetRandomEncounterType<T>(bool isStartingEncounter, List<BaseEncounter> encountersToSkip = null)
         {
             BaseEncounter reservedEncounter = null;
             foreach (var encounter in Encounters)
@@ -82,7 +83,11 @@ namespace Deviloop
             // Try to get a random encounter of type T, but limit the number of attempts to avoid infinite loops
             for (int i = 0; !(randomEncounter is T) && i < 5; i++)
             {
-                randomEncounter = GetRandomEncounter();
+                randomEncounter = GetRandomEncounter(isStartingEncounter, encountersToSkip);
+
+                if (isStartingEncounter && !Encounters[i].IsStartingEncounter)
+                    continue; // Skip non-starting encounters if we need a starting encounter
+
                 if (encountersToSkip != null && encountersToSkip.Contains(randomEncounter))
                 {
                     randomEncounter = null; // Ignore this encounter and try again
