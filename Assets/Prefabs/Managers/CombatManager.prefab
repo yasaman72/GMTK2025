@@ -50,7 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemySpawnCenter: {fileID: 0}
   _waitBeforeShowingRewards: 3
-  _deatedEnemiesCounter: {fileID: 0}
   _enemySpawnAreaWidth: 8
 --- !u!114 &2239370729877516853
 MonoBehaviour:
@@ -91,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 7917524724317671663}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.99, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,7 +145,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1488340026259808163, guid: 6f97c3a06d4f0a34f9eff5b96ec34bb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35cc05512da82c9468495ece399b6906, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -181,9 +180,9 @@ Transform:
   m_GameObject: {fileID: 7937671406359147678}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13, y: 0.8, z: 0}
-  m_LocalScale: {x: 1.6700065, y: 0.39327586, z: 0.39327586}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 817799978642456971}
   m_Father: {fileID: 6756327310851773930}
@@ -198,11 +197,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.03505
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.44576
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -286,14 +285,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6756327310851773930}
     m_Modifications:
-    - target: {fileID: 2313563751063444862, guid: fe54375a30e2b7948a59b360cc60e8dc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.62830997
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313563751063444862, guid: fe54375a30e2b7948a59b360cc60e8dc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.92977
-      objectReference: {fileID: 0}
     - target: {fileID: 2313563751063444862, guid: fe54375a30e2b7948a59b360cc60e8dc, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

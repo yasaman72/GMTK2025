@@ -37,7 +37,7 @@ namespace Deviloop
             }
 
             _targetIndicator.SetActive(true);
-            _targetIndicator.transform.DOMove(target.transform.position + Vector3.up * 1.5f, .2f);
+            _targetIndicator.transform.DOMove(target.transform.position + (Vector3.up * 2.5f), .2f);
             (target as Enemy).OnDeath += ClearTargetOnDeath;
         }
 
