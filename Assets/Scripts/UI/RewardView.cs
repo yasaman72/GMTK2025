@@ -81,6 +81,7 @@ public class RewardView : MonoBehaviour
             }
 
             var rewardItem = newRewardPrefab.GetComponent<RewardItem>().Setup(reward);
+            newRewardPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
             newRewardPrefab.GetComponent<Button>().onClick.AddListener(() => CollectReward(reward, newRewardPrefab));
             _allCurrentLoots.Add(reward, newRewardPrefab);
         }
