@@ -30,7 +30,7 @@ MonoBehaviour:
     predicates: []
     relicEffect:
     - rid: 686208069802917983
-  icon: {fileID: 21300000, guid: 36b1313cc7242a64baaf2c7ebf93a023, type: 3}
+  icon: {fileID: 21300000, guid: a7d659a790064b04a8de81fc18dd7b50, type: 3}
   rarity: 50
   isNegative: 0
   canHaveDuplicates: 0
