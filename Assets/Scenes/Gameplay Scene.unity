@@ -6972,10 +6972,6 @@ PrefabInstance:
       propertyPath: _enemySpawnCenter
       value: 
       objectReference: {fileID: 1309950504}
-    - target: {fileID: 4122108260800499862, guid: 9689b242e0279c046a098f733bbb7144, type: 3}
-      propertyPath: _deatedEnemiesCounter
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6756327310851773930, guid: 9689b242e0279c046a098f733bbb7144, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

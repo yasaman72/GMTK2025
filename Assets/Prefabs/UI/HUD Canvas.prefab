@@ -3885,6 +3885,10 @@ PrefabInstance:
       propertyPath: m_ConstraintCount
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3683281044761462265, guid: ad82ebd1a1b62254e91fe3cbf5722723, type: 3}
+      propertyPath: _relic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8834292126406227904, guid: ad82ebd1a1b62254e91fe3cbf5722723, type: 3}
       propertyPath: m_Name
       value: RelicsUI
@@ -4521,11 +4525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4581,11 +4585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 75.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 18.599976
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
