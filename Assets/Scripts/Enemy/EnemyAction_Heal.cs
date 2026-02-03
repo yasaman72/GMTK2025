@@ -20,6 +20,8 @@ namespace Deviloop
         {
             // TODO: better logic for choosing who to heal
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
+            if (aliveEnemies.Count <= 0) return;
+
             aliveEnemies.Sort((a, b) => a.GetCurrentHealth.CompareTo(b.GetCurrentHealth));
             var targetToHeal = aliveEnemies[0];
             targetToHeal.Heal(power);

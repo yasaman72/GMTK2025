@@ -90,7 +90,7 @@ namespace Deviloop
         {
             List<BaseEncounter> nextEncounters = new List<BaseEncounter>();
 
-            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 3)
+            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 3)
             {
                 Logger.Log("Starting a combat before pre boss shop encounter.", _shouldLog);
 
@@ -102,7 +102,7 @@ namespace Deviloop
                 return nextEncounters;
             }
 
-            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 2)
+            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
             {
                 Logger.Log("Starting pre boss shop/rest encounter.", _shouldLog);
 
@@ -113,7 +113,7 @@ namespace Deviloop
                 return nextEncounters;
             }
             
-            if (_currentEncounterIndex == CurrentArea.MaxEncounters - 1)
+            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
             {
                 Logger.Log("Starting boss encounter.", _shouldLog);
                 nextEncounters.Add(CurrentArea.BossEncounter);
