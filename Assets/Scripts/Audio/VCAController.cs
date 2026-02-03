@@ -14,7 +14,8 @@ namespace Deviloop
 
         public void SetVolume(float newVolume)
         {
-            VcaController.setVolume(newVolume);
+            // TODO: set the volume properly, currently just halves the value
+            VcaController.setVolume(newVolume / 2);
         }
     }
 }

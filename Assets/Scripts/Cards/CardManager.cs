@@ -92,6 +92,8 @@ namespace Cards
             AddCardToHandAction += AddCardToHand;
             ReturnAllCardsToHand += ReturnCardsToDrawDeck;
             RemoveCardFromDeckAction += RemoveCard;
+            CombatManager.OnAfterAllEnemiesDefeated += FinishEncounter;
+
         }
 
         private void OnDisable()
@@ -101,6 +103,12 @@ namespace Cards
             AddCardToHandAction -= AddCardToHand;
             ReturnAllCardsToHand -= ReturnCardsToDrawDeck;
             RemoveCardFromDeckAction -= RemoveCard;
+            CombatManager.OnAfterAllEnemiesDefeated -= FinishEncounter;
+        }
+
+        private void FinishEncounter()
+        {
+            throwButton.gameObject.SetActive(false);
         }
 
         void Initialize()

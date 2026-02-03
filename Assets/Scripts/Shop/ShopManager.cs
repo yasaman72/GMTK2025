@@ -55,6 +55,8 @@ namespace Deviloop
 
         private void FinishShop()
         {
+            ShopUI.OnShopClosedEvent -= FinishShop;
+
             OnShopFinishedEvent?.Invoke();
             gameObject.SetActive(false);
         }

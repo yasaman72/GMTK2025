@@ -14,6 +14,7 @@ public class CombatManager : MonoBehaviour
     // argument is the number of enemies to spawn
     public static Action<EnemyType[]> OnCombatStartEvent;
     public static Action OnCombatFinishedEvent;
+    public static Action OnAfterAllEnemiesDefeated;
 
     [SerializeField] private Transform _enemySpawnCenter;
     [SerializeField] private float _waitBeforeShowingRewards = 3;
@@ -151,6 +152,7 @@ public class CombatManager : MonoBehaviour
     {
         IsInCombatVariable.Value = false;
         RelicManager.ApplyEffectsForEvent<OnCombatEndEvent>(this);
+        OnAfterAllEnemiesDefeated?.Invoke();
     }
 
     private IEnumerator ShowRewards(Enemy enemy)
