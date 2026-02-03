@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 47761254559744
-    m_Localized: English
+    m_Localized: Deutsch
     m_Metadata:
       m_Items: []
   - m_Id: 49852740055040
@@ -70,6 +70,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 50345113595904
     m_Localized: pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13749995809058816
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   references:

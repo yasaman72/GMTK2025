@@ -1,6 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Deviloop
 {
@@ -32,9 +33,12 @@ namespace Deviloop
             OnEncounterFinished -= EncounterFinished;
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
             _currentAreaIndex = -1;
+
+            // TODO: replace with a better solution to wait for other managers to initialize
+            yield return new WaitForSeconds(1);
             StartNextArea();
         }
 

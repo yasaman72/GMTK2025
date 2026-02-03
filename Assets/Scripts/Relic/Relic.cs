@@ -2,6 +2,8 @@ using FMOD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -17,7 +19,7 @@ namespace Deviloop
         public LocalizedString relicName;
         [Space]
         public RelicEffectCompound relicEffectCompound;
-        [Space]
+        [Space, SpritePreview(64)]
         public Sprite icon;
         public Rarity rarity;
         public bool isNegative;

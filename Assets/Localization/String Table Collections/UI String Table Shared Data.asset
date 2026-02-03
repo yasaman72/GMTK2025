@@ -67,6 +67,10 @@ MonoBehaviour:
     m_Key: Gameplay Scene/Pause Canvas/Title Text
     m_Metadata:
       m_Items: []
+  - m_Id: 13749995809058816
+    m_Key: Gameplay Scene/Pause Canvas/Pause Group/Restart
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

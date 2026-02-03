@@ -298,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541895471894045576}
   - component: {fileID: 8199691935438997088}
+  - component: {fileID: 870086318039027217}
   m_Layer: 5
   m_Name: Material
   m_TagString: Untagged
@@ -340,4 +341,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.MaterialIcon
   _image: {fileID: 673768116361694499}
   _name: {fileID: 2175510308932448471}
+  _toolTipTrigger: {fileID: 870086318039027217}
   _material: {fileID: 0}
+--- !u!114 &870086318039027217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9052834213894006538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae1128c4dfac44db776ac763e5402a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.TooltipTrigger
+  _tooltipText:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

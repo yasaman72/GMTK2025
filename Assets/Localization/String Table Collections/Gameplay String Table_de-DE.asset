@@ -58,7 +58,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 351896151568384
-    m_Localized: Chestnut
+    m_Localized: Glove
     m_Metadata:
       m_Items: []
   - m_Id: 352181221634048
@@ -144,7 +144,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 10106698603474944
-    m_Localized: Bubble
+    m_Localized: Chessnut
     m_Metadata:
       m_Items: []
   - m_Id: 10106929495715840
@@ -180,7 +180,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 10947568097603584
-    m_Localized: Teeth
+    m_Localized: Bones
     m_Metadata:
       m_Items: []
   - m_Id: 10947777926049792
@@ -207,7 +207,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 11705589086072832
-    m_Localized: Triangle Target
+    m_Localized: Triangle
     m_Metadata:
       m_Items: []
   - m_Id: 11705704152608768
@@ -221,7 +221,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 11903497840406528
-    m_Localized: Whistle
+    m_Localized: Basket
     m_Metadata:
       m_Items: []
   - m_Id: 11903679843840000
@@ -233,7 +233,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 11907345715867648
-    m_Localized: Grape
+    m_Localized: Pomegranate
     m_Metadata:
       m_Items: []
   - m_Id: 11907406801711104

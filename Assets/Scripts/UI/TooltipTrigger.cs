@@ -12,7 +12,18 @@ namespace Deviloop
         private bool _isPointerOver;
         private Coroutine _hideCoroutine;
 
+
+        private void OnDisable()
+        {
+            ResetTooltip();
+        }
+
         private void OnDestroy()
+        {
+            ResetTooltip();
+        }
+
+        private void ResetTooltip()
         {
             _isPointerOver = false;
             if (_hideCoroutine != null)
@@ -20,7 +31,9 @@ namespace Deviloop
                 StopCoroutine(_hideCoroutine);
                 _hideCoroutine = null;
             }
-            TooltipManager.Instance.HideTooltip();
+
+            if(TooltipManager.Instance != null)
+                TooltipManager.Instance.HideTooltip();
         }
 
         public void SetLocalizedString(LocalizedString newString)

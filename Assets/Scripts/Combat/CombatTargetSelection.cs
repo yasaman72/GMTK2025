@@ -10,14 +10,14 @@ namespace Deviloop
         public static CombatCharacter CurrentTarget { get; private set; }
         [SerializeField] private GameObject _targetIndicator;
 
-        private void OnEnable()
+        private void Start()
         {
             SetTargetAction += SetTarget;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            SetTargetAction += SetTarget;
+            SetTargetAction -= SetTarget;
         }
 
         private void SetTarget(CombatCharacter target)
