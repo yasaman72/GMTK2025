@@ -19,8 +19,8 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 1}
   _scalingMode: 1
-  _directionSensitivity: 1
-  _rotationSensitivity: 1
+  _directionSensitivity: 0
+  _rotationSensitivity: 0
   _editorPath:
   - {x: 50, y: 150}
   - {x: 300, y: 150}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Deviloop
@@ -6,7 +7,8 @@ namespace Deviloop
     {
         void Awake()
         {
-#if RELEASE
+#if DEBUG
+#else
             Destroy(gameObject);
 #endif
         }

@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(SpritePreviewAttribute))]
 public class SpritePreviewDrawer : PropertyDrawer
 {
@@ -64,3 +65,5 @@ public class SpritePreviewDrawer : PropertyDrawer
         );
     }
 }
+
+#endif
