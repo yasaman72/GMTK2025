@@ -7,7 +7,6 @@ namespace Deviloop
     public class EnemyData : CombatCharacterStats
     {
         public GameObject prefab;
-        public LootSet defeatRewards;
         public List<EnemyAction> EnemyActions;
     }
 }

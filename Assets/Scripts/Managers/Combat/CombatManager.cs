@@ -154,8 +154,18 @@ public class CombatManager : MonoBehaviour
     private IEnumerator ShowRewards(Enemy enemy)
     {
         yield return new WaitForSeconds(_waitBeforeShowingRewards);
-        RewardView.OpenRewards?.Invoke(_defeatedEnemies.Select(enemy => enemy.enemyStats.defeatRewards).ToList());
-        RewardView.OnRewardsClosed += FinishCombat;
+
+        if (EncounterManager.CurrentEncounter is CombatEncounter combatEncounter)
+        {
+
+            RewardView.OpenRewards?.Invoke(combatEncounter.DefeatRewards);
+            RewardView.OnRewardsClosed += FinishCombat;
+        }
+        else
+        {
+            Debug.LogError("Current encounter is not a CombatEncounter. Cannot show rewards.");
+            FinishCombat();
+        }
     }
 
     private void FinishCombat()

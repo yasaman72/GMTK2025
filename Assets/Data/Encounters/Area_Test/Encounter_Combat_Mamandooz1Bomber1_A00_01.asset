@@ -19,3 +19,6 @@ MonoBehaviour:
     Quantity: 1
   - EnemyData: {fileID: 11400000, guid: 00949df961a04f94bb8e1e65595151ac, type: 2}
     Quantity: 1
+  IsElite: 0
+  DefeatRewards:
+  - {fileID: 11400000, guid: f6c73efaa50e2ea4fa9e294408eeec09, type: 2}

@@ -33,12 +33,9 @@ namespace Deviloop
             OnEncounterFinished -= EncounterFinished;
         }
 
-        private IEnumerator Start()
+        private void Start()
         {
             _currentAreaIndex = -1;
-
-            // TODO: replace with a better solution to wait for other managers to initialize
-            yield return new WaitForSeconds(1);
             StartNextArea();
         }
 

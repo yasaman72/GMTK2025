@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Deviloop
@@ -13,6 +14,8 @@ namespace Deviloop
     public class CombatEncounter : BaseEncounter
     {
         [SerializeField] private EnemyType[] _enemyTypes;
+        public bool IsElite = false;
+        public List<LootSet> DefeatRewards;
 
         public override void StartEncounter()
         {

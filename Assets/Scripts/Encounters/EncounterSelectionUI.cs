@@ -15,11 +15,13 @@ namespace Deviloop
                 if (i < encounters.Count)
                 {
                     EncounterItems[i].gameObject.SetActive(true);
-                    EncounterItems[i].Title_txt.text = encounters[i].EncounterName;
-                    EncounterItems[i].Icon_img.sprite = encounters[i].EncounterIcon;
+                    EncounterItems[i].Title.text = encounters[i].EncounterName;
+                    EncounterItems[i].Icon.sprite = encounters[i].EncounterIcon;
+                    EncounterItems[i].EliteReward.SetActive(encounters[i] is CombatEncounter ce && ce.IsElite);
+
                     int index = i; // Capture the current index for the lambda
-                    EncounterItems[i].Select_btn.onClick.RemoveAllListeners();
-                    EncounterItems[i].Select_btn.onClick.AddListener(() =>
+                    EncounterItems[i].Select.onClick.RemoveAllListeners();
+                    EncounterItems[i].Select.onClick.AddListener(() =>
                     {
                         EncounterManager.CurrentEncounter = encounters[index];
                         encounters[index].StartEncounter();

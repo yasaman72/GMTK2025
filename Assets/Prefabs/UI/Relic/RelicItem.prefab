@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.RelicUI
   _image: {fileID: 6649533875751125624}
   _animtor: {fileID: 4322310700490194390}
-  _relic: {fileID: 11400000, guid: 2d4662d77fd599a4eb2f497fbbe62c3b, type: 2}
+  _relic: {fileID: 0}
 --- !u!95 &4322310700490194390
 Animator:
   serializedVersion: 7
@@ -119,7 +119,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 25.000002, y: 25.000011}
-  m_SizeDelta: {x: 32.3223, y: 34.6519}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7562935315500864524
 CanvasRenderer:

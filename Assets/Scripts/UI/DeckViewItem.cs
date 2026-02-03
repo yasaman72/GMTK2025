@@ -53,4 +53,9 @@ public class DeckViewItem : MonoBehaviour
         _button.onClick.RemoveAllListeners();
         _descriptionText.text = "SOLD!";
     }
+
+    public void DisablePrice()
+    {
+        _priceParent.SetActive(false);
+    }
 }

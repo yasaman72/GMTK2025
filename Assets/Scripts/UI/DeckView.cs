@@ -43,10 +43,15 @@ public class DeckView : MonoBehaviour
         foreach (var card in deck.GetAllCardsAsList())
         {
             var newCardPrefab = Instantiate(_deckViewItemPrefab, _deckContentHolder);
-            newCardPrefab.GetComponent<DeckViewItem>().Setup(card);
+            var deckViewItem = newCardPrefab.GetComponent<DeckViewItem>();
+            deckViewItem.Setup(card);
             if (OnCardClick != null)
             {
                 newCardPrefab.GetComponent<Button>().onClick.AddListener(() => OnCardClick(card));
+            }
+            else
+            {
+                deckViewItem.DisablePrice();
             }
 
         }
