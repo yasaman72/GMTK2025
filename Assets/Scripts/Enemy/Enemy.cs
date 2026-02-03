@@ -26,7 +26,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         PickNextAction();
     }
 
-    private void OnEnable()
+    protected new void OnEnable()
     {
         TurnManager.OnTurnChanged += HandleTurnChanged;
         base.OnDeath += AfterDeathTrigger;
@@ -34,14 +34,17 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         GameStateManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
 
         TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
+        base.OnEnable();
     }
 
-    private void OnDisable()
+    protected new void OnDisable()
     {
         base.OnDeath -= AfterDeathTrigger;
         base.OnDamageRecieved -= DamageRecieved;
         TurnManager.OnTurnChanged -= HandleTurnChanged;
         GameStateManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
+
+        base.OnDisable();
     }
 
     private void HandleTurnChanged(TurnManager.ETurnMode turnMode)

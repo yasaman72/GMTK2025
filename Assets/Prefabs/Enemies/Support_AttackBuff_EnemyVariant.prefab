@@ -99,6 +99,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 153572373305963602, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.9093556
+      objectReference: {fileID: 0}
     - target: {fileID: 4740664897842006383, guid: 9a251d04c082ccd449cc9ccd2856046e, type: 3}
       propertyPath: m_Name
       value: Support_AttackBuff_EnemyVariant

@@ -28,13 +28,6 @@ public class TurnManager : MonoBehaviour
         get => _turnMode;
     }
 
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(_delayBeforeStart);
-        ChangeTurn(ETurnMode.Player);
-        yield return null;
-    }
-
     public static void ChangeTurn(ETurnMode newTurnMode)
     {
         TurnMode = newTurnMode;

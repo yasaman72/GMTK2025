@@ -35,11 +35,22 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
     public int GetCurrentHealth => _currentHealth;
     public int GetCurrentShield => _currentShield;
     public List<CharacterEffectBase> GetCurrentEffects => _currentEffects;
+    private List<CharacterEffectBase> _effectsToRemove = new List<CharacterEffectBase>();
 
     protected virtual void Start()
     {
         ResetStats();
         OnHPChanged?.Invoke();
+    }
+
+    protected void OnEnable()
+    {
+        TurnManager.OnTurnChanged += OnTurnChanged;
+    }
+
+    protected void OnDisable()
+    {
+        TurnManager.OnTurnChanged -= OnTurnChanged;
     }
 
     public void ResetStats()
@@ -146,6 +157,21 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
 
     // TODO: replace architecture with composition over inheritance
     #region Effects
+    // TODO: better implementation for removing effects
+    private void OnTurnChanged(TurnManager.ETurnMode mode)
+    {
+        if (mode == TurnManager.ETurnMode.Player)
+        {
+            foreach (var effect in _effectsToRemove)
+            {
+                effect.OnRemoveEffect(this);
+                _currentEffects.Remove(effect);
+                RemoveEffectIcon(effect);
+            }
+            _effectsToRemove.Clear();
+        }
+    }
+
     public void AddEffect(CharacterEffectBase effect, int duration)
     {
         if (effect == null)
@@ -168,9 +194,8 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
             Logger.LogWarning("Effect is null", shouldLog);
             return;
         }
-        effect.OnRemoveEffect(this);
-        _currentEffects.Remove(effect);
-        RemoveEffectIcon(effect);
+        _effectsToRemove.Add(effect);
+
     }
 
     public void ApplyAllEffects(EnemyAction enemyAction)
