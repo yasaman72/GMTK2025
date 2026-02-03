@@ -25,23 +25,27 @@ public class RewardView : MonoBehaviour
         OpenRewards += onDeckOpen;
         gameObject.SetActive(false);
         _allCurrentLoots.Clear();
-
-        _rewardPrefabs.Clear();
-        for (int i = 0; i < _deckContentHolder.transform.childCount; i++)
-        {
-            if (_deckContentHolder.transform.GetChild(i).GetComponent<RewardItem>() != null)
-                _rewardPrefabs.Add(_deckContentHolder.transform.GetChild(i).gameObject);
-        }
-        for (int i = 0; i < _itemsSelectionContent.transform.childCount; i++)
-        {
-            if (_itemsSelectionContent.transform.GetChild(i).GetComponent<RewardItem>() != null)
-                _rewardPrefabs.Add(_itemsSelectionContent.transform.GetChild(i).gameObject);
-        }
     }
 
-    private void OnDestroy()
+    public void OnReset()
     {
         OpenRewards -= onDeckOpen;
+    }
+
+    private void CreateRewardPrefabs()
+    {
+        _rewardPrefabs.Clear();
+        foreach (Transform child in _deckContentHolder.transform)
+        {
+            if (child.GetComponent<RewardItem>() != null)
+                _rewardPrefabs.Add(child.gameObject);
+        }
+
+        foreach (Transform child in _itemsSelectionContent.transform)
+        {
+            if (child.GetComponent<RewardItem>() != null && !_rewardPrefabs.Contains(child.gameObject))
+                _rewardPrefabs.Add(child.gameObject);
+        }
     }
 
     private void onDeckOpen(List<LootSet> loots)
@@ -49,6 +53,7 @@ public class RewardView : MonoBehaviour
         Time.timeScale = 0;
 
         List<LootSetData> allRewards = RewardManager.SelectRewards(loots, _maxItemOption);
+        CreateRewardPrefabs();
 
         for (int i = 0; i < allRewards.Count; i++)
         {

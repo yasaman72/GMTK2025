@@ -1,3 +1,4 @@
+using Deviloop;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
@@ -31,8 +32,10 @@ public class PauseMenuManager : MonoBehaviour
     public void OnRestart()
     {
         // reload the current scene
+        // TODO: better implementation that resets the game state without reloading the scene
         Time.timeScale = 1f;
         int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        RelicManager.ClearAllRelics();
         UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneIndex);
     }
 

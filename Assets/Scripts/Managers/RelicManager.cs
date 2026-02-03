@@ -87,5 +87,14 @@ namespace Deviloop
         {
             return _ownedRelics.Where(r => r.GUID == relic.GUID).Any();
         }
+
+        public static void ClearAllRelics()
+        {
+            foreach (var relic in _ownedRelics)
+            {
+                relic.relicEffectCompound.relicEffect.ForEach(effect => effect.OnRemoved());
+            }
+            _ownedRelics.Clear();
+        }
     }
 }

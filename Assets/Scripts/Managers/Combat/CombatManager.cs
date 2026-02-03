@@ -63,6 +63,8 @@ public class CombatManager : MonoBehaviour
     private void OnDisable()
     {
         TurnManager.OnTurnChanged -= HandleTurnChanged;
+        _defeatedEnemies.Clear();
+        _spawnedEnemies.Clear();
     }
 
     private void HandleTurnChanged(TurnManager.ETurnMode mode)

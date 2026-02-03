@@ -7,7 +7,20 @@ namespace Deviloop
     public class CombatTargetSelection : MonoBehaviour
     {
         public static Action<CombatCharacter> SetTargetAction;
-        public static CombatCharacter CurrentTarget { get; private set; }
+        public static CombatCharacter _currenTarget;
+        public static CombatCharacter CurrentTarget { get => _currenTarget;
+            private set
+            {
+                _currenTarget = value;
+                // For debugging
+                var debugComp = FindObjectOfType<CombatTargetSelection>();
+                if (debugComp != null)
+                {
+                    debugComp._currentTargetDebug = _currenTarget != null ? _currenTarget.gameObject : null;
+                }
+            }
+        }
+        [SerializeField, ReadOnly] private GameObject _currentTargetDebug;
         [SerializeField] private GameObject _targetIndicator;
 
         private void OnEnable()

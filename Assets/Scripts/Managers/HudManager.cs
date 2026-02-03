@@ -43,6 +43,7 @@ public class HudManager : CustomMonoBehavior
     {
         TurnManager.OnTurnChanged -= UpdateTurnText;
         GameStateManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
+        _rewardView.OnReset();
     }
 
 
