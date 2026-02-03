@@ -142,7 +142,7 @@ namespace Cards
 
         private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
         {
-            if (turnMode == TurnManager.ETurnMode.Player)
+            if (turnMode == TurnManager.ETurnMode.Player && !Player.PlayerCombatCharacter.IsDead())
             {
                 throwButton.gameObject.SetActive(true);
                 UpdateUI();
