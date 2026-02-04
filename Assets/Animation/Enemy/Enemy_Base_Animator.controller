@@ -102,7 +102,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mamandooz
+  m_Name: Enemy_Base_Animator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Hit
@@ -156,7 +156,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: idle 2
-  m_Speed: 0.7
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8061763962983525934}
@@ -195,7 +195,7 @@ AnimatorStateMachine:
     m_Position: {x: -40, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6156627782353367361}
-    m_Position: {x: 200, y: 60, z: 0}
+    m_Position: {x: 190, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4046187214889715922}
     m_Position: {x: 450, y: 60, z: 0}
@@ -305,7 +305,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 37e1dec8777780d44928cbbe3caf7db9, type: 2}
+  m_Motion: {fileID: 7400000, guid: 991bbf49047c369449947c75cff4cd34, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -346,7 +346,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: idle 1
-  m_Speed: 0.7
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4010267747340752436}
@@ -359,7 +359,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 37e1dec8777780d44928cbbe3caf7db9, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0e4b7631e186f3841aadb913c037e002, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

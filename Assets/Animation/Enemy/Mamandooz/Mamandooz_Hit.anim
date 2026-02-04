@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mamandooz_Idle
+  m_Name: Mamandooz_Hit
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -53,7 +53,7 @@ AnimationClip:
     - time: 0.625
       value: {fileID: 227870276, guid: 2bcd5ea99e779354ba970c10605b8e87, type: 3}
     attribute: m_Sprite
-    path: 
+    path: mamandooz
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -65,7 +65,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 4258654605
       attribute: 0
       script: {fileID: 0}
       typeID: 212
