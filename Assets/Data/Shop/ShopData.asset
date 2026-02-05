@@ -23,5 +23,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  itemDeletionPrice: 30
-  rerollPrice: 10
+  itemDeletionPrice: 15
+  rerollPrice: 5

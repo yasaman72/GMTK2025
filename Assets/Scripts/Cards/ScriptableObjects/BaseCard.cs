@@ -65,10 +65,10 @@ namespace Cards
 
             price = rarity switch
             {
-                Rarity.Common => Mathf.Max(30, price),
-                Rarity.Uncommon => Mathf.Max(70, price),
-                Rarity.Rare => Mathf.Max(100, price),
-                Rarity.Legendary => Mathf.Max(120, price),
+                Rarity.Common => Mathf.Max(20, price),
+                Rarity.Uncommon => Mathf.Max(40, price),
+                Rarity.Rare => Mathf.Max(60, price),
+                Rarity.Legendary => Mathf.Max(80, price),
                 _ => price,
             };
         }
