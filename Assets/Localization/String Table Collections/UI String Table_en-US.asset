@@ -76,6 +76,14 @@ MonoBehaviour:
     m_Localized: Restart
     m_Metadata:
       m_Items: []
+  - m_Id: 14538174023643136
+    m_Localized: Send Feedback
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14539672531021824
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

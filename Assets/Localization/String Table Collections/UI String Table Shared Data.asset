@@ -16,59 +16,67 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 43d307f1defda77489296589d689e1f3
   m_Entries:
   - m_Id: 707971035136
-    m_Key: Gameplay Scene/HUD Canvas/Throw Button/Text
+    m_Key: Gameplay/HUD/Throw
     m_Metadata:
       m_Items: []
   - m_Id: 2872605192192
-    m_Key: draw deck title
+    m_Key: Gameplay/drawDeck/title
     m_Metadata:
       m_Items: []
   - m_Id: 3178160238592
-    m_Key: discard deck title
+    m_Key: Gameplay/discardDeck/title
     m_Metadata:
       m_Items: []
   - m_Id: 47697052348416
-    m_Key: Gameplay Scene/Pause Canvas/Pause Group/Resume Button/Text (TMP)
+    m_Key: Menus/Resume
     m_Metadata:
       m_Items: []
   - m_Id: 47761254559744
-    m_Key: Gameplay Scene/Pause Canvas/Pause Group/Change Language/Text (TMP)
+    m_Key: Menus/ChangeLanguage
     m_Metadata:
       m_Items: []
   - m_Id: 49852740055040
-    m_Key: Gameplay Scene/Pause Canvas/How to play/Title Text
+    m_Key: Menus/HowToPlay
     m_Metadata:
       m_Items: []
   - m_Id: 49939662811136
-    m_Key: Gameplay Scene/Pause Canvas/Settings/Title Text
+    m_Key: Menus/Settings/Audio
     m_Metadata:
       m_Items: []
   - m_Id: 50037524312064
-    m_Key: Gameplay Scene/Pause Canvas/Settings/Options/Master/Title_Text
+    m_Key: Menus/Settings/Master
     m_Metadata:
       m_Items: []
   - m_Id: 50060903362560
-    m_Key: Gameplay Scene/Pause Canvas/Settings/Options/Music/Title_Text
+    m_Key: Menus/Settings/Music
     m_Metadata:
       m_Items: []
   - m_Id: 50121381031936
-    m_Key: Gameplay Scene/Pause Canvas/How to play/How to play Text
+    m_Key: Menus/HowToPlay/How
     m_Metadata:
       m_Items: []
   - m_Id: 50262116708352
-    m_Key: Gameplay Scene/Pause Canvas/Pause Group/Exit Button/Text (TMP)
+    m_Key: Menus/Close
     m_Metadata:
       m_Items: []
   - m_Id: 50295062966272
-    m_Key: Gameplay Scene/Pause Canvas/Pause Group/Main Menu/Text (TMP)
+    m_Key: Menus/MainMenu
     m_Metadata:
       m_Items: []
   - m_Id: 50345113595904
-    m_Key: Gameplay Scene/Pause Canvas/Title Text
+    m_Key: Menus/PauseTitle
     m_Metadata:
       m_Items: []
   - m_Id: 13749995809058816
-    m_Key: Gameplay Scene/Pause Canvas/Pause Group/Restart
+    m_Key: Menus/Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14538174023643136
+    m_Key: Menus/Feedback
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14539672531021824
+    m_Key: Menus/Start
     m_Metadata:
       m_Items: []
   m_Metadata:
