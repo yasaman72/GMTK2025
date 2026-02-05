@@ -39,11 +39,25 @@ namespace Cards.ScriptableObjects
 
             yield return new WaitForSeconds(delayBeforeMove);
 
-            cardPrefab.transform.DOMove(enemyTransform.position, moveDuration).SetEase(Ease.Linear).OnComplete(
-                () =>
+            cardPrefab.transform.DOMove(enemyTransform.position, moveDuration).SetEase(Ease.Linear).OnUpdate(() =>
+            {
+                if (enemy == null || enemy.IsDead())
                 {
-                    runner.StartCoroutine(OnReachTarget(callback, enemy));
-                });
+                    enemy = CombatTargetSelection.CurrentTarget;
+                    if (enemy == null)
+                    {
+                        callback?.Invoke();
+                        cardPrefab.transform.DOKill();
+                        return;
+                    }
+                    enemyTransform = enemy.transform;
+                }
+            })
+            .OnComplete(
+            () =>
+            {
+                runner.StartCoroutine(OnReachTarget(callback, enemy));
+            });
         }
 
         private IEnumerator OnReachTarget(Action callback, CombatCharacter enemy)

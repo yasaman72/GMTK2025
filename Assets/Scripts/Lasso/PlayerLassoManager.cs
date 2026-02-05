@@ -232,7 +232,7 @@ public class PlayerLassoManager : MonoBehaviour
         if (hits.Count <= 0 || hits.Count > maxedAllowedItems)
         {
             if (hits.Count > maxedAllowedItems)
-                MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}.", 2);
+                MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}. Try again!", 2);
 
             Time.timeScale = 1f;
             Destroy(temp);

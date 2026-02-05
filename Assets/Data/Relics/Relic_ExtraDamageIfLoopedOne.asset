@@ -82,12 +82,12 @@ MonoBehaviour:
     - rid: 686208056379572339
       type: {class: DealDamageToAllEnemies, ns: Deviloop, asm: Deviloop}
       data:
-        _damage: 1
+        _damage: 2
     - rid: 5144960850776293465
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 3
+        m_Value: 2
     - rid: 5144960850776293466
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 1
+        m_Value: 2

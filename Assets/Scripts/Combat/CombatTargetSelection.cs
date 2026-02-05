@@ -1,6 +1,8 @@
-using System;
-using UnityEngine;
 using DG.Tweening;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Deviloop
 {
@@ -8,12 +10,14 @@ namespace Deviloop
     {
         public static Action<CombatCharacter> SetTargetAction;
         public static CombatCharacter _currenTarget;
-        public static CombatCharacter CurrentTarget { get => _currenTarget;
+        public static CombatCharacter CurrentTarget
+        {
+            get => _currenTarget;
             private set
             {
                 _currenTarget = value;
                 // For debugging
-                var debugComp = FindObjectOfType<CombatTargetSelection>();
+                var debugComp = FindFirstObjectByType<CombatTargetSelection>();
                 if (debugComp != null)
                 {
                     debugComp._currentTargetDebug = _currenTarget != null ? _currenTarget.gameObject : null;
@@ -58,17 +62,18 @@ namespace Deviloop
         {
             (CurrentTarget as Enemy).OnDeath -= ClearTargetOnDeath;
             CurrentTarget = null;
-            var allEnemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-            Enemy nextTarget = null;
-            foreach (var e in allEnemies)
+            List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
+
+            // next target is the enemy with the lowest HP
+            aliveEnemies.ToList().Sort((a, b) => a.GetCurrentHealth.CompareTo(b.GetCurrentHealth));
+            if (aliveEnemies.Count > 0)
             {
-                if (!e.IsDead())
-                {
-                    nextTarget = e;
-                    break;
-                }
+                SetTarget(aliveEnemies[0]);
             }
-            SetTarget(nextTarget ? nextTarget : null);
+            else
+            {
+                _targetIndicator.SetActive(false);
+            }
         }
     }
 }
