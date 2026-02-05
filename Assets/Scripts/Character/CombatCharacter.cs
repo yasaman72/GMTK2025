@@ -67,6 +67,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         }
 
         int finalDamage = DamageShield(damage);
+        int shieldDamage = damage - finalDamage;
         OnShieldChanged?.Invoke();
 
         if (finalDamage != damage)
@@ -82,7 +83,15 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
 
         bool isDead = SetCurrentHealth(_currentHealth - finalDamage);
         OnHPChanged?.Invoke();
-        _damageIndicatorApplier.ShowDamageIndicator(finalDamage);
+
+        if (shieldDamage > 0)
+        {
+            _damageIndicatorApplier.ShowDamageIndicator(shieldDamage, DamageType.Shield);
+        }
+        if (finalDamage > 0)
+        {
+            _damageIndicatorApplier.ShowDamageIndicator(finalDamage);
+        }
 
         if (isDead)
         {
