@@ -26,7 +26,7 @@ public class DeckView : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnDestroy()
+    public void OnReset()
     {
         OpenDeck -= onDeckOpen;
         OpenDeckToDelete -= onOpenDeckToDelete;

@@ -12,7 +12,7 @@ namespace Deviloop
             return power.ToString();
         }
 
-        protected override void ApplyOnValidate()
+        protected override void ApplyOnEnable()
         {
             var dict = new Dictionary<string, string>() { { "ActionPower", power.ToString() } };
             translatedDescription.Arguments = new object[] { dict };

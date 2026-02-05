@@ -35,13 +35,10 @@ namespace Cards.ScriptableObjects
                     });
         }
 
-#if UNITY_EDITOR
-        private new void OnValidate()
+        private void OnEnable()
         {
-            base.OnValidate();
             var dict = new Dictionary<string, string>() { { "heal", healAmount.ToString() } };
             description.Arguments = new object[] { dict };
         }
-#endif
     }
 }

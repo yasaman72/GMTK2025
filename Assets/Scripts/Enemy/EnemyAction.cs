@@ -35,10 +35,16 @@ namespace Deviloop
 
         public abstract string IntentionNumber();
         public virtual bool CanBeTaken() => true;
+        protected virtual void ApplyOnEnable() { }
         protected virtual void ApplyOnValidate() { }
 
+        protected void OnEnable()
+        {
+            ApplyOnEnable();
+        }
+
 #if UNITY_EDITOR
-        private void OnValidate()
+        protected void OnValidate()
         {
             ApplyOnValidate();
         }

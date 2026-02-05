@@ -45,6 +45,16 @@ namespace Deviloop
             base.TakeAction(enemy, runner, callback);
         }
 
+        protected override void ApplyOnEnable()
+        {
+            var dict = new Dictionary<string, string>() {
+                { "Duration", _effectDurationInTurns.ToString() },
+                { "EffectName", _characterEffect.EffectName.GetLocalizedString() }
+            };
+            translatedDescription.Arguments = new object[] { dict };
+        }
+
+#if UNITY_EDITOR
         protected override void ApplyOnValidate()
         {
             icon = _characterEffect != null ? _characterEffect.EffectIcon : null;
@@ -53,13 +63,8 @@ namespace Deviloop
             {
                 return;
             }
-
-            var dict = new Dictionary<string, string>() {
-                { "Duration", _effectDurationInTurns.ToString() },
-                { "EffectName", _characterEffect.EffectName.GetLocalizedString() }
-            };
-            translatedDescription.Arguments = new object[] { dict };
         }
+#endif
 
     }
 }

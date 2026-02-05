@@ -35,14 +35,10 @@ namespace Cards.ScriptableObjects
                     });
         }
 
-#if UNITY_EDITOR
-        private new void OnValidate()
+        private void OnEnable()
         {
-            base.OnValidate();
-
             var dict = new Dictionary<string, string>() { { "shield", shieldAmount.ToString() } };
             description.Arguments = new object[] { dict };
         }
-#endif
     }
 }
