@@ -12,7 +12,7 @@ namespace Cards.ScriptableObjects
     {
         [Header("Attack Properties")]
         public int damage = 3;
-        public int moveSpeed = 1;
+        public float moveDuration = .5f;
         public float delayBeforeMove = 0.3f;
         public bool taregtAll = false;
 
@@ -24,10 +24,10 @@ namespace Cards.ScriptableObjects
             if (taregtAll)
                 runner.StartCoroutine(TargetAllEnemies(callback, cardPrefab));
             else
-                runner.StartCoroutine(ActivateCardEffect(callback, cardPrefab));
+                runner.StartCoroutine(ActivateCardEffect(runner, callback, cardPrefab));
         }
 
-        private IEnumerator ActivateCardEffect(Action callback, CardPrefab cardPrefab)
+        private IEnumerator ActivateCardEffect(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             var enemy = CombatTargetSelection.CurrentTarget;
             if (enemy == null)
@@ -39,26 +39,15 @@ namespace Cards.ScriptableObjects
 
             yield return new WaitForSeconds(delayBeforeMove);
 
-            while (Vector2.Distance(cardPrefab.transform.position, enemyTransform.position) > 1)
-            {
-                if (enemy == null || enemy.IsDead())
+            cardPrefab.transform.DOMove(enemyTransform.position, moveDuration).SetEase(Ease.Linear).OnComplete(
+                () =>
                 {
-                    enemy = CombatTargetSelection.CurrentTarget;
-                    if (enemy == null)
-                    {
-                        callback?.Invoke();
-                        yield break;
-                    }
-                    enemyTransform = enemy.transform;
-                }
+                    runner.StartCoroutine(OnReachTarget(callback, enemy));
+                });
+        }
 
-                cardPrefab.transform.position = Vector2.MoveTowards(
-                    cardPrefab.transform.position,
-                    enemyTransform.position,
-                    0.05f * moveSpeed);
-                yield return null;
-            }
-
+        private IEnumerator OnReachTarget(Action callback, CombatCharacter enemy)
+        {
             Player.PlayerCombatCharacter.DealDamage(enemy, damage);
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 

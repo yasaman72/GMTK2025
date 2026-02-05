@@ -51,7 +51,7 @@ MonoBehaviour:
   cardPrefab: {fileID: 4009389148060104062, guid: 717cd1974ef3c3944b0dd42026674f89, type: 3}
   isConsumable: 0
   shieldAmount: 2
-  moveSpeed: 5
+  moveDuration: 0.3
   references:
     version: 2
     RefIds: []
