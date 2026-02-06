@@ -113,6 +113,7 @@ public class PlayerLassoManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StopCoroutine(InvertLasso());
+            StartCoroutine(InvertLasso(true));
             _startNewLine = true;
             Time.timeScale = _slowMotionTimeScale;
         }

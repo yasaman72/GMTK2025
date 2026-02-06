@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 354266491170816
-    m_Localized: deals {damage} damage
+    m_Localized: deals {damage} piercing damage
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279

@@ -29,7 +29,7 @@ namespace Cards.ScriptableObjects
 
             yield return new WaitForSeconds(scaleDuration);
 
-            Player.PlayerCombatCharacter.TakeDamage(damage);
+            Player.PlayerCombatCharacter.TakeDamage(damage, AttackType.Normal);
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             callback?.Invoke();

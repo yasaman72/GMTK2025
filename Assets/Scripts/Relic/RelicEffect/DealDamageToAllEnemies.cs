@@ -7,6 +7,7 @@ namespace Deviloop
     public class DealDamageToAllEnemies : BaseRelicEffect
     {
         [SerializeField] private int _damage = 3;
+        [SerializeField] private AttackType _attackType = AttackType.Normal;
 
         public override void Apply(MonoBehaviour caller)
         {
@@ -14,7 +15,7 @@ namespace Deviloop
 
             foreach (var enemy in enemies)
             {
-                Player.PlayerCombatCharacter.DealDamage(enemy, _damage);
+                Player.PlayerCombatCharacter.DealDamage(enemy, _damage, _attackType);
             }
 
         }

@@ -1,3 +1,4 @@
+using Cards.ScriptableObjects;
 using Deviloop;
 using UnityEngine;
 using static LootSet;
@@ -85,7 +86,7 @@ public class CheatManager : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            Player.PlayerCombatCharacter.DealDamage(enemy, damageAmount);
+            Player.PlayerCombatCharacter.DealDamage(enemy, damageAmount, AttackType.Normal);
         }
     }
 

@@ -1,3 +1,4 @@
+using Cards.ScriptableObjects;
 using Deviloop;
 using FMODUnity;
 using System;
@@ -59,16 +60,15 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         _currentShield = 0;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, AttackType type)
     {
         if (IsDead())
         {
             return;
         }
 
-        int finalDamage = DamageShield(damage);
+        int finalDamage = type == AttackType.Piercing ? damage : DamageShield(damage);
         int shieldDamage = damage - finalDamage;
-        OnShieldChanged?.Invoke();
 
         if (finalDamage != damage)
         {
@@ -105,12 +105,14 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         if (_currentShield >= damageAmount)
         {
             _currentShield -= damageAmount;
+            OnShieldChanged?.Invoke();
             return 0;
         }
         else
         {
             int remainingDamage = damageAmount - _currentShield;
             _currentShield = 0;
+            OnShieldChanged?.Invoke();
             return remainingDamage;
         }
     }
@@ -142,14 +144,14 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         return _currentHealth <= 0;
     }
 
-    public virtual void DealDamage(IDamageable target, int damage)
+    public virtual void DealDamage(IDamageable target, int damage, AttackType type)
     {
         if (target == null)
         {
             Debug.LogWarning("Target is null");
             return;
         }
-        target.TakeDamage(damage + _currentAttackBuff);
+        target.TakeDamage(damage + _currentAttackBuff, type);
     }
 
     public void AddShield(int amount)

@@ -1,3 +1,4 @@
+using Cards.ScriptableObjects;
 using Deviloop;
 using System;
 using System.Collections;
@@ -124,9 +125,9 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         Destroy(gameObject);
     }
 
-    public override void DealDamage(IDamageable target, int damage)
+    public override void DealDamage(IDamageable target, int damage, AttackType type)
     {
-        base.DealDamage(target, damage);
+        base.DealDamage(target, damage, type);
         _animator.SetTrigger("Attack");
     }
 

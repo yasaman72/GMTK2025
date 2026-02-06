@@ -4,24 +4,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum AttackType
+{
+    Normal,
+    Piercing,
+}
 
 namespace Cards.ScriptableObjects
 {
+
     [CreateAssetMenu(fileName = "AttackCard_[attack name]", menuName = "Cards/Attack Card")]
     public class AttackCardBase : BaseCard
     {
         [Header("Attack Properties")]
-        public int damage = 3;
-        public float moveDuration = .5f;
-        public float delayBeforeMove = 0.3f;
-        public bool taregtAll = false;
+        public int Damage = 3;
+        public AttackType AttackType = AttackType.Normal;
+        public float MoveDuration = .2f;
+        public float DelayBeforeMove = 0.3f;
+        public bool TaregtAll = false;
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
             callback += AfterCardActivated;
 
             runner.StopAllCoroutines();
-            if (taregtAll)
+            if (TaregtAll)
                 runner.StartCoroutine(TargetAllEnemies(callback, cardPrefab));
             else
                 runner.StartCoroutine(ActivateCardEffect(runner, callback, cardPrefab));
@@ -37,9 +44,9 @@ namespace Cards.ScriptableObjects
             }
             Transform enemyTransform = enemy.transform;
 
-            yield return new WaitForSeconds(delayBeforeMove);
+            yield return new WaitForSeconds(DelayBeforeMove);
 
-            cardPrefab.transform.DOMove(enemyTransform.position, moveDuration).SetEase(Ease.Linear).OnUpdate(() =>
+            cardPrefab.transform.DOMove(enemyTransform.position, MoveDuration).SetEase(Ease.Linear).OnUpdate(() =>
             {
                 if (enemy == null || enemy.IsDead())
                 {
@@ -62,7 +69,7 @@ namespace Cards.ScriptableObjects
 
         private IEnumerator OnReachTarget(Action callback, CombatCharacter enemy)
         {
-            Player.PlayerCombatCharacter.DealDamage(enemy, damage);
+            Player.PlayerCombatCharacter.DealDamage(enemy, Damage, AttackType);
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             yield return new WaitForSeconds(1);
@@ -71,19 +78,19 @@ namespace Cards.ScriptableObjects
 
         private IEnumerator TargetAllEnemies(Action callback, CardPrefab cardPrefab)
         {
-            yield return new WaitForSeconds(delayBeforeMove);
+            yield return new WaitForSeconds(DelayBeforeMove);
 
             // make the card spin a bit with tweening before vanishing
             // TODO: better animations and wait for end of animation to apply effects
             var tween = cardPrefab.transform.DORotate(new Vector3(0, 0, 360 * 5), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
 
-            yield return new WaitForSeconds(delayBeforeMove * 2);
+            yield return new WaitForSeconds(DelayBeforeMove * 2);
 
             var enemies = CombatManager.SpawnedEnemies;
 
             foreach (var enemy in enemies)
             {
-                Player.PlayerCombatCharacter.DealDamage(enemy, damage);
+                Player.PlayerCombatCharacter.DealDamage(enemy, Damage, AttackType);
             }
 
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
@@ -95,7 +102,7 @@ namespace Cards.ScriptableObjects
 
         private void OnEnable()
         {
-            var dict = new Dictionary<string, string>() { { "damage", damage.ToString() } };
+            var dict = new Dictionary<string, string>() { { "damage", Damage.ToString() } };
             description.Arguments = new object[] { dict };
         }
     }
