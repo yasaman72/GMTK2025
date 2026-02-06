@@ -84,24 +84,24 @@ MonoBehaviour:
     - rid: 686207827826966676
       type: {class: CombatTurnCountLessThanOrEqual, ns: Deviloop, asm: Deviloop}
       data:
-        _amountToMatch: 3
+        _amountToMatch: 5
     - rid: 686207956737327226
       type: {class: GetCoin, ns: Deviloop, asm: Deviloop}
       data:
-        _coinAmount: 10
+        _coinAmount: 15
     - rid: 5144960850776293467
       type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 3
+        m_Value: 5
     - rid: 5144960850776293468
       type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 3
+        m_Value: 5
     - rid: 5144960850776293469
       type: {class: ULongVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 10
+        m_Value: 15
     - rid: 5144960850776293470
       type: {class: UIntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 10
+        m_Value: 15

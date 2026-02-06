@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6799838227094638523}
   - component: {fileID: 4511104064061259222}
   - component: {fileID: 7123327090805414664}
-  - component: {fileID: 7631069350742609475}
   - component: {fileID: 2433646272860243771}
   - component: {fileID: 2268647949461971677}
+  - component: {fileID: 1972992531931782417}
   m_Layer: 3
   m_Name: Healing Potion
   m_TagString: Card
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.1241884, y: 2.7171178, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,8 +122,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &7631069350742609475
-BoxCollider2D:
+--- !u!114 &2433646272860243771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009389148060104062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614d0f37557c4e0ab6aec17cc677ac98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardData: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
+  cardRenderer: {fileID: 4511104064061259222}
+  destroyAfterTime: 10
+  isLassoed: 0
+--- !u!95 &2268647949461971677
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009389148060104062}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9d3a919f10dc69488b842667f3d0d76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!60 &1972992531931782417
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -166,43 +204,48 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.945, y: 2.56}
-  m_EdgeRadius: 0
---- !u!114 &2433646272860243771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4009389148060104062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614d0f37557c4e0ab6aec17cc677ac98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardData: {fileID: 11400000, guid: 49a9940662834c54186454c2f7bd678f, type: 2}
-  cardRenderer: {fileID: 4511104064061259222}
-  destroyAfterTime: 10
-  isLassoed: 0
---- !u!95 &2268647949461971677
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4009389148060104062}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9d3a919f10dc69488b842667f3d0d76, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.66499996, y: -1.0749999}
+      - {x: 0.765, y: -1.005}
+      - {x: 1.045, y: -0.705}
+      - {x: 1.0849999, y: -0.615}
+      - {x: 1.175, y: -0.325}
+      - {x: 1.175, y: 0.065}
+      - {x: 1.165, y: 0.114999995}
+      - {x: 1.015, y: 0.375}
+      - {x: 0.79499996, y: 0.59499997}
+      - {x: 0.625, y: 0.695}
+      - {x: 0.615, y: 0.865}
+      - {x: 0.575, y: 0.91499996}
+      - {x: 0.49499997, y: 0.97499996}
+      - {x: 0.385, y: 0.995}
+      - {x: 0.39499998, y: 1.115}
+      - {x: 0.275, y: 1.275}
+      - {x: 0.21499999, y: 1.295}
+      - {x: -0.095, y: 1.295}
+      - {x: -0.13499999, y: 1.285}
+      - {x: -0.295, y: 1.225}
+      - {x: -0.375, y: 1.165}
+      - {x: -0.45499998, y: 0.995}
+      - {x: -0.53499997, y: 0.97499996}
+      - {x: -0.645, y: 0.85499996}
+      - {x: -0.655, y: 0.705}
+      - {x: -0.995, y: 0.45499998}
+      - {x: -1.0749999, y: 0.325}
+      - {x: -1.135, y: 0.185}
+      - {x: -1.175, y: 0.114999995}
+      - {x: -1.175, y: -0.375}
+      - {x: -1.135, y: -0.545}
+      - {x: -1.0849999, y: -0.645}
+      - {x: -1.045, y: -0.73499995}
+      - {x: -0.865, y: -0.92499995}
+      - {x: -0.49499997, y: -1.145}
+      - {x: -0.415, y: -1.255}
+      - {x: -0.295, y: -1.275}
+      - {x: -0.145, y: -1.295}
+      - {x: 0.24499999, y: -1.295}
+      - {x: 0.285, y: -1.285}
+      - {x: 0.385, y: -1.255}
+      - {x: 0.475, y: -1.155}
+  m_UseDelaunayMesh: 1

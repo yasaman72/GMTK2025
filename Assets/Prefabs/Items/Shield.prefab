@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6799838227094638523}
   - component: {fileID: 4511104064061259222}
   - component: {fileID: 7123327090805414664}
-  - component: {fileID: 7631069350742609475}
   - component: {fileID: 2433646272860243771}
   - component: {fileID: 2430422710424673360}
+  - component: {fileID: 3836537752651902253}
   m_Layer: 3
   m_Name: Shield
   m_TagString: Card
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,8 +122,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &7631069350742609475
-BoxCollider2D:
+--- !u!114 &2433646272860243771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009389148060104062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614d0f37557c4e0ab6aec17cc677ac98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardData: {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
+  cardRenderer: {fileID: 4511104064061259222}
+  destroyAfterTime: 10
+  isLassoed: 0
+--- !u!95 &2430422710424673360
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009389148060104062}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9d3a919f10dc69488b842667f3d0d76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!60 &3836537752651902253
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -166,43 +204,56 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.945, y: 2.56}
-  m_EdgeRadius: 0
---- !u!114 &2433646272860243771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4009389148060104062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614d0f37557c4e0ab6aec17cc677ac98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardData: {fileID: 11400000, guid: c1a83539c8c05cb42a7a1173aa765d52, type: 2}
-  cardRenderer: {fileID: 4511104064061259222}
-  destroyAfterTime: 10
-  isLassoed: 0
---- !u!95 &2430422710424673360
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4009389148060104062}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9d3a919f10dc69488b842667f3d0d76, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.225, y: -1.275}
+      - {x: 1.3349999, y: -1.145}
+      - {x: 1.4549999, y: -0.935}
+      - {x: 1.545, y: -0.72499996}
+      - {x: 1.5849999, y: -0.60499996}
+      - {x: 1.5849999, y: -0.145}
+      - {x: 1.5749999, y: -0.035}
+      - {x: 1.535, y: 0.145}
+      - {x: 1.505, y: 0.24499999}
+      - {x: 1.4549999, y: 0.375}
+      - {x: 1.395, y: 0.53499997}
+      - {x: 1.435, y: 0.685}
+      - {x: 1.475, y: 0.775}
+      - {x: 1.475, y: 0.84499997}
+      - {x: 1.425, y: 0.92499995}
+      - {x: 1.3149999, y: 0.935}
+      - {x: 1.095, y: 1.005}
+      - {x: 0.935, y: 1.185}
+      - {x: 0.715, y: 1.365}
+      - {x: 0.635, y: 1.405}
+      - {x: 0.305, y: 1.5949999}
+      - {x: 0.185, y: 1.625}
+      - {x: 0.024999999, y: 1.675}
+      - {x: -0.33499998, y: 1.675}
+      - {x: -0.435, y: 1.655}
+      - {x: -0.655, y: 1.5949999}
+      - {x: -0.825, y: 1.505}
+      - {x: -1.235, y: 1.225}
+      - {x: -1.515, y: 0.945}
+      - {x: -1.555, y: 0.85499996}
+      - {x: -1.5849999, y: 0.73499995}
+      - {x: -1.5849999, y: 0.36499998}
+      - {x: -1.5749999, y: 0.305}
+      - {x: -1.5649999, y: -0.044999998}
+      - {x: -1.525, y: -0.205}
+      - {x: -1.395, y: -0.555}
+      - {x: -1.3249999, y: -0.715}
+      - {x: -1.275, y: -0.835}
+      - {x: -1.155, y: -1.005}
+      - {x: -0.98499995, y: -1.175}
+      - {x: -0.825, y: -1.3249999}
+      - {x: -0.585, y: -1.4549999}
+      - {x: -0.505, y: -1.495}
+      - {x: -0.36499998, y: -1.545}
+      - {x: -0.195, y: -1.625}
+      - {x: -0.015, y: -1.675}
+      - {x: 0.525, y: -1.675}
+      - {x: 0.685, y: -1.635}
+      - {x: 0.865, y: -1.495}
+      - {x: 1.035, y: -1.385}
+  m_UseDelaunayMesh: 1
