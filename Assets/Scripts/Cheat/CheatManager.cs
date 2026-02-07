@@ -1,5 +1,5 @@
-using Cards.ScriptableObjects;
 using Deviloop;
+using System.Collections.Generic;
 using UnityEngine;
 using static LootSet;
 
@@ -12,7 +12,8 @@ public class CheatManager : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI _logLassoShape;
     [SerializeField] int maxLines = 50;
 
-    private readonly System.Collections.Generic.Queue<string> logQueue = new();
+    private readonly Queue<string> logQueue = new();
+    private static readonly Queue<string> logBuffer = new();
 
     private void OnEnable()
     {
@@ -48,6 +49,7 @@ public class CheatManager : MonoBehaviour
         }
 
         logQueue.Enqueue(formattedLog);
+        logBuffer.Enqueue(formattedLog);
 
         while (logQueue.Count > maxLines)
             logQueue.Dequeue();
@@ -56,6 +58,11 @@ public class CheatManager : MonoBehaviour
 
         if (_logText != null)
             _logText.text = combinedLogs;
+    }
+
+    public static Queue<string> GetLogs()
+    {
+        return logBuffer;
     }
 
     public void AddCoin(int amount)
