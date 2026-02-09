@@ -67,6 +67,7 @@ MonoBehaviour:
   _pointSpacingForLoop: 0.3
   _loopCloseThreshold: 1
   _minDistanceToDrawFinalPoint: 0.2
+  _loopMinArea: 5
   _defaultColor:
     serializedVersion: 2
     key0: {r: 0.8976976, g: 0.9150943, b: 0.6517889, a: 0.6901961}

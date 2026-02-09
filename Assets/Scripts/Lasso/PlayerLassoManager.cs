@@ -26,6 +26,7 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private float _pointSpacingForLoop = 0.3f;
     [SerializeField] private float _loopCloseThreshold = 0.5f;
     [SerializeField] private float _minDistanceToDrawFinalPoint = 0.2f;
+    [SerializeField] private float _loopMinArea = 2;
     [SerializeField] private Gradient _defaultColor;
     [SerializeField] private Gradient _nearCloseColor;
     [Space]
@@ -331,7 +332,7 @@ public class PlayerLassoManager : MonoBehaviour
 
         List<CardPrefab> lassoedCards = new List<CardPrefab>();
 
-        if (hits.Count <= 0 || hits.Count > maxedAllowedItems)
+        if (GetPolygonArea(poly) < _loopMinArea || hits.Count <= 0 || hits.Count > maxedAllowedItems)
         {
             if (hits.Count > maxedAllowedItems)
                 MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}. Try again!", 2);
@@ -371,6 +372,24 @@ public class PlayerLassoManager : MonoBehaviour
         OnLoopClosed?.Invoke();
     }
 
+    float GetPolygonArea(PolygonCollider2D poly)
+    {
+        Vector2[] points = poly.points;
+        float area = 0f;
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            Vector2 p1 = points[i];
+            Vector2 p2 = points[(i + 1) % points.Length];
+
+            area += (p1.x * p2.y) - (p2.x * p1.y);
+        }
+
+        float areaAbs = Mathf.Abs(area) * 0.5f;
+        Logger.Log($"Area: {areaAbs}", shouldLog);
+
+        return areaAbs;
+    }
     private void RecordTheShapeOfLasso(List<Vector2> points)
     {
         StartCoroutine(_gestureRecognizerController.RecordPoints(points, shape =>
