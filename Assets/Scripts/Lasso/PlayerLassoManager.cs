@@ -12,6 +12,11 @@ using UnityEngine.Localization.SmartFormat.PersistentVariables;
 public class PlayerLassoManager : MonoBehaviour
 {
     public static Action<LassoShape> OnLassoShapeRecognized;
+    public delegate void LassoSizeChanged(int maxSize, int currentSize);
+    public static LassoSizeChanged OnLassoSizeChanged;
+    public static Action OnLoopClosed;
+
+
     [SerializeField] private bool shouldLog = true;
     [SerializeField] private bool shouldPauseOnLoop = true;
     [Space]
@@ -90,7 +95,6 @@ public class PlayerLassoManager : MonoBehaviour
         TurnManager.OnTurnChanged -= OnTurnChanged;
     }
 
-
     private void OnTurnChanged(TurnManager.ETurnMode turnMode)
     {
         if (turnMode != TurnManager.ETurnMode.Player)
@@ -153,6 +157,7 @@ public class PlayerLassoManager : MonoBehaviour
             else
             {
                 _lineRenderer.colorGradient = _defaultColor;
+                OnLassoSizeChanged?.Invoke(_lassoLength, _points.Count);
 
                 // if the line is too long, remove the oldest point
                 if (_points.Count > _lassoLength)
@@ -206,6 +211,7 @@ public class PlayerLassoManager : MonoBehaviour
             _lineRenderer.positionCount = 0;
             _points.Clear();
             _lineRenderer.colorGradient = _defaultColor;
+            OnLassoSizeChanged?.Invoke(_lassoLength, 0);
             yield break;
         }
 
@@ -213,6 +219,7 @@ public class PlayerLassoManager : MonoBehaviour
         while (_lineRenderer.positionCount > 0)
         {
             _lineRenderer.positionCount--;
+            OnLassoSizeChanged?.Invoke(_lassoLength, _lineRenderer.positionCount);
             yield return null;
         }
 
@@ -361,6 +368,7 @@ public class PlayerLassoManager : MonoBehaviour
 
         Destroy(temp);
         _isResolvingALoop = false;
+        OnLoopClosed?.Invoke();
     }
 
     private void RecordTheShapeOfLasso(List<Vector2> points)
