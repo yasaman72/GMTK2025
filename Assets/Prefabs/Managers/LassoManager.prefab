@@ -62,7 +62,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  _pointSpacing: 0.5
+  _pointSpacing: 0.3
   _loopCloseThreshold: 1.5
   _defaultColor:
     serializedVersion: 2
@@ -125,7 +125,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _slowMotionTimeScale: 0.25
-  _lassoLength: 35
+  _lassoLength: 40
   _maxAllowedItems: 3
   _spellParticleSystem: {fileID: 0}
   _gestureRecognizerController: {fileID: 3665309597393065959}
