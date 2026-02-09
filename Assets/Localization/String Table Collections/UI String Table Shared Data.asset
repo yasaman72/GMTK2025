@@ -84,7 +84,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15968802900324352
-    m_Key: Gameplay/HUD/ThrowTooltip
+    m_Key: Tooltip/Throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15971758148202496
+    m_Key: Tooltip/Coin
     m_Metadata:
       m_Items: []
   m_Metadata:

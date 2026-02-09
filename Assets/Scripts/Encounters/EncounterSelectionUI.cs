@@ -16,6 +16,12 @@ namespace Deviloop
                 {
                     EncounterItems[i].gameObject.SetActive(true);
                     EncounterItems[i].Title.text = encounters[i].EncounterName;
+#if DEBUG
+                    EncounterItems[i].DebugTitle.text = "debug name: " + encounters[i].EncounterDebugName;
+#else
+                    EncounterItems[i].DebugTitle.gameObject.SetActive(false);
+#endif
+
                     EncounterItems[i].Icon.sprite = encounters[i].EncounterIcon;
                     EncounterItems[i].EliteReward.SetActive(encounters[i] is CombatEncounter ce && ce.IsElite);
 

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Encounter_Shop_A00_01
   m_EditorClassIdentifier: 
   EncounterName: Shop
+  EncounterDebugName: Shop
   EncounterIcon: {fileID: 21300000, guid: 0f14fa8d0a9e029458ba7481c2dcd745, type: 3}
   _shopData: {fileID: 11400000, guid: 027f06d057ad1284aac48b709441355b, type: 2}
