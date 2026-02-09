@@ -21,6 +21,7 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private Gradient _nearCloseColor;
     [Space]
     [SerializeField] private float _slowMotionTimeScale = 0.2f;
+    [SerializeField] private int _lassoLength = 40;
     [SerializeField] private int _maxAllowedItems = 3;
     [SerializeField] private ParticleSystem _spellParticleSystem;
     [SerializeField] private GestureRecognizerController _gestureRecognizerController;
@@ -143,6 +144,17 @@ public class PlayerLassoManager : MonoBehaviour
             else
             {
                 _lineRenderer.colorGradient = _defaultColor;
+
+                // if the line is too long, remove the oldest point
+                if (_points.Count > _lassoLength)
+                {
+                    _points.RemoveAt(0);
+                    for (int i = 0; i < _points.Count; i++)
+                    {
+                        _lineRenderer.SetPosition(i, _points[i]);
+                    }
+                    _lineRenderer.positionCount = _points.Count;
+                }
             }
         }
 
