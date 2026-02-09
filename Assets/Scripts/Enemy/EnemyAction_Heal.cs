@@ -8,8 +8,14 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "EnemyAction_Heal_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Heal", order = 1)]
     public class EnemyAction_Heal : EnemyActionPowered
     {
-        public override bool CanBeTaken()
+        public override bool CanBeTaken(EnemyAction previousAction)
         {
+            // don't heal if the previous action was also a heal
+            if (previousAction is EnemyAction_Heal)
+            {
+                return false;
+            }
+
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
             // remove any enemy has full HP
             aliveEnemies.Where(e => e.GetCurrentHealth >= e.MaxHealth).ToList().ForEach(e => aliveEnemies.Remove(e));

@@ -82,6 +82,6 @@ public class EnemyUI : CombatCharacterUI
     private void OnAttackBuffApplied(bool isApplied)
     {
         _intentionUIData.isAttackBuffed = isApplied;
-        UpdateIntentionUI((combatCharacter as Enemy).NextAction);
+        UpdateIntentionUI((combatCharacter as Enemy).CurrentAction);
     }
 }

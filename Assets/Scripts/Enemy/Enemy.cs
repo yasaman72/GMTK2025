@@ -16,8 +16,9 @@ public class Enemy : CombatCharacter, IPointerDownHandler
     [SerializeField] private Animator _parentAnimator;
 
     private Color _grayColor = new Color(.5f, .5f, .5f);
-    private EnemyAction nextAction;
-    public EnemyAction NextAction => nextAction;
+    private EnemyAction currentAction;
+    private EnemyAction previousAction;
+    public EnemyAction CurrentAction => currentAction;
 
     public EnemyData enemyStats => Stats as EnemyData;
 
@@ -58,7 +59,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         }
         else
         {
-            if (nextAction != null)
+            if (currentAction != null)
             {
                 // TODO: move this to an enemy controller and activate them one by one
                 // TODO: can use a initiative system later on for the order of actions
@@ -76,21 +77,23 @@ public class Enemy : CombatCharacter, IPointerDownHandler
     private void PickNextAction()
     {
         int behaviorIndex = UnityEngine.Random.Range(0, enemyStats.EnemyActions.Count);
-        nextAction = enemyStats.EnemyActions[behaviorIndex];
-        if (nextAction.CanBeTaken() == false)
+        previousAction = currentAction;
+        EnemyAction nextAction = enemyStats.EnemyActions[behaviorIndex];
+        if (nextAction.CanBeTaken(previousAction) == false)
         {
             PickNextAction();
             return;
         }
-        OnIntentionChanged?.Invoke(nextAction);
+        currentAction = nextAction;
+        OnIntentionChanged?.Invoke(currentAction);
     }
 
     private IEnumerator PlayNextActionWithDelay()
     {
-        yield return new WaitForSeconds(nextAction.actionDelay);
-        ApplyAllEffects(nextAction);
+        yield return new WaitForSeconds(currentAction.actionDelay);
+        ApplyAllEffects(currentAction);
         OnIntentionChanged?.Invoke(null);
-        nextAction.TakeAction(this, this, OnActionFinished);
+        currentAction.TakeAction(this, this, OnActionFinished);
     }
 
     private void OnActionFinished()

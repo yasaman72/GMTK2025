@@ -16,7 +16,7 @@ namespace Deviloop
             return "";
         }
 
-        public override bool CanBeTaken()
+        public override bool CanBeTaken(EnemyAction previousAction)
         {
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
             // Remove enemies that already have the effect

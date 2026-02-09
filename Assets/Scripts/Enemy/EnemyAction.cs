@@ -34,7 +34,7 @@ namespace Deviloop
         }
 
         public abstract string IntentionNumber();
-        public virtual bool CanBeTaken() => true;
+        public virtual bool CanBeTaken(EnemyAction previousAction) => true;
         protected virtual void ApplyOnEnable() { }
         protected virtual void ApplyOnValidate() { }
 
