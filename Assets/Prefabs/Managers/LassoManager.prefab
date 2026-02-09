@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldLog: 1
+  shouldPauseOnLoop: 0
   _lineRenderer: {fileID: 9149384676272495391}
   _itemsFilter:
     useTriggers: 1
@@ -63,7 +64,9 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   _pointSpacing: 0.3
-  _loopCloseThreshold: 1.5
+  _pointSpacingForLoop: 0.3
+  _loopCloseThreshold: 1
+  _minDistanceToDrawFinalPoint: 0.2
   _defaultColor:
     serializedVersion: 2
     key0: {r: 0.8976976, g: 0.9150943, b: 0.6517889, a: 0.6901961}
@@ -96,8 +99,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _nearCloseColor:
     serializedVersion: 2
-    key0: {r: 0.3964933, g: 0.9811321, b: 0.26379493, a: 1}
-    key1: {r: 0.13955145, g: 0.22367184, b: 0.6037736, a: 1}
+    key0: {r: 0.14117648, g: 0.22352941, b: 0.6039216, a: 0.6666667}
+    key1: {r: 0.13955145, g: 0.22367184, b: 0.6037736, a: 0.6666667}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -121,11 +124,12 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_ColorSpace: -1
+    m_ColorSpace: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _slowMotionTimeScale: 0.25
-  _lassoLength: 40
+  _lassoLength: 60
+  _minPOintForLoop: 10
   _maxAllowedItems: 3
   _spellParticleSystem: {fileID: 0}
   _gestureRecognizerController: {fileID: 3665309597393065959}

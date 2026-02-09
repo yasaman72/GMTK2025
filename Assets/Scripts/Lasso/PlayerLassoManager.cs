@@ -3,6 +3,7 @@ using Deviloop;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.Extensions;
@@ -12,16 +13,20 @@ public class PlayerLassoManager : MonoBehaviour
 {
     public static Action<LassoShape> OnLassoShapeRecognized;
     [SerializeField] private bool shouldLog = true;
+    [SerializeField] private bool shouldPauseOnLoop = true;
     [Space]
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private ContactFilter2D _itemsFilter;
     [SerializeField] private float _pointSpacing = 0.1f;
+    [SerializeField] private float _pointSpacingForLoop = 0.3f;
     [SerializeField] private float _loopCloseThreshold = 0.5f;
+    [SerializeField] private float _minDistanceToDrawFinalPoint = 0.2f;
     [SerializeField] private Gradient _defaultColor;
     [SerializeField] private Gradient _nearCloseColor;
     [Space]
     [SerializeField] private float _slowMotionTimeScale = 0.2f;
     [SerializeField] private int _lassoLength = 40;
+    [SerializeField] private int _minPOintForLoop = 10;
     [SerializeField] private int _maxAllowedItems = 3;
     [SerializeField] private ParticleSystem _spellParticleSystem;
     [SerializeField] private GestureRecognizerController _gestureRecognizerController;
@@ -31,6 +36,7 @@ public class PlayerLassoManager : MonoBehaviour
     public static bool HasAlreadyDrawn => _hasAlreadyDrawn;
     private bool _startNewLine = false;
     private Coroutine clearCoroutine;
+    private bool _isResolvingALoop = false;
 
     // TODO: a more generic to handle values modified by relics
     private static int maxedAllowedItems;
@@ -99,7 +105,7 @@ public class PlayerLassoManager : MonoBehaviour
 
     private void OnPlayerDrawTurnStart()
     {
-        StartCoroutine(InvertLasso(true));
+        ImmediateLassoClear();
         _hasAlreadyDrawn = false;
     }
 
@@ -114,7 +120,7 @@ public class PlayerLassoManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StopCoroutine(InvertLasso());
-            StartCoroutine(InvertLasso(true));
+            ImmediateLassoClear();
             _startNewLine = true;
             Time.timeScale = _slowMotionTimeScale;
         }
@@ -136,9 +142,12 @@ public class PlayerLassoManager : MonoBehaviour
                 _lineRenderer.SetPosition(_points.Count - 1, mousePos);
             }
 
-            if (IsLineNearOtherEnd())
+            bool isLooping = false;
+            int loopEndPointIndex = IsLineLooping(out isLooping);
+
+            if (IsLineNearOtherEnd() || isLooping)
             {
-                CloseLoop();
+                CloseLoop(isLooping, loopEndPointIndex);
                 _lineRenderer.colorGradient = _nearCloseColor;
             }
             else
@@ -163,9 +172,12 @@ public class PlayerLassoManager : MonoBehaviour
             _startNewLine = false;
             Time.timeScale = 1f;
 
-            if (IsLineNearOtherEnd())
+            bool isLooping = false;
+            int loopEndPointIndex = IsLineLooping(out isLooping);
+
+            if (!_isResolvingALoop && (IsLineNearOtherEnd() || isLooping))
             {
-                CloseLoop();
+                CloseLoop(isLooping, loopEndPointIndex);
             }
             else
             {
@@ -220,25 +232,95 @@ public class PlayerLassoManager : MonoBehaviour
         return _points.Count > 10 && Vector2.Distance(_points[^1], _points[0]) < _loopCloseThreshold;
     }
 
-    void CloseLoop()
+    private int IsLineLooping(out bool isLooping)
     {
+        if (_points.Count < _pointSpacingForLoop)
+        {
+            isLooping = false;
+            return -1; // not enough points to form a loop
+        }
+        Vector2 lastPoint = _points[^1];
+
+        // check closest points to the last point
+        int closestPointIndex = -1;
+        for (int i = 0; i < _points.Count - _minPOintForLoop; i++)
+        {
+            if (Vector2.Distance(lastPoint, _points[i]) < (_loopCloseThreshold))
+            {
+                if (closestPointIndex == -1)
+                {
+                    closestPointIndex = i;
+                    continue;
+                }
+                if (Vector2.Distance(lastPoint, _points[i]) < Vector2.Distance(lastPoint, _points[closestPointIndex]))
+                {
+                    closestPointIndex = i;
+                }
+            }
+            else
+            {
+                Logger.Log($"Point {i} is too far from the last point to form a loop. Distance: {Vector2.Distance(lastPoint, _points[i])}", shouldLog);
+            }
+        }
+
+        if (closestPointIndex == -1)
+        {
+            isLooping = false;
+            return -1;
+        }
+        else
+        {
+            isLooping = true;
+            return closestPointIndex;
+        }
+    }
+
+    void CloseLoop(bool isLooping, int closestPointToLoopEndIndex)
+    {
+        _isResolvingALoop = true;
         Time.timeScale = 1f;
 
-        _points.Add(_points[0]);
-        _lineRenderer.positionCount = _points.Count;
-        _lineRenderer.SetPosition(_points.Count - 1, _points[0]);
+        Vector2 newPoint = isLooping ? _points[closestPointToLoopEndIndex] : _points[0];
+        // if points are too close, don't add the point
+        if (Vector2.Distance(newPoint, _points[^1]) > _minDistanceToDrawFinalPoint)
+        {
+            _points.Add(newPoint);
+            _lineRenderer.positionCount = _points.Count;
+            _lineRenderer.SetPosition(_points.Count - 1, newPoint);
+            Logger.Log($"Loop closed! new point: {newPoint}", shouldLog);
 
-        StartCoroutine(DetectInsidePoints(_points));
+#if UNITY_EDITOR
+            EditorApplication.isPaused = shouldPauseOnLoop ? true : false;
+#endif
+        }
+
+        // only send the points that are inside the loop to be detected
+        var loopPoints = new List<Vector2>(_points);
+        if (isLooping)
+        {
+            loopPoints = new List<Vector2>();
+            for (int i = closestPointToLoopEndIndex; i < _points.Count; i++)
+            {
+                loopPoints.Add(_points[i]);
+            }
+        }
+
+        StartCoroutine(DetectInsidePoints(loopPoints));
     }
 
     private IEnumerator DetectInsidePoints(List<Vector2> loopPoints)
     {
+        yield return null;
         GameObject temp = new GameObject("TempCollider");
         PolygonCollider2D poly = temp.AddComponent<PolygonCollider2D>();
         poly.isTrigger = true;
         poly.points = loopPoints.ToArray();
         List<Collider2D> hits = new List<Collider2D>();
         Physics2D.OverlapCollider(poly, _itemsFilter, hits);
+
+#if UNITY_EDITOR
+        EditorApplication.isPaused = shouldPauseOnLoop ? true : false;
+#endif
 
         List<CardPrefab> lassoedCards = new List<CardPrefab>();
 
@@ -278,6 +360,7 @@ public class PlayerLassoManager : MonoBehaviour
         }
 
         Destroy(temp);
+        _isResolvingALoop = false;
     }
 
     private void RecordTheShapeOfLasso(List<Vector2> points)
