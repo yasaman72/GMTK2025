@@ -81,7 +81,7 @@ public class PlayerLassoManager : MonoBehaviour
 
         ImmediateLassoClear();
 
-        GameStateManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
+        CardManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
         TurnManager.OnTurnChanged += OnTurnChanged;
 
         _spellParticleSystem.Stop();
@@ -91,7 +91,7 @@ public class PlayerLassoManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GameStateManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
+        CardManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
         TurnManager.OnTurnChanged -= OnTurnChanged;
     }
 

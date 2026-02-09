@@ -3341,6 +3341,7 @@ GameObject:
   - component: {fileID: 3772968950846914952}
   - component: {fileID: 8664523211268631379}
   - component: {fileID: 2181817151950631339}
+  - component: {fileID: 6903401346852521384}
   m_Layer: 5
   m_Name: Draw Deck
   m_TagString: Untagged
@@ -3494,6 +3495,30 @@ MonoBehaviour:
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
 --- !u!114 &2181817151950631339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883713027937278372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae1128c4dfac44db776ac763e5402a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.TooltipTrigger
+  _tooltipText:
+    m_TableReference:
+      m_TableCollectionName: GUID:43d307f1defda77489296589d689e1f3
+    m_TableEntryReference:
+      m_KeyId: 2872605192192
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &6903401346852521384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5107,6 +5132,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6024798262253909017, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7961739377047153452}
     - targetCorrespondingSourceObject: {fileID: 7422435631148451599, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8747801278718088562}
@@ -5165,6 +5193,35 @@ MonoBehaviour:
           m_WaitForCompletion: 0
           m_LocalVariables: []
         m_PropertyPath: m_text
+--- !u!1 &2771904195267123531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6024798262253909017, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}
+  m_PrefabInstance: {fileID: 8497072265086053714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7961739377047153452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771904195267123531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae1128c4dfac44db776ac763e5402a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.TooltipTrigger
+  _tooltipText:
+    m_TableReference:
+      m_TableCollectionName: GUID:43d307f1defda77489296589d689e1f3
+    m_TableEntryReference:
+      m_KeyId: 15968802900324352
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!224 &6888318848136120314 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3058950525426805416, guid: a783e2b322b01614985d2c9ad26cedd2, type: 3}

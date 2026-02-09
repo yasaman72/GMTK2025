@@ -1,3 +1,4 @@
+using Cards;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace Deviloop
             _holder.SetActive(false);
             PlayerLassoManager.OnLassoSizeChanged += UpdateSlider;
             PlayerLassoManager.OnLoopClosed += OnLoopClosed;
-            GameStateManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
+            CardManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
             TurnManager.OnTurnChanged += OnTurnChanged;
         }
 
@@ -22,7 +23,7 @@ namespace Deviloop
         {
             PlayerLassoManager.OnLassoSizeChanged -= UpdateSlider;
             PlayerLassoManager.OnLoopClosed -= OnLoopClosed;
-            GameStateManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
+            CardManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
             TurnManager.OnTurnChanged -= OnTurnChanged;
         }
 

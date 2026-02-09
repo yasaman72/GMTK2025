@@ -32,7 +32,7 @@ public class HudManager : CustomMonoBehavior
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += UpdateTurnText;
-        GameStateManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
+        CardManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
 
         _pauseMenu.SetActive(false);
         _deckView.Initialize();
@@ -42,7 +42,7 @@ public class HudManager : CustomMonoBehavior
     private void OnDisable()
     {
         TurnManager.OnTurnChanged -= UpdateTurnText;
-        GameStateManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
+        CardManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
         _rewardView.OnReset();
         _deckView.OnReset();
     }

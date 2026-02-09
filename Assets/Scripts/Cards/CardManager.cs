@@ -15,6 +15,8 @@ namespace Cards
 {
     public class CardManager : MonoBehaviour
     {
+        // After items are thrown, these values change to allow player start drawing the lasso
+        public static Action OnPlayerClickedThrowButton;
         public static Action<BaseCard, int> AddCardToDeckAction;
         public delegate void RemoveCardFromDeck(BaseCard card, bool removeFromDiscard);
         public static RemoveCardFromDeck RemoveCardFromDeckAction;
@@ -83,6 +85,15 @@ namespace Cards
         void Start()
         {
             Initialize();
+        }
+
+        private void Update()
+        {
+            // TODO: replace with new input system when implemented
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                OnThrowButtonClicked();
+            }
         }
 
         private void OnEnable()
@@ -155,9 +166,12 @@ namespace Cards
 
         public void OnThrowButtonClicked()
         {
+            if (GameStateManager.IsInLassoingState) return;
             if (TurnManager.TurnMode != TurnManager.ETurnMode.Player) return;
 
             StartCoroutine(ThrowCardsSequence());
+            GameStateManager.IsInLassoingState = true;
+            OnPlayerClickedThrowButton?.Invoke();
         }
 
         IEnumerator ThrowCardsSequence()

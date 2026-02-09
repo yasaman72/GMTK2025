@@ -88,6 +88,10 @@ MonoBehaviour:
     m_Localized: You haven't picked all your rewards, you sure you want to continue?
     m_Metadata:
       m_Items: []
+  - m_Id: 15968802900324352
+    m_Localized: '[press space]'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

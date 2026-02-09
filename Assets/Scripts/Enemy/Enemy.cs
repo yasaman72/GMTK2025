@@ -1,3 +1,4 @@
+using Cards;
 using Cards.ScriptableObjects;
 using Deviloop;
 using System;
@@ -33,7 +34,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         TurnManager.OnTurnChanged += HandleTurnChanged;
         base.OnDeath += AfterDeathTrigger;
         base.OnDamageRecieved += DamageRecieved;
-        GameStateManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
+        CardManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
 
         TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
         base.OnEnable();
@@ -44,7 +45,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         base.OnDeath -= AfterDeathTrigger;
         base.OnDamageRecieved -= DamageRecieved;
         TurnManager.OnTurnChanged -= HandleTurnChanged;
-        GameStateManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
+        CardManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
 
         base.OnDisable();
     }

@@ -83,6 +83,10 @@ MonoBehaviour:
     m_Key: Messages/RewardsNotPicked
     m_Metadata:
       m_Items: []
+  - m_Id: 15968802900324352
+    m_Key: Gameplay/HUD/ThrowTooltip
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

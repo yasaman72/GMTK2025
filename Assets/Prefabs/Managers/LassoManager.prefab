@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf9fb7e2812fc42939438c051c5c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldLog: 1
+  shouldLog: 0
   shouldPauseOnLoop: 0
   _lineRenderer: {fileID: 9149384676272495391}
   _itemsFilter:
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93b000f2f10d9c41a14531baac1d3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Deviloop::Deviloop.GestureRecognizerController
-  _logResults: 1
+  _logResults: 0
   _patterns:
   - {fileID: 11400000, guid: 006da8a3c6358464291be5c6ab13721c, type: 2}
   - {fileID: 11400000, guid: d34a5bf920ca69c499545b293bd04c79, type: 2}
