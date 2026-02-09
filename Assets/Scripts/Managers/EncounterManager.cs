@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,8 @@ namespace Deviloop
         public static Area CurrentArea;
         private static int _currentAreaIndex = -1;
 
-        private int _currentEncounterIndex = 0;
+        private static int _currentEncounterIndex = 0;
+        public static int CurrentEncounterIndex => _currentEncounterIndex;
         public static BaseEncounter CurrentEncounter;
 
         public static Action OnEncounterFinished;
@@ -36,7 +36,9 @@ namespace Deviloop
         private void Start()
         {
             _currentAreaIndex = -1;
+            _currentEncounterIndex = 0;
             StartNextArea();
+            _allAreas.Setup();
         }
 
         public void StartNextArea()
@@ -67,7 +69,7 @@ namespace Deviloop
                 CurrentEncounter.StartEncounter();
                 return;
             }
-
+            
             if (_currentEncounterIndex == CurrentArea.MaxEncounters)
             {
                 // TODO: put this endless somewhere better
@@ -83,6 +85,7 @@ namespace Deviloop
                 return;
             }
 
+            _currentEncounterIndex++;
             ShowEncounterSelectionUI(DeterminNextEncounter());
         }
 
@@ -97,44 +100,34 @@ namespace Deviloop
                 // Avoiding having the same encounter
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false));
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false, new List<BaseEncounter>() { nextEncounters[0] }));
-
-                _currentEncounterIndex++;
-                return nextEncounters;
             }
-
-            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
+            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
             {
                 Logger.Log("Starting pre boss shop/rest encounter.", _shouldLog);
 
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>(false));
                 //nextEncounters.Add(CurrentArea.GetRandomEncounterType<RestEncounter>());
-
-                _currentEncounterIndex++;
-                return nextEncounters;
             }
-            
-            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
+            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
             {
                 Logger.Log("Starting boss encounter.", _shouldLog);
                 nextEncounters.Add(CurrentArea.BossEncounter);
+            }
+            else
+            {
+                List<BaseEncounter> skippingEncounters = new List<BaseEncounter>();
 
-                _currentEncounterIndex++;
-                return nextEncounters;
+                // Don't allow two shops in a row
+                if (CurrentEncounter is ShopEncounter)
+                    skippingEncounters.Add(CurrentEncounter);
+
+                nextEncounters.Add(CurrentArea.GetRandomEncounter(false, skippingEncounters));
+                skippingEncounters.Add(nextEncounters[0]);
+                nextEncounters.Add(CurrentArea.GetRandomEncounter(false, skippingEncounters));
+
+                Logger.Log($"Starting encounter {_currentEncounterIndex + 1}/{CurrentArea.MaxEncounters} in area {CurrentArea.AreaName}: {CurrentEncounter.name}", _shouldLog);
             }
 
-            List<BaseEncounter> skippingEncounters = new List<BaseEncounter>();
-
-            // Don't allow two shops in a row
-            if (CurrentEncounter is ShopEncounter)
-                skippingEncounters.Add(CurrentEncounter);
-
-            nextEncounters.Add(CurrentArea.GetRandomEncounter(false, skippingEncounters));
-            skippingEncounters.Add(nextEncounters[0]);
-            nextEncounters.Add(CurrentArea.GetRandomEncounter(false, skippingEncounters));
-
-            Logger.Log($"Starting encounter {_currentEncounterIndex + 1}/{CurrentArea.MaxEncounters} in area {CurrentArea.AreaName}: {CurrentEncounter.name}", _shouldLog);
-
-            _currentEncounterIndex++;
             return nextEncounters;
         }
 

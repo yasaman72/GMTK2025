@@ -1,7 +1,5 @@
-using Cards;
 using System.Collections.Generic;
 using UnityEngine;
-using static Deviloop.Area;
 
 namespace Deviloop
 {
@@ -9,6 +7,18 @@ namespace Deviloop
     public class AreaData : ScriptableObject
     {
         public List<Area> Areas;
+
+
+        public void Setup()
+        {
+            foreach (var area in Areas)
+            {
+                foreach (var e in area.Encounters)
+                {
+                    e.Reset();
+                }
+            }
+        }
 
         public List<Area> Copy()
         {
@@ -18,7 +28,7 @@ namespace Deviloop
                 var newArea = new Area
                 {
                     AreaName = area.AreaName,
-                    Encounters = new List<EncounterProbability>(area.Encounters),
+                    Encounters = new List<EncounterConfig>(area.Encounters),
                     BossEncounter = area.BossEncounter
                 };
                 _newAreasList.Add(newArea);

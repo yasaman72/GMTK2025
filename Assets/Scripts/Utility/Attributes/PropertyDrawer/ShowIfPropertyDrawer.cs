@@ -5,26 +5,55 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(ShowIfAttribute))]
 public class ShowIfPropertyDrawer : PropertyDrawer
 {
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        return ShouldShow(property)
+            ? EditorGUI.GetPropertyHeight(property, label, true)
+            : 0f;
+    }
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        ShowIfAttribute showIfAttribute = (ShowIfAttribute)attribute;
+        if (!ShouldShow(property))
+            return;
 
-        // Find the boolean field that will control the visibility of this field
-        SerializedProperty booleanField = property.serializedObject.FindProperty(showIfAttribute.BooleanFieldName);
+        EditorGUI.PropertyField(position, property, label, true);
+    }
 
-        if (booleanField != null)
+    private bool ShouldShow(SerializedProperty property)
+    {
+        var showIf = (ShowIfAttribute)attribute;
+
+        SerializedProperty conditionProperty = FindRelativeProperty(property, showIf.ConditionField);
+
+        if (conditionProperty == null)
         {
-            if (booleanField.boolValue)
-            {
-                EditorGUI.PropertyField(position, property, label);
-            }
+            Debug.LogWarning(
+                $"ShowIf: Could not find field '{showIf.ConditionField}' relative to '{property.propertyPath}'");
+            return true;
         }
-        else
+
+        if (conditionProperty.propertyType != SerializedPropertyType.Boolean)
         {
-            Debug.LogWarning("Could not find boolean field: " + showIfAttribute.BooleanFieldName);
-            EditorGUI.PropertyField(position, property, label);
+            Debug.LogWarning(
+                $"ShowIf: Field '{showIf.ConditionField}' is not a bool");
+            return true;
         }
+
+        bool value = conditionProperty.boolValue;
+        return showIf.Invert ? !value : value;
+    }
+
+    private SerializedProperty FindRelativeProperty(SerializedProperty property, string fieldName)
+    {
+        string path = property.propertyPath;
+        int lastDot = path.LastIndexOf('.');
+
+        if (lastDot < 0)
+            return property.serializedObject.FindProperty(fieldName);
+
+        string conditionPath = path.Substring(0, lastDot) + "." + fieldName;
+        return property.serializedObject.FindProperty(conditionPath);
     }
 }
-
 #endif

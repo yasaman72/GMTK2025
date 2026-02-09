@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,20 +9,27 @@ namespace Deviloop
         public string AreaName;
         [Min(5)]
         public int MaxEncounters;
-        [Serializable]
-        public class EncounterProbability
-        {
-            public BaseEncounter Encounter;
-            public int Probability;
-            public bool IsStartingEncounter;
-        }
-        public List<EncounterProbability> Encounters;
+
+        public List<EncounterConfig> Encounters;
         public BaseEncounter BossEncounter;
 
         public int TotalWeight { get; private set; } = -1;
 
         public BaseEncounter GetRandomEncounter(bool isStartingEncounter = false, List<BaseEncounter> encountersToSkip = null)
         {
+            List<BaseEncounter> encounterThatMustSpawn = new List<BaseEncounter>();
+
+            foreach (var encounter in Encounters)
+            {
+                if (encounter.ShouldSpawnEncountersNow())
+                {
+                    encounterThatMustSpawn.Add(encounter.Encounter);
+                }
+            }
+
+            if (encounterThatMustSpawn.Count > 0)
+                return encounterThatMustSpawn[0];
+
             if (TotalWeight == -1)
             {
                 TotalWeight = 0;
@@ -34,7 +40,7 @@ namespace Deviloop
             }
 
             int randomIndex = 0;
-            int randomValue = UnityEngine.Random.Range(0, TotalWeight);
+            int randomValue = Random.Range(0, TotalWeight);
             int cumulativeWeight = 0;
 
             for (int i = 0; i < Encounters.Count; i++)
@@ -44,7 +50,10 @@ namespace Deviloop
                 {
                     if (isStartingEncounter && !Encounters[i].IsStartingEncounter)
                         continue; // Skip non-starting encounters if we need a starting encounter
-                    
+
+                    if (Encounters[i].ShouldSpawnRegularly)
+                        continue;
+
                     randomIndex = i;
                     break;
                 }
@@ -52,7 +61,7 @@ namespace Deviloop
 
             BaseEncounter randomEncounter = Encounters[randomIndex].Encounter;
 
-            if(encountersToSkip != null && encountersToSkip.Contains(randomEncounter))
+            if (encountersToSkip != null && encountersToSkip.Contains(randomEncounter))
             {
                 return GetRandomEncounter(isStartingEncounter, encountersToSkip);
             }

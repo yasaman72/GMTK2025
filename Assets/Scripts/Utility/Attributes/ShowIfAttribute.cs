@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
 
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
 public class ShowIfAttribute : PropertyAttribute
 {
-    public string BooleanFieldName;
+    public readonly string ConditionField;
+    public readonly bool Invert;
 
-    public ShowIfAttribute(string booleanFieldName)
+    public ShowIfAttribute(string conditionField, bool invert = false)
     {
-        BooleanFieldName = booleanFieldName;
+        ConditionField = conditionField;
+        Invert = invert;
     }
 }
