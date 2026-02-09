@@ -158,7 +158,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608280
   - m_Id: 10835021449179136
-    m_Localized: heal a unit for {ActionPower}
+    m_Localized: heal unit with lowest HP for {ActionPower}
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280

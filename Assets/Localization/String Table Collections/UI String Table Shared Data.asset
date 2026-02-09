@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: Menus/Start
     m_Metadata:
       m_Items: []
+  - m_Id: 15945125580288000
+    m_Key: Messages/RewardsNotPicked
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ namespace Deviloop
             PlayerLassoManager.OnLassoSizeChanged += UpdateSlider;
             PlayerLassoManager.OnLoopClosed += OnLoopClosed;
             GameStateManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
+            TurnManager.OnTurnChanged += OnTurnChanged;
         }
 
         private void OnDisable()
@@ -21,6 +23,13 @@ namespace Deviloop
             PlayerLassoManager.OnLassoSizeChanged -= UpdateSlider;
             PlayerLassoManager.OnLoopClosed -= OnLoopClosed;
             GameStateManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
+            TurnManager.OnTurnChanged -= OnTurnChanged;
+        }
+
+        private void OnTurnChanged(TurnManager.ETurnMode mode)
+        {
+            if (mode != TurnManager.ETurnMode.Player)
+                _holder.SetActive(false);
         }
 
         private void OnLoopClosed()

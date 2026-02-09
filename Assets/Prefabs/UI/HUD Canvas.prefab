@@ -1725,6 +1725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2095173681744672892}
   - component: {fileID: 2856382834728494596}
+  - component: {fileID: 8937497318043032991}
   m_Layer: 5
   m_Name: MessageController
   m_TagString: Untagged
@@ -1747,9 +1748,9 @@ RectTransform:
   - {fileID: 3436495616789873338}
   m_Father: {fileID: 2721990244803047427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 96.09999}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -83}
   m_SizeDelta: {x: 270.0945, y: 21.399994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2856382834728494596
@@ -1765,6 +1766,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Deviloop::Deviloop.MessageController
   _displayer: {fileID: 2992061305552840724}
+--- !u!223 &8937497318043032991
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570977769858599567}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 30
+  m_TargetDisplay: 0
 --- !u!1 &3765888672505129961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4718,6 +4742,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2721990244803047427}
     m_Modifications:
+    - target: {fileID: 1084142304474666723, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
+      propertyPath: m_Name
+      value: Next Button
+      objectReference: {fileID: 0}
     - target: {fileID: 1563795048338525211, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4801,6 +4829,14 @@ PrefabInstance:
     - target: {fileID: 4042106687931257542, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293011295788784929, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
+      propertyPath: _notPickedRewardsMsg.m_TableEntryReference.m_KeyId
+      value: 15945125580288000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293011295788784929, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
+      propertyPath: _notPickedRewardsMsg.m_TableReference.m_TableCollectionName
+      value: GUID:43d307f1defda77489296589d689e1f3
       objectReference: {fileID: 0}
     - target: {fileID: 4915743493717479708, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_Pivot.x
@@ -4908,11 +4944,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8332817181950039796, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8332817181950039796, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8332817181950039796, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: m_AnchoredPosition.x

@@ -2,6 +2,7 @@ using Deviloop;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 using static LootSet;
 
@@ -12,10 +13,13 @@ public class RewardView : MonoBehaviour
 
     [SerializeField] private bool _shouldLog;
     [SerializeField] private int _maxItemOption = 2;
+    [SerializeField] private LocalizedString _notPickedRewardsMsg;
     [Space]
     [SerializeField] private Transform _deckContentHolder;
     [SerializeField] private Transform _itemsSelectionContent;
     [SerializeField] private GameObject _rewardItemPrefab;
+
+    private bool _isRewardNotPickedUpNotificationDisplayed = false;
 
     Dictionary<LootSetData, GameObject> _allCurrentLoots = new Dictionary<LootSetData, GameObject>();
 
@@ -126,9 +130,28 @@ public class RewardView : MonoBehaviour
 
     public void Close()
     {
+        if (!_isRewardNotPickedUpNotificationDisplayed && !CheckIfPickedAllRewards())
+        {
+            _isRewardNotPickedUpNotificationDisplayed = true;
+            MessageController.OnDisplayMessage?.Invoke("You haven't picked all your rewards, you sure you want to continue?", 2);
+            return;
+        }
+
+        _isRewardNotPickedUpNotificationDisplayed = false;
         Time.timeScale = 1;
         gameObject.SetActive(false);
         _allCurrentLoots.Clear();
         OnRewardsClosed?.Invoke();
+    }
+
+
+    private bool CheckIfPickedAllRewards()
+    {
+        var allRewardItems = _deckContentHolder.GetComponentsInChildren<RewardItem>();
+        if (allRewardItems.Length == 0)
+        {
+            return true;
+        }
+        return false;
     }
 }
