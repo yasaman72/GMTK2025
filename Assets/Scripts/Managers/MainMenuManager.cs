@@ -28,7 +28,10 @@ namespace Deviloop
 
         public void OnStartGameAnimationFinished()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            using (new DisposableStopwatch("gameplay scene load"))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            }
         }
 
         public void CopySeedToClipboard()
