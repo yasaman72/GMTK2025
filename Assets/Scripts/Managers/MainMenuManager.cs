@@ -6,12 +6,6 @@ namespace Deviloop
     public class MainMenuManager : MonoBehaviour
     {
         [SerializeField] private Animator _startGameAnimator;
-        [SerializeField] private TextMeshProUGUI _currentSeedText;
-
-        private void Start()
-        {
-            _currentSeedText.text = "Current Seed: " + SeededRandom.GetSeed();
-        }
 
         public void OnStart()
         {
@@ -40,19 +34,6 @@ namespace Deviloop
         public void CopySeedToClipboard()
         {
             GUIUtility.systemCopyBuffer = SeededRandom.GetSeed().ToString();
-        }
-
-        public void OnSeedValueEdited(string seedValue)
-        {
-            if (int.TryParse(seedValue, out int seed))
-            {
-                SeededRandom.SetSeed(seed);
-                _currentSeedText.text = "Current Seed: " + SeededRandom.GetSeed();
-            }
-            else
-            {
-                Debug.LogWarning("Invalid seed value entered: " + seedValue);
-            }
         }
     }
 }

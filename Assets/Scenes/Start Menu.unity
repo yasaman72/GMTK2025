@@ -1607,6 +1607,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 39139397762853140, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2575719419114857247}
+    - target: {fileID: 39139397762853140, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSeedValueEdited
+      objectReference: {fileID: 0}
+    - target: {fileID: 39139397762853140, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Deviloop.SeedView, Deviloop
+      objectReference: {fileID: 0}
     - target: {fileID: 1961294024802872172, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1718,6 +1730,18 @@ PrefabInstance:
     - target: {fileID: 3618670423791019759, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207490012461675361, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2575719419114857247}
+    - target: {fileID: 4207490012461675361, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CopySeedToClipboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207490012461675361, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Deviloop.SeedView, Deviloop
       objectReference: {fileID: 0}
     - target: {fileID: 5784605601721670340, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
       propertyPath: m_Camera
@@ -1819,6 +1843,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7187216714770806239, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      propertyPath: m_Name
+      value: Seed
+      objectReference: {fileID: 0}
     - target: {fileID: 7633332706207603892, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1866,8 +1894,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7187216714770806239, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2575719419114857247}
   m_SourcePrefab: {fileID: 100100000, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+--- !u!114 &2575719419114857245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 537459518135590536, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+  m_PrefabInstance: {fileID: 2575719419114857244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &2575719419114857246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7187216714770806239, guid: ffd0867f206a170418c1476b1a3d6f29, type: 3}
+  m_PrefabInstance: {fileID: 2575719419114857244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2575719419114857247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2575719419114857246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a0ccd444bde9644b1ab6ce3d3e05b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.SeedView
+  _currentSeedText: {fileID: 2575719419114857245}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

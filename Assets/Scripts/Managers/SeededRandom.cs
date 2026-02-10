@@ -12,8 +12,10 @@ namespace Deviloop
 
         [SerializeField] private bool shouldLog = true;
 
-        private void Start()
+        private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
+
             seed = GenerateSeed();
             rng = new System.Random(seed);
 
