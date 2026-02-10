@@ -83,10 +83,14 @@ public class RewardView : MonoBehaviour
             if (reward.item is CardLoot && _rewardPrefabs[i].transform.parent.gameObject != _itemsSelectionContent)
             {
                 _rewardPrefabs[i].transform.SetParent(_itemsSelectionContent);
+                _rewardPrefabs[i].SetActive(true);
                 _itemsSelectionContent.gameObject.SetActive(true);
             }
             else
+            {
                 _rewardPrefabs[i].transform.SetParent(_deckContentHolder);
+                _rewardPrefabs[i].SetActive(false);
+            }
             newRewardPrefab = _rewardPrefabs[i];
             _rewardPrefabs[i].SetActive(true);
 
@@ -94,6 +98,11 @@ public class RewardView : MonoBehaviour
             newRewardPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
             newRewardPrefab.GetComponent<Button>().onClick.AddListener(() => CollectReward(reward, newRewardPrefab));
             _allCurrentLoots.Add(reward, newRewardPrefab);
+        }
+
+        for (int i = allRewards.Count; i < _rewardPrefabs.Count; i++)
+        {
+            _rewardPrefabs[i].SetActive(false);
         }
 
         gameObject.SetActive(true);

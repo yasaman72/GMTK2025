@@ -1,4 +1,4 @@
-using Cards.ScriptableObjects;
+using Deviloop.ScriptableObjects;
 
 public interface IDamageDealer
 {

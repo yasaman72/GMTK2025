@@ -1,29 +1,32 @@
 
 
-using Cards;
+using Deviloop;
 
-public class Player : CombatCharacter
+namespace Deviloop
 {
-    public static CombatCharacter PlayerCombatCharacter { get; private set; }
-
-    private void Awake()
+    public class Player : CombatCharacter
     {
-        PlayerCombatCharacter = this;
-    }
+        public static CombatCharacter PlayerCombatCharacter { get; private set; }
 
-    private void OnEnable()
-    {
-        CombatManager.OnCombatFinishedEvent += OnCombatFinished;
-    }
+        private void Awake()
+        {
+            PlayerCombatCharacter = this;
+        }
 
-    private void OnDisable()
-    {
-        CombatManager.OnCombatFinishedEvent -= OnCombatFinished;
-    }
+        private void OnEnable()
+        {
+            CombatManager.OnCombatFinishedEvent += OnCombatFinished;
+        }
 
-    private void OnCombatFinished()
-    {
-        RemoveAllShields();
-        CardManager.ReturnAllCardsToHand?.Invoke();
+        private void OnDisable()
+        {
+            CombatManager.OnCombatFinishedEvent -= OnCombatFinished;
+        }
+
+        private void OnCombatFinished()
+        {
+            RemoveAllShields();
+            CardManager.ReturnAllCardsToHand?.Invoke();
+        }
     }
 }

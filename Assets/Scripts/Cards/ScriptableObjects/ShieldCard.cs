@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cards.ScriptableObjects
+namespace Deviloop.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "ShieldCard", menuName = "Cards/Shield Card")]
     public class ShieldCard : BaseCard

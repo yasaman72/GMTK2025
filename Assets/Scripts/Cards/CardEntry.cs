@@ -1,6 +1,6 @@
-﻿using Cards.ScriptableObjects;
+﻿using Deviloop.ScriptableObjects;
 
-namespace Cards
+namespace Deviloop
 {
     [System.Serializable]
     public class CardEntry

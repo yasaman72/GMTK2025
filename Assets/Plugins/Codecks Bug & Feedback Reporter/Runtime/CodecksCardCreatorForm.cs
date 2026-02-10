@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Deviloop;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -69,6 +70,9 @@ namespace Codecks.Runtime
         {
             StringBuilder sb = new StringBuilder();
 
+            sb.AppendLine("Unity Logs:");
+            sb.AppendLine("run seed: " + SeededRandom.GetSeed());
+
             foreach (string line in textQueue)
             {
                 sb.AppendLine(line);
@@ -76,7 +80,7 @@ namespace Codecks.Runtime
 
             if(textQueue.Count == 0)
             {
-                sb.AppendLine("No logs captured.");
+                sb.AppendLine("<No logs captured.>");
             }
 
             return Encoding.UTF8.GetBytes(sb.ToString());

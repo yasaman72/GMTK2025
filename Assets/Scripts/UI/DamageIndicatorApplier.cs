@@ -12,7 +12,7 @@ namespace Deviloop
 
         public void ShowDamageIndicator(int damage, DamageType type = DamageType.Normal)
         {
-            Vector2 origin = (Vector2)_origin.position + (Vector2.one * Random.Range(_spawnHorizontalRange.x, _spawnHorizontalRange.y));
+            Vector2 origin = (Vector2)_origin.position + (Vector2.one * SeededRandom.Range(_spawnHorizontalRange.x, _spawnHorizontalRange.y));
 
             GameObject damageIndicator = Instantiate(_damageIndicator, origin, Quaternion.identity);
             damageIndicator.GetComponent<DamageIndicator>().Setup(damage, _destroyAfter, type);

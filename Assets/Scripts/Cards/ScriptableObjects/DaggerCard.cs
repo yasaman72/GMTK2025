@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Cards.ScriptableObjects
+namespace Deviloop.ScriptableObjects
 {
     public class DaggerCard : AttackCardBase
     {

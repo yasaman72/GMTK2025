@@ -40,7 +40,7 @@ namespace Deviloop
             }
 
             int randomIndex = 0;
-            int randomValue = Random.Range(0, TotalWeight);
+            int randomValue = SeededRandom.Range(0, TotalWeight);
             int cumulativeWeight = 0;
 
             for (int i = 0; i < Encounters.Count; i++)

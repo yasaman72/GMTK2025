@@ -1,5 +1,5 @@
-using Cards;
-using Cards.ScriptableObjects;
+using Deviloop;
+using Deviloop.ScriptableObjects;
 using System;
 using TMPro;
 using UnityEngine;

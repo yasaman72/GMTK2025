@@ -1,27 +1,29 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameStateManager : MonoBehaviour
+
+namespace Deviloop
 {
-    [SerializeField] private GameObject _gameOverPage;
-
-    public static bool CanPlayerDrawLasso { get; set; }
-    public static bool IsInLassoingState { get; set; }
-
-    private void Start()
+    public class GameStateManager : MonoBehaviour
     {
-        Player.PlayerCombatCharacter.OnDeath += HandlePlayerDeath;
-    }
+        [SerializeField] private GameObject _gameOverPage;
 
-    private void OnDestroy()
-    {
-        Player.PlayerCombatCharacter.OnDeath -= HandlePlayerDeath;
-    }
+        public static bool CanPlayerDrawLasso { get; set; }
+        public static bool IsInLassoingState { get; set; }
 
-    private void HandlePlayerDeath(CombatCharacter combatCharacter)
-    {
-        Time.timeScale = 0f;
-        _gameOverPage.SetActive(true);
+        private void Start()
+        {
+            Player.PlayerCombatCharacter.OnDeath += HandlePlayerDeath;
+        }
+
+        private void OnDestroy()
+        {
+            Player.PlayerCombatCharacter.OnDeath -= HandlePlayerDeath;
+        }
+
+        private void HandlePlayerDeath(CombatCharacter combatCharacter)
+        {
+            Time.timeScale = 0f;
+            _gameOverPage.SetActive(true);
+        }
     }
 }

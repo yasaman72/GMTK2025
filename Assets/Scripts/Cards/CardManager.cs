@@ -1,4 +1,4 @@
-﻿using Cards.ScriptableObjects;
+﻿using Deviloop.ScriptableObjects;
 using FMODUnity;
 using System;
 using System.Collections;
@@ -9,9 +9,9 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.Extensions;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using Random = Deviloop.SeededRandom;
 
-namespace Cards
+namespace Deviloop
 {
     public class CardManager : MonoBehaviour
     {
@@ -104,7 +104,6 @@ namespace Cards
             ReturnAllCardsToHand += ReturnCardsToDrawDeck;
             RemoveCardFromDeckAction += RemoveCard;
             CombatManager.OnAfterAllEnemiesDefeated += FinishEncounter;
-
         }
 
         private void OnDisable()

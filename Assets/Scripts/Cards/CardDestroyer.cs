@@ -1,4 +1,4 @@
-using Cards;
+using Deviloop;
 using UnityEngine;
 
 public class CardDestroyer : MonoBehaviour

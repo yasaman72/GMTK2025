@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace Cards
+namespace Deviloop
 {
     [CreateAssetMenu(fileName = "BaseCard", menuName = "Cards/Base Card")]
     public abstract class BaseCard : GUIDScriptableObject

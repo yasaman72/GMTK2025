@@ -22,7 +22,7 @@ public class LootSet : ScriptableObject
             {
                 if ((_count == 0))
                 {
-                    Count = Random.Range(countMin, countMax + 1);
+                    Count = SeededRandom.Range(countMin, countMax + 1);
                 }
                 return _count;
             }

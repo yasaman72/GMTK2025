@@ -1,5 +1,3 @@
-using Cards;
-using Cards.ScriptableObjects;
 using Deviloop;
 using System;
 using System.Collections;
@@ -77,7 +75,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
 
     private void PickNextAction()
     {
-        int behaviorIndex = UnityEngine.Random.Range(0, enemyStats.EnemyActions.Count);
+        int behaviorIndex = SeededRandom.Range(0, enemyStats.EnemyActions.Count);
         previousAction = currentAction;
         EnemyAction nextAction = enemyStats.EnemyActions[behaviorIndex];
         if (nextAction.CanBeTaken(previousAction) == false)

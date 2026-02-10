@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cards.ScriptableObjects
+namespace Deviloop.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "CardDeck", menuName = "Cards/Card Deck")]
     public class CardDeck : ScriptableObject

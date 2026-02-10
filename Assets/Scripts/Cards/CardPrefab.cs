@@ -1,8 +1,8 @@
-﻿using Cards.ScriptableObjects;
+﻿using Deviloop.ScriptableObjects;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Cards
+namespace Deviloop
 {
     public class CardPrefab : MonoBehaviour
     {

@@ -54,7 +54,7 @@ namespace Deviloop
                 foreach (var relic in allRelics)
                     totalChance += (int)relic.rarity;
 
-                float roll = Random.Range(0f, totalChance);
+                float roll = SeededRandom.Range(0f, totalChance);
                 float cumulative = 0f;
 
                 foreach (var relic in allRelics)

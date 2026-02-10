@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Cards;
+using Deviloop;
 
 
 #if UNITY_EDITOR

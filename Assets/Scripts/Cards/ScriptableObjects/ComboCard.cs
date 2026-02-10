@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Cards.ScriptableObjects
+namespace Deviloop.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "Combo", menuName = "Cards/Combo")]
     public class ComboCard : BaseCard

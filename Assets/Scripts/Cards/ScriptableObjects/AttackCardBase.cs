@@ -10,7 +10,7 @@ public enum AttackType
     Piercing,
 }
 
-namespace Cards.ScriptableObjects
+namespace Deviloop.ScriptableObjects
 {
 
     [CreateAssetMenu(fileName = "AttackCard_[attack name]", menuName = "Cards/Attack Card")]

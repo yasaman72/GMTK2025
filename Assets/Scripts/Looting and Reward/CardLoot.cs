@@ -1,4 +1,4 @@
-using Cards;
+using Deviloop;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -51,12 +51,12 @@ namespace Deviloop
 
             do
             {
-                float totalChance = 0f;
+                int totalChance = 0;
                 foreach (var card in allCards)
                     totalChance += (int)card.rarity;
 
-                float roll = Random.Range(0f, totalChance);
-                float cumulative = 0f;
+                int roll = SeededRandom.Range(0, totalChance);
+                int cumulative = 0;
 
                 foreach (var loot in allCards)
                 {
