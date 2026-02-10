@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6deb444c918d74ea7cc2a878a79945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Deviloop::Deviloop.RandomnessManager
-  shouldLog: 1
+  shouldLog: 0
 --- !u!4 &1218323243
 Transform:
   m_ObjectHideFlags: 0

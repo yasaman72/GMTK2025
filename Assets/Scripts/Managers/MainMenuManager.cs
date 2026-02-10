@@ -16,6 +16,8 @@ namespace Deviloop
         public void OnStart()
         {
             _startGameAnimator.SetTrigger("StartGame");
+            // TODO: better, more generic way to reset game state when starting a new game
+            RelicManager.ClearAllRelics();
         }
 
         public void OnCloseGame()
