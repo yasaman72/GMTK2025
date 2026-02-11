@@ -41,6 +41,8 @@ namespace Deviloop
             if (cardRenderer != null)
             {
                 cardRenderer.color = Color.white;
+                cardRenderer.material.SetColor("_OutlineColor", Color.white);
+                cardRenderer.material.SetFloat("_OutlineWidth", 2);
             }
         }
 
@@ -66,6 +68,8 @@ namespace Deviloop
             if (cardData != null)
             {
                 cardData.OnCardActivated(this, CardActivationCallback, this);
+                cardRenderer.material.SetColor("_OutlineColor", Color.red);
+                cardRenderer.material.SetFloat("_OutlineWidth", 10);
             }
         }
 

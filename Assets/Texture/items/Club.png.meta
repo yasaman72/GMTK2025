@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 009bddf3c19642d45aff88e0606ceab6
+guid: 9e53bc01c0eec174f839fcb42affd5da
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6887405896452322503
-    second: 5 copy_0
+      213: 2481595509450091535
+    second: 4 copy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.4779636, y: 0.30547306}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -122,27 +122,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 5 copy_0
+      name: 4 copy_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 154
-        height: 168
+        width: 316
+        height: 1056
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7c4b8f9fb2bf49f50800000000000000
-      internalID: 6887405896452322503
+      spriteID: f0c2af0c7f5607220800000000000000
+      internalID: 2481595509450091535
       vertices: []
       indices: 
       edges: []
@@ -152,7 +165,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -161,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      5 copy_0: 6887405896452322503
+      4 copy_0: 2481595509450091535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6830,6 +6830,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2495180896533988568, guid: b3834ca06e744bf4fa6859ebf42d42dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495180896533988568, guid: b3834ca06e744bf4fa6859ebf42d42dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 7138715655241972151, guid: b3834ca06e744bf4fa6859ebf42d42dd, type: 3}
       propertyPath: combatCharacter
       value: 
