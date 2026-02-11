@@ -3,18 +3,28 @@ using UnityEngine.UI;
 
 namespace Deviloop
 {
-    public class GameplaySpeedSetting : MonoBehaviour
+    public class GameplaySpeedSetting : MonoBehaviour, IInitiatable
     {
-        public static float GameplaySpeed { get; private set; } = 1f;
+        public static float GameplaySpeed { get; private set; }
         [SerializeField] private TMPro.TMP_Text _gameplaySpeedText;
         [SerializeField] private float _speedChangeStep = 0.5f;
         [SerializeField] private int _maxSpeed = 3, _minSpeed = 1;
         [SerializeField] private Button _speedIncreaseBtn, _speedDecreaseBtn;
 
         private const string _gameplaySpeedKey = "GameplaySpeed";
-        private void Awake()
+
+
+        public void Initiate()
         {
-            GameplaySpeed = PlayerPrefs.GetFloat(_gameplaySpeedKey, 1f);
+            if (PlayerPrefs.HasKey(_gameplaySpeedKey))
+            {
+                GameplaySpeed = PlayerPrefs.GetFloat(_gameplaySpeedKey, 1f);
+            }
+            else
+            {
+                GameplaySpeed = 1;
+                PlayerPrefs.SetFloat(_gameplaySpeedKey, GameplaySpeed);
+            }
         }
 
         private void Start()

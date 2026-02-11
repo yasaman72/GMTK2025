@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Deviloop
 {
     [HelpURL("https://fmod.com/docs/2.02/api/studio-api-vca.html")]
-    public class VCAController : MonoBehaviour
+    public class VCAController : MonoBehaviour, IInitiatable
     {
         [SerializeField] private Slider _slider;
         [SerializeField] private string _vCAaName;
@@ -12,13 +12,21 @@ namespace Deviloop
         private string _volumeKey;
         private FMOD.Studio.VCA VcaController;
 
-        private void Awake()
+        public void Initiate()
         {
             _volumeKey = _volumeKey + "Volume";
+
             VcaController = FMODUnity.RuntimeManager.GetVCA("vca:/" + _vCAaName);
 
-            float savedVolume = PlayerPrefs.GetFloat(_volumeKey, 1f);
-            VcaController.setVolume(savedVolume);
+            if (PlayerPrefs.HasKey(_volumeKey))
+            {
+                VcaController.setVolume(PlayerPrefs.GetFloat(_volumeKey, 1f));
+            }
+            else
+            {
+                VcaController.setVolume(.5f);
+                PlayerPrefs.SetFloat(_volumeKey, .5f);
+            }
         }
 
         private void Start()

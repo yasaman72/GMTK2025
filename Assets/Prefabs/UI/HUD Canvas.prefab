@@ -4959,6 +4959,10 @@ PrefabInstance:
       value: -72.71355
       objectReference: {fileID: 0}
     - target: {fileID: 4293011295788784929, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
+      propertyPath: _waitBeforeShowingRewards.baseValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293011295788784929, guid: d63b7dfb39a8bd94f810323476f53dd2, type: 3}
       propertyPath: _notPickedRewardsMsg.m_TableEntryReference.m_KeyId
       value: 15945125580288000
       objectReference: {fileID: 0}

@@ -8,8 +8,8 @@ namespace Deviloop
     public abstract class EnemyAction : ScriptableObject
     {
         public Sprite icon;
-        public float actionDelay = .5f;
-        public float actionDuration = 1;
+        public ModifiableFloat actionDelay = new ModifiableFloat(.5f);
+        public ModifiableFloat actionDuration = new ModifiableFloat(1f);
         public LocalizedString translatedDescription;
 
         public virtual void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
@@ -29,7 +29,7 @@ namespace Deviloop
 
         protected virtual IEnumerator AfterAction(Action callback)
         {
-            yield return new WaitForSeconds(actionDuration);
+            yield return new WaitForSeconds(actionDuration.Value);
             callback?.Invoke();
         }
 

@@ -19,8 +19,8 @@ namespace Deviloop.ScriptableObjects
         [Header("Attack Properties")]
         public int Damage = 3;
         public AttackType AttackType = AttackType.Normal;
-        public float MoveDuration = .2f;
-        public float DelayBeforeMove = 0.3f;
+        public ModifiableFloat MoveDuration = new ModifiableFloat(.2f);
+        public ModifiableFloat DelayBeforeMove = new ModifiableFloat(.3f);
         public bool TaregtAll = false;
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
@@ -44,9 +44,9 @@ namespace Deviloop.ScriptableObjects
             }
             Transform enemyTransform = enemy.transform;
 
-            yield return new WaitForSeconds(DelayBeforeMove);
+            yield return new WaitForSeconds(DelayBeforeMove.Value);
 
-            cardPrefab.transform.DOMove(enemyTransform.position, MoveDuration).SetEase(Ease.Linear).OnUpdate(() =>
+            cardPrefab.transform.DOMove(enemyTransform.position, MoveDuration.Value).SetEase(Ease.Linear).OnUpdate(() =>
             {
                 if (enemy == null || enemy.IsDead())
                 {
@@ -72,19 +72,20 @@ namespace Deviloop.ScriptableObjects
             Player.PlayerCombatCharacter.DealDamage(enemy, Damage, AttackType);
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(DelayBeforeMove.Value);
             callback?.Invoke();
         }
 
+        // TODO: replace with async/await and proper animations
         private IEnumerator TargetAllEnemies(Action callback, CardPrefab cardPrefab)
         {
-            yield return new WaitForSeconds(DelayBeforeMove);
+            yield return new WaitForSeconds(DelayBeforeMove.Value);
 
             // make the card spin a bit with tweening before vanishing
             // TODO: better animations and wait for end of animation to apply effects
             var tween = cardPrefab.transform.DORotate(new Vector3(0, 0, 360 * 5), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
 
-            yield return new WaitForSeconds(DelayBeforeMove * 2);
+            yield return new WaitForSeconds(DelayBeforeMove.Value);
 
             var enemies = CombatManager.SpawnedEnemies;
 
@@ -95,7 +96,7 @@ namespace Deviloop.ScriptableObjects
 
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(DelayBeforeMove.Value);
             tween.Kill();
             callback?.Invoke();
         }

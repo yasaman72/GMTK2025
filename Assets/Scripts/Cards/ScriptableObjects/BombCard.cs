@@ -20,14 +20,13 @@ namespace Deviloop.ScriptableObjects
 
         private IEnumerator ActivateCardEffect(Action callback, CardPrefab cardPrefab)
         {
-            yield return new WaitForSeconds(.1f);
+            ModifiableFloat scaleDuration = new ModifiableFloat(0.5f);
 
-            float scaleDuration = 0.5f;
             Vector3 targetScale = cardPrefab.transform.localScale * 2f;
 
-            cardPrefab.transform.DOScale(targetScale, scaleDuration);
+            cardPrefab.transform.DOScale(targetScale, scaleDuration.Value);
 
-            yield return new WaitForSeconds(scaleDuration);
+            yield return new WaitForSeconds(scaleDuration.Value);
 
             Player.PlayerCombatCharacter.TakeDamage(damage, AttackType.Normal);
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);

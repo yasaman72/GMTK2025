@@ -82,7 +82,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         if (currentAction == null || IsDead())
             return;
 
-        await Awaitable.WaitForSecondsAsync(currentAction.actionDelay);
+        await Awaitable.WaitForSecondsAsync(currentAction.actionDelay.Value);
 
         ApplyAllEffects(currentAction);
         OnIntentionChanged?.Invoke(null);

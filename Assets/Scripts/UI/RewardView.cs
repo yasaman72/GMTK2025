@@ -15,6 +15,7 @@ public class RewardView : MonoBehaviour
     [SerializeField] private int _maxItemOption = 2;
     [SerializeField] private LocalizedString _notPickedRewardsMsg;
     [Space]
+    [SerializeField] private ModifiableFloat _waitBeforeShowingRewards = new ModifiableFloat(3);
     [SerializeField] private Transform _deckContentHolder;
     [SerializeField] private Transform _itemsSelectionContent;
     [SerializeField] private GameObject _rewardItemPrefab;
@@ -55,8 +56,10 @@ public class RewardView : MonoBehaviour
         }
     }
 
-    private void onDeckOpen(List<LootSet> loots)
+    private async void onDeckOpen(List<LootSet> loots)
     {
+        await Awaitable.WaitForSecondsAsync(_waitBeforeShowingRewards.Value);
+
         Time.timeScale = 0;
         _allCurrentLoots.Clear();
 

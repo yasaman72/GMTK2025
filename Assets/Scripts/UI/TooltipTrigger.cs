@@ -75,7 +75,7 @@ namespace Deviloop
 
         private IEnumerator HideAfterDelay()
         {
-            yield return new WaitForSecondsRealtime(0.2f);
+            yield return new WaitForSecondsRealtime(0.1f);
 
             if (_isPointerOver)
                 yield break;

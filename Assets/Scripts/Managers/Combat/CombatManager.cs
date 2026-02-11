@@ -2,12 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.Extensions;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
-using static TurnManager;
 using Random = Deviloop.SeededRandom;
 
 namespace Deviloop
@@ -20,7 +18,6 @@ namespace Deviloop
         public static Action OnAfterAllEnemiesDefeated;
 
         [SerializeField] private Transform _enemySpawnCenter;
-        [SerializeField] private float _waitBeforeShowingRewards = 3;
         [SerializeField] private float _enemySpawnAreaWidth = 5;
         private static List<Enemy> _spawnedEnemies = new List<Enemy>();
         private static List<Enemy> _defeatedEnemies = new List<Enemy>();
@@ -124,13 +121,14 @@ namespace Deviloop
             Vector2 startPos = center - new Vector2(totalWidth / 2f, 0);
 
             int i = -1;
+            ModifiableFloat spawnDelay = new ModifiableFloat(0.3f);
             foreach (var enemyType in enemyTypes)
             {
                 for (int j = 0; j < enemyType.Quantity; j++)
                 {
                     Vector2 spawnPosition = startPos + new Vector2(++i * spacing, Random.Range(-.5f, .5f));
                     SpawnNewEnemy(enemyType, spawnPosition);
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSeconds(spawnDelay.Value);
                 }
             }
         }
@@ -162,7 +160,7 @@ namespace Deviloop
             if (_defeatedEnemies.Count >= _spawnedEnemies.Count)
             {
                 AfterAllEnemiesDefeated();
-                StartCoroutine(ShowRewards(combatCharacter as Enemy));
+                ShowRewards(combatCharacter as Enemy);
             }
 
             AnalyticsManager.SendCustomEventAction?.Invoke("enemy_defeated", new Dictionary<string, object>
@@ -178,9 +176,8 @@ namespace Deviloop
             OnAfterAllEnemiesDefeated?.Invoke();
         }
 
-        private IEnumerator ShowRewards(Enemy enemy)
+        private void ShowRewards(Enemy enemy)
         {
-            yield return new WaitForSeconds(_waitBeforeShowingRewards);
 
             if (EncounterManager.CurrentEncounter is CombatEncounter combatEncounter)
             {
