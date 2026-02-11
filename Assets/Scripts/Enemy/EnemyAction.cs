@@ -8,8 +8,8 @@ namespace Deviloop
     public abstract class EnemyAction : ScriptableObject
     {
         public Sprite icon;
-        public int actionDelay = 1;
-        public int actionDuration = 2;
+        public float actionDelay = .5f;
+        public float actionDuration = 1;
         public LocalizedString translatedDescription;
 
         public virtual void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)

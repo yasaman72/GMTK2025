@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EnemyAction_Shield_p2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
-  power: 2
-  actionDuration: 2
+  actionDelay: 0.5
+  actionDuration: 1
   translatedDescription:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -24,6 +24,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  power: 2
   references:
     version: 2
     RefIds: []

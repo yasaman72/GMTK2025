@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EnemyAction_GiveEffect_AttackBuff
   m_EditorClassIdentifier: Deviloop::Deviloop.EnemyAction_GiveEffect
   icon: {fileID: 2750705142841656183, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
-  actionDelay: 2
-  actionDuration: 2
+  actionDelay: 0.5
+  actionDuration: 1
   translatedDescription:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
