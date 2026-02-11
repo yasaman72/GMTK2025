@@ -32,7 +32,7 @@ namespace Deviloop
                 _hideCoroutine = null;
             }
 
-            if(TooltipManager.Instance != null)
+            if (TooltipManager.Instance != null)
                 TooltipManager.Instance.HideTooltip();
         }
 

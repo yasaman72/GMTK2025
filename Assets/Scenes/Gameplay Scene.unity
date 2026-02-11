@@ -6374,6 +6374,10 @@ PrefabInstance:
       value: LassoManager
       objectReference: {fileID: 0}
     - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _loopMinArea
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: _spellParticleSystem
       value: 
       objectReference: {fileID: 1446824177}

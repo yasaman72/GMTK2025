@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Deviloop
@@ -12,9 +14,9 @@ namespace Deviloop
                 if (_instance == null)
                 {
                     _instance = FindFirstObjectByType<T>();
-                    if (_instance == null)
+                    if ( _instance == null)
                     {
-                        Debug.LogError($"No instance of {typeof(T)} found in the scene.");
+                        throw new NullReferenceException($"No instance of {typeof(T)} found in the scene.");
                     }
                 }
                 return _instance;

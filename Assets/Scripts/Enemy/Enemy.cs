@@ -1,8 +1,10 @@
 using Deviloop;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : CombatCharacter, IPointerDownHandler
 {
@@ -51,21 +53,6 @@ public class Enemy : CombatCharacter, IPointerDownHandler
     private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
     {
         _spriteRenderer.color = Color.white;
-
-        if (turnMode == TurnManager.ETurnMode.Player)
-        {
-            PickNextAction();
-        }
-        else
-        {
-            if (currentAction != null)
-            {
-                // TODO: move this to an enemy controller and activate them one by one
-                // TODO: can use a initiative system later on for the order of actions
-                if (!IsDead())
-                    StartCoroutine(PlayNextActionWithDelay());
-            }
-        }
     }
 
     private void OnPlayerClickedThrow()
@@ -73,8 +60,11 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         _spriteRenderer.color = _grayColor;
     }
 
-    private void PickNextAction()
+    public void PickNextAction()
     {
+        if (IsDead())
+            return;
+
         int behaviorIndex = SeededRandom.Range(0, enemyStats.EnemyActions.Count);
         previousAction = currentAction;
         EnemyAction nextAction = enemyStats.EnemyActions[behaviorIndex];
@@ -87,17 +77,29 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         OnIntentionChanged?.Invoke(currentAction);
     }
 
-    private IEnumerator PlayNextActionWithDelay()
+    public async Task TakeNextActionAsync()
     {
-        yield return new WaitForSeconds(currentAction.actionDelay);
+        if (currentAction == null || IsDead())
+            return;
+
+        await Awaitable.WaitForSecondsAsync(currentAction.actionDelay);
+
         ApplyAllEffects(currentAction);
         OnIntentionChanged?.Invoke(null);
-        currentAction.TakeAction(this, this, OnActionFinished);
+
+        await ExecuteActionAsync();
     }
 
-    private void OnActionFinished()
+    private Task ExecuteActionAsync()
     {
-        TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
+        var tcs = new TaskCompletionSource<bool>();
+
+        currentAction.TakeAction(this, this, () =>
+        {
+            tcs.SetResult(true);
+        });
+
+        return tcs.Task;
     }
 
     private void AfterDeathTrigger(CombatCharacter combatCharacter)

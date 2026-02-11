@@ -1,12 +1,13 @@
-using Deviloop;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.Extensions;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using static TurnManager;
 using Random = Deviloop.SeededRandom;
 
 namespace Deviloop
@@ -70,12 +71,32 @@ namespace Deviloop
             _spawnedEnemies.Clear();
         }
 
-        private void HandleTurnChanged(TurnManager.ETurnMode mode)
+        private async void HandleTurnChanged(TurnManager.ETurnMode mode)
         {
             if (mode == TurnManager.ETurnMode.Player)
             {
                 CombatRoundCounter++;
+                return;
             }
+
+            List<Action> enemyActionTasks = new List<Action>();
+            foreach (var enemy in _spawnedEnemies)
+            {
+                if (enemy == null || enemy.IsDead())
+                    continue;
+
+                // TODO: can use a initiative system later on for the order of actions
+                await enemy.TakeNextActionAsync();
+                enemyActionTasks.Add(() => enemy.PickNextAction());
+            }
+
+            foreach (var action in enemyActionTasks)
+            {
+                action.Invoke();
+            }
+
+            // after all enemies have taken their action, change the turn back to the player
+            TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
         }
 
         public void StartCombat(EnemyType[] enemyTypes)
