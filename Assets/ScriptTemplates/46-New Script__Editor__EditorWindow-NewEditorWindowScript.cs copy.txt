@@ -1,0 +1,28 @@
+using UnityEditor;
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : EditorWindow
+{
+    const string WINDOW_TITLE = "#SCRIPTNAME#";
+    const string MENU_ITEM = "Window/" + WINDOW_TITLE;
+
+    public static #SCRIPTNAME# Open()
+    {
+        var window = GetWindow<#SCRIPTNAME#>(false, WINDOW_TITLE, true);
+        window.Show();
+        return window;
+    }
+
+    void OnEnable()
+    {
+        #NOTRIM#
+    }
+
+    void OnGUI()
+    {
+        #NOTRIM#
+    }
+}
+
+#ROOTNAMESPACEEND#

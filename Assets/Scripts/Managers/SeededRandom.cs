@@ -3,7 +3,7 @@ using System;
 
 namespace Deviloop
 {
-    public class SeededRandom : MonoBehaviour
+    public class SeededRandom : Singleton<SeededRandom>
     {
         private static int seed;
         private static System.Random rng;
@@ -12,8 +12,10 @@ namespace Deviloop
 
         [SerializeField] private bool shouldLog = true;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             DontDestroyOnLoad(gameObject);
 
             seed = GenerateSeed();
