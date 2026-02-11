@@ -1,27 +1,17 @@
+using Deviloop;
 using FMODUnity;
 using System;
 using UnityEngine;
 
 
 [HelpURL("https://fmod.com/docs/2.02/api/core-api.html")]
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
     public static Action<EventReference> PlayAudioOneShot;
-    public static AudioManager Instance { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
-        // Ensure only one instance of MusicManager exists
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
+        base.Awake();
         DontDestroyOnLoad(gameObject);
     }
 

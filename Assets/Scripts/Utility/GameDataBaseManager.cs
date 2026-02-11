@@ -10,22 +10,9 @@ using UnityEditor;
 namespace Deviloop
 {
 
-    public class GameDataBaseManager : MonoBehaviour
+    public class GameDataBaseManager : Singleton<GameDataBaseManager>
     {
-        public static GameDataBaseManager Instance;
         public static GameDatabase GameDatabase;
-
-        private void OnEnable()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else if (Instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-        }
 
         private void Start()
         {

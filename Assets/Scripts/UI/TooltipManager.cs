@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    public class TooltipManager : MonoBehaviour
+    public class TooltipManager : Singleton<TooltipManager>
     {
-        public static TooltipManager Instance;
         [SerializeField] private GameObject _tooltipPrefab;
 
         private GameObject _tooltip;
@@ -14,16 +13,10 @@ namespace Deviloop
         private RectTransform _tooltipRect;
         private MesssageDisplayer _messsageDisplayer;
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                Instance = this;
-            }
+            base.Awake();
+
             gameObject.SetActive(true);
             _canvas = GetComponentInParent<Canvas>();
             _tooltip = Instantiate(_tooltipPrefab, _canvas.transform);
