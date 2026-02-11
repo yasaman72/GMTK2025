@@ -1,11 +1,10 @@
 
-
-using Deviloop;
-
 namespace Deviloop
 {
     public class Player : CombatCharacter
     {
+        public delegate void PlayerTookDamageHandler(int damage);
+        public static PlayerTookDamageHandler OnPlayerTookDamage;
         public static CombatCharacter PlayerCombatCharacter { get; private set; }
 
         private void Awake()
@@ -27,6 +26,12 @@ namespace Deviloop
         {
             RemoveAllShields();
             CardManager.ReturnAllCardsToHand?.Invoke();
+        }
+
+        public override void TakeDamage(int damage, AttackType type)
+        {
+            base.TakeDamage(damage, type);
+            OnPlayerTookDamage?.Invoke(damage);
         }
     }
 }

@@ -60,7 +60,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         _currentShield = 0;
     }
 
-    public void TakeDamage(int damage, AttackType type)
+    public virtual void TakeDamage(int damage, AttackType type)
     {
         if (IsDead())
         {

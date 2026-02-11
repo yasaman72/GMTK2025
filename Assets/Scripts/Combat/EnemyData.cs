@@ -8,5 +8,8 @@ namespace Deviloop
     {
         public GameObject prefab;
         public List<EnemyAction> EnemyActions;
+
+        [DeveloperNotes, SerializeField]
+        private string _developerNotes;
     }
 }

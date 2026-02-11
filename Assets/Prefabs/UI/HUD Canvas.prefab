@@ -4098,6 +4098,8 @@ MonoBehaviour:
   shouldLog: 0
   combatCharacter: {fileID: 0}
   _hpBar: {fileID: 2692883633227798156}
+  _onDamageColor: {r: 1, g: 0.6933962, b: 0.6933962, a: 1}
+  _fill: {fileID: 8346634524391444891}
   _hpAmountText: {fileID: 4402652397581581307}
   _shieldIcon: {fileID: 7704239936031399418}
   _shieldAmountText: {fileID: 460498504523082767}
