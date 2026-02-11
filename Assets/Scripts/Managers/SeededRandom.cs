@@ -5,12 +5,13 @@ namespace Deviloop
 {
     public class SeededRandom : Singleton<SeededRandom>
     {
-        private static int seed;
+        private static int seed = 0;
         private static System.Random rng;
 
         public static int GetSeed() => seed;
 
         [SerializeField] private bool shouldLog = true;
+        [SerializeField] private bool shouldResetSeedOnAwake = false;
 
         protected override void Awake()
         {
@@ -18,7 +19,8 @@ namespace Deviloop
 
             DontDestroyOnLoad(gameObject);
 
-            seed = GenerateSeed();
+            if (seed == 0 || shouldResetSeedOnAwake)
+                seed = GenerateSeed();
             rng = new System.Random(seed);
 
             Logger.Log("Current random seed: " + seed, shouldLog);

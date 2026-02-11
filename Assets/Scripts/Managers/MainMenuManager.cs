@@ -33,10 +33,5 @@ namespace Deviloop
                 UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             }
         }
-
-        public void CopySeedToClipboard()
-        {
-            GUIUtility.systemCopyBuffer = SeededRandom.GetSeed().ToString();
-        }
     }
 }

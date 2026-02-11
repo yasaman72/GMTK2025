@@ -1410,8 +1410,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7206937324985030424}
-        m_TargetAssemblyTypeName: Deviloop.MainMenuManager, Deviloop
+      - m_Target: {fileID: 1656477170955395958}
+        m_TargetAssemblyTypeName: Deviloop.SeedView, Deviloop
         m_MethodName: CopySeedToClipboard
         m_Mode: 1
         m_Arguments:
@@ -2051,6 +2051,7 @@ GameObject:
   - component: {fileID: 7068344044364553189}
   - component: {fileID: 1738006434683752342}
   - component: {fileID: 39139397762853140}
+  - component: {fileID: 1656477170955395958}
   m_Layer: 5
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -2179,8 +2180,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7206937324985030424}
-        m_TargetAssemblyTypeName: Deviloop.MainMenuManager, Deviloop
+      - m_Target: {fileID: 1656477170955395958}
+        m_TargetAssemblyTypeName: Deviloop.SeedView, Deviloop
         m_MethodName: OnSeedValueEdited
         m_Mode: 0
         m_Arguments:
@@ -2230,6 +2231,19 @@ MonoBehaviour:
   isAlert: 0
   m_InputValidator: {fileID: 0}
   m_ShouldActivateOnSelect: 1
+--- !u!114 &1656477170955395958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187216714770806239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a0ccd444bde9644b1ab6ce3d3e05b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.SeedView
+  _currentSeedText: {fileID: 537459518135590536}
 --- !u!1 &7188283387377323493
 GameObject:
   m_ObjectHideFlags: 0
