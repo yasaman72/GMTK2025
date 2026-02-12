@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Deviloop::Deviloop.RandomnessManager
   shouldLog: 0
+  shouldResetSeedOnAwake: 0
 --- !u!4 &821169773
 Transform:
   m_ObjectHideFlags: 0
