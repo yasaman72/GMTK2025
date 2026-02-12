@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127a600aaceb5884f8bb72551cdeedb6, type: 3}
   m_Name: StartingRelicSet_test
   m_EditorClassIdentifier: Deviloop::Deviloop.RelicSet
-  _relics: []
+  _relics:
+  - {fileID: 11400000, guid: 1a94b119cc6888e45acf488d75c5093e, type: 2}

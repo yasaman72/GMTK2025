@@ -147,6 +147,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3701337093540993611}
     m_Modifications:
+    - target: {fileID: 1083322234376923476, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: m_Size.x
+      value: 83.54754
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083322234376923476, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.2238121
+      objectReference: {fileID: 0}
     - target: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.02
@@ -191,6 +199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      propertyPath: cardPrefab
+      value: 
+      objectReference: {fileID: 2433646272860243771, guid: 5c064492220d22245a9c1f34b8d3eed3, type: 3}
     - target: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
       propertyPath: throwForceRange.x
       value: 12

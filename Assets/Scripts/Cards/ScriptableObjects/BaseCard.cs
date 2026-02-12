@@ -1,4 +1,3 @@
-using Deviloop;
 using FMODUnity;
 using System;
 using UnityEngine;
@@ -10,6 +9,7 @@ namespace Deviloop
     public abstract class BaseCard : GUIDScriptableObject
     {
         public bool isInGame = true;
+        public Vector2 spriteScale = new Vector2(.5f, .5f);
         [Header("Card Info")]
         public LocalizedString cardName;
         public LocalizedString description;

@@ -4,39 +4,24 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    public class CardPrefab : MonoBehaviour
+    public class CardPrefab : MonoBehaviour, IPoolable
     {
-        [Header("Card Reference")]
-        public BaseCard cardData; // Reference to the scriptable object
+        [Header("Components")]
+        [SerializeField] private SpriteRenderer cardRenderer;
+        [SerializeField] private Rigidbody2D _rb;
+        [SerializeField] private PolygonCollider2D _collider;
 
-        [Header("Visual")]
-        public SpriteRenderer cardRenderer;
-        public float destroyAfterTime = 10f; // Auto-destroy if not lassoed
-
-        [Header("Physics")]
+        [ReadOnly]
         public bool isLassoed = false;
+        [ReadOnly, SerializeField]
+        private BaseCard cardData;
 
-        private Rigidbody2D rb;
-
-
-        private void OnEnable()
-        {
-            rb = GetComponent<Rigidbody2D>();
-            ResetItem();
-        }
-
-        void Start()
-        {
-            // Add some tag for lasso detection
-            gameObject.tag = "ThrowableCard";
-        }
-
-        private void ResetItem()
+        public void OnSpawned()
         {
             isLassoed = false;
 
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.gravityScale = 1;
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+            _rb.gravityScale = 1;
 
             if (cardRenderer != null)
             {
@@ -44,6 +29,20 @@ namespace Deviloop
                 cardRenderer.material.SetColor("_OutlineColor", Color.white);
                 cardRenderer.material.SetFloat("_OutlineWidth", 2);
             }
+        }
+
+        public void OnDespawned()
+        {
+
+        }
+
+        public void InitializeCard(BaseCard card)
+        {
+            cardData = card;
+            cardRenderer.sprite = cardData.cardIcon;
+            _collider.CreateFromSprite(card.cardIcon);
+            transform.localScale = cardData.spriteScale;
+            gameObject.name = cardData.name;
         }
 
         public void OnLassoed()
@@ -57,9 +56,9 @@ namespace Deviloop
             }
 
             // Stop physics
-            if (rb != null)
+            if (_rb != null)
             {
-                rb.bodyType = RigidbodyType2D.Static;
+                _rb.bodyType = RigidbodyType2D.Static;
             }
         }
 
@@ -77,12 +76,13 @@ namespace Deviloop
         {
             cardRenderer.color = new Color(.5f, .5f, .5f, .5f);
             transform.DOShakePosition(1f, 0.2f, 10, 90, false, true);
-            transform.DOScale(Vector3.zero, 0.5f).SetDelay(1f).OnComplete(() => Destroy(gameObject));
+            transform.DOScale(Vector3.zero, 0.5f).SetDelay(1f).OnComplete(
+                () => PoolManager.Instance.GetPool<CardPrefab>(this).ReturnToPool(this));
         }
 
         private void CardActivationCallback()
         {
-            Destroy(gameObject);
+            PoolManager.Instance.GetPool<CardPrefab>(this).ReturnToPool(this);
         }
 
         public void OnCardDroppedOut()
@@ -92,7 +92,7 @@ namespace Deviloop
                 PlayerComboManager.OnPlayerComboBreak?.Invoke();
             }
 
-            Destroy(gameObject);
+            PoolManager.Instance.GetPool<CardPrefab>(this).ReturnToPool(this);
         }
     }
 }

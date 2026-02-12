@@ -27,6 +27,7 @@ namespace Deviloop
 
         [Header("Deck Configuration")]
         public CardDeck baseDeck;
+        public CardPrefab cardPrefab;
         public static CardDeck _drawDeck;
         public static CardDeck DrawDeck
         {
@@ -70,11 +71,12 @@ namespace Deviloop
         public float enemyTurnDuration = 2f;
 
         // Runtime variables
-        private List<GameObject> thrownCards = new();
+        private List<CardPrefab> thrownCards = new();
 
         // TODO: move all the global localized variables to another class
         private static IntVariable CombatRoundCounterVariable;
 
+        private ObjectPool<CardPrefab> cardsPool;
 
         private void Awake()
         {
@@ -114,6 +116,8 @@ namespace Deviloop
 
         void Initialize()
         {
+            cardsPool = PoolManager.Instance.CreatePool<CardPrefab>(cardPrefab, 10);
+
             // TODO: review CardDeck class
             _drawDeck = Instantiate(baseDeck);
             _drawDeck.InitializeDeck();
@@ -187,7 +191,7 @@ namespace Deviloop
             {
                 // Wait until all thrown cards are out of view or destroyed
                 yield return new WaitForEndOfFrame();
-                if (thrownCards.TrueForAll(card => card == null || !card.activeInHierarchy))
+                if (thrownCards.TrueForAll(card => card == null || !card.gameObject.activeInHierarchy))
                 {
                     break;
                 }
@@ -261,22 +265,14 @@ namespace Deviloop
 
         void ThrowCard(BaseCard card)
         {
-            if (card.cardPrefab == null)
-            {
-                Logger.LogWarning($"No prefab assigned for {card.cardName}");
-                return;
-            }
-
             Vector2 origin = (Vector2)throwOrigin.position + (Vector2.right * Random.Range(throwRange.x, throwRange.y));
-            GameObject thrownCard = Instantiate(card.cardPrefab, origin, Quaternion.identity);
+            CardPrefab thrownCard = cardsPool.Get();
+            thrownCard.InitializeCard(card);
+            thrownCard.transform.position = origin;
+            thrownCard.transform.rotation = Quaternion.identity;
             thrownCards.Add(thrownCard);
 
-            // Add rigidbody if not present
             Rigidbody2D rb = thrownCard.GetComponent<Rigidbody2D>();
-            if (rb == null)
-            {
-                rb = thrownCard.AddComponent<Rigidbody2D>();
-            }
 
             // Calculate throw force
             float angle = Random.Range(throwAngleRange.x, throwAngleRange.y) * Mathf.Deg2Rad;
@@ -296,8 +292,8 @@ namespace Deviloop
 
             foreach (var card in thrownCards)
             {
-                if (card != null)
-                    Destroy(card);
+                if (card != null && card.gameObject.activeInHierarchy)
+                    cardsPool.ReturnToPool(card);
             }
             thrownCards.Clear();
             if (_extraHandCards != null)

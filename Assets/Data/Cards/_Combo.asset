@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUID: 2e99b5feed481ef44b9051d4d690e253
   isInGame: 0
+  spriteScale: {x: 0.5, y: 0.5}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf

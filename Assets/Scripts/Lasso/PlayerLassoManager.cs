@@ -284,6 +284,8 @@ public class PlayerLassoManager : MonoBehaviour
 
     void CloseLoop(bool isLooping, int closestPointToLoopEndIndex)
     {
+        if (_isResolvingALoop) return;
+
         _isResolvingALoop = true;
         Time.timeScale = 1f;
 
@@ -339,6 +341,7 @@ public class PlayerLassoManager : MonoBehaviour
             Time.timeScale = 1f;
             Destroy(temp);
             StartCoroutine(InvertLasso());
+            _isResolvingALoop = false;
             yield break;
         }
 
@@ -363,7 +366,7 @@ public class PlayerLassoManager : MonoBehaviour
         foreach (var card in lassoedCards)
         {
             card.OnActivate();
-            yield return new WaitUntil(() => card == null);
+            yield return new WaitUntil(() => card.gameObject.activeInHierarchy == false);
         }
 
         Destroy(temp);
