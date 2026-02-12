@@ -87,15 +87,6 @@ namespace Deviloop
             Initialize();
         }
 
-        private void Update()
-        {
-            // TODO: replace with new input system when implemented
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                OnThrowButtonClicked();
-            }
-        }
-
         private void OnEnable()
         {
             TurnManager.OnTurnChanged += HandleTurnChanged;

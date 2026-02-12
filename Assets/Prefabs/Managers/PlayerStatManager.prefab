@@ -202,10 +202,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3771842613608920168, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8416395324605256087}
   m_SourcePrefab: {fileID: 100100000, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
 --- !u!4 &156237598751210167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1871688503937795850, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
   m_PrefabInstance: {fileID: 2004809385905569213}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3425767468811028949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3771842613608920168, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+  m_PrefabInstance: {fileID: 2004809385905569213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8416395324605256087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425767468811028949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c61f22f09913d4f836c42e8a104d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.GenericInputBinder
+  _keyCode: 32
+  _isGameplay: 1
+  _action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8840379169227006985}
+        m_TargetAssemblyTypeName: Deviloop.CardManager, Deviloop
+        m_MethodName: OnThrowButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8840379169227006985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7025005772330031540, guid: addddb53cb93e124aa8be1de12f9e26a, type: 3}
+  m_PrefabInstance: {fileID: 2004809385905569213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425767468811028949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a9b875fe90472c9d5cd60b87cf18d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

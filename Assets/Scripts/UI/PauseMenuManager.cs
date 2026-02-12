@@ -1,4 +1,3 @@
-using Deviloop;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
@@ -6,10 +5,24 @@ namespace Deviloop
 {
     public class PauseMenuManager : MonoBehaviour
     {
+        public void OnOpen()
+        {
+            if (gameObject.activeSelf)
+            {
+                OnResume();
+                return;
+            }
+
+            GenericInputBinder.IsGameplayInputBlocked = true;
+            Time.timeScale = 0f;
+            gameObject.SetActive(true);
+        }
+
         public void OnResume()
         {
             Time.timeScale = 1f;
             gameObject.SetActive(false);
+            GenericInputBinder.IsGameplayInputBlocked = false;
         }
 
         public void OnCloseGame()

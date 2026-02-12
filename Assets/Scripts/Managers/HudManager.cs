@@ -11,7 +11,7 @@ public class HudManager : CustomMonoBehavior
     [SerializeField] private TextMeshProUGUI _playerHpText;
     [SerializeField] private TextMeshProUGUI _playerShield;
     [SerializeField] private SpriteRenderer _bgImage;
-    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private PauseMenuManager _pauseMenu;
     [SerializeField] private TextMeshProUGUI _buildNumber;
     [Space]
     // TODO: this is a dirty fix
@@ -20,21 +20,12 @@ public class HudManager : CustomMonoBehavior
 
     private Color _grayColor = new Color(.5f, .5f, .5f);
 
-    private void Update()
-    {
-        // TODO: replace with the new input manager and a event based system
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnPause();
-        }
-    }
-
     private void OnEnable()
     {
         TurnManager.OnTurnChanged += UpdateTurnText;
         CardManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
 
-        _pauseMenu.SetActive(false);
+        _pauseMenu.gameObject.SetActive(false);
         _deckView.Initialize();
         _rewardView.Initialize();
     }
@@ -74,8 +65,7 @@ public class HudManager : CustomMonoBehavior
 
     public void OnPause()
     {
-        Time.timeScale = 0f;
-        _pauseMenu.SetActive(true);
+        _pauseMenu.OnOpen();
     }
 
     // TODO: find a single solution for opening any deck

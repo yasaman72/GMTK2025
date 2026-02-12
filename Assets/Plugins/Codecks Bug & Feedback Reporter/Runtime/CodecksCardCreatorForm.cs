@@ -1,7 +1,6 @@
 ﻿using Deviloop;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -24,6 +23,8 @@ namespace Codecks.Runtime
         public TMP_InputField emailInput;
         public TMP_Text statusText;
         public Button sendButton;
+        public Image screenshotPreview;
+        public Toggle logToggle, screenshotToggle;
 
         [Header("Texts")]
         public string statusShortText;
@@ -31,14 +32,15 @@ namespace Codecks.Runtime
         public string statusSent;
         public string statusError;
 
+        private Texture2D screenshotTex;
         private byte[] queuedScreenshot;
-
 
         /// <summary>
         /// Shows the Codecks Report Form.
         /// </summary>
         public void ShowCodecksForm()
         {
+            GenericInputBinder.AreAllInputBlocked = true;
             cardCreator.StartCoroutine(ShowCodecksFormCoroutine());
         }
 
@@ -49,7 +51,11 @@ namespace Codecks.Runtime
         {
             yield return new WaitForEndOfFrame();
 
-            var screenshotTex = ScreenCapture.CaptureScreenshotAsTexture();
+            Time.timeScale = 0f;
+            screenshotTex = ScreenCapture.CaptureScreenshotAsTexture();
+
+            yield return new WaitForEndOfFrame();
+            Time.timeScale = 1f;
 
 #if UNITY_STANDALONE
             queuedScreenshot = screenshotTex.EncodeToJPG();
@@ -58,8 +64,7 @@ namespace Codecks.Runtime
             queuedScreenshot = screenshotTex.EncodeToPNG();
 #endif
 
-            Destroy(screenshotTex);
-
+            screenshotPreview.sprite = Sprite.Create(screenshotTex, new Rect(0, 0, screenshotTex.width, screenshotTex.height), new Vector2(0.5f, 0.5f));
 
             textArea.text = defaultText;
             sendButton.interactable = true;
@@ -78,7 +83,7 @@ namespace Codecks.Runtime
                 sb.AppendLine(line);
             }
 
-            if(textQueue.Count == 0)
+            if (textQueue.Count == 0)
             {
                 sb.AppendLine("<No logs captured.>");
             }
@@ -91,8 +96,10 @@ namespace Codecks.Runtime
         /// </summary>
         public void HideCodecksForm()
         {
+            GenericInputBinder.AreAllInputBlocked = false;
             queuedScreenshot = null;
             gameObject.SetActive(false);
+            Destroy(screenshotTex);
         }
 
         /// <summary>
@@ -123,11 +130,11 @@ namespace Codecks.Runtime
 
             // TODO: can include log file in the report
 #if UNITY_STANDALONE
-            files["screenshot.jpg"] = (queuedScreenshot, CodecksCardCreator.CodecksFileType.JPG);
-            files[$"unity_log_{System.DateTime.Now:yyyyMMdd_HHmmss}.txt"] = (QueueToBytes(CheatManager.GetLogs()), CodecksCardCreator.CodecksFileType.PlainText);
+            if (screenshotToggle.isOn) files["screenshot.jpg"] = (queuedScreenshot, CodecksCardCreator.CodecksFileType.JPG);
+            if (logToggle.isOn) files[$"unity_log_{System.DateTime.Now:yyyyMMdd_HHmmss}.txt"] = (QueueToBytes(CheatManager.GetLogs()), CodecksCardCreator.CodecksFileType.PlainText);
 #else
-            files["screenshot.png"] = (queuedScreenshot, CodecksCardCreator.CodecksFileType.PNG);
-            files[$"unity_log_{System.DateTime.Now:yyyyMMdd_HHmmss}.txt"] = (QueueToBytes(CheatManager.GetLogs()), CodecksCardCreator.CodecksFileType.PlainText);
+            if (screenshotToggle.isOn) files["screenshot.png"] = (queuedScreenshot, CodecksCardCreator.CodecksFileType.PNG);
+            if (logToggle.isOn) files[$"unity_log_{System.DateTime.Now:yyyyMMdd_HHmmss}.txt"] = (QueueToBytes(CheatManager.GetLogs()), CodecksCardCreator.CodecksFileType.PlainText);
 #endif
 
             statusText.text = statusSending;

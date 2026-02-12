@@ -5,7 +5,7 @@ namespace Deviloop
 {
     public class GameplaySpeedSetting : MonoBehaviour, IInitiatable
     {
-        public static float GameplaySpeed { get; private set; }
+        public static float GameplaySpeed { get; set; }
         [SerializeField] private TMPro.TMP_Text _gameplaySpeedText;
         [SerializeField] private float _speedChangeStep = 0.5f;
         [SerializeField] private int _maxSpeed = 3, _minSpeed = 1;
