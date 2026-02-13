@@ -18,11 +18,6 @@ namespace Deviloop
             ResetTooltip();
         }
 
-        private void OnDestroy()
-        {
-            ResetTooltip();
-        }
-
         private void ResetTooltip()
         {
             _isPointerOver = false;

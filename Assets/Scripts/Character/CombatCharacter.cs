@@ -209,6 +209,16 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
 
     }
 
+    public void RemoveAllEffects()
+    {
+        foreach (var effect in _currentEffects)
+        {
+            effect.OnRemoveEffect(this);
+            RemoveEffectIcon(effect);
+        }
+        _currentEffects.Clear();
+    }
+
     public void ApplyAllEffects(EnemyAction enemyAction)
     {
         int effectsCount = _currentEffects.Count;

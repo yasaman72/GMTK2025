@@ -32,8 +32,6 @@ public class EnemyUI : CombatCharacterUI
         combatCharacter.OnAttackBuffApplied += OnAttackBuffApplied;
     }
 
-
-
     protected override void OnDisable()
     {
         base.OnDisable();

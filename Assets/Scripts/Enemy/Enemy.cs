@@ -1,10 +1,11 @@
 using Deviloop;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Enemy : CombatCharacter, IPointerDownHandler
+public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
 {
     public Action<EnemyAction> OnIntentionChanged;
 
@@ -20,6 +21,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
     public EnemyAction CurrentAction => currentAction;
 
     public EnemyData enemyStats => Stats as EnemyData;
+    private CancellationTokenSource _cancellationTokenSource;
 
     protected override void Start()
     {
@@ -27,25 +29,32 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         PickNextAction();
     }
 
-    protected new void OnEnable()
+    public void OnSpawned()
     {
+        _cancellationTokenSource?.Cancel();
+        _cancellationTokenSource = new CancellationTokenSource();
+
+        FullyHeal();
+        RemoveAllShields();
+
         TurnManager.OnTurnChanged += HandleTurnChanged;
         base.OnDeath += AfterDeathTrigger;
         base.OnDamageRecieved += DamageRecieved;
         CardManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
 
         TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
-        base.OnEnable();
+        PickNextAction();
     }
 
-    protected new void OnDisable()
+    public void OnDespawned()
     {
         base.OnDeath -= AfterDeathTrigger;
         base.OnDamageRecieved -= DamageRecieved;
         TurnManager.OnTurnChanged -= HandleTurnChanged;
         CardManager.OnPlayerClickedThrowButton -= OnPlayerClickedThrow;
 
-        base.OnDisable();
+        _cancellationTokenSource?.Cancel();
+        RemoveAllEffects();
     }
 
     private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
@@ -80,7 +89,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
         if (currentAction == null || IsDead())
             return;
 
-        await Awaitable.WaitForSecondsAsync(currentAction.actionDelay.Value);
+        await Awaitable.WaitForSecondsAsync(currentAction.actionDelay.Value, _cancellationTokenSource.Token);
 
         ApplyAllEffects(currentAction);
         OnIntentionChanged?.Invoke(null);
@@ -123,8 +132,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler
 
     public void OnDeathAnimationFinished()
     {
-        // TODO: add object pooling
-        Destroy(gameObject);
+        PoolManager.Instance.GetPool<Enemy>(this).ReturnToPool(this);
     }
 
     public override void DealDamage(IDamageable target, int damage, AttackType type)

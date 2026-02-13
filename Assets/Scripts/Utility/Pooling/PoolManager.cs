@@ -37,7 +37,8 @@ namespace Deviloop
 
         public ObjectPool<T> GetPool<T>(T prefab) where T : Component
         {
-            if (_namePools.TryGetValue(prefab.name, out var namePool))
+            string keyName = prefab.name.Replace("(Clone)", "");
+            if (_namePools.TryGetValue(keyName, out var namePool))
                 return (ObjectPool<T>)namePool;
 
             if (_pools.TryGetValue(prefab.GetType(), out var pool))
