@@ -1,10 +1,9 @@
 using Deviloop;
-using Deviloop;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DeckViewItem : MonoBehaviour
+public class DeckViewItem : MonoBehaviour, IPoolable
 {
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _descriptionText;
@@ -17,6 +16,15 @@ public class DeckViewItem : MonoBehaviour
     [Header("Materials")]
     [SerializeField] private GameObject _materialIcon;
     [SerializeField] private Transform _materialsParent;
+
+    public void OnSpawned()
+    {
+    }
+
+    public void OnDespawned()
+    {
+        _button.onClick.RemoveAllListeners();
+    }
 
     public void Setup(BaseCard card)
     {
@@ -46,12 +54,20 @@ public class DeckViewItem : MonoBehaviour
     public void Setup(int price)
     {
         _priceText.text = price.ToString();
+        Activate();
     }
 
     public void Deactivate()
     {
         _button.onClick.RemoveAllListeners();
         _descriptionText.text = "SOLD!";
+    }
+
+    public void Activate()
+    {
+        _button.interactable = true;
+        _priceParent.SetActive(true);
+        _descriptionText.text = "";
     }
 
     public void DisablePrice()

@@ -84,6 +84,7 @@ namespace Deviloop
 
             instance.gameObject.SetActive(false);
             _inactiveObjects.Push(instance);
+            PoolManager.Instance.ReturnToPoolParent(instance);
         }
 
         public void Clear()

@@ -46,5 +46,16 @@ namespace Deviloop
 
             throw new KeyNotFoundException($"No pool found for prefab {prefab.name}");
         }
+
+        public void ReturnToPoolParent<T>(T prefab) where T : Component
+        {
+            string keyName = prefab.name.Replace("(Clone)", "");
+            string poolParent = new($"{keyName} Pool");
+            var parent = transform.Find(poolParent);
+            if (parent != null)
+            {
+                prefab.transform.SetParent(parent);
+            }
+        }
     }
 }

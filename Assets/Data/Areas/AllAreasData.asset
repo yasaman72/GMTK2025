@@ -20,7 +20,7 @@ MonoBehaviour:
       Probability: 20
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 1
-      SpawnAfterEveryXEncounter: 4
+      SpawnAfterEveryXEncounter: 2
       EncountersSinceLastSpawn: 0
     - Encounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
       Probability: 10

@@ -1,5 +1,4 @@
 using Deviloop;
-using Deviloop;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,17 +10,34 @@ public class ShopUI : MonoBehaviour
     public static Action<ShopData> OpenShopAction;
 
     [SerializeField] private Transform _shopItemParent;
-    [SerializeField] private GameObject _shopItemOption;
+    [SerializeField] private DeckViewItem _shopItemOption;
     [SerializeField] private GameObject _shopRemoveItemOption;
     [SerializeField] private GameObject _shoprerollOption;
-    private List<GameObject> _currentShopCardButtons = new List<GameObject>();
+    private List<DeckViewItem> _currentShopCardButtons = new List<DeckViewItem>();
 
-    ShopData _shopData;
+    private ShopData _shopData;
+    private ObjectPool<DeckViewItem> _itemsPool;
+    private GameObject _deleteItemButton;
+    private GameObject _rerollButton;
 
     private void Awake()
     {
+        foreach (Transform child in _shopItemParent)
+        {
+            Destroy(child.gameObject);
+        }
+
         OpenShopAction += OnOpenShop;
         gameObject.SetActive(false);
+
+        try
+        {
+            _itemsPool = PoolManager.Instance.GetPool(_shopItemOption);
+        }
+        catch
+        {
+            _itemsPool = PoolManager.Instance.CreatePool(_shopItemOption, 5);
+        }
     }
 
     private void OnDestroy()
@@ -32,35 +48,26 @@ public class ShopUI : MonoBehaviour
     private void OnOpenShop(ShopData shopData)
     {
         gameObject.SetActive(true);
-
         _shopData = shopData.SetupInstance();
-        // TODO: pooling
-        foreach (Transform child in _shopItemParent)
-        {
-            Destroy(child.gameObject);
-        }
 
         CreateDeleteItemOption();
         CreateRerollOption();
+
         SetupCardOffers();
     }
 
     public void CloseShop()
     {
+        ResetOffers();
+        _currentShopCardButtons.Clear();
         gameObject.SetActive(false);
         OnShopClosedEvent?.Invoke();
     }
 
-
     private void SetupCardOffers()
     {
         _shopData = _shopData.SetupInstance();
-
-        // TODO: pooling or reset
-        foreach (GameObject child in _currentShopCardButtons)
-        {
-            Destroy(child);
-        }
+        ResetOffers();
 
         foreach (var shopItem in _shopData.sellingCards)
         {
@@ -68,9 +75,19 @@ public class ShopUI : MonoBehaviour
         }
     }
 
+    private void ResetOffers()
+    {
+        foreach (DeckViewItem child in _currentShopCardButtons)
+        {
+            _itemsPool.ReturnToPool(child);
+        }
+    }
+
     private void CreateShopCardOption(CardLoot cardLoot)
     {
-        var shopItemButton = Instantiate(_shopItemOption, _shopItemParent);
+        var shopItemButton = _itemsPool.Get();
+        shopItemButton.transform.SetParent(_shopItemParent, false);
+        shopItemButton.transform.localScale = Vector2.one;
         _currentShopCardButtons.Add(shopItemButton);
         shopItemButton.GetComponent<DeckViewItem>().Setup(cardLoot.Card);
         shopItemButton.GetComponent<Button>().onClick.AddListener(() => OnItemClick(cardLoot.Card, shopItemButton));
@@ -78,17 +95,22 @@ public class ShopUI : MonoBehaviour
 
     private void CreateDeleteItemOption()
     {
-        var deleteItemButton = Instantiate(_shopRemoveItemOption, _shopItemParent);
-        var deckViewItem = deleteItemButton.GetComponent<DeckViewItem>();
+        if (_deleteItemButton == null)
+            _deleteItemButton = Instantiate(_shopRemoveItemOption, _shopItemParent);
+
+        var deckViewItem = _deleteItemButton.GetComponent<DeckViewItem>();
         deckViewItem.Setup(_shopData.itemDeletionPrice);
-        deleteItemButton.GetComponent<Button>().onClick.AddListener(() => OnDeleteItemClick(deckViewItem));
+        _deleteItemButton.GetComponent<Button>().onClick.AddListener(() => OnDeleteItemClick(deckViewItem));
     }
 
     private void CreateRerollOption()
     {
-        var rerollButton = Instantiate(_shoprerollOption, _shopItemParent);
-        rerollButton.GetComponent<DeckViewItem>().Setup(_shopData.rerollPrice);
-        rerollButton.GetComponent<Button>().onClick.AddListener(() =>
+        if (_rerollButton == null)
+            _rerollButton = Instantiate(_shoprerollOption, _shopItemParent);
+
+        _rerollButton.GetComponent<DeckViewItem>().Setup(_shopData.rerollPrice);
+        _rerollButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        _rerollButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             if (PlayerInventory.SpendCoin(_shopData.rerollPrice))
             {
@@ -102,7 +124,7 @@ public class ShopUI : MonoBehaviour
         });
     }
 
-    private void OnItemClick(BaseCard card, GameObject itemButton)
+    private void OnItemClick(BaseCard card, DeckViewItem itemButton)
     {
         if (PlayerInventory.SpendCoin(card.price))
         {
@@ -134,10 +156,9 @@ public class ShopUI : MonoBehaviour
         }
     }
 
-    private void RemoveItemFromOffers(BaseCard card, GameObject itemButton)
+    private void RemoveItemFromOffers(BaseCard card, DeckViewItem itemButton)
     {
         var offer = _shopData.sellingCards.Find(c => c == card);
-
-        Destroy(itemButton);
+        _itemsPool.ReturnToPool(itemButton);
     }
 }
