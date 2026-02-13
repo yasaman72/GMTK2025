@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Enemy_Bomber
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  prefab: {fileID: 5064271856674936583, guid: 05e71a18cccc64a41a1916cce4f745d5, type: 3}
-  defeatRewards: {fileID: 11400000, guid: f6c73efaa50e2ea4fa9e294408eeec09, type: 2}
+  prefab: {fileID: 828670261892621840, guid: 05e71a18cccc64a41a1916cce4f745d5, type: 3}
   EnemyActions:
   - {fileID: 11400000, guid: a0688275b54ef4b46a562be892ec6d13, type: 2}
   - {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
+  _developerNotes: 

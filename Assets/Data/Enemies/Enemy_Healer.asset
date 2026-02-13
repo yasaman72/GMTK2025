@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Enemy_Healer
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  prefab: {fileID: 5064271856674936583, guid: 829a3bff433781e48ad45f8da7e48e6f, type: 3}
-  defeatRewards: {fileID: 11400000, guid: f6c73efaa50e2ea4fa9e294408eeec09, type: 2}
+  prefab: {fileID: 828670261892621840, guid: 829a3bff433781e48ad45f8da7e48e6f, type: 3}
   EnemyActions:
   - {fileID: 11400000, guid: 6a77869375df88845bcee1ed9a23f583, type: 2}
   - {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
+  _developerNotes: 

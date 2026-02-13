@@ -136,16 +136,30 @@ namespace Deviloop
         private void DestroyCurrentEnemies()
         {
             var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            ObjectPool<Enemy> pool = null;
             foreach (var enemy in enemies)
             {
-                Destroy(enemy.gameObject);
+                pool = PoolManager.Instance.GetPool(enemy);
+                pool.ReturnToPool(enemy);
             }
         }
 
         private void SpawnNewEnemy(EnemyType enemyToSpawn, Vector2 spawnPosition)
         {
-            GameObject newEnemyObj = Instantiate(enemyToSpawn.EnemyData.prefab, spawnPosition, Quaternion.identity, _enemySpawnCenter);
-            Enemy newEnemy = newEnemyObj.GetComponent<Enemy>();
+            ObjectPool<Enemy> pool = null;
+            try
+            {
+                pool = PoolManager.Instance.GetPool(enemyToSpawn.EnemyData.prefab);
+            }
+            catch (Exception)
+            {
+                pool = PoolManager.Instance.CreatePool(enemyToSpawn.EnemyData.prefab, 3, true);
+            }
+
+            Enemy newEnemy = pool.Get();
+            GameObject newEnemyObj = newEnemy.gameObject;
+            newEnemyObj.transform.position = spawnPosition;
+            newEnemyObj.transform.rotation = Quaternion.identity;
             newEnemy.Stats = enemyToSpawn.EnemyData;
             _spawnedEnemies.Add(newEnemy);
             newEnemy.OnDeath += HandleEnemyDeath;
