@@ -116,7 +116,14 @@ namespace Deviloop
 
         void Initialize()
         {
-            cardsPool = PoolManager.Instance.CreatePool<CardPrefab>(cardPrefab, 10);
+            try
+            {
+                cardsPool = PoolManager.Instance.GetPool(cardPrefab);
+            }
+            catch (Exception)
+            {
+                cardsPool = PoolManager.Instance.CreatePool(cardPrefab, 20);
+            }
 
             // TODO: review CardDeck class
             _drawDeck = Instantiate(baseDeck);

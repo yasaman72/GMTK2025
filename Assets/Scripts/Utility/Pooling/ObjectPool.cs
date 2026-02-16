@@ -87,6 +87,18 @@ namespace Deviloop
             PoolManager.Instance.ReturnToPoolParent(instance);
         }
 
+        public void ReturnAll()
+        {
+            foreach (var instance in _allObjects)
+            {
+                if (instance.gameObject.activeSelf)
+                {
+                    instance.gameObject.SetActive(false);
+                    _inactiveObjects.Push(instance);
+                }
+            }
+        }
+
         public void Clear()
         {
             foreach (var obj in _allObjects)

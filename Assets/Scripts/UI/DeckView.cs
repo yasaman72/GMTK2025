@@ -1,6 +1,7 @@
 using Deviloop;
 using Deviloop.ScriptableObjects;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,14 +11,14 @@ public class DeckView : MonoBehaviour
     public static Action<CardDeck, Action<BaseCard>> OpenDeck;
     public static Action<CardDeck, int> OpenDeckToDelete;
 
+    [SerializeField] private ScrollRect _scrollRect;
     [SerializeField] private Transform _deckContentHolder;
-    [SerializeField] private GameObject _deckViewItemPrefab;
+    [SerializeField] private DeckViewItem _cardPrefab;
     [SerializeField] private TextMeshProUGUI _deckTitle;
 
-    private void Awake()
-    {
-        _deckTitle.text = "";
-    }
+    private ObjectPool<DeckViewItem> _itemsPool;
+    private List<DeckViewItem> _activeItems = new List<DeckViewItem>();
+
 
     public void Initialize()
     {
@@ -34,20 +35,32 @@ public class DeckView : MonoBehaviour
 
     private void onDeckOpen(CardDeck deck, Action<BaseCard> OnCardClick = null)
     {
-        // TODO: pooling and not reseting everytime deck is opened
-        foreach (Transform item in _deckContentHolder)
+        _deckTitle.text = "";
+
+        Canvas.ForceUpdateCanvases();
+        _scrollRect.verticalNormalizedPosition = 1f;
+        _scrollRect.horizontalNormalizedPosition = 0f;
+
+        try
         {
-            Destroy(item.gameObject);
+            _itemsPool = PoolManager.Instance.GetPool(_cardPrefab);
+        }
+        catch (Exception)
+        {
+            _itemsPool = PoolManager.Instance.CreatePool(_cardPrefab, 20);
         }
 
         foreach (var card in deck.GetAllCardsAsList())
         {
-            var newCardPrefab = Instantiate(_deckViewItemPrefab, _deckContentHolder);
+            var newCardPrefab = _itemsPool.Get();
+            newCardPrefab.transform.SetParent(_deckContentHolder);
+            newCardPrefab.transform.localScale = Vector3.one;
             var deckViewItem = newCardPrefab.GetComponent<DeckViewItem>();
+            _activeItems.Add(deckViewItem);
             deckViewItem.Setup(card);
             if (OnCardClick != null)
             {
-                newCardPrefab.GetComponent<Button>().onClick.AddListener(() => OnCardClick(card));
+                newCardPrefab.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => OnCardClick(card));
             }
             else
             {
@@ -73,5 +86,10 @@ public class DeckView : MonoBehaviour
     {
         _deckTitle.text = "";
         gameObject.SetActive(false);
+
+        foreach (var item in _activeItems)
+            _itemsPool.ReturnToPool(item);
+
+        _activeItems.Clear();
     }
 }
