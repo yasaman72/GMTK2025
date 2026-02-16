@@ -97,21 +97,6 @@ public class RewardView : MonoBehaviour, IInitiatable
         _rewardItemsPool.ReturnToPool(rewardPrefab);
     }
 
-    public void CollectAllRewards()
-    {
-        foreach (var _lootItem in _allCurrentLoots)
-        {
-            if (_lootItem.Key.item == null)
-            {
-                Debug.LogError("LootItem is not set up");
-                return;
-            }
-            _lootItem.Key.Loot();
-        }
-
-        Close();
-    }
-
     public void Close()
     {
         if (!_isRewardNotPickedUpNotificationDisplayed && !CheckIfPickedAllRewards())
@@ -121,9 +106,9 @@ public class RewardView : MonoBehaviour, IInitiatable
             return;
         }
 
-        foreach (var reward in _currentCardItems)
+        foreach (var reward in _allCurrentLoots)
         {
-            _rewardItemsPool.ReturnToPool(reward);
+            _rewardItemsPool.ReturnToPool(reward.Value);
         }
 
         _isRewardNotPickedUpNotificationDisplayed = false;

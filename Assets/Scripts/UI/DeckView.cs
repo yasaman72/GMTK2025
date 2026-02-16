@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class DeckView : MonoBehaviour
 {
     public static Action<CardDeck, Action<BaseCard>> OpenDeck;
-    public static Action<CardDeck, int> OpenDeckToDelete;
+    public static Action<CardDeck, int, Action> OpenDeckToDelete;
 
     [SerializeField] private ScrollRect _scrollRect;
     [SerializeField] private Transform _deckContentHolder;
@@ -72,12 +72,13 @@ public class DeckView : MonoBehaviour
     }
 
 
-    private void onOpenDeckToDelete(CardDeck deck, int cardsToDeleteCount = 1)
+    private void onOpenDeckToDelete(CardDeck deck, int cardsToDeleteCount = 1, Action callback = null)
     {
         onDeckOpen(deck, (card) =>
         {
             CardManager.RemoveCardFromDeckAction?.Invoke(card, false);
             CloseDeck();
+            callback?.Invoke();
         });
         _deckTitle.text = "select an item to permanently delete from your deck";
     }

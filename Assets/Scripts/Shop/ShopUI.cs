@@ -98,7 +98,7 @@ public class ShopUI : MonoBehaviour
         if (_deleteItemButton == null)
             _deleteItemButton = Instantiate(_shopRemoveItemOption, _shopItemParent);
 
-        var deckViewItem = _deleteItemButton.GetComponent<DeckViewItem>();
+        DeckViewItem deckViewItem = _deleteItemButton.GetComponent<DeckViewItem>();
         deckViewItem.Setup(_shopData.itemDeletionPrice);
         _deleteItemButton.GetComponent<Button>().onClick.AddListener(() => OnDeleteItemClick(deckViewItem));
     }
@@ -147,13 +147,17 @@ public class ShopUI : MonoBehaviour
 
         if (PlayerInventory.SpendCoin(_shopData.itemDeletionPrice))
         {
-            DeckView.OpenDeckToDelete?.Invoke(CardManager.DrawDeck, 1);
-            deleteItemButton.Deactivate();
+            DeckView.OpenDeckToDelete?.Invoke(CardManager.DrawDeck, 1, () => OnDeleteAnItem(deleteItemButton));
         }
         else
         {
             Debug.Log("Not enough coins to delete item.");
         }
+    }
+
+    public void OnDeleteAnItem(DeckViewItem deleteItemButton)
+    {
+        deleteItemButton.Deactivate();
     }
 
     private void RemoveItemFromOffers(BaseCard card, DeckViewItem itemButton)
