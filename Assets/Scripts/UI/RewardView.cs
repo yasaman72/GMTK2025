@@ -6,7 +6,7 @@ using UnityEngine.Localization;
 using UnityEngine.UI;
 using static LootSet;
 
-public class RewardView : MonoBehaviour
+public class RewardView : MonoBehaviour, IInitiatable
 {
     public static Action<List<LootSet>> OpenRewards;
     public static Action OnRewardsClosed;
@@ -18,42 +18,27 @@ public class RewardView : MonoBehaviour
     [SerializeField] private ModifiableFloat _waitBeforeShowingRewards = new ModifiableFloat(3);
     [SerializeField] private Transform _deckContentHolder;
     [SerializeField] private Transform _itemsSelectionContent;
-    [SerializeField] private GameObject _rewardItemPrefab;
+    [SerializeField] private RewardItem _rewardItemPrefab;
 
     private bool _isRewardNotPickedUpNotificationDisplayed = false;
 
-    Dictionary<LootSetData, GameObject> _allCurrentLoots = new Dictionary<LootSetData, GameObject>();
+    Dictionary<LootSetData, RewardItem> _allCurrentLoots = new Dictionary<LootSetData, RewardItem>();
 
-    private List<GameObject> _rewardPrefabs = new List<GameObject>();
-    public void Initialize()
+    private ObjectPool<RewardItem> _rewardItemsPool;
+    private List<RewardItem> _currentCardItems = new List<RewardItem>();
+
+    public void Initiate()
     {
         OpenRewards += onDeckOpen;
         gameObject.SetActive(false);
         _allCurrentLoots.Clear();
-        CreateRewardPrefabs();
+
+        _rewardItemsPool = PoolManager.Instance.CreatePool(_rewardItemPrefab, 3);
     }
 
     public void OnReset()
     {
         OpenRewards -= onDeckOpen;
-    }
-
-    private void CreateRewardPrefabs()
-    {
-        // TODO: write a more generic pool system for rewards and deck options
-        _rewardPrefabs.Clear();
-
-        foreach (Transform child in _deckContentHolder.transform)
-        {
-            if (child.GetComponent<RewardItem>() != null)
-                _rewardPrefabs.Add(child.gameObject);
-        }
-
-        foreach (Transform child in _itemsSelectionContent.transform)
-        {
-            if (child.GetComponent<RewardItem>() != null && !_rewardPrefabs.Contains(child.gameObject))
-                _rewardPrefabs.Add(child.gameObject);
-        }
     }
 
     private async void onDeckOpen(List<LootSet> loots)
@@ -67,51 +52,34 @@ public class RewardView : MonoBehaviour
 
         for (int i = 0; i < allRewards.Count; i++)
         {
-            GameObject newRewardPrefab = null;
+            RewardItem rewardItem = _rewardItemsPool.Get();
             LootSetData reward = allRewards[i];
 
-            if (_rewardPrefabs.Count <= i)
+            if (reward.item is CardLoot)
             {
-                if (reward.item is CardLoot)
-                {
-                    newRewardPrefab = Instantiate(_rewardItemPrefab, _itemsSelectionContent);
-                    _itemsSelectionContent.gameObject.SetActive(true);
-                }
-                else
-                    newRewardPrefab = Instantiate(_rewardItemPrefab, _deckContentHolder);
-
-                _rewardPrefabs.Add(newRewardPrefab);
-            }
-
-            if (reward.item is CardLoot && _rewardPrefabs[i].transform.parent.gameObject != _itemsSelectionContent)
-            {
-                _rewardPrefabs[i].transform.SetParent(_itemsSelectionContent);
-                _rewardPrefabs[i].SetActive(true);
+                rewardItem.transform.SetParent(_itemsSelectionContent);
+                rewardItem.gameObject.SetActive(true);
                 _itemsSelectionContent.gameObject.SetActive(true);
+                _currentCardItems.Add(rewardItem);
             }
             else
             {
-                _rewardPrefabs[i].transform.SetParent(_deckContentHolder);
-                _rewardPrefabs[i].SetActive(false);
+                rewardItem.transform.SetParent(_deckContentHolder);
+                rewardItem.gameObject.SetActive(false);
             }
-            newRewardPrefab = _rewardPrefabs[i];
-            _rewardPrefabs[i].SetActive(true);
+            rewardItem.gameObject.SetActive(true);
+            rewardItem.transform.localScale = Vector3.one;
 
-            var rewardItem = newRewardPrefab.GetComponent<RewardItem>().Setup(reward);
-            newRewardPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
-            newRewardPrefab.GetComponent<Button>().onClick.AddListener(() => CollectReward(reward, newRewardPrefab));
-            _allCurrentLoots.Add(reward, newRewardPrefab);
-        }
-
-        for (int i = allRewards.Count; i < _rewardPrefabs.Count; i++)
-        {
-            _rewardPrefabs[i].SetActive(false);
+            rewardItem.Setup(reward);
+            rewardItem.GetComponent<Button>().onClick.RemoveAllListeners();
+            rewardItem.GetComponent<Button>().onClick.AddListener(() => CollectReward(reward, rewardItem));
+            _allCurrentLoots.Add(reward, rewardItem);
         }
 
         gameObject.SetActive(true);
     }
 
-    public void CollectReward(LootSetData rewardItem, GameObject rewardPrefab)
+    public void CollectReward(LootSetData rewardItem, RewardItem rewardPrefab)
     {
         rewardItem.Loot();
         _allCurrentLoots.Remove(rewardItem);
@@ -119,10 +87,14 @@ public class RewardView : MonoBehaviour
         // remove all other item rewards from the option
         if (rewardItem.item is CardLoot)
         {
-            _itemsSelectionContent.gameObject.SetActive(false);
+            foreach (var reward in _currentCardItems)
+            {
+                _rewardItemsPool.ReturnToPool(reward);
+            }
         }
 
-        rewardPrefab.gameObject.SetActive(false);
+        _rewardItemsPool.ReturnToPool(rewardPrefab);
+        _itemsSelectionContent.gameObject.SetActive(false);
     }
 
     public void CollectAllRewards()
@@ -154,6 +126,7 @@ public class RewardView : MonoBehaviour
         gameObject.SetActive(false);
         _allCurrentLoots.Clear();
         OnRewardsClosed?.Invoke();
+        _currentCardItems.Clear();
     }
 
 

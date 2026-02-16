@@ -27,7 +27,6 @@ public class HudManager : CustomMonoBehavior
 
         _pauseMenu.gameObject.SetActive(false);
         _deckView.Initialize();
-        _rewardView.Initialize();
     }
 
     private void OnDisable()

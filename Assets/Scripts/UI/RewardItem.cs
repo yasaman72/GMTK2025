@@ -5,7 +5,7 @@ using UnityEngine.Localization;
 using UnityEngine.UI;
 using static LootSet;
 
-public class RewardItem : MonoBehaviour
+public class RewardItem : MonoBehaviour, IPoolable
 {
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private TextMeshProUGUI _description;
@@ -15,6 +15,15 @@ public class RewardItem : MonoBehaviour
     [SerializeField] private Color _itemRewardsBackground = Color.white;
 
     private TooltipTrigger _tooltipTrigger;
+
+    public void OnDespawned()
+    {
+
+    }
+
+    public void OnSpawned()
+    {
+    }
 
     public RewardItem Setup(LootSetData lootSetData)
     {
