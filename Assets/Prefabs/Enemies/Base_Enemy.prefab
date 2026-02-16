@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7adf2fdb1a349f408f97f2ee8a972bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageIndicator: {fileID: 7475109830850499184, guid: f281cbf6ebfabd94fa101e690aff3ab7, type: 3}
+  _damageIndicator: {fileID: -2135094171435355646, guid: f281cbf6ebfabd94fa101e690aff3ab7, type: 3}
   _origin: {fileID: 1055150476949478865}
   _destroyAfter: 2
   _spawnHorizontalRange: {x: -0.2, y: 0.2}

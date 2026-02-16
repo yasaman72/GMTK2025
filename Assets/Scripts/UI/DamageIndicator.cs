@@ -12,7 +12,7 @@ namespace Deviloop
         Shield
     }
 
-    public class DamageIndicator : MonoBehaviour
+    public class DamageIndicator : MonoBehaviour, IPoolable
     {
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Animator animator;
@@ -45,7 +45,15 @@ namespace Deviloop
         private IEnumerator DestroyDamageIndicator(float _destroyAfter)
         {
             yield return new WaitForSeconds(_destroyAfter);
-            Destroy(gameObject);
+            PoolManager.Instance.GetPool(this).ReturnToPool(this);
+        }
+
+        public void OnSpawned()
+        {
+        }
+
+        public void OnDespawned()
+        {
         }
     }
 }
