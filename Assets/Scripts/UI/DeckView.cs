@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class DeckView : MonoBehaviour
 {
-    public static Action<CardDeck, Action<BaseCard>> OpenDeck;
+    public delegate void OpenDeckDelegate(CardDeck deck, Action<BaseCard> OnCardClick = null, bool showPrice = false);
+    public static OpenDeckDelegate OpenDeck;
     public static Action<CardDeck, int, Action> OpenDeckToDelete;
 
     [SerializeField] private ScrollRect _scrollRect;
@@ -33,7 +34,7 @@ public class DeckView : MonoBehaviour
         OpenDeckToDelete -= onOpenDeckToDelete;
     }
 
-    private void onDeckOpen(CardDeck deck, Action<BaseCard> OnCardClick = null)
+    private void onDeckOpen(CardDeck deck, Action<BaseCard> OnCardClick = null, bool showPrice = true)
     {
         _deckTitle.text = "";
 
@@ -62,7 +63,8 @@ public class DeckView : MonoBehaviour
             {
                 newCardPrefab.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => OnCardClick(card));
             }
-            else
+
+            if (!showPrice)
             {
                 deckViewItem.DisablePrice();
             }
@@ -79,7 +81,7 @@ public class DeckView : MonoBehaviour
             CardManager.RemoveCardFromDeckAction?.Invoke(card, false);
             CloseDeck();
             callback?.Invoke();
-        });
+        }, false);
         _deckTitle.text = "select an item to permanently delete from your deck";
     }
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : UIView
 {
     public static Action OnShopClosedEvent;
     public static Action<ShopData> OpenShopAction;
@@ -20,15 +20,16 @@ public class ShopUI : MonoBehaviour
     private GameObject _deleteItemButton;
     private GameObject _rerollButton;
 
-    private void Awake()
+
+    public override void Initiate()
     {
+        OpenShopAction += OnOpenShop;
+        gameObject.SetActive(false);
+
         foreach (Transform child in _shopItemParent)
         {
             Destroy(child.gameObject);
         }
-
-        OpenShopAction += OnOpenShop;
-        gameObject.SetActive(false);
 
         try
         {
@@ -45,23 +46,31 @@ public class ShopUI : MonoBehaviour
         OpenShopAction -= OnOpenShop;
     }
 
-    private void OnOpenShop(ShopData shopData)
+    public override void Open()
     {
         gameObject.SetActive(true);
+    }
+
+    public override void Close()
+    {
+        ResetOffers();
+        _currentShopCardButtons.Clear();
+        gameObject.SetActive(false);
+        OnShopClosedEvent?.Invoke();
+
+        UIViewsManager.Instance.ClosePage();
+    }
+
+
+    private void OnOpenShop(ShopData shopData)
+    {
+        UIViewsManager.Instance.OpenPage(this);
         _shopData = shopData.SetupInstance();
 
         CreateDeleteItemOption();
         CreateRerollOption();
 
         SetupCardOffers();
-    }
-
-    public void CloseShop()
-    {
-        ResetOffers();
-        _currentShopCardButtons.Clear();
-        gameObject.SetActive(false);
-        OnShopClosedEvent?.Invoke();
     }
 
     private void SetupCardOffers()
@@ -79,7 +88,8 @@ public class ShopUI : MonoBehaviour
     {
         foreach (DeckViewItem child in _currentShopCardButtons)
         {
-            _itemsPool.ReturnToPool(child);
+            if (child.isActiveAndEnabled)
+                _itemsPool.ReturnToPool(child);
         }
     }
 
@@ -110,18 +120,20 @@ public class ShopUI : MonoBehaviour
 
         _rerollButton.GetComponent<DeckViewItem>().Setup(_shopData.rerollPrice);
         _rerollButton.GetComponent<Button>().onClick.RemoveAllListeners();
-        _rerollButton.GetComponent<Button>().onClick.AddListener(() =>
+        _rerollButton.GetComponent<Button>().onClick.AddListener(() => OnReroll());
+    }
+
+    private void OnReroll()
+    {
+        if (PlayerInventory.SpendCoin(_shopData.rerollPrice))
         {
-            if (PlayerInventory.SpendCoin(_shopData.rerollPrice))
-            {
-                SetupCardOffers();
-                AnalyticsManager.SendCustomEventAction?.Invoke("shop_rerolled", new Dictionary<string, object>());
-            }
-            else
-            {
-                Debug.Log("Not enough coins to reroll.");
-            }
-        });
+            SetupCardOffers();
+            AnalyticsManager.SendCustomEventAction?.Invoke("shop_rerolled", new Dictionary<string, object>());
+        }
+        else
+        {
+            Debug.Log("Not enough coins to reroll.");
+        }
     }
 
     private void OnItemClick(BaseCard card, DeckViewItem itemButton)

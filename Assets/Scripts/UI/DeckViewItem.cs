@@ -48,6 +48,7 @@ public class DeckViewItem : MonoBehaviour, IPoolable
             }
         }
 
+        _priceParent.SetActive(true);
         _priceText.text = card.price.ToString();
     }
 
