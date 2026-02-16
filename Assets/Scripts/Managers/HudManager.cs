@@ -64,7 +64,7 @@ public class HudManager : CustomMonoBehavior
 
     public void OnPause()
     {
-        _pauseMenu.OnOpen();
+        UIViewsManager.Instance.OpenPage(_pauseMenu);
     }
 
     // TODO: find a single solution for opening any deck

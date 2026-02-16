@@ -7,6 +7,6 @@ namespace Deviloop
         public bool OpenIsolated = false;
         public abstract void Open();
         public abstract void Close();
-        public abstract void Initiate();
+        public virtual void Initiate() { }
     }
 }
