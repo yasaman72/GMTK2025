@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
-  m_Name: Enemy_Bomber
+  m_Name: Enemy_Basic_Shield
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  prefab: {fileID: 828670261892621840, guid: 05e71a18cccc64a41a1916cce4f745d5, type: 3}
+  prefab: {fileID: 828670261892621840, guid: 08c26778429ea434abd79ad7c9fbdba3, type: 3}
   EnemyActions:
-  - Action: {fileID: 11400000, guid: a0688275b54ef4b46a562be892ec6d13, type: 2}
-    Probability: 50
   - Action: {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
-    Probability: 50
-  _developerNotes: 
+    Probability: 60
+  - Action: {fileID: 11400000, guid: 5819b94420dbb404da36c5c3977d8e9a, type: 2}
+    Probability: 40
+  _developerNotes: does not use shield

@@ -15,6 +15,8 @@ MonoBehaviour:
   MaxHealth: 10
   prefab: {fileID: 828670261892621840, guid: 829a3bff433781e48ad45f8da7e48e6f, type: 3}
   EnemyActions:
-  - {fileID: 11400000, guid: 6a77869375df88845bcee1ed9a23f583, type: 2}
-  - {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
+  - Action: {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
+    Probability: 50
+  - Action: {fileID: 11400000, guid: 6a77869375df88845bcee1ed9a23f583, type: 2}
+    Probability: 50
   _developerNotes: 

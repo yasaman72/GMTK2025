@@ -15,6 +15,20 @@ namespace Deviloop
 
         public int TotalWeight { get; private set; } = -1;
 
+        private int GetTotalWeight()
+        {
+            if (TotalWeight == -1)
+            {
+                TotalWeight = 0;
+                foreach (var encounter in Encounters)
+                {
+                    TotalWeight += encounter.Probability;
+                }
+            }
+
+            return TotalWeight;
+        }
+
         public BaseEncounter GetRandomEncounter(bool isStartingEncounter = false, List<BaseEncounter> encountersToSkip = null)
         {
             List<BaseEncounter> encounterThatMustSpawn = new List<BaseEncounter>();
@@ -30,14 +44,7 @@ namespace Deviloop
             if (encounterThatMustSpawn.Count > 0)
                 return encounterThatMustSpawn[0];
 
-            if (TotalWeight == -1)
-            {
-                TotalWeight = 0;
-                foreach (var encounter in Encounters)
-                {
-                    TotalWeight += encounter.Probability;
-                }
-            }
+            GetTotalWeight();
 
             int randomIndex = 0;
             int randomValue = SeededRandom.Range(0, TotalWeight);

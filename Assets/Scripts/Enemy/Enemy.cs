@@ -17,7 +17,6 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
 
     private Color _grayColor = new Color(.5f, .5f, .5f);
     private EnemyAction currentAction;
-    private EnemyAction previousAction;
     public EnemyAction CurrentAction => currentAction;
 
     public EnemyData enemyStats => Stats as EnemyData;
@@ -73,14 +72,8 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
             return;
 
         int behaviorIndex = SeededRandom.Range(0, enemyStats.EnemyActions.Count);
-        previousAction = currentAction;
-        EnemyAction nextAction = enemyStats.EnemyActions[behaviorIndex];
-        if (nextAction.CanBeTaken(previousAction) == false)
-        {
-            PickNextAction();
-            return;
-        }
-        currentAction = nextAction;
+        EnemyAction previousAction = currentAction;
+        currentAction = enemyStats.GetNextAction(previousAction);
         OnIntentionChanged?.Invoke(currentAction);
     }
 

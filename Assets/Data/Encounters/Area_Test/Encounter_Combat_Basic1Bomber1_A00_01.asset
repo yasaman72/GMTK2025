@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55706623c5b38564894d6d5467c6a1f0, type: 3}
-  m_Name: Encounter_Combat_Mamandooz2AttakBuffer1_A00_01
+  m_Name: Encounter_Combat_Basic1Bomber1_A00_01
   m_EditorClassIdentifier: 
   EncounterName: combat
-  EncounterDebugName: Buffer
+  EncounterDebugName: Bomber
   EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
   _enemyTypes:
   - EnemyData: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
-    Quantity: 2
-  - EnemyData: {fileID: 11400000, guid: 6bceaea68c6893943a33ae1ea4752d5b, type: 2}
     Quantity: 1
-  IsElite: 1
+  - EnemyData: {fileID: 11400000, guid: 00949df961a04f94bb8e1e65595151ac, type: 2}
+    Quantity: 1
+  IsElite: 0
   DefeatRewards:
-  - {fileID: 11400000, guid: 6b5134c385a9a564abed7830641d790f, type: 2}
+  - {fileID: 11400000, guid: f6c73efaa50e2ea4fa9e294408eeec09, type: 2}

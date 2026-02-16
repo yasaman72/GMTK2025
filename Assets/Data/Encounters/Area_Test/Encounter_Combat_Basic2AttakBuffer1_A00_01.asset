@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55706623c5b38564894d6d5467c6a1f0, type: 3}
+  m_Name: Encounter_Combat_Basic2AttakBuffer1_A00_01
+  m_EditorClassIdentifier: 
+  EncounterName: combat
+  EncounterDebugName: Buffer
+  EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
+  _enemyTypes:
+  - EnemyData: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
+    Quantity: 2
+  - EnemyData: {fileID: 11400000, guid: 6bceaea68c6893943a33ae1ea4752d5b, type: 2}
+    Quantity: 1
+  IsElite: 1
+  DefeatRewards:
+  - {fileID: 11400000, guid: 6b5134c385a9a564abed7830641d790f, type: 2}

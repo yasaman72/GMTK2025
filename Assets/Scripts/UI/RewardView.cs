@@ -91,10 +91,10 @@ public class RewardView : MonoBehaviour, IInitiatable
             {
                 _rewardItemsPool.ReturnToPool(reward);
             }
+            _itemsSelectionContent.gameObject.SetActive(false);
         }
 
         _rewardItemsPool.ReturnToPool(rewardPrefab);
-        _itemsSelectionContent.gameObject.SetActive(false);
     }
 
     public void CollectAllRewards()
@@ -119,6 +119,11 @@ public class RewardView : MonoBehaviour, IInitiatable
             _isRewardNotPickedUpNotificationDisplayed = true;
             MessageController.OnDisplayMessage?.Invoke("You haven't picked all your rewards, you sure you want to continue?", 2);
             return;
+        }
+
+        foreach (var reward in _currentCardItems)
+        {
+            _rewardItemsPool.ReturnToPool(reward);
         }
 
         _isRewardNotPickedUpNotificationDisplayed = false;
