@@ -25,7 +25,6 @@ public class DeckViewItem : MonoBehaviour, IPoolable
     {
         _button.onClick.RemoveAllListeners();
     }
-
     public void Setup(BaseCard card)
     {
         _nameText.text = card.cardName.GetLocalizedString();

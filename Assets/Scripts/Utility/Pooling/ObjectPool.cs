@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    public class ObjectPool<T> where T : Component
+    public class ObjectPool<T> : IPool where T : Component
     {
         private readonly T _prefab;
         private readonly Transform _parent;
@@ -111,6 +111,15 @@ namespace Deviloop
 
             _inactiveObjects.Clear();
             _allObjects.Clear();
+        }
+
+        public void OnPoolDestroy()
+        {
+            foreach (var obj in _allObjects)
+            {
+                if (obj is IPoolable p)
+                    p.OnDespawned();
+            }
         }
     }
 }

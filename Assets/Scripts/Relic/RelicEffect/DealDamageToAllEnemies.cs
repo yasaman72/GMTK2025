@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Deviloop
@@ -11,7 +13,7 @@ namespace Deviloop
 
         public override void Apply(MonoBehaviour caller)
         {
-            var enemies = CombatManager.SpawnedEnemies;
+            List<Enemy> enemies = CombatManager.SpawnedEnemies.ToList();
 
             foreach (var enemy in enemies)
             {

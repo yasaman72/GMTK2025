@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    public class GameStateManager : MonoBehaviour
+    public class GameStateManager : Singleton<GameStateManager>
     {
         [SerializeField] private GameObject _gameOverPage;
 
-        public static bool CanPlayerDrawLasso { get; set; }
-        public static bool IsInLassoingState { get; set; }
+        public bool CanPlayerDrawLasso { get; set; }
+        public bool IsInLassoingState { get; set; }
 
         private void Start()
         {

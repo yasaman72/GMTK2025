@@ -60,7 +60,8 @@ namespace Deviloop
 
         private void ClearTargetOnDeath(CombatCharacter enemy)
         {
-            (CurrentTarget as Enemy).OnDeath -= ClearTargetOnDeath;
+            if (CurrentTarget != null)
+                (CurrentTarget as Enemy).OnDeath -= ClearTargetOnDeath;
             CurrentTarget = null;
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
 

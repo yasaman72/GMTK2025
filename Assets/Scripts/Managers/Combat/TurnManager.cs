@@ -1,3 +1,4 @@
+using Deviloop;
 using System;
 using UnityEngine;
 
@@ -21,6 +22,16 @@ public class TurnManager : MonoBehaviour
         private set
         {
             if (_turnMode == value) return;
+
+            // the first turn when a new wave spawns is player's
+            if (EncounterManager.CurrentEncounter is EnemyWaveData wave)
+            {
+                if (wave.NewWaveIsNewlySpawned())
+                {
+                    value = ETurnMode.Player;
+                }
+            }
+
             OnTurnChanged?.Invoke(value);
             _turnMode = value;
         }

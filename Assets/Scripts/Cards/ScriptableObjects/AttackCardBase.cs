@@ -3,6 +3,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public enum AttackType
 {
@@ -63,7 +64,8 @@ namespace Deviloop.ScriptableObjects
             .OnComplete(
             () =>
             {
-                runner.StartCoroutine(OnReachTarget(callback, enemy));
+                if (runner != null)
+                    runner.StartCoroutine(OnReachTarget(callback, enemy));
             });
         }
 
@@ -79,7 +81,7 @@ namespace Deviloop.ScriptableObjects
         // TODO: replace with async/await and proper animations
         private IEnumerator TargetAllEnemies(Action callback, CardPrefab cardPrefab)
         {
-            var enemies = CombatManager.SpawnedEnemies;
+            List<Enemy> enemies = CombatManager.SpawnedEnemies.ToList();
 
             yield return new WaitForSeconds(DelayBeforeMove.Value);
 

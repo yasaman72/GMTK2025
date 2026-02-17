@@ -13,7 +13,7 @@ using Random = Deviloop.SeededRandom;
 
 namespace Deviloop
 {
-    public class CardManager : MonoBehaviour
+    public class CardManager : MonoBehaviour, IInitiatable
     {
         // After items are thrown, these values change to allow player start drawing the lasso
         public static Action OnPlayerClickedThrowButton;
@@ -84,10 +84,6 @@ namespace Deviloop
             CombatRoundCounterVariable = source["global"]["CurrentThrownItemsCount"] as IntVariable;
             CombatRoundCounterVariable.Value = CardsToThrowPerTurn;
         }
-        void Start()
-        {
-            Initialize();
-        }
 
         private void OnEnable()
         {
@@ -114,7 +110,7 @@ namespace Deviloop
             throwButton.gameObject.SetActive(false);
         }
 
-        void Initialize()
+        public void Initiate()
         {
             try
             {
@@ -167,11 +163,11 @@ namespace Deviloop
 
         public void OnThrowButtonClicked()
         {
-            if (GameStateManager.IsInLassoingState) return;
+            if (GameStateManager.Instance.IsInLassoingState) return;
             if (TurnManager.TurnMode != TurnManager.ETurnMode.Player) return;
 
             StartCoroutine(ThrowCardsSequence());
-            GameStateManager.IsInLassoingState = true;
+            GameStateManager.Instance.IsInLassoingState = true;
             OnPlayerClickedThrowButton?.Invoke();
         }
 
@@ -185,7 +181,7 @@ namespace Deviloop
 
             cardsToThrow = ShuffleCards(cardsToThrow);
 
-            GameStateManager.CanPlayerDrawLasso = true;
+            GameStateManager.Instance.CanPlayerDrawLasso = true;
             // Throw cards with slight delays
             for (int i = 0; i < cardsToThrow.Count; i++)
             {
@@ -203,7 +199,7 @@ namespace Deviloop
                     break;
                 }
             }
-            GameStateManager.CanPlayerDrawLasso = false;
+            GameStateManager.Instance.CanPlayerDrawLasso = false;
 
             ClearThrownCards();
             AfterPlayerTurnEnd();
@@ -339,7 +335,7 @@ namespace Deviloop
         {
             throwButton.gameObject.SetActive(false);
             TurnManager.ChangeTurn(TurnManager.ETurnMode.Enemy);
-            GameStateManager.IsInLassoingState = false;
+            GameStateManager.Instance.IsInLassoingState = false;
 
             if (_drawDeck.GetTotalCardCount() <= 0)
                 ReturnCardsToDrawDeck();

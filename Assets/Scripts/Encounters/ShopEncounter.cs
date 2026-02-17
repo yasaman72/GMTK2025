@@ -7,6 +7,11 @@ namespace Deviloop
     {
         [SerializeField] private ShopData _shopData;
 
+        public override void ResetEncounter()
+        {
+            EncounterManager.OnEncounterFinished -= FinishEncounter;
+        }
+
         public override void StartEncounter()
         {
             ShopManager.OnShopStartEvent?.Invoke(_shopData);

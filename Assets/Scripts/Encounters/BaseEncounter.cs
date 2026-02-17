@@ -9,4 +9,5 @@ public abstract class BaseEncounter : ScriptableObject
     public Sprite EncounterIcon;
     public abstract void StartEncounter();
     public abstract void FinishEncounter();
+    public virtual void ResetEncounter() { }
 }

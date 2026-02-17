@@ -16,7 +16,7 @@ MonoBehaviour:
   prefab: {fileID: 828670261892621840, guid: 05e71a18cccc64a41a1916cce4f745d5, type: 3}
   EnemyActions:
   - Action: {fileID: 11400000, guid: a0688275b54ef4b46a562be892ec6d13, type: 2}
-    Probability: 50
+    Probability: 60
   - Action: {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
-    Probability: 50
+    Probability: 40
   _developerNotes: 

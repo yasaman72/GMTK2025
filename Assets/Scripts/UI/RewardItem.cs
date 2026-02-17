@@ -24,7 +24,6 @@ public class RewardItem : MonoBehaviour, IPoolable
     public void OnSpawned()
     {
     }
-
     public RewardItem Setup(LootSetData lootSetData)
     {
         if (lootSetData.item is CardLoot cardLoot)

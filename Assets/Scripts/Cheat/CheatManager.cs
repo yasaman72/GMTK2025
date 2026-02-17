@@ -1,5 +1,6 @@
 using Deviloop;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static LootSet;
 
@@ -89,7 +90,7 @@ public class CheatManager : MonoBehaviour
 
     public void DamageAllEnemies(int damageAmount)
     {
-        var enemies = CombatManager.SpawnedEnemies;
+        List<Enemy> enemies = CombatManager.SpawnedEnemies.ToList();
 
         foreach (var enemy in enemies)
         {

@@ -20,6 +20,7 @@ namespace Deviloop
         public void Reset()
         {
             EncountersSinceLastSpawn = 0;
+            Encounter.ResetEncounter();
         }
 
         public bool ShouldSpawnEncountersNow()

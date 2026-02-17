@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.EnemyWaveData
   EncounterName: Enemy Wave
   EncounterDebugName: Enemy Wave
-  EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
+  EncounterIcon: {fileID: 21300000, guid: 1cb68716eb8b9d149b0b0f58ea521755, type: 3}
+  _delayBetweenSpawns: 2
   encounters:
   - {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
   - {fileID: 11400000, guid: 884d5170271525d488e389386961f4dd, type: 2}

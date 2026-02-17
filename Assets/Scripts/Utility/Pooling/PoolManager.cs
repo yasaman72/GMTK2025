@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Deviloop
 {
     public class PoolManager : Singleton<PoolManager>
     {
-        private readonly Dictionary<Type, object> _pools = new();
+        private readonly Dictionary<Type, object> _typePools = new();
         private readonly Dictionary<string, object> _namePools = new();
 
         public ObjectPool<T> CreatePool<T>(T prefab, int size, bool byName = false) where T : Component
@@ -18,8 +19,8 @@ namespace Deviloop
             }
             else
             {
-                if (_pools.ContainsKey(prefab.GetType()))
-                    return (ObjectPool<T>)_pools[prefab.GetType()];
+                if (_typePools.ContainsKey(prefab.GetType()))
+                    return (ObjectPool<T>)_typePools[prefab.GetType()];
             }
 
             // create a new parent for each pool to keep the hierarchy organized
@@ -30,7 +31,7 @@ namespace Deviloop
             if (byName)
                 _namePools[prefab.name] = pool;
             else
-                _pools[prefab.GetType()] = pool;
+                _typePools[prefab.GetType()] = pool;
 
             return pool;
         }
@@ -41,7 +42,7 @@ namespace Deviloop
             if (_namePools.TryGetValue(keyName, out var namePool))
                 return (ObjectPool<T>)namePool;
 
-            if (_pools.TryGetValue(prefab.GetType(), out var pool))
+            if (_typePools.TryGetValue(prefab.GetType(), out var pool))
                 return (ObjectPool<T>)pool;
 
             throw new KeyNotFoundException($"No pool found for prefab {prefab.name}");
@@ -56,6 +57,32 @@ namespace Deviloop
             {
                 prefab.transform.SetParent(parent);
             }
+        }
+
+
+        private void OnDestroy()
+        {
+            HashSet<object> processed = new();
+
+            void Process(Dictionary<string, object> dict)
+            {
+                foreach (var pool in dict.Values)
+                {
+                    if (processed.Add(pool) && pool is IPool p)
+                        p.OnPoolDestroy();
+                }
+            }
+
+            Process(_namePools);
+
+            foreach (var pool in _typePools.Values)
+            {
+                if (processed.Add(pool) && pool is IPool p)
+                    p.OnPoolDestroy();
+            }
+
+            _typePools.Clear();
+            _namePools.Clear();
         }
     }
 }

@@ -63,7 +63,8 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
 
     private void OnPlayerClickedThrow()
     {
-        _spriteRenderer.color = _grayColor;
+        if (_spriteRenderer != null)
+            _spriteRenderer.color = _grayColor;
     }
 
     public void PickNextAction()
@@ -116,7 +117,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (GameStateManager.IsInLassoingState) return;
+        if (GameStateManager.Instance.IsInLassoingState) return;
 
         if (IsDead()) return;
         CombatTargetSelection.SetTargetAction?.Invoke(this);

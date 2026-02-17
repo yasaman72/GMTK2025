@@ -35,10 +35,11 @@ namespace Deviloop
 
         private void Start()
         {
+            _allAreas.Setup();
+
             _currentAreaIndex = -1;
             _currentEncounterIndex = 0;
             StartNextArea();
-            _allAreas.Setup();
         }
 
         public void StartNextArea()

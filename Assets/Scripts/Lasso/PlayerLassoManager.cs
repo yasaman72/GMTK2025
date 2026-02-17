@@ -115,7 +115,7 @@ public class PlayerLassoManager : MonoBehaviour
 
     private void Update()
     {
-        if (!GameStateManager.CanPlayerDrawLasso || _hasAlreadyDrawn)
+        if (!GameStateManager.Instance.CanPlayerDrawLasso || _hasAlreadyDrawn)
         {
             Time.timeScale = 1f;
             return;

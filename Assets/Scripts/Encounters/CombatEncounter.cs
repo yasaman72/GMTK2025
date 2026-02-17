@@ -17,6 +17,11 @@ namespace Deviloop
         public bool IsElite = false;
         public List<LootSet> DefeatRewards;
 
+        public override void ResetEncounter()
+        {
+            CombatManager.OnCombatFinishedEvent -= FinishEncounter;
+        }
+
         public override void StartEncounter()
         {
             CombatTargetSelection.SetTargetAction?.Invoke(null);
