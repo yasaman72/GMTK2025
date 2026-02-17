@@ -255,6 +255,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
+  - m_Id: 18891675918970880
+    m_Localized: BrokenBottle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18891811533402112
+    m_Localized: deals {damage} damage to taregt and {playerDamage} to you, then
+      destroys.
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
   references:
     version: 2
     RefIds:
@@ -287,3 +297,4 @@ MonoBehaviour:
         - id: 11907441530548224
         - id: 11907406801711104
         - id: 18888548981452800
+        - id: 18891811533402112

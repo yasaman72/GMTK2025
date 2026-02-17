@@ -1,10 +1,10 @@
-using Deviloop;
 using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 public enum AttackType
 {
     Normal,
@@ -24,6 +24,7 @@ namespace Deviloop.ScriptableObjects
         public ModifiableFloat DelayBeforeMove = new ModifiableFloat(.3f);
         public bool TaregtAll = false;
         public bool TargetRandom = false;
+        public int DamagePlayer = 0;
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
@@ -57,6 +58,8 @@ namespace Deviloop.ScriptableObjects
             Transform enemyTransform = enemy.transform;
 
             yield return new WaitForSeconds(DelayBeforeMove.Value);
+
+            DealDamageToPlayer();
 
             cardPrefab.transform.DOMove(enemyTransform.position, MoveDuration.Value).SetEase(Ease.Linear).OnUpdate(() =>
             {
@@ -111,12 +114,27 @@ namespace Deviloop.ScriptableObjects
 
             yield return new WaitForSeconds(DelayBeforeMove.Value);
             tween.Kill();
+
+            DealDamageToPlayer();
+
             callback?.Invoke();
+        }
+
+        private void DealDamageToPlayer()
+        {
+            if (DamagePlayer > 0)
+            {
+                IDamageable target = Player.PlayerCombatCharacter;
+                target.TakeDamage(DamagePlayer, AttackType);
+            }
         }
 
         private void OnEnable()
         {
-            var dict = new Dictionary<string, string>() { { "damage", Damage.ToString() } };
+            var dict = new Dictionary<string, string>() {
+                { "damage", Damage.ToString() },
+                { "playerDamage", DamagePlayer.ToString() }
+            };
             description.Arguments = new object[] { dict };
         }
     }
