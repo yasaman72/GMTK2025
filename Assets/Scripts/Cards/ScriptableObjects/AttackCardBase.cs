@@ -79,6 +79,8 @@ namespace Deviloop.ScriptableObjects
         // TODO: replace with async/await and proper animations
         private IEnumerator TargetAllEnemies(Action callback, CardPrefab cardPrefab)
         {
+            var enemies = CombatManager.SpawnedEnemies;
+
             yield return new WaitForSeconds(DelayBeforeMove.Value);
 
             // make the card spin a bit with tweening before vanishing
@@ -86,8 +88,6 @@ namespace Deviloop.ScriptableObjects
             var tween = cardPrefab.transform.DORotate(new Vector3(0, 0, 360 * 5), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
 
             yield return new WaitForSeconds(DelayBeforeMove.Value);
-
-            var enemies = CombatManager.SpawnedEnemies;
 
             foreach (var enemy in enemies)
             {

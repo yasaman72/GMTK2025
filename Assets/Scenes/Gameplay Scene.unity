@@ -6814,7 +6814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3584646999949904365, guid: f7495825d714bea4dbe24ea0b074c692, type: 3}
       propertyPath: _shouldLog
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3584646999949904365, guid: f7495825d714bea4dbe24ea0b074c692, type: 3}
       propertyPath: _encounterSelectionUI

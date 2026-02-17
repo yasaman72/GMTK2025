@@ -15,7 +15,7 @@ MonoBehaviour:
   EncounterName: combat
   EncounterDebugName: Healer
   EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
-  _enemyTypes:
+  enemyTypes:
   - EnemyData: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
     Quantity: 2
   - EnemyData: {fileID: 11400000, guid: 88d2274c109f82d4aa1c43b19ede66f3, type: 2}

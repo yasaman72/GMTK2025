@@ -177,17 +177,7 @@ public class PlayerLassoManager : MonoBehaviour
             _startNewLine = false;
             Time.timeScale = 1f;
 
-            bool isLooping = false;
-            int loopEndPointIndex = IsLineLooping(out isLooping);
-
-            if (!_isResolvingALoop && (IsLineNearOtherEnd() || isLooping))
-            {
-                CloseLoop(isLooping, loopEndPointIndex);
-            }
-            else
-            {
-                StartCoroutine(InvertLasso());
-            }
+            StartCoroutine(InvertLasso());
         }
     }
 

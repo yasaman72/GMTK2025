@@ -15,7 +15,7 @@ MonoBehaviour:
   EncounterName: combat
   EncounterDebugName: 2 shields
   EncounterIcon: {fileID: 21300000, guid: 8c20fb0f32939f6419c2a92310bdb793, type: 3}
-  _enemyTypes:
+  enemyTypes:
   - EnemyData: {fileID: 11400000, guid: 14249861e5fd33c4db475a0452c73609, type: 2}
     Quantity: 2
   IsElite: 0

@@ -10,7 +10,7 @@ using Random = Deviloop.SeededRandom;
 
 namespace Deviloop
 {
-    public class CombatManager : MonoBehaviour
+    public class CombatManager : Singleton<CombatManager>
     {
         // argument is the number of enemies to spawn
         public static Action<EnemyType[]> OnCombatStartEvent;
@@ -174,7 +174,6 @@ namespace Deviloop
             if (_defeatedEnemies.Count >= _spawnedEnemies.Count)
             {
                 AfterAllEnemiesDefeated();
-                ShowRewards(combatCharacter as Enemy);
             }
 
             AnalyticsManager.SendCustomEventAction?.Invoke("enemy_defeated", new Dictionary<string, object>
@@ -183,21 +182,35 @@ namespace Deviloop
         });
         }
 
-        private void AfterAllEnemiesDefeated()
+        public void AfterAllEnemiesDefeated()
         {
             IsInCombatVariable.Value = false;
             RelicManager.ApplyEffectsForEvent<OnCombatEndEvent>(this);
             OnAfterAllEnemiesDefeated?.Invoke();
+            ShowRewards();
         }
 
-        private void ShowRewards(Enemy enemy)
+        private void ShowRewards()
         {
-
             if (EncounterManager.CurrentEncounter is CombatEncounter combatEncounter)
             {
 
                 RewardView.OpenRewards?.Invoke(combatEncounter.DefeatRewards);
                 RewardView.OnRewardsClosed += FinishCombat;
+            }
+            else if (EncounterManager.CurrentEncounter is EnemyWaveData waveEncounter)
+            {
+                if (waveEncounter.AreWavesFinished())
+                {
+                    RewardView.OpenRewards?.Invoke(waveEncounter.DefeatRewards);
+                    RewardView.OnRewardsClosed += FinishCombat;
+                }
+                else
+                {
+                    _defeatedEnemies.Clear();
+                    _spawnedEnemies.Clear();
+                    OnCombatFinishedEvent?.Invoke();
+                }
             }
             else
             {

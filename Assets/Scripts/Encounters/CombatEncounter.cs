@@ -13,14 +13,14 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "Encounter_Combat_A00_00", menuName = "Scriptable Objects/Encounters/Combat Encounter")]
     public class CombatEncounter : BaseEncounter
     {
-        [SerializeField] private EnemyType[] _enemyTypes;
+        [SerializeField] public EnemyType[] enemyTypes;
         public bool IsElite = false;
         public List<LootSet> DefeatRewards;
 
         public override void StartEncounter()
         {
             CombatTargetSelection.SetTargetAction?.Invoke(null);
-            CombatManager.OnCombatStartEvent?.Invoke(_enemyTypes);
+            CombatManager.OnCombatStartEvent?.Invoke(enemyTypes);
             CombatManager.OnCombatFinishedEvent += FinishEncounter;
             TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
         }

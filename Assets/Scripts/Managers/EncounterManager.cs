@@ -64,12 +64,12 @@ namespace Deviloop
             {
                 Logger.Log($"Starting encounters in area: {CurrentArea.AreaName}", _shouldLog);
 
-                CurrentEncounter = CurrentArea.GetRandomEncounterType<CombatEncounter>(true);
+                CurrentEncounter = CurrentArea.GetRandomEncounter(true);
                 _currentEncounterIndex++;
                 CurrentEncounter.StartEncounter();
                 return;
             }
-            
+
             if (_currentEncounterIndex == CurrentArea.MaxEncounters)
             {
                 // TODO: put this endless somewhere better
