@@ -8,14 +8,14 @@ namespace Deviloop.ScriptableObjects
     {
         [Header("Deck Configuration")]
         public List<CardEntry> startingCards = new List<CardEntry>();
-    
+
         [Header("Deck Info")]
-        [SerializeField] private int totalCards;
-    
+        [SerializeField, ReadOnly] private int totalCards;
+
         // Runtime deck state (this will be copied to CardManager for actual gameplay)
         [System.NonSerialized]
         public Dictionary<BaseCard, int> currentDeck = new Dictionary<BaseCard, int>();
-    
+
         private void OnValidate()
         {
             // Update total cards count in inspector
@@ -26,7 +26,7 @@ namespace Deviloop.ScriptableObjects
                     totalCards += entry.Quantity;
             }
         }
-    
+
         public void InitializeDeck()
         {
             currentDeck.Clear();
@@ -38,7 +38,7 @@ namespace Deviloop.ScriptableObjects
                 }
             }
         }
-    
+
         public int GetTotalCardCount()
         {
             int total = 0;
@@ -48,7 +48,7 @@ namespace Deviloop.ScriptableObjects
             }
             return total;
         }
-    
+
         public List<BaseCard> GetAllCardsAsList()
         {
             List<BaseCard> allCards = new List<BaseCard>();
@@ -61,7 +61,7 @@ namespace Deviloop.ScriptableObjects
             }
             return allCards;
         }
-    
+
         public bool RemoveCard(BaseCard card)
         {
             if (currentDeck.ContainsKey(card) && currentDeck[card] > 0)
@@ -80,7 +80,7 @@ namespace Deviloop.ScriptableObjects
         {
             currentDeck.Clear();
         }
-    
+
         public void AddCard(BaseCard card, int quantity = 1)
         {
             if (currentDeck.ContainsKey(card))

@@ -265,6 +265,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
+  - m_Id: 18900207347216384
+    m_Localized: magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18900575527415808
+    m_Localized: attracts items that are made of metal. Does nothing when grabbed.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

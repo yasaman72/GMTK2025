@@ -13,7 +13,7 @@ using Random = Deviloop.SeededRandom;
 
 namespace Deviloop
 {
-    public class CardManager : MonoBehaviour, IInitiatable
+    public class CardManager : Singleton<CardManager>, IInitiatable
     {
         // After items are thrown, these values change to allow player start drawing the lasso
         public static Action OnPlayerClickedThrowButton;
@@ -71,7 +71,7 @@ namespace Deviloop
         public float enemyTurnDuration = 2f;
 
         // Runtime variables
-        private List<CardPrefab> thrownCards = new();
+        public List<CardPrefab> thrownCards = new();
 
         // TODO: move all the global localized variables to another class
         private static IntVariable CombatRoundCounterVariable;

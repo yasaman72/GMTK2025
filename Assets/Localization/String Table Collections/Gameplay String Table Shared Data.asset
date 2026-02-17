@@ -229,6 +229,14 @@ MonoBehaviour:
     m_Key: card/description/brokenBottle
     m_Metadata:
       m_Items: []
+  - m_Id: 18900207347216384
+    m_Key: card/title/magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18900575527415808
+    m_Key: card/description/magnet
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

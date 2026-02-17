@@ -15,6 +15,7 @@ namespace Deviloop
         [DeveloperNotes, SerializeField]
         private string developerNotes;
 
+
         private void OnValidate()
         {
             translatedName = materialName.GetLocalizedString();

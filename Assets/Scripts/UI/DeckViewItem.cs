@@ -37,7 +37,7 @@ public class DeckViewItem : MonoBehaviour, IPoolable
         }
 
         // Setup material icon
-        foreach (var material in GameDataBaseManager.GameDatabase.materials)
+        foreach (Deviloop.Material material in GameDataBaseManager.GameDatabase.materials)
         {
             if (material.CompareMaterials(card.materialType))
             {

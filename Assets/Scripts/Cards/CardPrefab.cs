@@ -15,6 +15,7 @@ namespace Deviloop
         public bool isLassoed = false;
         [ReadOnly, SerializeField]
         private BaseCard cardData;
+        public BaseCard CardData { get { return cardData; } }
 
         public void OnSpawned()
         {
@@ -33,7 +34,10 @@ namespace Deviloop
 
         public void OnDespawned()
         {
-
+            foreach (Transform child  in transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         public void InitializeCard(BaseCard card)
@@ -41,6 +45,10 @@ namespace Deviloop
             cardData = card;
             cardRenderer.sprite = cardData.cardIcon;
             _collider.CreateFromSprite(card.cardIcon);
+            if (card is CardWithCustomComponent customeCard)
+            {
+                customeCard.AddComponent(gameObject);
+            }
             transform.localScale = cardData.spriteScale;
             gameObject.name = cardData.name;
         }
