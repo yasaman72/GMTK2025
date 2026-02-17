@@ -11,7 +11,7 @@ namespace Deviloop.ScriptableObjects
     {
         [Header("Healing Properties")]
         public int healAmount = 5;
-        public float moveDuration = .5f;
+        public ModifiableFloat moveDuration = new ModifiableFloat(.2f);
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
@@ -25,7 +25,7 @@ namespace Deviloop.ScriptableObjects
             yield return new WaitForSeconds(.3f);
             Transform playerHpPos = Player.PlayerCombatCharacter.HPOrigin;
 
-            cardPrefab.transform.DOMove(playerHpPos.position, moveDuration).SetEase(Ease.Linear).OnComplete(
+            cardPrefab.transform.DOMove(playerHpPos.position, moveDuration.Value).SetEase(Ease.Linear).OnComplete(
                     () =>
                     {
                         Player.PlayerCombatCharacter.Heal(healAmount);
