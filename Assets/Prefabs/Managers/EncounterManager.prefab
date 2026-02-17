@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14d62b23bf7e2640a1ef3863086753a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldLog: 0
   _endlessMode: 1
-  _allAreas: {fileID: 11400000, guid: 52734235fe433d742ad7f2f5a82dd3fe, type: 2}
+  _allAreas: {fileID: 11400000, guid: 519fd52eb1d076b42b783af5919f9f63, type: 2}
   _encounterSelectionUI: {fileID: 0}

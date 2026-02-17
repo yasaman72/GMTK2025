@@ -17,31 +17,31 @@ MonoBehaviour:
     MaxEncounters: 10
     Encounters:
     - Encounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
-      Probability: 10
+      Probability: 20
       IsStartingEncounter: 1
       ShouldSpawnRegularly: 0
       SpawnAfterEveryXEncounter: 0
       EncountersSinceLastSpawn: 0
     - Encounter: {fileID: 11400000, guid: a825de36f2a9a8e4aad1c82b5554e34e, type: 2}
-      Probability: 20
+      Probability: 10
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 1
       SpawnAfterEveryXEncounter: 2
       EncountersSinceLastSpawn: 1
     - Encounter: {fileID: 11400000, guid: 79bd2a45f5616194db3972a686c2a67d, type: 2}
-      Probability: 10
+      Probability: 20
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 0
       SpawnAfterEveryXEncounter: 0
       EncountersSinceLastSpawn: 0
     - Encounter: {fileID: 11400000, guid: 884d5170271525d488e389386961f4dd, type: 2}
-      Probability: 20
+      Probability: 10
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 0
       SpawnAfterEveryXEncounter: 0
       EncountersSinceLastSpawn: 0
     - Encounter: {fileID: 11400000, guid: fd9866f12f7212340b3c6e387e903efc, type: 2}
-      Probability: 20
+      Probability: 10
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 0
       SpawnAfterEveryXEncounter: 0
@@ -53,6 +53,12 @@ MonoBehaviour:
       SpawnAfterEveryXEncounter: 0
       EncountersSinceLastSpawn: 0
     - Encounter: {fileID: 11400000, guid: cc8825bf7b6011442a0712e1c9ab4cf6, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: 06c0e7c80291f944689d988985708221, type: 2}
       Probability: 10
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 0

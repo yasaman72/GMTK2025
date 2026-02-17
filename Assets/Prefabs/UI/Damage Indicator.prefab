@@ -260,7 +260,7 @@ MonoBehaviour:
   _text: {fileID: 8542919352373442967}
   animator: {fileID: 1945803048600973110}
   _damageTypeSettings:
-  - color: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
+  - color: {r: 1, g: 0.023584902, b: 0.023584902, a: 1}
     damageType: 0
-  - color: {r: 0.42626378, g: 0.49933627, b: 0.9716981, a: 1}
+  - color: {r: 0.10849059, g: 0.22393757, b: 1, a: 1}
     damageType: 3

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -7,6 +8,12 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "EnemyWaveData", menuName = "Scriptable Objects/EnemyWaveData")]
     public class EnemyWaveData : BaseEncounter
     {
+        public delegate void EnemyWaveDataDelegate(int encountersCount);
+        public static EnemyWaveDataDelegate OnWaveEncounterStarted;
+        public delegate void EnemyWaveProgressDelegate(int currentIndex);
+        public static EnemyWaveProgressDelegate OnWaveEncounterProgressed;
+        public static Action OnWaveEncounterFinished;
+
         [SerializeField] private float _delayBetweenSpawns = 1;
         public List<CombatEncounter> encounters;
         public bool IsElite = false;
@@ -32,6 +39,8 @@ namespace Deviloop
             _lastEncounterIndex = -1;
             GoToNextEncounter();
             CombatManager.OnCombatFinishedEvent += FinishEncounter;
+
+            OnWaveEncounterStarted?.Invoke(encounters.Count);
         }
 
         public override void FinishEncounter()
@@ -41,6 +50,7 @@ namespace Deviloop
                 CombatManager.OnCombatFinishedEvent -= FinishEncounter;
                 CombatTargetSelection.SetTargetAction?.Invoke(null);
                 EncounterManager.OnEncounterFinished?.Invoke();
+                OnWaveEncounterFinished?.Invoke();
 
                 _lastEncounterIndex = -1;
                 return;
@@ -48,11 +58,11 @@ namespace Deviloop
 
             CombatTargetSelection.SetTargetAction?.Invoke(null);
             GoToNextEncounter();
+            OnWaveEncounterProgressed?.Invoke(_lastEncounterIndex);
         }
 
         private async void GoToNextEncounter()
         {
-
             _isNewWave = true;
             _lastEncounterIndex++;
 
