@@ -229,5 +229,10 @@ namespace Deviloop
             gameObject.SetActive(false);
             OnCombatFinishedEvent?.Invoke();
         }
+
+        public Enemy GetRandomEnemy()
+        {
+            return ListUtilities.GetRandomElement(_spawnedEnemies);
+        }
     }
 }

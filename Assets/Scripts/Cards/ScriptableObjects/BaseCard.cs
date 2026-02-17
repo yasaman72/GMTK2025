@@ -30,9 +30,6 @@ namespace Deviloop
         [DeveloperNotes, SerializeField]
         private string developerNotes;
 
-        [Header("Prefab")]
-        public GameObject cardPrefab;
-
         // TODO: update the consumable cards logic to consume before adding the card back to discard deck
         // TODO: try adding usage time to consumables
         [Header("Card Properties")]

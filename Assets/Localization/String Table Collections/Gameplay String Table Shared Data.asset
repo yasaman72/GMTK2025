@@ -213,6 +213,14 @@ MonoBehaviour:
     m_Key: relic/description/long/addHP
     m_Metadata:
       m_Items: []
+  - m_Id: 18888460557135872
+    m_Key: card/title/spikedBall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18888548981452800
+    m_Key: card/description/spikedBall
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

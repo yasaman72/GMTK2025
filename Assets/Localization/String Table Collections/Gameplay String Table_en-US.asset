@@ -246,6 +246,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
+  - m_Id: 18888460557135872
+    m_Localized: Spiked Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18888548981452800
+    m_Localized: deals {damage} damage to a random enemy.
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608280
   references:
     version: 2
     RefIds:
@@ -277,3 +286,4 @@ MonoBehaviour:
         - id: 11705980414636032
         - id: 11907441530548224
         - id: 11907406801711104
+        - id: 18888548981452800

@@ -23,6 +23,7 @@ namespace Deviloop.ScriptableObjects
         public ModifiableFloat MoveDuration = new ModifiableFloat(.2f);
         public ModifiableFloat DelayBeforeMove = new ModifiableFloat(.3f);
         public bool TaregtAll = false;
+        public bool TargetRandom = false;
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
@@ -37,7 +38,17 @@ namespace Deviloop.ScriptableObjects
 
         private IEnumerator ActivateCardEffect(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
-            var enemy = CombatTargetSelection.CurrentTarget;
+            CombatCharacter enemy = null;
+
+            if (TargetRandom)
+            {
+                enemy = CombatManager.Instance.GetRandomEnemy();
+            }
+            else
+            {
+                enemy = CombatTargetSelection.CurrentTarget;
+            }
+
             if (enemy == null)
             {
                 callback?.Invoke();
