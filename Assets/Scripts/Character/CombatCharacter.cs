@@ -18,6 +18,7 @@ namespace Deviloop
         [SerializeField] public CombatCharacterStats Stats;
         [SerializeField] private DamageIndicatorApplier _damageIndicatorApplier;
         [SerializeField] public Transform HPOrigin;
+        [SerializeField] public Transform ShieldOrigin;
         [Header("Audio")]
         [SerializeField] private EventReference _hitSound;
         [SerializeField] private EventReference _onHitShieldSound;

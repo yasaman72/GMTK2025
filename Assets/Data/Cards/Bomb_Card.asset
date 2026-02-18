@@ -18,6 +18,7 @@ MonoBehaviour:
   - rid: 4472579520941785473
   _animationType:
   - rid: 4472579520941785474
+  - rid: 4472579520941785528
   _extentionPrefab: {fileID: 0}
   TargetRandom: 0
   isConsumable: 1
@@ -67,6 +68,14 @@ MonoBehaviour:
     - rid: 4472579520941785474
       type: {class: ScaleAnimation, ns: Deviloop, asm: Deviloop}
       data:
+        playWithNext: 0
         _scaleDuration:
           baseValue: 0.5
         _targetScaleMult: 2
+    - rid: 4472579520941785528
+      type: {class: ScaleAnimation, ns: Deviloop, asm: Deviloop}
+      data:
+        playWithNext: 0
+        _scaleDuration:
+          baseValue: 0.5
+        _targetScaleMult: 0

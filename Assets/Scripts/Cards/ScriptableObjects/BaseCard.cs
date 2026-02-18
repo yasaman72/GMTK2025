@@ -1,6 +1,7 @@
 using FMODUnity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -108,8 +109,15 @@ namespace Deviloop
 
         protected async Task PlayAnimations(GameObject card, GameObject target = null)
         {
-            foreach (CardAnimationType animation in _animationType)
+            for (int i = 0; i < _animationType.Length; i++)
             {
+                CardAnimationType animation = _animationType[i];
+                if (i != _animationType.Length - 1 && animation.playWithNext)
+                {
+                    animation.Play(card, target);
+                    continue;
+                }
+
                 await animation.Play(card, target);
             }
         }

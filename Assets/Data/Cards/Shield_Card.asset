@@ -17,7 +17,8 @@ MonoBehaviour:
   _cardEffects:
   - rid: 4472579520941785478
   _animationType:
-  - rid: 4472579520941785479
+  - rid: 4472579520941785537
+  - rid: 4472579520941785522
   _extentionPrefab: {fileID: 0}
   TargetRandom: 0
   isConsumable: 0
@@ -63,10 +64,25 @@ MonoBehaviour:
       type: {class: ShieldPlayerEffect, ns: Deviloop, asm: Deviloop}
       data:
         shieldAmount: 3
-    - rid: 4472579520941785479
-      type: {class: MoveToPlayer, ns: Deviloop, asm: Deviloop}
+    - rid: 4472579520941785522
+      type: {class: ScaleAnimation, ns: Deviloop, asm: Deviloop}
       data:
+        playWithNext: 0
         DelayBeforeMove:
+          baseValue: 0.3
+        DelayAfterMove:
+          baseValue: 0.3
+        _scaleDuration:
+          baseValue: 1
+        _targetScaleMult: 0.5
+        _ease: 27
+    - rid: 4472579520941785537
+      type: {class: MoveToPlayerShield, ns: Deviloop, asm: Deviloop}
+      data:
+        playWithNext: 1
+        DelayBeforeMove:
+          baseValue: 0.3
+        DelayAfterMove:
           baseValue: 0.3
         MoveDuration:
           baseValue: 0.2

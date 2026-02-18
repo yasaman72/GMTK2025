@@ -6934,14 +6934,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5954276191555633292, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
-      propertyPath: _damageIndicator
-      value: 
-      objectReference: {fileID: -2135094171435355646, guid: f281cbf6ebfabd94fa101e690aff3ab7, type: 3}
-    - target: {fileID: 6383996731156047237, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -9.2
-      objectReference: {fileID: 0}
     - target: {fileID: 8129861768524730877, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6954,10 +6946,6 @@ PrefabInstance:
       propertyPath: deckCountText
       value: 
       objectReference: {fileID: 2059575341}
-    - target: {fileID: 8840379169227006985, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
-      propertyPath: deckDisplayParent
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8840379169227006985, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
       propertyPath: discardDeckCountText
       value: 

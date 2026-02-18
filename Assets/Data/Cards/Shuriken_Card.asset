@@ -13,14 +13,25 @@ MonoBehaviour:
   m_Name: Shuriken_Card
   m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
   GUID: 72c434fcd099a5743b69dcbc10d091ed
+  shouldLog: 0
   _cardEffects:
   - rid: 4472579520941785480
   _animationType:
   - rid: 4472579520941785481
+  - rid: 4472579520941785538
+  - rid: 4472579520941785539
   _extentionPrefab: {fileID: 0}
   TargetRandom: 0
+  isConsumable: 0
+  isNegative: 0
   isInGame: 1
+  rarity: 50
+  materialType: 2
+  price: 20
+  overridePrice: 0
+  cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
   spriteScale: {x: 0.4, y: 0.4}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -39,14 +50,6 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  cardIcon: {fileID: 21300000, guid: 009bddf3c19642d45aff88e0606ceab6, type: 3}
-  rarity: 50
-  materialType: 2
-  isNegative: 0
-  isConsumable: 0
-  price: 20
-  overridePrice: 0
-  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
       Data1: -1042154850
@@ -54,7 +57,6 @@ MonoBehaviour:
       Data3: 280597907
       Data4: 421807944
     Path: event:/Gameplay/Throwables_Items/Items_Dagger
-  shouldLog: 0
   developerNotes: 
   references:
     version: 2
@@ -67,9 +69,24 @@ MonoBehaviour:
     - rid: 4472579520941785481
       type: {class: RotateAnimation, ns: Deviloop, asm: Deviloop}
       data:
+        playWithNext: 1
         _rotateDuration:
           baseValue: 0.5
         DelayBeforeMove:
           baseValue: 0.3
         DelayAfterMove:
           baseValue: 0.3
+    - rid: 4472579520941785538
+      type: {class: ScaleAnimation, ns: Deviloop, asm: Deviloop}
+      data:
+        playWithNext: 0
+        _scaleDuration:
+          baseValue: 0.5
+        _targetScaleMult: 2
+    - rid: 4472579520941785539
+      type: {class: ScaleAnimation, ns: Deviloop, asm: Deviloop}
+      data:
+        playWithNext: 0
+        _scaleDuration:
+          baseValue: 0.5
+        _targetScaleMult: 0

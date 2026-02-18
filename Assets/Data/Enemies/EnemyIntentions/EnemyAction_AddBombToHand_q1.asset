@@ -27,7 +27,7 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   cardToAdd:
-    Card: {fileID: 11400000, guid: cbc316a874920d54baa5ba9bc9603c32, type: 2}
+    Card: {fileID: 11400000, guid: 08b5e1e5131bf5646af60f89ebba0c8e, type: 2}
     Quantity: 3
   references:
     version: 2
