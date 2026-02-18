@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestDeck
   m_EditorClassIdentifier: 
   startingCards:
-  - Card: {fileID: 11400000, guid: 2e99b5feed481ef44b9051d4d690e253, type: 2}
-    Quantity: 0
-  totalCards: 0
+  - Card: {fileID: 11400000, guid: 0602dc1108493574bbf67f377a9b6dee, type: 2}
+    Quantity: 2
+  totalCards: 2

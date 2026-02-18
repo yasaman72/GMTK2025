@@ -9,15 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99336f57b129402ba2fe8232d446f541, type: 3}
-  m_Name: ShieldCard
-  m_EditorClassIdentifier: 
-  GUID: c1a83539c8c05cb42a7a1173aa765d52
+  m_Script: {fileID: 11500000, guid: 62380294325c4a04ea77843fb4d7ff83, type: 3}
+  m_Name: Shield_Card
+  m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
+  GUID: bfa10ab0885a5a24a91a3271f6e65ded
+  shouldLog: 0
   _cardEffects:
-  - rid: 4472579520941785206
-  _animationType: []
+  - rid: 4472579520941785478
+  _animationType:
+  - rid: 4472579520941785479
+  _extentionPrefab: {fileID: 0}
+  TargetRandom: 0
+  isConsumable: 0
+  isNegative: 0
   isInGame: 1
+  rarity: 50
+  materialType: 10
+  price: 20
+  overridePrice: 0
+  cardIcon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
   spriteScale: {x: 0.5, y: 0.5}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -36,13 +48,6 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  cardIcon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
-  rarity: 50
-  materialType: 10
-  isNegative: 0
-  price: 20
-  overridePrice: 0
-  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
       Data1: -96100347
@@ -50,15 +55,18 @@ MonoBehaviour:
       Data3: -1129984118
       Data4: 1700727789
     Path: event:/Gameplay/Throwables_Items/Items_Shield
-  shouldLog: 0
   developerNotes: 
-  isConsumable: 0
-  moveDuration:
-    baseValue: 0.2
   references:
     version: 2
     RefIds:
-    - rid: 4472579520941785206
+    - rid: 4472579520941785478
       type: {class: ShieldPlayerEffect, ns: Deviloop, asm: Deviloop}
       data:
         shieldAmount: 3
+    - rid: 4472579520941785479
+      type: {class: MoveToPlayer, ns: Deviloop, asm: Deviloop}
+      data:
+        DelayBeforeMove:
+          baseValue: 0.3
+        MoveDuration:
+          baseValue: 0.2

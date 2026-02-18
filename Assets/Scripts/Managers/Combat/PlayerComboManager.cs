@@ -52,6 +52,7 @@ public class PlayerComboManager : MonoBehaviour
         UpdatePlayerComboUIAction?.Invoke();
     }
 
+    // this should be called when the combo happesn
     public static void OnCombo()
     {
         _playerCombo++;

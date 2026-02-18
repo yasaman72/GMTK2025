@@ -53,7 +53,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608280
   - m_Id: 8016466063360
-    m_Localized: gets {ActionPower} shield
+    m_Localized: gets +{shield} shield
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 354266491170816
-    m_Localized: deals {damage} piercing damage
+    m_Localized: deals {damage} damage
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
@@ -297,6 +297,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280
+  - m_Id: 19274707100282880
+    m_Localized: deals {playerDamage} to you when collected
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608280
+  - m_Id: 19275401324703744
+    m_Localized: deals {damage} piercing damage
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608280
   references:
     version: 2
     RefIds:
@@ -333,3 +343,5 @@ MonoBehaviour:
         - id: 19157434201059328
         - id: 19179775165509632
         - id: 19181445249282048
+        - id: 19275401324703744
+        - id: 19274707100282880

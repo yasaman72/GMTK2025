@@ -9,20 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
-  m_Name: AttackCard_SpikedBall
-  m_EditorClassIdentifier: 
-  GUID: 1dd8c3d29c1f74049a4e0573453d082c
+  m_Script: {fileID: 11500000, guid: 62380294325c4a04ea77843fb4d7ff83, type: 3}
+  m_Name: Fly_Card
+  m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
+  GUID: 4000da3361bf80c438d0a034903045b6
   _cardEffects:
-  - rid: 4472579520941785191
-  _animationType: []
+  - rid: 4472579520941785475
+  _animationType:
+  - rid: 4472579520941785470
+  _extentionPrefab: {fileID: 0}
+  TargetRandom: 0
   isInGame: 1
-  spriteScale: {x: 0.5, y: 0.5}
+  spriteScale: {x: 0.4, y: 0.4}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 18888460557135872
+      m_KeyId: 19157294060974080
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,16 +34,17 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 18888548981452800
+      m_KeyId: 19157434201059328
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  cardIcon: {fileID: 21300000, guid: 6058c6b4be8fc494ca31f6aab8634f61, type: 3}
-  rarity: 50
-  materialType: 2
+  cardIcon: {fileID: 21300000, guid: 197d39786ac19134aac70c0a590f93a4, type: 3}
+  rarity: 30
+  materialType: 32
   isNegative: 0
-  price: 20
+  isConsumable: 0
+  price: 40
   overridePrice: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
@@ -52,20 +56,18 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Dagger
   shouldLog: 0
   developerNotes: 
-  isConsumable: 0
-  AttackType: 0
-  MoveDuration:
-    baseValue: 0.2
-  DelayBeforeMove:
-    baseValue: 0.3
-  TaregtAll: 0
-  TargetRandom: 1
   references:
     version: 2
     RefIds:
-    - rid: 4472579520941785191
-      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+    - rid: 4472579520941785470
+      type: {class: MoveToTarget, ns: Deviloop, asm: Deviloop}
       data:
-        damage: 4
-        TargetRandom: 1
-        AttackType: 0
+        DelayBeforeMove:
+          baseValue: 0.3
+        MoveDuration:
+          baseValue: 0.2
+    - rid: 4472579520941785475
+      type: {class: AddCharacterEffect, ns: Deviloop, asm: Deviloop}
+      data:
+        effect: {fileID: 11400000, guid: a470dade105fdca4ea449feb8207511c, type: 2}
+        duration: 2

@@ -9,17 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e926de4683c861f42a17858548234a49, type: 3}
-  m_Name: Custom_Magnet
-  m_EditorClassIdentifier: Deviloop::Deviloop.CardWithCustomComponent
-  GUID: b8081bba5df54e24cb2e9736207711af
+  m_Script: {fileID: 11500000, guid: 62380294325c4a04ea77843fb4d7ff83, type: 3}
+  m_Name: SpikedBall_Card
+  m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
+  GUID: 64532742e96196549bd652885e6ed99d
+  _cardEffects:
+  - rid: 4472579520941785483
+  _animationType:
+  - rid: 4472579520941785482
+  _extentionPrefab: {fileID: 0}
+  TargetRandom: 1
   isInGame: 1
-  spriteScale: {x: 0.4, y: 0.4}
+  spriteScale: {x: 0.5, y: 0.5}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 18900207347216384
+      m_KeyId: 18888460557135872
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -28,17 +34,18 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 18900575527415808
+      m_KeyId: 18888548981452800
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  cardIcon: {fileID: 21300000, guid: d61d13d1bcbe22c47a75bb326bf322c1, type: 3}
+  cardIcon: {fileID: 21300000, guid: 6058c6b4be8fc494ca31f6aab8634f61, type: 3}
   rarity: 15
-  materialType: 4
+  materialType: 32
   isNegative: 0
-  price: 30
-  overridePrice: 1
+  isConsumable: 0
+  price: 60
+  overridePrice: 0
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
@@ -49,8 +56,18 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Dagger
   shouldLog: 0
   developerNotes: 
-  isConsumable: 0
-  _extentionPrefab: {fileID: 8463951749944623439, guid: bd0b8c15ba0a07b40abd38fac1680b52, type: 3}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785482
+      type: {class: MoveToTarget, ns: Deviloop, asm: Deviloop}
+      data:
+        DelayBeforeMove:
+          baseValue: 0.3
+        MoveDuration:
+          baseValue: 0.2
+    - rid: 4472579520941785483
+      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 4
+        AttackType: 1

@@ -1,64 +1,118 @@
 using FMODUnity;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "BaseCard", menuName = "Cards/Base Card")]
-    public abstract class BaseCard : GUIDScriptableObject
+    [CreateAssetMenu(fileName = "[name]_Card", menuName = "Cards/Card")]
+    public class BaseCard : GUIDScriptableObject
     {
+        [SerializeField] protected bool shouldLog;
+
+        [Header("Effects")]
         [SerializeField, SerializeReference, SubclassSelector]
         protected List<CardEffect> _cardEffects;
         [Tooltip("will be applied in order")]
         [SerializeField, SerializeReference, SubclassSelector]
         protected CardAnimationType[] _animationType;
-        [Space]
-        public bool isInGame = true;
-        public Vector2 spriteScale = new Vector2(.5f, .5f);
-        [Header("Card Info")]
-        public LocalizedString cardName;
-        public LocalizedString description;
-        public Sprite cardIcon;
-        public Rarity rarity;
-        public F_MaterialType materialType;
+
+        [SerializeField] private GameObject _extentionPrefab;
+        [SerializeField] private bool TargetRandom = false;
+        // TODO: add usage time to consumables
+        public bool isConsumable = false;
         public bool isNegative;
 
-        [Space]
+        [Header("General Properties")]
+        public bool isInGame = true;
+        public Rarity rarity;
+        public F_MaterialType materialType;
+
+        [Header("Price")]
         public int price;
         [SerializeField] private bool overridePrice = false;
 
-        [Space]
+        [Header("Visuals")]
+        public Sprite cardIcon;
+        public Vector2 spriteScale = new Vector2(.5f, .5f);
         public Color OnSelectColor = Color.green;
-        public EventReference OnUseSound;
-        [SerializeField] protected bool shouldLog;
+        public LocalizedString cardName;
+        public LocalizedString description;
+
+        [Header("Audio")]
+        [SerializeField] private EventReference OnUseSound;
 
         [DeveloperNotes, SerializeField]
         private string developerNotes;
 
-        // TODO: update the consumable cards logic to consume before adding the card back to discard deck
-        // TODO: try adding usage time to consumables
-        [Header("Card Properties")]
-        public bool isConsumable = false;
 
-        // Virtual method for card effects - can be overridden
-        public virtual void OnCardActivated(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
+        public void AddComponent(GameObject cardPrefab)
         {
-            UseCard(runner, callback, cardPrefab);
+            if (_extentionPrefab == null) return;
+
+            if (cardPrefab.GetComponentAtIndex(0).name == _extentionPrefab.name)
+            {
+                return;
+            }
+
+            GameObject instance = Instantiate(_extentionPrefab);
+            instance.transform.SetParent(cardPrefab.transform, true);
+            instance.transform.localPosition = Vector3.zero;
         }
 
-        // TODO: a better architecture to remove the consumables
-        public virtual void AfterCardActivated()
+        // Abstract method that each card type must implement
+        public async Task UseCard(Action callback, CardPrefab cardPrefab)
         {
+            CombatCharacter enemy = null;
+
+            if (TargetRandom)
+            {
+                enemy = CombatManager.Instance.GetRandomEnemy();
+            }
+            else
+            {
+                enemy = CombatTargetSelection.CurrentTarget;
+            }
+
+            if (enemy == null || enemy.IsDead())
+            {
+                callback?.Invoke();
+                return;
+            }
+
+            await PlayAnimations(cardPrefab.gameObject, enemy.gameObject);
+            AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
+
+            if (enemy == null || enemy.IsDead())
+            {
+                enemy = CombatTargetSelection.CurrentTarget;
+
+                if (enemy == null)
+                {
+                    callback?.Invoke();
+                    return;
+                }
+            }
+
+            ApplyEffects(enemy);
+            callback?.Invoke();
+
+            // TODO: a better architecture to remove the consumables
             if (isConsumable)
             {
                 CardManager.RemoveCardFromDeckAction?.Invoke(this, true);
             }
         }
 
-        // Abstract method that each card type must implement
-        protected abstract void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab);
+        protected async Task PlayAnimations(GameObject card, GameObject target = null)
+        {
+            foreach (CardAnimationType animation in _animationType)
+            {
+                await animation.Play(card, target);
+            }
+        }
 
         protected void ApplyEffects(CombatCharacter target = null)
         {
@@ -100,9 +154,9 @@ namespace Deviloop
             price = rarity switch
             {
                 Rarity.Common => Mathf.Max(20, price),
-                Rarity.Uncommon => Mathf.Max(40, price),
-                Rarity.Rare => Mathf.Max(60, price),
-                Rarity.Legendary => Mathf.Max(80, price),
+                Rarity.Uncommon => Mathf.Max(30, price),
+                Rarity.Rare => Mathf.Max(40, price),
+                Rarity.Legendary => Mathf.Max(50, price),
                 _ => price,
             };
         }

@@ -1,6 +1,7 @@
-using Deviloop.ScriptableObjects;
-
-public interface IDamageDealer
+namespace Deviloop
 {
-    void DealDamage(IDamageable target, int damage, AttackType type);
+    public interface IDamageDealer
+    {
+        void DealDamage(IDamageable target, int damage, AttackType type);
+    }
 }

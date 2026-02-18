@@ -20,22 +20,10 @@ namespace Deviloop
     [System.Serializable]
     public class DamageEnemy : DamageEnemyCardEffect
     {
-        public bool TargetRandom = false;
         public AttackType AttackType = AttackType.Normal;
 
         public override void Apply(CombatCharacter target)
         {
-            //CombatCharacter enemy = null;
-
-            //if (TargetRandom)
-            //{
-            //    enemy = CombatManager.Instance.GetRandomEnemy();
-            //}
-            //else
-            //{
-            //    enemy = CombatTargetSelection.CurrentTarget;
-            //}
-
             Player.PlayerCombatCharacter.DealDamage(target, damage, AttackType);
         }
     }

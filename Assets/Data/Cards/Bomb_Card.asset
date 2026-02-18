@@ -9,20 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
-  m_Name: AttackCard_Axe
-  m_EditorClassIdentifier: 
-  GUID: 4391da219602b584da8f5a7e46dd3e39
+  m_Script: {fileID: 11500000, guid: 62380294325c4a04ea77843fb4d7ff83, type: 3}
+  m_Name: Bomb_Card
+  m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
+  GUID: 08b5e1e5131bf5646af60f89ebba0c8e
+  shouldLog: 0
   _cardEffects:
-  - rid: 4472579520941785188
-  _animationType: []
-  isInGame: 1
-  spriteScale: {x: 0.4, y: 0.4}
+  - rid: 4472579520941785473
+  _animationType:
+  - rid: 4472579520941785474
+  _extentionPrefab: {fileID: 0}
+  TargetRandom: 0
+  isConsumable: 1
+  isNegative: 1
+  isInGame: 0
+  rarity: 50
+  materialType: 128
+  price: 20
+  overridePrice: 0
+  cardIcon: {fileID: 21300000, guid: 3b9f70aa2ad8e284997acb5d554b8a80, type: 3}
+  spriteScale: {x: 0.5, y: 0.5}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352756407513088
+      m_KeyId: 352855116263424
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,18 +43,11 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 354266491170816
+      m_KeyId: 19274707100282880
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  cardIcon: {fileID: 21300000, guid: 9e53bc01c0eec174f839fcb42affd5da, type: 3}
-  rarity: 50
-  materialType: 10
-  isNegative: 0
-  price: 20
-  overridePrice: 0
-  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
       Data1: 1986245944
@@ -50,22 +55,18 @@ MonoBehaviour:
       Data3: 1914618017
       Data4: 1756598346
     Path: event:/Gameplay/Throwables_Items/Items_Axe
-  shouldLog: 0
   developerNotes: 
-  isConsumable: 0
-  AttackType: 0
-  MoveDuration:
-    baseValue: 0.2
-  DelayBeforeMove:
-    baseValue: 0.3
-  TaregtAll: 0
-  TargetRandom: 0
   references:
     version: 2
     RefIds:
-    - rid: 4472579520941785188
-      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+    - rid: 4472579520941785473
+      type: {class: DamagePlayer, ns: Deviloop, asm: Deviloop}
       data:
         damage: 3
-        TargetRandom: 0
         AttackType: 0
+    - rid: 4472579520941785474
+      type: {class: ScaleAnimation, ns: Deviloop, asm: Deviloop}
+      data:
+        _scaleDuration:
+          baseValue: 0.5
+        _targetScaleMult: 2

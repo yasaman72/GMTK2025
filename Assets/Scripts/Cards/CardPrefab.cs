@@ -1,5 +1,4 @@
-﻿using Deviloop.ScriptableObjects;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Deviloop
@@ -34,7 +33,7 @@ namespace Deviloop
 
         public void OnDespawned()
         {
-            foreach (Transform child  in transform)
+            foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
             }
@@ -44,11 +43,8 @@ namespace Deviloop
         {
             cardData = card;
             cardRenderer.sprite = cardData.cardIcon;
-            _collider.CreateFromSprite(card.cardIcon);
-            if (card is CardWithCustomComponent customeCard)
-            {
-                customeCard.AddComponent(gameObject);
-            }
+            _collider.CreateFromSprite(cardData.cardIcon);
+            cardData.AddComponent(gameObject);
             transform.localScale = cardData.spriteScale;
             gameObject.name = cardData.name;
         }
@@ -74,7 +70,7 @@ namespace Deviloop
         {
             if (cardData != null)
             {
-                cardData.OnCardActivated(this, CardActivationCallback, this);
+                cardData.UseCard(CardActivationCallback, this);
                 cardRenderer.material.SetColor("_OutlineColor", Color.red);
                 cardRenderer.material.SetFloat("_OutlineWidth", 10);
             }
@@ -95,10 +91,10 @@ namespace Deviloop
 
         public void OnCardDroppedOut()
         {
-            if (cardData is ComboCard)
-            {
-                PlayerComboManager.OnPlayerComboBreak?.Invoke();
-            }
+            //if (cardData is ComboCard)
+            //{
+            //    PlayerComboManager.OnPlayerComboBreak?.Invoke();
+            //}
 
             PoolManager.Instance.GetPool<CardPrefab>(this).ReturnToPool(this);
         }

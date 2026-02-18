@@ -1,7 +1,6 @@
-using System.Collections;
+using Deviloop;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 public class Test_CombatCharacter
 {

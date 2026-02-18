@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62380294325c4a04ea77843fb4d7ff83, type: 3}
+  m_Name: BrokenBottle_Card
+  m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
+  GUID: a423a676599704f4795f0048c68fc928
+  shouldLog: 0
+  _cardEffects:
+  - rid: 4472579520941785469
+  - rid: 4472579520941785472
+  _animationType:
+  - rid: 4472579520941785470
+  _extentionPrefab: {fileID: 0}
+  TargetRandom: 0
+  isConsumable: 1
+  isNegative: 0
+  isInGame: 1
+  rarity: 30
+  materialType: 64
+  price: 40
+  overridePrice: 0
+  cardIcon: {fileID: 21300000, guid: 197d39786ac19134aac70c0a590f93a4, type: 3}
+  spriteScale: {x: 0.4, y: 0.4}
+  OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
+  cardName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 18891675918970880
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 18891811533402112
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  OnUseSound:
+    Guid:
+      Data1: 1986245944
+      Data2: 1272102872
+      Data3: 1914618017
+      Data4: 1756598346
+    Path: event:/Gameplay/Throwables_Items/Items_Axe
+  developerNotes: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 4472579520941785469
+      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 3
+        AttackType: 0
+    - rid: 4472579520941785470
+      type: {class: MoveToTarget, ns: Deviloop, asm: Deviloop}
+      data:
+        DelayBeforeMove:
+          baseValue: 0.3
+        MoveDuration:
+          baseValue: 0.2
+    - rid: 4472579520941785472
+      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 15
+        AttackType: 0

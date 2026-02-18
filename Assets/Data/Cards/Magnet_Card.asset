@@ -9,20 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
-  m_Name: AttackCard_Dagger
-  m_EditorClassIdentifier: 
-  GUID: 3be46b6e043980248b5dbe63afbae9f2
-  _cardEffects:
-  - rid: 4472579520941785190
+  m_Script: {fileID: 11500000, guid: 62380294325c4a04ea77843fb4d7ff83, type: 3}
+  m_Name: Magnet_Card
+  m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
+  GUID: 984afba25f2478049b773613dada3a55
+  _cardEffects: []
   _animationType: []
+  _extentionPrefab: {fileID: 8463951749944623439, guid: bd0b8c15ba0a07b40abd38fac1680b52, type: 3}
+  TargetRandom: 0
   isInGame: 1
-  spriteScale: {x: 0.5, y: 0.5}
+  spriteScale: {x: 0.4, y: 0.4}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352808312025088
+      m_KeyId: 18900207347216384
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,17 +32,18 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 354266491170816
+      m_KeyId: 18900575527415808
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  cardIcon: {fileID: 21300000, guid: 854c0fd59787b124ba003ffdabdcf06e, type: 3}
-  rarity: 50
+  cardIcon: {fileID: 21300000, guid: 197d39786ac19134aac70c0a590f93a4, type: 3}
+  rarity: 15
   materialType: 2
   isNegative: 0
-  price: 20
-  overridePrice: 0
+  isConsumable: 0
+  price: 30
+  overridePrice: 1
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
@@ -52,20 +54,6 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Dagger
   shouldLog: 0
   developerNotes: 
-  isConsumable: 0
-  AttackType: 1
-  MoveDuration:
-    baseValue: 0.2
-  DelayBeforeMove:
-    baseValue: 0.3
-  TaregtAll: 0
-  TargetRandom: 0
   references:
     version: 2
-    RefIds:
-    - rid: 4472579520941785190
-      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
-      data:
-        damage: 1
-        TargetRandom: 0
-        AttackType: 1
+    RefIds: []
