@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.MagnetCard
   magentCard: {fileID: 11400000, guid: b8081bba5df54e24cb2e9736207711af, type: 2}
   material: {fileID: 11400000, guid: 4548d81444d52e64a993067c74220136, type: 2}
-  attractionForce: 60
+  attractionForce: 40
   attractionRadius: 7
   holdDistance: 1.2
   damping: 20

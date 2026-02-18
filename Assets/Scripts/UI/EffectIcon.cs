@@ -10,13 +10,14 @@ namespace Deviloop
         [SerializeField] private TooltipTrigger _toolTipTrigger;
         [SerializeField] private TextMeshProUGUI _durationText;
 
-        public CharacterEffectBase AssociatedEffect { get; internal set; }
+        public CharacterEffectBase Effect { get; internal set; }
 
         internal void Initialize(CharacterEffectBase effect, int duration)
         {
-            AssociatedEffect = effect;
+            Effect = effect;
             _image.sprite = effect.EffectIcon;
-            _toolTipTrigger.SetLocalizedString(effect.EffectName);
+            _image.color = effect.EffectColor;
+            _toolTipTrigger.SetLocalizedString(effect.Description);
             UpdateDurationText(duration);
         }
 

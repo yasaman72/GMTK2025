@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.CardWithCustomComponent
   GUID: 3eacb40560e2ef34d9403965e858a422
   _cardEffects:
-  - rid: 4472579520941785197
   - rid: 4472579520941785213
   _animationType: []
   isInGame: 1
@@ -58,14 +57,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4472579520941785197
-      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
-      data:
-        damage: 2
-        TargetRandom: 0
-        AttackType: 0
     - rid: 4472579520941785213
       type: {class: AddCharacterEffect, ns: Deviloop, asm: Deviloop}
       data:
-        effect: {fileID: 0}
+        effect: {fileID: 11400000, guid: a470dade105fdca4ea449feb8207511c, type: 2}
         duration: 2

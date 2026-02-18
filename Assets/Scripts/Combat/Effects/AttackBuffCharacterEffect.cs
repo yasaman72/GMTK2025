@@ -6,6 +6,7 @@ namespace Deviloop
     public class AttackBuffCharacterEffect : CharacterEffectBase
     {
         [SerializeField] private int _attackBuffPower;
+        public int AttackBuffPower => _attackBuffPower;
 
         public override bool CanBeApplied(EnemyAction enemyAction)
         {
@@ -23,7 +24,7 @@ namespace Deviloop
 
         public override void OnApplyEffect(CombatCharacter character, out int remainedDuration)
         {
-            remainedDuration = --_effectCurrentDuration;
+            remainedDuration = --EffectCurrentDuration;
         }
 
         public override void OnRemoveEffect(CombatCharacter character)

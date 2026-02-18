@@ -190,12 +190,23 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
             Logger.LogWarning("Effect is null", shouldLog);
             return;
         }
-        // create a copy of the effect to avoid shared state issues
-        var effectCopy = Instantiate(effect);
-        effectCopy.OnAddEffect(this, duration);
-        _currentEffects.Add(effectCopy);
 
-        AddEffectIcon(effectCopy, duration);
+        if (GetEffect(effect, out CharacterEffectBase result))
+        {
+            // if already has the effect, increas the duration and update UI
+            result.ModifyDuration(duration);
+            UpdateEffectIcons();
+        }
+        else
+        {
+            // create a copy of the effect to avoid shared state issues
+            var effectCopy = Instantiate(effect);
+            effectCopy.OnAddEffect(this, duration);
+            _currentEffects.Add(effectCopy);
+
+            AddEffectIcon(effectCopy, duration);
+        }
+
     }
 
     public void RemoveEffect(CharacterEffectBase effect)
@@ -262,7 +273,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         if (iconComponent != null)
         {
             iconComponent.Initialize(effect, duration);
-            iconComponent.AssociatedEffect = effect;
+            iconComponent.Effect = effect;
         }
     }
 
@@ -271,7 +282,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
         foreach (Transform child in _effectsHolder)
         {
             var iconComponent = child.GetComponent<EffectIcon>();
-            if (iconComponent != null && iconComponent.AssociatedEffect == effect)
+            if (iconComponent != null && iconComponent.Effect == effect)
             {
                 Destroy(child.gameObject);
                 break;
@@ -286,7 +297,7 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
             var iconComponent = child.GetComponent<EffectIcon>();
             if (iconComponent != null)
             {
-                var effect = iconComponent.AssociatedEffect;
+                CharacterEffectBase effect = iconComponent.Effect;
                 int duration = effect.GetRemainingDuration();
                 iconComponent.UpdateDurationText(duration);
             }
@@ -303,6 +314,21 @@ public class CombatCharacter : Character, IDamageDealer, IDamageable, IEffectRec
     {
         _currentAttackBuff -= amount;
         OnAttackBuffApplied?.Invoke(false);
+    }
+
+    public bool GetEffect(CharacterEffectBase effect, out CharacterEffectBase result)
+    {
+        foreach (CharacterEffectBase e in _currentEffects)
+        {
+            if (e.GetType() == effect.GetType())
+            {
+                result = e;
+                return true;
+            }
+        }
+
+        result = null;
+        return false;
     }
 
     #endregion

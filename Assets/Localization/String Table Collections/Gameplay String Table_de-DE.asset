@@ -175,7 +175,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608279
   - m_Id: 10872071271526400
-    m_Localized: Attack+{Buff} Buff
+    m_Localized: Power
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
@@ -278,7 +278,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19157434201059328
-    m_Localized: deal {damage} damage and apply {effect1Duration} bleed
+    m_Localized: applies {effect1Duration} bleed
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 19172841767088128
+    m_Localized: Bleed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19179775165509632
+    m_Localized: deal extra +{attackBuff} damage for {duration} turns
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 19181445249282048
+    m_Localized: takes {bleedPower} damage at the start of its turn for {duration}
+      turns.
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
@@ -316,3 +331,5 @@ MonoBehaviour:
         - id: 18888548981452800
         - id: 18891811533402112
         - id: 19157434201059328
+        - id: 19179775165509632
+        - id: 19181445249282048

@@ -245,6 +245,18 @@ MonoBehaviour:
     m_Key: card/description/fly
     m_Metadata:
       m_Items: []
+  - m_Id: 19172841767088128
+    m_Key: characterEffect/Bleed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19179775165509632
+    m_Key: characterEffect/desc/AttackBuff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19181445249282048
+    m_Key: characterEffect/desc/Bleed
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

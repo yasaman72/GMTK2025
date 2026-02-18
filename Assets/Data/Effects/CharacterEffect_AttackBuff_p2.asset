@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3eb33f864698e34e9d437291962167b, type: 3}
-  m_Name: CharacterEffect_AttackBuff_2
+  m_Name: CharacterEffect_AttackBuff_p2
   m_EditorClassIdentifier: Deviloop::Deviloop.AttackBuffCharacterEffect
   _effectName:
     m_TableReference:
@@ -20,19 +20,22 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables:
-    - name: Buff
-      variable:
-        rid: 686208006991904871
-  _effectIcon: {fileID: 2750705142841656183, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
+    m_LocalVariables: []
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+    m_TableEntryReference:
+      m_KeyId: 19179775165509632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  _effectIcon: {fileID: 21300000, guid: 9fd4af71f8569b046b8b7eb990e44ad7, type: 3}
+  _effectColor: {r: 0.4025735, g: 0.038047332, b: 0.8962264, a: 1}
   _relevantEnemyActions:
   - {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
   - {fileID: 11400000, guid: 5a4e5e583e3211048b53c5e382d48c01, type: 2}
   _attackBuffPower: 2
   references:
     version: 2
-    RefIds:
-    - rid: 686208006991904871
-      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
-      data:
-        m_Value: 2
+    RefIds: []

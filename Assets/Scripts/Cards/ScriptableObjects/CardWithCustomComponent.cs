@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Deviloop
 {
@@ -22,6 +23,10 @@ namespace Deviloop
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
+            CombatCharacter enemy = CombatTargetSelection.CurrentTarget;
+            if (enemy != null)
+                ApplyEffects(enemy);
+
             callback?.Invoke();
         }
     }
