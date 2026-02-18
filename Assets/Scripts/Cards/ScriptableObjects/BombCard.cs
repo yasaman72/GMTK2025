@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Deviloop.ScriptableObjects
@@ -9,8 +8,6 @@ namespace Deviloop.ScriptableObjects
     [CreateAssetMenu(fileName = "BombCard", menuName = "Cards/Bomb Card")]
     public class BombCard : BaseCard
     {
-        [Header("Bomb Properties")]
-        public int damage = 3;
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
         {
@@ -28,16 +25,11 @@ namespace Deviloop.ScriptableObjects
 
             yield return new WaitForSeconds(scaleDuration.Value);
 
-            Player.PlayerCombatCharacter.TakeDamage(damage, AttackType.Normal);
+            ApplyEffects();
+
             AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
 
             callback?.Invoke();
-        }
-
-        private void OnEnable()
-        {
-            var dict = new Dictionary<string, string>() { { "damage", damage.ToString() } };
-            description.Arguments = new object[] { dict };
         }
     }
 }

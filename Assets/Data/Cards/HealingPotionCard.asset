@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: HealingPotionCard
   m_EditorClassIdentifier: 
   GUID: 49a9940662834c54186454c2f7bd678f
+  _cardEffects:
+  - rid: 4472579520941785202
+  _animationType: []
   isInGame: 1
   spriteScale: {x: 0.35, y: 0.35}
   cardName:
@@ -49,10 +52,13 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Heal
   shouldLog: 0
   developerNotes: 
-  cardPrefab: {fileID: 4009389148060104062, guid: f0b4bf1bbab207040a3099cf777acfcb, type: 3}
   isConsumable: 1
-  healAmount: 5
-  moveDuration: 0.3
+  moveDuration:
+    baseValue: 0.2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785202
+      type: {class: HealPlayerEffect, ns: Deviloop, asm: Deviloop}
+      data:
+        healAmount: 5

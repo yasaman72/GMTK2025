@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: AttackCard_BrokenBottle
   m_EditorClassIdentifier: 
   GUID: c71dcbbef8a98544bb34d810af950cdc
+  _cardEffects:
+  - rid: 4472579520941785186
+  - rid: 4472579520941785189
+  _animationType: []
   isInGame: 1
   spriteScale: {x: 0.4, y: 0.4}
   cardName:
@@ -50,7 +54,6 @@ MonoBehaviour:
   shouldLog: 0
   developerNotes: 
   isConsumable: 1
-  Damage: 15
   AttackType: 1
   MoveDuration:
     baseValue: 0.2
@@ -58,7 +61,17 @@ MonoBehaviour:
     baseValue: 0.3
   TaregtAll: 0
   TargetRandom: 0
-  DamagePlayer: 3
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785186
+      type: {class: DamagePlayer, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 3
+        AttackType: 0
+    - rid: 4472579520941785189
+      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 15
+        TargetRandom: 0
+        AttackType: 0

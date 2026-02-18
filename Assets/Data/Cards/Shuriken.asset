@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Shuriken
   m_EditorClassIdentifier: 
   GUID: 70940d97283be90479f245d3b56ff600
+  _cardEffects:
+  - rid: 4472579520941785207
+  _animationType: []
   isInGame: 1
   spriteScale: {x: 0.5, y: 0.5}
   cardName:
@@ -49,15 +52,19 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Dagger
   shouldLog: 0
   developerNotes: 
-  cardPrefab: {fileID: 4009389148060104062, guid: 2d8374ee635de184a84881bc80c70d04, type: 3}
   isConsumable: 0
-  Damage: 2
   AttackType: 0
   MoveDuration:
     baseValue: 0.2
   DelayBeforeMove:
     baseValue: 0.3
   TaregtAll: 1
+  TargetRandom: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785207
+      type: {class: DamageAlllEnemies, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 2
+        AttackType: 0

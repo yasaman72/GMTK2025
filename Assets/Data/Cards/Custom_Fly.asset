@@ -9,20 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c502ebfb2b3a3469d07c51b06eb834, type: 3}
-  m_Name: AttackCard_Dagger
-  m_EditorClassIdentifier: 
-  GUID: 3be46b6e043980248b5dbe63afbae9f2
+  m_Script: {fileID: 11500000, guid: e926de4683c861f42a17858548234a49, type: 3}
+  m_Name: Custom_Fly
+  m_EditorClassIdentifier: Deviloop::Deviloop.CardWithCustomComponent
+  GUID: 3eacb40560e2ef34d9403965e858a422
   _cardEffects:
-  - rid: 4472579520941785190
+  - rid: 4472579520941785197
+  - rid: 4472579520941785213
   _animationType: []
   isInGame: 1
-  spriteScale: {x: 0.5, y: 0.5}
+  spriteScale: {x: 0.2, y: 0.2}
   cardName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 352808312025088
+      m_KeyId: 19157294060974080
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,17 +32,17 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 354266491170816
+      m_KeyId: 19157434201059328
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  cardIcon: {fileID: 21300000, guid: 854c0fd59787b124ba003ffdabdcf06e, type: 3}
-  rarity: 50
-  materialType: 2
+  cardIcon: {fileID: 21300000, guid: 2e705897efa75bc499c048dd09e2ce43, type: 3}
+  rarity: 15
+  materialType: 32
   isNegative: 0
-  price: 20
-  overridePrice: 0
+  price: 40
+  overridePrice: 1
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}
   OnUseSound:
     Guid:
@@ -53,19 +54,18 @@ MonoBehaviour:
   shouldLog: 0
   developerNotes: 
   isConsumable: 0
-  AttackType: 1
-  MoveDuration:
-    baseValue: 0.2
-  DelayBeforeMove:
-    baseValue: 0.3
-  TaregtAll: 0
-  TargetRandom: 0
+  _extentionPrefab: {fileID: 8463951749944623439, guid: 092d7803b87cb4247aaa2ecaab28cfcb, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 4472579520941785190
+    - rid: 4472579520941785197
       type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
       data:
-        damage: 1
+        damage: 2
         TargetRandom: 0
-        AttackType: 1
+        AttackType: 0
+    - rid: 4472579520941785213
+      type: {class: AddCharacterEffect, ns: Deviloop, asm: Deviloop}
+      data:
+        effect: {fileID: 0}
+        duration: 2

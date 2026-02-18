@@ -1,5 +1,6 @@
 using FMODUnity;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -8,6 +9,12 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "BaseCard", menuName = "Cards/Base Card")]
     public abstract class BaseCard : GUIDScriptableObject
     {
+        [SerializeField, SerializeReference, SubclassSelector]
+        protected List<CardEffect> _cardEffects;
+        [Tooltip("will be applied in order")]
+        [SerializeField, SerializeReference, SubclassSelector]
+        protected CardAnimationType[] _animationType;
+        [Space]
         public bool isInGame = true;
         public Vector2 spriteScale = new Vector2(.5f, .5f);
         [Header("Card Info")]
@@ -52,6 +59,36 @@ namespace Deviloop
 
         // Abstract method that each card type must implement
         protected abstract void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab);
+
+        protected void ApplyEffects(CombatCharacter target = null)
+        {
+            foreach (var effect in _cardEffects)
+            {
+                effect.Apply(target);
+            }
+        }
+        protected void OnEnable()
+        {
+            DamagePlayer damagePlayerEffect = (DamagePlayer)_cardEffects.Find(e => e is DamagePlayer);
+            DamageEnemyCardEffect damagingEffect = (DamageEnemyCardEffect)_cardEffects.Find(e => e is DamageEnemyCardEffect);
+            HealPlayerEffect healEffect = (HealPlayerEffect)_cardEffects.Find(e => e is HealPlayerEffect);
+            ShieldPlayerEffect shieldEffect = (ShieldPlayerEffect)_cardEffects.Find(e => e is ShieldPlayerEffect);
+            List<AddCharacterEffect> addEffects = _cardEffects
+                .FindAll(e => e is AddCharacterEffect)
+                .ConvertAll(e => (AddCharacterEffect)e);
+
+            var dict = new Dictionary<string, string>() {
+                { "damage", damagingEffect?.damage.ToString() },
+                { "playerDamage", damagePlayerEffect?.damage.ToString() },
+                { "heal", healEffect?.healAmount.ToString() },
+                { "shield", shieldEffect?.shieldAmount.ToString() },
+                { $"effect{1}Duration", addEffects.Count > 0 ? addEffects[0].duration.ToString() : null },
+                { $"effect{2}Duration", addEffects.Count > 1 ? addEffects[1].duration.ToString() : null },
+                { $"effect{3}Duration", addEffects.Count > 2 ? addEffects[2].duration.ToString() : null },
+                { $"effect{4}Duration", addEffects.Count > 3 ? addEffects[3].duration.ToString() : null },
+            };
+            description.Arguments = new object[] { dict };
+        }
 
 #if UNITY_EDITOR
         protected new void OnValidate()

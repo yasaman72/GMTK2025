@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ShieldCard
   m_EditorClassIdentifier: 
   GUID: c1a83539c8c05cb42a7a1173aa765d52
+  _cardEffects:
+  - rid: 4472579520941785206
+  _animationType: []
   isInGame: 1
   spriteScale: {x: 0.5, y: 0.5}
   cardName:
@@ -49,10 +52,13 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Shield
   shouldLog: 0
   developerNotes: 
-  cardPrefab: {fileID: 4009389148060104062, guid: 717cd1974ef3c3944b0dd42026674f89, type: 3}
   isConsumable: 0
-  shieldAmount: 2
-  moveDuration: 0.3
+  moveDuration:
+    baseValue: 0.2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785206
+      type: {class: ShieldPlayerEffect, ns: Deviloop, asm: Deviloop}
+      data:
+        shieldAmount: 3

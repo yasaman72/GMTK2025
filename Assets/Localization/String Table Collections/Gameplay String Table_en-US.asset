@@ -273,6 +273,15 @@ MonoBehaviour:
     m_Localized: attracts items that are made of metal. Does nothing when grabbed.
     m_Metadata:
       m_Items: []
+  - m_Id: 19157294060974080
+    m_Localized: Fly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19157434201059328
+    m_Localized: deal {damage} damage and apply {effect1Duration} bleed
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608280
   references:
     version: 2
     RefIds:
@@ -306,3 +315,4 @@ MonoBehaviour:
         - id: 11907406801711104
         - id: 18888548981452800
         - id: 18891811533402112
+        - id: 19157434201059328

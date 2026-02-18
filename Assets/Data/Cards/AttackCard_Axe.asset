@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: AttackCard_Axe
   m_EditorClassIdentifier: 
   GUID: 4391da219602b584da8f5a7e46dd3e39
+  _cardEffects:
+  - rid: 4472579520941785188
+  _animationType: []
   isInGame: 1
   spriteScale: {x: 0.4, y: 0.4}
   cardName:
@@ -49,15 +52,20 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Axe
   shouldLog: 0
   developerNotes: 
-  cardPrefab: {fileID: 4009389148060104062, guid: 2650f0187dc5af246b32d7ad1dec5fbe, type: 3}
   isConsumable: 0
-  Damage: 3
   AttackType: 0
   MoveDuration:
     baseValue: 0.2
   DelayBeforeMove:
     baseValue: 0.3
   TaregtAll: 0
+  TargetRandom: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785188
+      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 3
+        TargetRandom: 0
+        AttackType: 0

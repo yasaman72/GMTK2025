@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Bomb_Neg
   m_EditorClassIdentifier: 
   GUID: 361380270d81ae14c993159898d1a690
+  _cardEffects:
+  - rid: 4472579520941785193
+  _animationType: []
   isInGame: 1
   spriteScale: {x: 0.5, y: 0.5}
   cardName:
@@ -49,9 +52,12 @@ MonoBehaviour:
     Path: event:/Gameplay/Throwables_Items/Items_Bomb
   shouldLog: 0
   developerNotes: 
-  cardPrefab: {fileID: 4009389148060104062, guid: bfca1e57867cb6c44a0c9e87b31f2571, type: 3}
   isConsumable: 1
-  damage: 3
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785193
+      type: {class: DamagePlayer, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 3
+        AttackType: 0

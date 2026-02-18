@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: AttackCard_SpikedBall
   m_EditorClassIdentifier: 
   GUID: 1dd8c3d29c1f74049a4e0573453d082c
+  _cardEffects:
+  - rid: 4472579520941785191
+  _animationType: []
   isInGame: 1
   spriteScale: {x: 0.5, y: 0.5}
   cardName:
@@ -50,7 +53,6 @@ MonoBehaviour:
   shouldLog: 0
   developerNotes: 
   isConsumable: 0
-  Damage: 4
   AttackType: 0
   MoveDuration:
     baseValue: 0.2
@@ -58,7 +60,12 @@ MonoBehaviour:
     baseValue: 0.3
   TaregtAll: 0
   TargetRandom: 1
-  DamagePlayer: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579520941785191
+      type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
+      data:
+        damage: 4
+        TargetRandom: 1
+        AttackType: 0

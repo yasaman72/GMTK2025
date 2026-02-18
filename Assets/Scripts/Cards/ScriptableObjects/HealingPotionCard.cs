@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Deviloop.ScriptableObjects
@@ -10,7 +9,6 @@ namespace Deviloop.ScriptableObjects
     public class HealingPotionCard : BaseCard
     {
         [Header("Healing Properties")]
-        public int healAmount = 5;
         public ModifiableFloat moveDuration = new ModifiableFloat(.2f);
 
         protected override void UseCard(MonoBehaviour runner, Action callback, CardPrefab cardPrefab)
@@ -28,17 +26,11 @@ namespace Deviloop.ScriptableObjects
             cardPrefab.transform.DOMove(playerHpPos.position, moveDuration.Value).SetEase(Ease.Linear).OnComplete(
                     () =>
                     {
-                        Player.PlayerCombatCharacter.Heal(healAmount);
+                        ApplyEffects();
+                        
                         AudioManager.PlayAudioOneShot?.Invoke(OnUseSound);
-
                         callBack?.Invoke();
                     });
-        }
-
-        private void OnEnable()
-        {
-            var dict = new Dictionary<string, string>() { { "heal", healAmount.ToString() } };
-            description.Arguments = new object[] { dict };
         }
     }
 }

@@ -237,6 +237,14 @@ MonoBehaviour:
     m_Key: card/description/magnet
     m_Metadata:
       m_Items: []
+  - m_Id: 19157294060974080
+    m_Key: card/title/fly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19157434201059328
+    m_Key: card/description/fly
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
