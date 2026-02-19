@@ -43,6 +43,12 @@ namespace Deviloop
             aliveEnemies.Where(e => e.GetCurrentEffects.Any(effect => effect.GetType() == _characterEffect.GetType())).ToList()
                 .ForEach(e => aliveEnemies.Remove(e));
 
+            if (aliveEnemies.Count <= 0)
+            {
+                callback?.Invoke();
+                return;
+            }
+
             var enemyToBuff = ListUtilities.GetRandomElement(aliveEnemies);
 
             enemyToBuff.AddEffect(_characterEffect, _effectDurationInTurns);

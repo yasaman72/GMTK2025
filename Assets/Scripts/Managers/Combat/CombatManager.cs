@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.Extensions;
@@ -106,12 +107,12 @@ namespace Deviloop
 
             gameObject.SetActive(true);
 
-            StartCoroutine(SpawnEnemies(enemyTypes));
+            SpawnEnemies(enemyTypes);
 
             CombatTargetSelection.SetTargetAction?.Invoke(SpawnedEnemies[0]);
         }
 
-        private IEnumerator SpawnEnemies(EnemyType[] enemyTypes)
+        private async Task SpawnEnemies(EnemyType[] enemyTypes)
         {
             int numberOfEnemiesToSpawn = enemyTypes.Sum(et => et.Quantity);
 
@@ -129,7 +130,7 @@ namespace Deviloop
                 {
                     Vector2 spawnPosition = startPos + new Vector2(++i * spacing, Random.Range(-.5f, .5f));
                     SpawnNewEnemy(enemyType, spawnPosition);
-                    yield return new WaitForSeconds(spawnDelay.Value);
+                    await Awaitable.WaitForSecondsAsync(spawnDelay.Value);
                 }
             }
             TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);

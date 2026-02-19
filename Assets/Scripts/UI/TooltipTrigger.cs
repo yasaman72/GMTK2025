@@ -1,4 +1,6 @@
-using System.Collections;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization;
@@ -8,24 +10,29 @@ namespace Deviloop
     public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private LocalizedString _tooltipText;
-        public string TranslatedValue { get; private set; }
-        private bool _isPointerOver;
-        private Coroutine _hideCoroutine;
 
+        private bool _isPointerOver;
+        private CancellationTokenSource _cts;
+
+        private void OnEnable()
+        {
+            RenewToken();
+        }
 
         private void OnDisable()
         {
             ResetTooltip();
         }
 
+        private void OnDestroy()
+        {
+            CancelAndDispose();
+        }
+
         private void ResetTooltip()
         {
             _isPointerOver = false;
-            if (_hideCoroutine != null)
-            {
-                StopCoroutine(_hideCoroutine);
-                _hideCoroutine = null;
-            }
+            CancelAndDispose();
 
             if (TooltipManager.Instance != null)
                 TooltipManager.Instance.HideTooltip();
@@ -40,43 +47,53 @@ namespace Deviloop
         {
             _isPointerOver = true;
 
-            // Cancel any pending hide coroutine so tooltip remains visible immediately on re-enter
-            if (_hideCoroutine != null)
-            {
-                StopCoroutine(_hideCoroutine);
-                _hideCoroutine = null;
-            }
+            RenewToken();
 
-            TooltipManager.Instance.ShowTooltipUnderMouse(_tooltipText.GetLocalizedString());
+            TooltipManager.Instance.ShowTooltipUnderMouse(
+                _tooltipText.GetLocalizedString());
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             _isPointerOver = false;
 
-            // If this component or GameObject is being disabled/destroyed, hide immediately.
             if (!isActiveAndEnabled || !gameObject.activeInHierarchy)
             {
                 TooltipManager.Instance.HideTooltip();
                 return;
             }
 
-            if (_hideCoroutine != null)
-                StopCoroutine(_hideCoroutine);
-
-            _hideCoroutine = StartCoroutine(HideAfterDelay());
+            RenewToken();
+            _ = HideAfterDelayAsync(_cts.Token);
         }
 
-
-        private IEnumerator HideAfterDelay()
+        private async Task HideAfterDelayAsync(CancellationToken token)
         {
-            yield return new WaitForSecondsRealtime(0.1f);
+            try
+            {
+                await Awaitable.WaitForSecondsAsync(0.1f, token);
 
-            if (_isPointerOver)
-                yield break;
+                if (token.IsCancellationRequested || _isPointerOver)
+                    return;
 
-            TooltipManager.Instance.HideTooltip();
-            _hideCoroutine = null;
+                TooltipManager.Instance.HideTooltip();
+            }
+            catch (OperationCanceledException) { }
+        }
+
+        private void RenewToken()
+        {
+            CancelAndDispose();
+            _cts = new CancellationTokenSource();
+        }
+
+        private void CancelAndDispose()
+        {
+            if (_cts == null) return;
+
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = null;
         }
     }
 }

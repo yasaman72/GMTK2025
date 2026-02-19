@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -39,12 +40,13 @@ namespace Deviloop
                 animator.speed = 1f / _destroyAfter;
 
             }
-            StartCoroutine(DestroyDamageIndicator(_destroyAfter));
+
+            DestroyDamageIndicator(_destroyAfter);
         }
 
-        private IEnumerator DestroyDamageIndicator(float _destroyAfter)
+        private async Task DestroyDamageIndicator(float _destroyAfter)
         {
-            yield return new WaitForSeconds(_destroyAfter);
+            await Awaitable.WaitForSecondsAsync(_destroyAfter);
             PoolManager.Instance.GetPool(this).ReturnToPool(this);
         }
 
