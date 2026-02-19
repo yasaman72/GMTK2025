@@ -22,7 +22,7 @@ namespace Deviloop
             return aliveEnemies.Any();
         }
 
-        public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
+        public override void TakeAction(IDamageDealer enemy, Action callback = null)
         {
             // TODO: better logic for choosing who to heal
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
@@ -32,7 +32,7 @@ namespace Deviloop
             var targetToHeal = aliveEnemies[0];
             targetToHeal.Heal(power);
 
-            base.TakeAction(enemy, runner, callback);
+            base.TakeAction(enemy, callback);
         }
     }
 }

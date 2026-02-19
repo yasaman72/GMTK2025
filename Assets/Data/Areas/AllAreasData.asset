@@ -27,7 +27,7 @@ MonoBehaviour:
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 1
       SpawnAfterEveryXEncounter: 2
-      EncountersSinceLastSpawn: 0
+      EncountersSinceLastSpawn: 1
     - Encounter: {fileID: 11400000, guid: 79bd2a45f5616194db3972a686c2a67d, type: 2}
       Probability: 20
       IsStartingEncounter: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
       ShouldSpawnRegularly: 0
       SpawnAfterEveryXEncounter: 0
       EncountersSinceLastSpawn: 0
-    - Encounter: {fileID: 11400000, guid: 06c0e7c80291f944689d988985708221, type: 2}
+    - Encounter: {fileID: 11400000, guid: f635c5799b675e444bd36c73c2565ddc, type: 2}
       Probability: 10
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 0

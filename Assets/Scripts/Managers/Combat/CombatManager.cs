@@ -65,7 +65,7 @@ namespace Deviloop
         {
             TurnManager.OnTurnChanged -= HandleTurnChanged;
             _defeatedEnemies.Clear();
-            _spawnedEnemies.Clear();
+            SpawnedEnemies.Clear();
         }
 
         private async void HandleTurnChanged(TurnManager.ETurnMode mode)
@@ -77,7 +77,8 @@ namespace Deviloop
             }
 
             List<Action> enemyActionTasks = new List<Action>();
-            foreach (var enemy in _spawnedEnemies)
+            var spawnedEnemiesCopy = SpawnedEnemies.ToList();
+            foreach (var enemy in spawnedEnemiesCopy)
             {
                 if (enemy == null || enemy.IsDead())
                     continue;
@@ -107,7 +108,7 @@ namespace Deviloop
 
             StartCoroutine(SpawnEnemies(enemyTypes));
 
-            CombatTargetSelection.SetTargetAction?.Invoke(_spawnedEnemies[0]);
+            CombatTargetSelection.SetTargetAction?.Invoke(SpawnedEnemies[0]);
         }
 
         private IEnumerator SpawnEnemies(EnemyType[] enemyTypes)
@@ -131,6 +132,7 @@ namespace Deviloop
                     yield return new WaitForSeconds(spawnDelay.Value);
                 }
             }
+            TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
         }
 
         private void DestroyCurrentEnemies()
@@ -161,7 +163,7 @@ namespace Deviloop
             newEnemyObj.transform.position = spawnPosition;
             newEnemyObj.transform.rotation = Quaternion.identity;
             newEnemy.Stats = enemyToSpawn.EnemyData;
-            _spawnedEnemies.Add(newEnemy);
+            SpawnedEnemies.Add(newEnemy);
             newEnemy.OnDeath += HandleEnemyDeath;
         }
 
@@ -171,7 +173,7 @@ namespace Deviloop
 
             _defeatedEnemies.Add(combatCharacter as Enemy);
 
-            if (_defeatedEnemies.Count >= _spawnedEnemies.Count)
+            if (_defeatedEnemies.Count >= SpawnedEnemies.Count)
             {
                 AfterAllEnemiesDefeated();
             }
@@ -185,8 +187,12 @@ namespace Deviloop
         public void AfterAllEnemiesDefeated()
         {
             IsInCombatVariable.Value = false;
+            SpawnedEnemies.Clear();
+            _defeatedEnemies.Clear();
+
             RelicManager.ApplyEffectsForEvent<OnCombatEndEvent>(this);
             OnAfterAllEnemiesDefeated?.Invoke();
+
             ShowRewards();
         }
 
@@ -198,7 +204,7 @@ namespace Deviloop
                 RewardView.OpenRewards?.Invoke(combatEncounter.DefeatRewards);
                 RewardView.OnRewardsClosed += FinishCombat;
             }
-            else if (EncounterManager.CurrentEncounter is EnemyWaveData waveEncounter)
+            else if (EncounterManager.CurrentEncounter is EnemyWaveEncounter waveEncounter)
             {
                 if (waveEncounter.AreWavesFinished())
                 {
@@ -208,7 +214,7 @@ namespace Deviloop
                 else
                 {
                     _defeatedEnemies.Clear();
-                    _spawnedEnemies.Clear();
+                    SpawnedEnemies.Clear();
                     OnCombatFinishedEvent?.Invoke();
                 }
             }
@@ -223,9 +229,6 @@ namespace Deviloop
         {
             RewardView.OnRewardsClosed -= FinishCombat;
 
-            _defeatedEnemies.Clear();
-            _spawnedEnemies.Clear();
-
             gameObject.SetActive(false);
             OnCombatFinishedEvent?.Invoke();
         }
@@ -234,6 +237,11 @@ namespace Deviloop
         {
             List<Enemy> aliveEnemies = SpawnedEnemies.Where(e => !e.IsDead()).ToList();
             return ListUtilities.GetRandomElement(aliveEnemies);
+        }
+
+        public bool IsAnyEnemyAlive()
+        {
+            return SpawnedEnemies.Any(e => !e.IsDead());
         }
     }
 }

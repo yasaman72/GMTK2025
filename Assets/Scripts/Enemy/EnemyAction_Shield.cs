@@ -6,11 +6,11 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "EnemyAction_Shield_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Shield", order = 1)]
     public class EnemyAction_Shield : EnemyActionPowered
     {
-        public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
+        public override void TakeAction(IDamageDealer enemy, Action callback = null)
         {
             (enemy as IDamageable).AddShield(power);
 
-            base.TakeAction(enemy, runner, callback);
+            base.TakeAction(enemy, callback);
         }
     }
 }

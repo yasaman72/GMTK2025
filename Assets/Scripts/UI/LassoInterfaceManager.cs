@@ -1,5 +1,3 @@
-using Deviloop;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,17 +12,19 @@ namespace Deviloop
         {
             _holder.SetActive(false);
             PlayerLassoManager.OnLassoSizeChanged += UpdateSlider;
-            PlayerLassoManager.OnLoopClosed += OnLoopClosed;
-            CardManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
+            PlayerLassoManager.OnLoopClosed += DisableUI;
+            CardManager.OnPlayerClickedThrowButton += EnableUI;
             TurnManager.OnTurnChanged += OnTurnChanged;
+            CombatManager.OnAfterAllEnemiesDefeated += DisableUI;
         }
 
         private void OnDisable()
         {
             PlayerLassoManager.OnLassoSizeChanged -= UpdateSlider;
-            PlayerLassoManager.OnLoopClosed -= OnLoopClosed;
-            CardManager.OnPlayerClickedThrowButton -= OnPlayerDrawTurnStart;
+            PlayerLassoManager.OnLoopClosed -= DisableUI;
+            CardManager.OnPlayerClickedThrowButton -= EnableUI;
             TurnManager.OnTurnChanged -= OnTurnChanged;
+            CombatManager.OnAfterAllEnemiesDefeated -= DisableUI;
         }
 
         private void OnTurnChanged(TurnManager.ETurnMode mode)
@@ -33,12 +33,12 @@ namespace Deviloop
                 _holder.SetActive(false);
         }
 
-        private void OnLoopClosed()
+        private void DisableUI()
         {
             _holder.SetActive(false);
         }
 
-        private void OnPlayerDrawTurnStart()
+        private void EnableUI()
         {
             _holder.SetActive(true);
             _slider.value = 1;

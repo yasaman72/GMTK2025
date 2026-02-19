@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
   m_Name: Enemy_Basic_Shield
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 5
   prefab: {fileID: 828670261892621840, guid: 08c26778429ea434abd79ad7c9fbdba3, type: 3}
   EnemyActions:
   - Action: {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}

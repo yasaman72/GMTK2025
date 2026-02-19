@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -12,24 +13,17 @@ namespace Deviloop
         public ModifiableFloat actionDuration = new ModifiableFloat(1f);
         public LocalizedString translatedDescription;
 
-        public virtual void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
+        public virtual void TakeAction(IDamageDealer enemy, Action callback = null)
         {
-            if (runner == null)
+            if (callback != null && enemy != null)
             {
-                callback?.Invoke();
-                return;
-
-            }
-
-            if (callback != null)
-            {
-                runner.StartCoroutine(AfterAction(callback));
+                AfterAction(callback);
             }
         }
 
-        protected virtual IEnumerator AfterAction(Action callback)
+        protected async Task AfterAction(Action callback)
         {
-            yield return new WaitForSeconds(actionDuration.Value);
+            await Awaitable.WaitForSecondsAsync(actionDuration.Value);
             callback?.Invoke();
         }
 

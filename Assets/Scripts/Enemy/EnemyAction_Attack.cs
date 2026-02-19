@@ -8,7 +8,7 @@ namespace Deviloop
     {
         [SerializeField] private AttackType attackType = AttackType.Normal;
 
-        public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
+        public override void TakeAction(IDamageDealer enemy, Action callback = null)
         {
             if (enemy == null)
             {
@@ -24,7 +24,7 @@ namespace Deviloop
             }
             enemy.DealDamage(target, power, attackType);
 
-            base.TakeAction(enemy, runner, callback);
+            base.TakeAction(enemy, callback);
         }
     }
 }

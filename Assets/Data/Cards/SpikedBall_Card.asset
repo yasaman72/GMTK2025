@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
   GUID: 64532742e96196549bd652885e6ed99d
   shouldLog: 0
+  activationOrder: 10
   _cardEffects:
   - rid: 4472579520941785483
   _animationType:
@@ -75,7 +76,7 @@ MonoBehaviour:
       type: {class: DamageEnemy, ns: Deviloop, asm: Deviloop}
       data:
         damage: 4
-        AttackType: 1
+        AttackType: 0
     - rid: 4472579520941785540
       type: {class: RotateAnimation, ns: Deviloop, asm: Deviloop}
       data:

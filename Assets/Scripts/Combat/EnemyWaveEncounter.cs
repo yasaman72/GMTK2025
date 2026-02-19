@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "EnemyWaveData", menuName = "Scriptable Objects/EnemyWaveData")]
-    public class EnemyWaveData : BaseEncounter
+    [CreateAssetMenu(fileName = "Encounter_Wave_A00_w00", menuName = "Scriptable Objects/Encounters/Wave Encounter")]
+    public class EnemyWaveEncounter : BaseEncounter
     {
         public delegate void EnemyWaveDataDelegate(int encountersCount);
         public static EnemyWaveDataDelegate OnWaveEncounterStarted;
@@ -20,7 +20,6 @@ namespace Deviloop
         public List<LootSet> DefeatRewards;
 
         private int _lastEncounterIndex = -1;
-        private bool _isNewWave = false;
 
         private CancellationTokenSource _cancellationTokenSource;
 
@@ -63,7 +62,6 @@ namespace Deviloop
 
         private async void GoToNextEncounter()
         {
-            _isNewWave = true;
             _lastEncounterIndex++;
 
             CombatTargetSelection.SetTargetAction?.Invoke(null);
@@ -75,7 +73,6 @@ namespace Deviloop
                 encounters[_lastEncounterIndex].enemyTypes);
 
             TurnManager.OnTurnChanged += AfterPlayerTookFirstTurn;
-            TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
         }
 
         private void AfterPlayerTookFirstTurn(TurnManager.ETurnMode mode)
@@ -83,16 +80,7 @@ namespace Deviloop
             if (mode == TurnManager.ETurnMode.Player)
             {
                 TurnManager.OnTurnChanged -= AfterPlayerTookFirstTurn;
-                _isNewWave = false;
             }
-        }
-
-        public bool NewWaveIsNewlySpawned()
-        {
-            if (_lastEncounterIndex == 0) 
-                return false;
-
-            return _isNewWave;
         }
 
         public bool AreWavesFinished()

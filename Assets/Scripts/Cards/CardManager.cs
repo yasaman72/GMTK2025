@@ -1,7 +1,6 @@
 ﻿using Deviloop.ScriptableObjects;
 using FMODUnity;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -140,7 +139,7 @@ namespace Deviloop
             throwButton.onClick.AddListener(OnThrowButtonClicked);
             UpdateUI();
 
-            throwButton.gameObject.SetActive(true/*TurnManager.TurnMode == TurnManager.ETurnMode.Player*/);
+            throwButton.gameObject.SetActive(true);
         }
 
         void UpdateUI()
@@ -153,7 +152,9 @@ namespace Deviloop
 
         private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
         {
-            if (turnMode == TurnManager.ETurnMode.Player && !Player.PlayerCombatCharacter.IsDead())
+            if (turnMode == TurnManager.ETurnMode.Player && 
+                !Player.PlayerCombatCharacter.IsDead() && 
+                CombatManager.Instance.IsAnyEnemyAlive())
             {
                 throwButton.gameObject.SetActive(true);
                 UpdateUI();
@@ -198,7 +199,8 @@ namespace Deviloop
                 await Awaitable.WaitForSecondsAsync(.1f);
 
                 // Wait until all thrown cards are out of view or destroyed
-                if (thrownCards.TrueForAll(card => card == null || !card.gameObject.activeInHierarchy))
+                if (thrownCards.TrueForAll(card => card == null || !card.gameObject.activeInHierarchy) ||
+                    !CombatManager.Instance.IsAnyEnemyAlive())
                 {
                     break;
                 }
@@ -338,8 +340,9 @@ namespace Deviloop
         private void AfterPlayerTurnEnd()
         {
             throwButton.gameObject.SetActive(false);
-            TurnManager.ChangeTurn(TurnManager.ETurnMode.Enemy);
             GameStateManager.Instance.IsInLassoingState = false;
+
+            TurnManager.ChangeTurn(TurnManager.ETurnMode.Enemy);
 
             if (_drawDeck.GetTotalCardCount() <= 0)
                 ReturnCardsToDrawDeck();

@@ -13,11 +13,11 @@ namespace Deviloop
             return "";
         }
 
-        public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
+        public override void TakeAction(IDamageDealer enemy, Action callback = null)
         {
             CardManager.AddCardToHandAction?.Invoke(cardToAdd);
 
-            base.TakeAction(enemy, runner, callback);
+            base.TakeAction(enemy, callback);
         }
     }
 }

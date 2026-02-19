@@ -41,7 +41,6 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
         base.OnDamageRecieved += DamageRecieved;
         CardManager.OnPlayerClickedThrowButton += OnPlayerClickedThrow;
 
-        TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
         PickNextAction();
     }
 
@@ -86,8 +85,11 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
         await Awaitable.WaitForSecondsAsync(currentAction.actionDelay.Value, _cancellationTokenSource.Token);
 
         ApplyAllEffects(currentAction);
-        OnIntentionChanged?.Invoke(null);
 
+        if (IsDead())
+            return;
+
+        OnIntentionChanged?.Invoke(null);
         await ExecuteActionAsync();
     }
 
@@ -95,7 +97,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
     {
         var tcs = new TaskCompletionSource<bool>();
 
-        currentAction.TakeAction(this, this, () =>
+        currentAction.TakeAction(this, () =>
         {
             tcs.SetResult(true);
         });

@@ -27,7 +27,7 @@ namespace Deviloop
             return aliveEnemies.Count > 0;
         }
 
-        public override void TakeAction(IDamageDealer enemy, MonoBehaviour runner = null, Action callback = null)
+        public override void TakeAction(IDamageDealer enemy, Action callback = null)
         {
             // TODO: better logic for choosing who to give buff
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
@@ -47,7 +47,7 @@ namespace Deviloop
 
             enemyToBuff.AddEffect(_characterEffect, _effectDurationInTurns);
 
-            base.TakeAction(enemy, runner, callback);
+            base.TakeAction(enemy, callback);
         }
 
         protected override void ApplyOnEnable()

@@ -24,13 +24,13 @@ public class TurnManager : MonoBehaviour
             if (_turnMode == value) return;
 
             // the first turn when a new wave spawns is player's
-            if (EncounterManager.CurrentEncounter is EnemyWaveData wave)
-            {
-                if (wave.NewWaveIsNewlySpawned())
-                {
-                    value = ETurnMode.Player;
-                }
-            }
+            //if (EncounterManager.CurrentEncounter is EnemyWaveEncounter wave)
+            //{
+            //    if (wave.NewWaveIsNewlySpawned())
+            //    {
+            //        value = ETurnMode.Player;
+            //    }
+            //}
 
             OnTurnChanged?.Invoke(value);
             _turnMode = value;

@@ -65,7 +65,7 @@ MonoBehaviour:
       type: {class: DamageAlllEnemies, ns: Deviloop, asm: Deviloop}
       data:
         damage: 2
-        AttackType: 1
+        AttackType: 0
     - rid: 4472579520941785481
       type: {class: RotateAnimation, ns: Deviloop, asm: Deviloop}
       data:

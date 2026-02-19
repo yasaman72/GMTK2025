@@ -27,7 +27,6 @@ namespace Deviloop
             CombatTargetSelection.SetTargetAction?.Invoke(null);
             CombatManager.OnCombatStartEvent?.Invoke(enemyTypes);
             CombatManager.OnCombatFinishedEvent += FinishEncounter;
-            TurnManager.ChangeTurn(TurnManager.ETurnMode.Player);
         }
 
         public override void FinishEncounter()
