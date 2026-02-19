@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 namespace Deviloop
 {
@@ -19,7 +18,8 @@ namespace Deviloop
         [SerializeField] private Color _effectColor;
         public Color EffectColor => _effectColor;
         // TODO: need a better way to link relevant actions
-        [SerializeField] protected List<EnemyAction> _relevantEnemyActions;
+        [SerializeField, SerializeReference, SubclassSelector]
+        protected List<EnemyAction> _relevantEnemyActions;
 
         protected int _effectCurrentDuration = 0;
         protected int EffectCurrentDuration

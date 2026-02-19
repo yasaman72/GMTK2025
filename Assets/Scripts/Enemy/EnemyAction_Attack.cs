@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "EnemyAction_Attack_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Attack", order = 1)]
+    [AddTypeMenu("Attack")]
+    [System.Serializable]
     public class EnemyAction_Attack : EnemyActionPowered
     {
         [SerializeField] private AttackType attackType = AttackType.Normal;

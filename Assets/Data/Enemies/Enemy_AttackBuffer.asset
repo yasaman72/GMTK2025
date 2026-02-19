@@ -15,8 +15,51 @@ MonoBehaviour:
   MaxHealth: 15
   prefab: {fileID: 828670261892621840, guid: 205c518db8a5e1c4c998504c13fd789c, type: 3}
   EnemyActions:
-  - Action: {fileID: 11400000, guid: 7de67780900597c4cbe536d0ed605057, type: 2}
+  - Action:
+      rid: 4472579548979921072
     Probability: 70
-  - Action: {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
+  - Action:
+      rid: 4472579548979921073
     Probability: 30
   _developerNotes: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 4472579548979921072
+      type: {class: EnemyAction_GiveEffect, ns: Deviloop, asm: Deviloop}
+      data:
+        icon: {fileID: 21300000, guid: 9fd4af71f8569b046b8b7eb990e44ad7, type: 3}
+        actionDelay:
+          baseValue: 0.5
+        actionDuration:
+          baseValue: 1
+        translatedDescription:
+          m_TableReference:
+            m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+          m_TableEntryReference:
+            m_KeyId: 10870378471403520
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        _characterEffect: {fileID: 11400000, guid: 9d02ed7ec9917474aae88ef5d9c86a45, type: 2}
+        _effectDurationInTurns: 2
+    - rid: 4472579548979921073
+      type: {class: EnemyAction_Attack, ns: Deviloop, asm: Deviloop}
+      data:
+        icon: {fileID: 6674386295937086461, guid: 679a6789cdf48e14e966694d4321ebb8, type: 3}
+        actionDelay:
+          baseValue: 0.5
+        actionDuration:
+          baseValue: 1
+        translatedDescription:
+          m_TableReference:
+            m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+          m_TableEntryReference:
+            m_KeyId: 7840938635264
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        power: 1
+        attackType: 0

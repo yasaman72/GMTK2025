@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Deviloop
@@ -10,7 +11,7 @@ namespace Deviloop
 
         public override bool CanBeApplied(EnemyAction enemyAction)
         {
-            if (_relevantEnemyActions.Count <= 0 || _relevantEnemyActions.Contains(enemyAction))
+            if (_relevantEnemyActions.Count <= 0 || _relevantEnemyActions.Any(a => a.GetType() == enemyAction.GetType()))
                 return true;
 
             return false;

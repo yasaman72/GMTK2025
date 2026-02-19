@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
   GUID: 9db1c71391c270940ae9046c59aa88f1
   shouldLog: 0
-  activationOrder: 15
+  activationOrder: 5
   _cardEffects:
   - rid: 4472579520941785476
   _animationType:

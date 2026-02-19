@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "EnemyAction_Shield_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Shield", order = 1)]
+    [AddTypeMenu("Shield")]
+    [System.Serializable]
     public class EnemyAction_Shield : EnemyActionPowered
     {
         public override void TakeAction(IDamageDealer enemy, Action callback = null)

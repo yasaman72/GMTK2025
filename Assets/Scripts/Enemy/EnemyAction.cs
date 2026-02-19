@@ -1,12 +1,12 @@
 using System;
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
 
 namespace Deviloop
 {
-    public abstract class EnemyAction : ScriptableObject
+    [System.Serializable]
+    public abstract class EnemyAction
     {
         public Sprite icon;
         public ModifiableFloat actionDelay = new ModifiableFloat(.5f);
@@ -29,19 +29,7 @@ namespace Deviloop
 
         public abstract string IntentionNumber();
         public virtual bool CanBeTaken(EnemyAction previousAction) => true;
-        protected virtual void ApplyOnEnable() { }
-        protected virtual void ApplyOnValidate() { }
 
-        protected void OnEnable()
-        {
-            ApplyOnEnable();
-        }
-
-#if UNITY_EDITOR
-        protected void OnValidate()
-        {
-            ApplyOnValidate();
-        }
-#endif
+        public virtual void OnActionSelected() { }
     }
 }

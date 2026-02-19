@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "EnemyAction_GiveEffect", menuName = "Scriptable Objects/EnemyActions/GiveEffect", order = 1)]
+    [AddTypeMenu("GiveEffect")]
+    [System.Serializable]
     public class EnemyAction_GiveEffect : EnemyAction
     {
         [SerializeField] private CharacterEffectBase _characterEffect;
@@ -32,17 +33,11 @@ namespace Deviloop
             // TODO: better logic for choosing who to give buff
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
 
-            // TODO: an effect that shows that it couldn't take the action
-            if (aliveEnemies.Count <= 0)
-            {
-                callback?.Invoke();
-                return;
-            }
-
             // Remove enemies that already have the effect
             aliveEnemies.Where(e => e.GetCurrentEffects.Any(effect => effect.GetType() == _characterEffect.GetType())).ToList()
                 .ForEach(e => aliveEnemies.Remove(e));
 
+            // TODO: an effect that shows that it couldn't take the action
             if (aliveEnemies.Count <= 0)
             {
                 callback?.Invoke();
@@ -56,7 +51,7 @@ namespace Deviloop
             base.TakeAction(enemy, callback);
         }
 
-        protected override void ApplyOnEnable()
+        public override void OnActionSelected()
         {
             var dict = new Dictionary<string, string>() {
                 { "Duration", _effectDurationInTurns.ToString() },
@@ -64,18 +59,5 @@ namespace Deviloop
             };
             translatedDescription.Arguments = new object[] { dict };
         }
-
-#if UNITY_EDITOR
-        protected override void ApplyOnValidate()
-        {
-            icon = _characterEffect != null ? _characterEffect.EffectIcon : null;
-
-            if (_characterEffect == null)
-            {
-                return;
-            }
-        }
-#endif
-
     }
 }

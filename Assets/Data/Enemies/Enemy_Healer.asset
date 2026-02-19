@@ -15,8 +15,50 @@ MonoBehaviour:
   MaxHealth: 10
   prefab: {fileID: 828670261892621840, guid: 829a3bff433781e48ad45f8da7e48e6f, type: 3}
   EnemyActions:
-  - Action: {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
+  - Action:
+      rid: 4472579548979921080
     Probability: 50
-  - Action: {fileID: 11400000, guid: 6a77869375df88845bcee1ed9a23f583, type: 2}
+  - Action:
+      rid: 4472579548979921081
     Probability: 50
   _developerNotes: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 4472579548979921080
+      type: {class: EnemyAction_Heal, ns: Deviloop, asm: Deviloop}
+      data:
+        icon: {fileID: 1443099479, guid: ab086aad180de5b4eafbcdec3fa611e8, type: 3}
+        actionDelay:
+          baseValue: 0.5
+        actionDuration:
+          baseValue: 1
+        translatedDescription:
+          m_TableReference:
+            m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+          m_TableEntryReference:
+            m_KeyId: 10835021449179136
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        power: 3
+    - rid: 4472579548979921081
+      type: {class: EnemyAction_Attack, ns: Deviloop, asm: Deviloop}
+      data:
+        icon: {fileID: 6674386295937086461, guid: 679a6789cdf48e14e966694d4321ebb8, type: 3}
+        actionDelay:
+          baseValue: 0.5
+        actionDuration:
+          baseValue: 1
+        translatedDescription:
+          m_TableReference:
+            m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+          m_TableEntryReference:
+            m_KeyId: 7840938635264
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        power: 2
+        attackType: 0

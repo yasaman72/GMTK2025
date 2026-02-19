@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "EnemyAction_Heal_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/Heal", order = 1)]
+    [AddTypeMenu("Heal")]
+    [System.Serializable]
     public class EnemyAction_Heal : EnemyActionPowered
     {
         public override bool CanBeTaken(EnemyAction previousAction)

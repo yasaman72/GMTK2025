@@ -48,7 +48,7 @@ public class EnemyUI : CombatCharacterUI
 
     public void UpdateIntentionUI(EnemyAction nextAction)
     {
-        if (nextAction)
+        if (nextAction != null)
         {
             _intentionObject.SetActive(true);
             _intentionIcon.enabled = true;

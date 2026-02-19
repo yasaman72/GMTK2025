@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    [CreateAssetMenu(fileName = "EnemyAction_Add[Item]ToHand_[EnemyType]", menuName = "Scriptable Objects/EnemyActions/AddToHand", order = 1)]
+    [AddTypeMenu("AddItemToPlayersHand")]
+    [System.Serializable]
     public class EnemyAction_AddToHand : EnemyAction
     {
         [SerializeField] private CardEntry cardToAdd;

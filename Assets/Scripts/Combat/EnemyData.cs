@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ namespace Deviloop
     public class EnemyData : CombatCharacterStats
     {
         public Enemy prefab;
+
         public List<EnemyActionProbability> EnemyActions;
 
         [DeveloperNotes, SerializeField]
@@ -16,6 +16,7 @@ namespace Deviloop
         [System.Serializable]
         public class EnemyActionProbability
         {
+            [SerializeField, SerializeReference, SubclassSelector]
             public EnemyAction Action;
             public int Probability;
         }
@@ -53,6 +54,7 @@ namespace Deviloop
                 return GetNextAction(previousAction);
             }
 
+            nextAction.OnActionSelected();
             return nextAction;
         }
     }
