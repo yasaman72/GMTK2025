@@ -1,7 +1,6 @@
 using FMODUnity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -12,6 +11,7 @@ namespace Deviloop
     public class BaseCard : GUIDScriptableObject
     {
         [SerializeField] protected bool shouldLog;
+        public int activationOrder = 10;
 
         [Header("Effects")]
         [SerializeField, SerializeReference, SubclassSelector]

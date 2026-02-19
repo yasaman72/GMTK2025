@@ -53,7 +53,7 @@ MonoBehaviour:
       m_Items:
       - rid: 5144960777497608280
   - m_Id: 8016466063360
-    m_Localized: gets +{shield} shield
+    m_Localized: gets +{ActionPower} shield
     m_Metadata:
       m_Items:
       - rid: 5144960777497608280

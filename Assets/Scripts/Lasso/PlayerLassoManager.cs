@@ -352,6 +352,7 @@ public class PlayerLassoManager : MonoBehaviour
 
         lassoedCardsCount = lassoedCards.Count;
         RecordTheShapeOfLasso(_points);
+        lassoedCards = ReorderGrabbedCard(lassoedCards);
 
         foreach (var card in lassoedCards)
         {
@@ -362,6 +363,12 @@ public class PlayerLassoManager : MonoBehaviour
         Destroy(temp);
         _isResolvingALoop = false;
         OnLoopClosed?.Invoke();
+    }
+
+    public static List<CardPrefab> ReorderGrabbedCard(List<CardPrefab> originalCards)
+    {
+        originalCards.Sort((c1, c2) => c1.CardData.activationOrder);
+        return originalCards;
     }
 
     float GetPolygonArea(PolygonCollider2D poly)

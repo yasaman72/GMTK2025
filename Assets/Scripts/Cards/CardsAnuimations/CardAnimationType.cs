@@ -1,6 +1,5 @@
 
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -12,7 +11,7 @@ namespace Deviloop
         public bool playWithNext;
         [SerializeField] protected ModifiableFloat DelayBeforeMove = new ModifiableFloat(.3f);
         [SerializeField] protected ModifiableFloat DelayAfterMove = new ModifiableFloat(.3f);
-        
+
         public abstract Task Play(GameObject card, GameObject target = null);
     }
 
@@ -31,10 +30,11 @@ namespace Deviloop
                 .DOMove(target != null ? target.transform.position : card.transform.position, MoveDuration.Value)
                 .SetEase(Ease.Linear)
                 .SetLink(target); // auto-kill if card dies
-            
+
             await Awaitable.WaitForSecondsAsync(DelayAfterMove.Value);
 
-            await tween.AsyncWaitForCompletion();
+            if (tween.active)
+                await tween.AsyncWaitForCompletion();
         }
     }
 
@@ -58,7 +58,8 @@ namespace Deviloop
 
             await Awaitable.WaitForSecondsAsync(DelayAfterMove.Value);
 
-            await tween.AsyncWaitForCompletion();
+            if (tween.active)
+                await tween.AsyncWaitForCompletion();
         }
     }
 
@@ -83,7 +84,8 @@ namespace Deviloop
 
             await Awaitable.WaitForSecondsAsync(DelayAfterMove.Value);
 
-            await tween.AsyncWaitForCompletion();
+            if (tween.active)
+                await tween.AsyncWaitForCompletion();
         }
     }
 
@@ -112,7 +114,8 @@ namespace Deviloop
 
             await Awaitable.WaitForSecondsAsync(DelayAfterMove.Value);
 
-            await tween.AsyncWaitForCompletion();
+            if (tween.active)
+                await tween.AsyncWaitForCompletion();
         }
     }
 
@@ -135,7 +138,8 @@ namespace Deviloop
 
             await Awaitable.WaitForSecondsAsync(DelayAfterMove.Value);
 
-            await tween.AsyncWaitForCompletion();
+            if (tween.active)
+                await tween.AsyncWaitForCompletion();
         }
     }
 }

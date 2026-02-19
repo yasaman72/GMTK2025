@@ -232,7 +232,8 @@ namespace Deviloop
 
         public Enemy GetRandomEnemy()
         {
-            return ListUtilities.GetRandomElement(_spawnedEnemies);
+            List<Enemy> aliveEnemies = SpawnedEnemies.Where(e => !e.IsDead()).ToList();
+            return ListUtilities.GetRandomElement(aliveEnemies);
         }
     }
 }

@@ -3,6 +3,7 @@ using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
@@ -78,8 +79,10 @@ namespace Deviloop
 
         private ObjectPool<CardPrefab> cardsPool;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             var source = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
             CombatRoundCounterVariable = source["global"]["CurrentThrownItemsCount"] as IntVariable;
             CombatRoundCounterVariable.Value = CardsToThrowPerTurn;
@@ -166,12 +169,12 @@ namespace Deviloop
             if (GameStateManager.Instance.IsInLassoingState) return;
             if (TurnManager.TurnMode != TurnManager.ETurnMode.Player) return;
 
-            StartCoroutine(ThrowCardsSequence());
+            ThrowCardsSequence();
             GameStateManager.Instance.IsInLassoingState = true;
             OnPlayerClickedThrowButton?.Invoke();
         }
 
-        IEnumerator ThrowCardsSequence()
+        private async Task ThrowCardsSequence()
         {
             throwButton.gameObject.SetActive(false);
 
@@ -187,13 +190,14 @@ namespace Deviloop
             {
                 ThrowCard(cardsToThrow[i]);
                 AudioManager.PlayAudioOneShot?.Invoke(throwSound);
-                yield return new WaitForSeconds(ShouldThrowAtOnce ? 0 : delayBetweenThrows);
+                await Awaitable.WaitForSecondsAsync(ShouldThrowAtOnce ? 0 : delayBetweenThrows);
             }
 
             while (thrownCards.Count > 0)
             {
+                await Awaitable.WaitForSecondsAsync(.1f);
+
                 // Wait until all thrown cards are out of view or destroyed
-                yield return new WaitForEndOfFrame();
                 if (thrownCards.TrueForAll(card => card == null || !card.gameObject.activeInHierarchy))
                 {
                     break;

@@ -16,7 +16,7 @@ MonoBehaviour:
   prefab: {fileID: 828670261892621840, guid: 08c26778429ea434abd79ad7c9fbdba3, type: 3}
   EnemyActions:
   - Action: {fileID: 11400000, guid: bfde5b2030e2e664a82af050a2039127, type: 2}
-    Probability: 60
-  - Action: {fileID: 11400000, guid: 5819b94420dbb404da36c5c3977d8e9a, type: 2}
-    Probability: 40
+    Probability: 30
+  - Action: {fileID: 11400000, guid: e1161aa310e5d3142832ae1853847be9, type: 2}
+    Probability: 70
   _developerNotes: does not use shield

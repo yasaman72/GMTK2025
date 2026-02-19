@@ -32,14 +32,16 @@ namespace Deviloop
             // TODO: better logic for choosing who to give buff
             List<Enemy> aliveEnemies = CombatManager.SpawnedEnemies.Where(e => !e.IsDead()).ToList();
 
-            if (aliveEnemies.Count <= 0) return;
+            // TODO: an effect that shows that it couldn't take the action
+            if (aliveEnemies.Count <= 0)
+            {
+                callback?.Invoke();
+                return;
+            }
 
             // Remove enemies that already have the effect
             aliveEnemies.Where(e => e.GetCurrentEffects.Any(effect => effect.GetType() == _characterEffect.GetType())).ToList()
                 .ForEach(e => aliveEnemies.Remove(e));
-
-            // TODO: an effect that shows that it couldn't take the action
-            if (aliveEnemies.Count <= 0) return;
 
             var enemyToBuff = ListUtilities.GetRandomElement(aliveEnemies);
 
