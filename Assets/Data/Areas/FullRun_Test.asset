@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: FullRun_Test
   m_EditorClassIdentifier: 
   Areas:
-  - AreaName: Starting Area
-    MaxEncounters: 10
+  - AreaName: Area 1
+    MaxEncounters: 5
+    AreaBackground: {fileID: 2383155565180484476, guid: e7bce10f565cf0a4c8d4bafd0a7e3290, type: 3}
+    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}
     Encounters:
     - Encounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
       Probability: 20
@@ -26,8 +28,78 @@ MonoBehaviour:
       Probability: 10
       IsStartingEncounter: 0
       ShouldSpawnRegularly: 1
-      SpawnAfterEveryXEncounter: 2
+      SpawnAfterEveryXEncounter: 3
       EncountersSinceLastSpawn: 1
+    - Encounter: {fileID: 11400000, guid: 79bd2a45f5616194db3972a686c2a67d, type: 2}
+      Probability: 20
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: 884d5170271525d488e389386961f4dd, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: fd9866f12f7212340b3c6e387e903efc, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+  - AreaName: Area 1
+    MaxEncounters: 5
+    AreaBackground: {fileID: 2383155565180484476, guid: e7bce10f565cf0a4c8d4bafd0a7e3290, type: 3}
+    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}
+    Encounters:
+    - Encounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
+      Probability: 20
+      IsStartingEncounter: 1
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: a825de36f2a9a8e4aad1c82b5554e34e, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 1
+      SpawnAfterEveryXEncounter: 3
+      EncountersSinceLastSpawn: 1
+    - Encounter: {fileID: 11400000, guid: 79bd2a45f5616194db3972a686c2a67d, type: 2}
+      Probability: 20
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: 884d5170271525d488e389386961f4dd, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: fd9866f12f7212340b3c6e387e903efc, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+  - AreaName: Area 3
+    MaxEncounters: 10
+    AreaBackground: {fileID: 2383155565180484476, guid: d6c93dbf491dab342b2d6b22be15fe0b, type: 3}
+    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}
+    Encounters:
+    - Encounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
+      Probability: 20
+      IsStartingEncounter: 1
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: a825de36f2a9a8e4aad1c82b5554e34e, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 1
+      SpawnAfterEveryXEncounter: 3
+      EncountersSinceLastSpawn: 0
     - Encounter: {fileID: 11400000, guid: 79bd2a45f5616194db3972a686c2a67d, type: 2}
       Probability: 20
       IsStartingEncounter: 0
@@ -64,4 +136,3 @@ MonoBehaviour:
       ShouldSpawnRegularly: 0
       SpawnAfterEveryXEncounter: 0
       EncountersSinceLastSpawn: 0
-    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}

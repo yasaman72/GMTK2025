@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d16f6dd9f523274e88f4ecf99ca3c09, type: 3}
+  m_Name: Enemy_Boss_Area01_Test
+  m_EditorClassIdentifier: 
+  MaxHealth: 50
+  prefab: {fileID: 828670261892621840, guid: 5c7c657167d53e24bbc85adbf630f730, type: 3}
+  EnemyActions:
+  - Action:
+      rid: 4472579548979921077
+    Probability: 40
+  - Action:
+      rid: 4472579548979921076
+    Probability: 30
+  - Action:
+      rid: 4472579572866220159
+    Probability: 30
+  _developerNotes: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 4472579548979921076
+      type: {class: EnemyAction_Shield, ns: Deviloop, asm: Deviloop}
+      data:
+        icon: {fileID: 21300000, guid: 04f1e734fde5fbc439b43d3774d8a456, type: 3}
+        actionDelay:
+          baseValue: 0.5
+        actionDuration:
+          baseValue: 1
+        translatedDescription:
+          m_TableReference:
+            m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+          m_TableEntryReference:
+            m_KeyId: 8016466063360
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        power: 2
+    - rid: 4472579548979921077
+      type: {class: EnemyAction_Attack, ns: Deviloop, asm: Deviloop}
+      data:
+        icon: {fileID: 6674386295937086461, guid: 679a6789cdf48e14e966694d4321ebb8, type: 3}
+        actionDelay:
+          baseValue: 0.5
+        actionDuration:
+          baseValue: 1
+        translatedDescription:
+          m_TableReference:
+            m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+          m_TableEntryReference:
+            m_KeyId: 7840938635264
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        power: 3
+        attackType: 0
+    - rid: 4472579572866220159
+      type: {class: EnemyAction_Attack, ns: Deviloop, asm: Deviloop}
+      data:
+        icon: {fileID: 21300000, guid: 7334fc6263ace5d4ca2e1db0d21d2051, type: 3}
+        actionDelay:
+          baseValue: 0.5
+        actionDuration:
+          baseValue: 1
+        translatedDescription:
+          m_TableReference:
+            m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
+          m_TableEntryReference:
+            m_KeyId: 8016466063360
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        power: 5
+        attackType: 0

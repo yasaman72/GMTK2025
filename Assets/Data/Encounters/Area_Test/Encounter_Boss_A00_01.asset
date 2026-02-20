@@ -15,12 +15,8 @@ MonoBehaviour:
   EncounterName: Boss Fight
   EncounterDebugName: Boss Fight
   EncounterIcon: {fileID: 21300000, guid: ac9dafa1c2804694e91c2dd8f761f6c9, type: 3}
-  _enemyTypes:
-  - EnemyData: {fileID: 11400000, guid: 6bceaea68c6893943a33ae1ea4752d5b, type: 2}
-    Quantity: 1
-  - EnemyData: {fileID: 11400000, guid: 00949df961a04f94bb8e1e65595151ac, type: 2}
-    Quantity: 1
-  - EnemyData: {fileID: 11400000, guid: 88d2274c109f82d4aa1c43b19ede66f3, type: 2}
+  enemyTypes:
+  - EnemyData: {fileID: 11400000, guid: f43391dbecf3eee42b7694fa5f77ffc8, type: 2}
     Quantity: 1
   IsElite: 1
   DefeatRewards:

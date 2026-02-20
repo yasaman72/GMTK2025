@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
   GUID: a423a676599704f4795f0048c68fc928
   shouldLog: 0
+  activationOrder: 20
   _cardEffects:
   - rid: 4472579520941785517
   - rid: 4472579520941785472
@@ -67,6 +68,8 @@ MonoBehaviour:
         playWithNext: 1
         DelayBeforeMove:
           baseValue: 0.3
+        DelayAfterMove:
+          baseValue: 0.3
         MoveDuration:
           baseValue: 0.2
     - rid: 4472579520941785472
@@ -83,9 +86,10 @@ MonoBehaviour:
       type: {class: RotateAnimation, ns: Deviloop, asm: Deviloop}
       data:
         playWithNext: 0
-        _rotateDuration:
-          baseValue: 0.5
         DelayBeforeMove:
           baseValue: 0.3
         DelayAfterMove:
           baseValue: 0.3
+        _rotateDuration:
+          baseValue: 0.5
+        rounds: 5

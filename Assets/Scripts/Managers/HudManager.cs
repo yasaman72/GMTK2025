@@ -18,7 +18,8 @@ public class HudManager : CustomMonoBehavior
     [SerializeField] private DeckView _deckView;
     [SerializeField] private RewardView _rewardView;
 
-    private Color _grayColor = new Color(.5f, .5f, .5f);
+    [SerializeField] private Color _enabledBackgroundColor = new Color(1f, 1f, 1f, .0f);
+    [SerializeField] private Color _disabledBackgroundColor = new Color(.5f, .5f, .5f, .5f);
 
     private void OnEnable()
     {
@@ -54,12 +55,12 @@ public class HudManager : CustomMonoBehavior
         bool isPlayerTurn = turnMode == TurnManager.ETurnMode.Player;
         _turnText.text = isPlayerTurn ? "Your Turn!" : "Enemy Turn!";
         _turnBg.color = isPlayerTurn ? Color.black : Color.red;
-        _bgImage.color = Color.white;
+        _bgImage.color = _enabledBackgroundColor;
     }
 
     private void OnPlayerClickedThrow()
     {
-        _bgImage.color = _grayColor;
+        _bgImage.color = _disabledBackgroundColor;
     }
 
     public void OnPause()

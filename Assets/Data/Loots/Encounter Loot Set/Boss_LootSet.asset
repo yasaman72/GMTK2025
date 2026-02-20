@@ -17,8 +17,8 @@ MonoBehaviour:
     countMin: 20
     countMax: 30
   - item: {fileID: 11400000, guid: 4259326b125d31b49b55ddb62a8bf120, type: 2}
-    countMin: 2
-    countMax: 2
+    countMin: 3
+    countMax: 3
   - item: {fileID: 11400000, guid: 270f9aa5269ae7c41b6befba9a1fc384, type: 2}
-    countMin: 2
-    countMax: 2
+    countMin: 1
+    countMax: 1

@@ -58,6 +58,7 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
     private void OnDestroy()
     {
         _cancellationTokenSource?.Cancel();
+        _cancellationTokenSource?.Dispose();
     }
 
     private void HandleTurnChanged(TurnManager.ETurnMode turnMode)

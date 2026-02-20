@@ -3,6 +3,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
@@ -383,7 +384,7 @@ public class PlayerLassoManager : MonoBehaviour
 
     private List<CardPrefab> ReorderGrabbedCard(List<CardPrefab> originalCards)
     {
-        originalCards.Sort((c1, c2) => c1.CardData.activationOrder);
+        originalCards = originalCards.OrderBy(c => c.CardData.activationOrder).ToList();
         return originalCards;
     }
 

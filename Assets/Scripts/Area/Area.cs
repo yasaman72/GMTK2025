@@ -10,8 +10,9 @@ namespace Deviloop
         [Min(5)]
         public int MaxEncounters;
 
-        public List<EncounterConfig> Encounters;
+        public GameObject AreaBackground;
         public BaseEncounter BossEncounter;
+        public List<EncounterConfig> Encounters;
 
         public int TotalWeight { get; private set; } = -1;
 

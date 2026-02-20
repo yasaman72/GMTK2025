@@ -15,6 +15,8 @@ MonoBehaviour:
   Areas:
   - AreaName: Starting Area
     MaxEncounters: 10
+    AreaBackground: {fileID: 2383155565180484476, guid: e7bce10f565cf0a4c8d4bafd0a7e3290, type: 3}
+    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}
     Encounters:
     - Encounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
       Probability: 20
@@ -64,4 +66,3 @@ MonoBehaviour:
       ShouldSpawnRegularly: 0
       SpawnAfterEveryXEncounter: 0
       EncountersSinceLastSpawn: 0
-    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}

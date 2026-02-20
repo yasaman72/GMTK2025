@@ -13,6 +13,7 @@ namespace Deviloop
 
         // TODO: This should be in AreaManager
         [SerializeField] private AreaData _allAreas;
+        [SerializeField] private Transform _areaBackgroundParent;
         [SerializeField] private EncounterSelectionUI _encounterSelectionUI;
 
         public static Area CurrentArea;
@@ -54,9 +55,20 @@ namespace Deviloop
             }
 
             CurrentArea = _allAreas.Areas[_currentAreaIndex];
+            UpdateAreaBackground();
 
             _currentEncounterIndex = 0;
             EncounterFinished();
+        }
+
+        private void UpdateAreaBackground()
+        {
+            foreach (Transform child in _areaBackgroundParent)
+            {
+                Destroy(child.gameObject);
+            }
+
+            var background = Instantiate(CurrentArea.AreaBackground, _areaBackgroundParent.transform);
         }
 
         public void EncounterFinished()
@@ -109,7 +121,7 @@ namespace Deviloop
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>(false));
                 //nextEncounters.Add(CurrentArea.GetRandomEncounterType<RestEncounter>());
             }
-            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
+            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters)
             {
                 Logger.Log("Starting boss encounter.", _shouldLog);
                 nextEncounters.Add(CurrentArea.BossEncounter);
