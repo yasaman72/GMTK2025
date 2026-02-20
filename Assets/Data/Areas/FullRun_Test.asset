@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd773790c6dfc34da1e840de0171e2a, type: 3}
+  m_Name: FullRun_Test
+  m_EditorClassIdentifier: 
+  Areas:
+  - AreaName: Starting Area
+    MaxEncounters: 10
+    Encounters:
+    - Encounter: {fileID: 11400000, guid: 940530d623b9d324fb5e2ba851b19882, type: 2}
+      Probability: 20
+      IsStartingEncounter: 1
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: a825de36f2a9a8e4aad1c82b5554e34e, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 1
+      SpawnAfterEveryXEncounter: 2
+      EncountersSinceLastSpawn: 1
+    - Encounter: {fileID: 11400000, guid: 79bd2a45f5616194db3972a686c2a67d, type: 2}
+      Probability: 20
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: 884d5170271525d488e389386961f4dd, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: fd9866f12f7212340b3c6e387e903efc, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: d9bf62255e5b4b44aa9fc64a946c58e5, type: 2}
+      Probability: 80
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: cc8825bf7b6011442a0712e1c9ab4cf6, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    - Encounter: {fileID: 11400000, guid: f635c5799b675e444bd36c73c2565ddc, type: 2}
+      Probability: 10
+      IsStartingEncounter: 0
+      ShouldSpawnRegularly: 0
+      SpawnAfterEveryXEncounter: 0
+      EncountersSinceLastSpawn: 0
+    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}

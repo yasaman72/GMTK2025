@@ -55,6 +55,11 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
         RemoveAllEffects();
     }
 
+    private void OnDestroy()
+    {
+        _cancellationTokenSource?.Cancel();
+    }
+
     private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
     {
         _spriteRenderer.color = Color.white;
@@ -124,7 +129,6 @@ public class Enemy : CombatCharacter, IPointerDownHandler, IPoolable
         if (IsDead()) return;
         CombatTargetSelection.SetTargetAction?.Invoke(this);
     }
-
 
     public void OnDeathAnimationFinished()
     {

@@ -232,6 +232,7 @@ MonoBehaviour:
   Stats: {fileID: 11400000, guid: cfb23c1fa89c1cc439537de2697ac29a, type: 2}
   _damageIndicatorApplier: {fileID: 7617898554937828164}
   HPOrigin: {fileID: 5968923113537092227}
+  ShieldOrigin: {fileID: 0}
   _hitSound:
     Guid:
       Data1: 1423277174
@@ -812,14 +813,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3669224896358400548, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 3669224896358400548, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.16
-      objectReference: {fileID: 0}
     - target: {fileID: 3788649323926661097, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -828,22 +821,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8102370033064795382, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: _fill
-      value: 
-      objectReference: {fileID: 8783143257138299164}
+    - target: {fileID: 5472043684631128368, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.602
+      objectReference: {fileID: 0}
     - target: {fileID: 8102370033064795382, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
       propertyPath: combatCharacter
       value: 
       objectReference: {fileID: 868586431597869176}
-    - target: {fileID: 8102370033064795382, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: _onDamageColor.b
-      value: 0.740566
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102370033064795382, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-      propertyPath: _onDamageColor.g
-      value: 0.740566
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -864,14 +849,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3669224896358400548, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
   m_PrefabInstance: {fileID: 6935098571247679655}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8783143257138299164 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1863809828297767355, guid: 67a620bf831061d4d85c8b70b318a687, type: 3}
-  m_PrefabInstance: {fileID: 6935098571247679655}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

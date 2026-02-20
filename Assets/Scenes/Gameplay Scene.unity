@@ -6720,10 +6720,6 @@ PrefabInstance:
       value: LassoManager
       objectReference: {fileID: 0}
     - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
-      propertyPath: _loopMinArea
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: _spellParticleSystem
       value: 
       objectReference: {fileID: 1446824177}
@@ -6977,6 +6973,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EncounterManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3584646999949904365, guid: f7495825d714bea4dbe24ea0b074c692, type: 3}
+      propertyPath: _allAreas
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e4c84d9365345e49bf2d4783de5db8e, type: 2}
     - target: {fileID: 3584646999949904365, guid: f7495825d714bea4dbe24ea0b074c692, type: 3}
       propertyPath: _encounterSelectionUI
       value: 

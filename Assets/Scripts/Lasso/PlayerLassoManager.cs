@@ -1,7 +1,9 @@
 using Deviloop;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
@@ -28,6 +30,11 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private float _loopMinArea = 2;
     [SerializeField] private Gradient _defaultColor;
     [SerializeField] private Gradient _nearCloseColor;
+    [Space]
+    [SerializeField] private Transform _cardsResolvePosition;
+    [SerializeField] private float _cardsResolveDistance;
+    [SerializeField] private ModifiableFloat _flySpeed = new ModifiableFloat(30f);
+    [SerializeField] private ModifiableFloat _waitBeforeApply = new ModifiableFloat(1.5f);
     [Space]
     [SerializeField] private float _slowMotionTimeScale = 0.2f;
     [SerializeField] private int _lassoLength = 40;
@@ -304,24 +311,26 @@ public class PlayerLassoManager : MonoBehaviour
             }
         }
 
-        StartCoroutine(DetectInsidePoints(loopPoints));
+        DetectInsidePointsAsync(loopPoints);
     }
 
-    private IEnumerator DetectInsidePoints(List<Vector2> loopPoints)
+    private async Task DetectInsidePointsAsync(List<Vector2> loopPoints)
     {
-        yield return null;
+        await Task.Yield();
+
         GameObject temp = new GameObject("TempCollider");
         PolygonCollider2D poly = temp.AddComponent<PolygonCollider2D>();
         poly.isTrigger = true;
         poly.points = loopPoints.ToArray();
-        List<Collider2D> hits = new List<Collider2D>();
+
+        List<Collider2D> hits = new();
         Physics2D.OverlapCollider(poly, _itemsFilter, hits);
 
 #if UNITY_EDITOR
-        EditorApplication.isPaused = shouldPauseOnLoop ? true : false;
+        UnityEditor.EditorApplication.isPaused = shouldPauseOnLoop;
 #endif
 
-        List<CardPrefab> lassoedCards = new List<CardPrefab>();
+        List<CardPrefab> lassoedCards = new();
 
         if (GetPolygonArea(poly) < _loopMinArea || hits.Count <= 0 || hits.Count > maxedAllowedItems)
         {
@@ -329,10 +338,11 @@ public class PlayerLassoManager : MonoBehaviour
                 MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}. Try again!", 2);
 
             Time.timeScale = 1f;
-            Destroy(temp);
-            StartCoroutine(InvertLasso());
+            UnityEngine.Object.Destroy(temp);
+
+            InvertLasso();
             _isResolvingALoop = false;
-            yield break;
+            return;
         }
 
         _hasAlreadyDrawn = true;
@@ -343,8 +353,9 @@ public class PlayerLassoManager : MonoBehaviour
         {
             if (hit != null)
             {
-                CardPrefab card = hit.gameObject.GetComponent<CardPrefab>();
+                CardPrefab card = hit.GetComponent<CardPrefab>();
                 if (card == null || card.isLassoed) continue;
+
                 lassoedCards.Add(card);
                 card.OnLassoed();
             }
@@ -352,23 +363,50 @@ public class PlayerLassoManager : MonoBehaviour
 
         lassoedCardsCount = lassoedCards.Count;
         RecordTheShapeOfLasso(_points);
+
         lassoedCards = ReorderGrabbedCard(lassoedCards);
+
+        await PutCardsInLineAsync(lassoedCards);
 
         foreach (var card in lassoedCards)
         {
             card.OnActivate();
-            yield return new WaitUntil(() => card.gameObject.activeInHierarchy == false);
+
+            while (card.gameObject.activeInHierarchy)
+                await Task.Yield();
         }
 
-        Destroy(temp);
+        UnityEngine.Object.Destroy(temp);
         _isResolvingALoop = false;
         OnLoopClosed?.Invoke();
     }
 
-    public static List<CardPrefab> ReorderGrabbedCard(List<CardPrefab> originalCards)
+    private List<CardPrefab> ReorderGrabbedCard(List<CardPrefab> originalCards)
     {
         originalCards.Sort((c1, c2) => c1.CardData.activationOrder);
         return originalCards;
+    }
+
+    public async Task PutCardsInLineAsync(List<CardPrefab> originalCards)
+    {
+        int count = originalCards.Count;
+        if (count == 0) return;
+
+        float halfWidth = (count - 1) * _cardsResolveDistance * 0.5f;
+        Vector3 startPos = _cardsResolvePosition.position - Vector3.right * halfWidth;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 targetPos = startPos + Vector3.right * (_cardsResolveDistance * i);
+
+            await originalCards[i].transform
+                .DOMove(targetPos, _flySpeed.Value)
+                .SetSpeedBased()
+                .SetEase(Ease.OutCubic)
+                .AsyncWaitForCompletion();
+        }
+
+        await Awaitable.WaitForSecondsAsync(_waitBeforeApply.Value);
     }
 
     float GetPolygonArea(PolygonCollider2D poly)
@@ -389,6 +427,7 @@ public class PlayerLassoManager : MonoBehaviour
 
         return areaAbs;
     }
+
     private void RecordTheShapeOfLasso(List<Vector2> points)
     {
         StartCoroutine(_gestureRecognizerController.RecordPoints(points, shape =>

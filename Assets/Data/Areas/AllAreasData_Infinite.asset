@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bd773790c6dfc34da1e840de0171e2a, type: 3}
-  m_Name: AllAreasData
+  m_Name: AllAreasData_Infinite
   m_EditorClassIdentifier: 
   Areas:
   - AreaName: Starting Area

@@ -6,6 +6,7 @@ namespace Deviloop
     public class BleedEffect : CharacterEffectBase
     {
         [SerializeField] private int _bleedPower;
+        [SerializeField] private AttackType _attackType = AttackType.Piercing;
         public int BleedPower => _bleedPower;
 
         public override bool CanBeApplied(EnemyAction enemyAction)
@@ -15,7 +16,7 @@ namespace Deviloop
 
         public override void OnApplyEffect(CombatCharacter character, out int remainedDuration)
         {
-            character.TakeDamage(_bleedPower, AttackType.Piercing);
+            character.TakeDamage(_bleedPower, _attackType);
             remainedDuration = --EffectCurrentDuration;
         }
 
