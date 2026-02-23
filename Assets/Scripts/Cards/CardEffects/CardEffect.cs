@@ -1,13 +1,14 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Deviloop
 {
     [System.Serializable]
     public abstract class CardEffect
     {
-        public abstract void Apply(CombatCharacter target);
+        public abstract void Apply(CombatCharacter target, CardPrefab cardPrefab);
     }
 
     [System.Serializable]
@@ -22,7 +23,7 @@ namespace Deviloop
     {
         public AttackType AttackType = AttackType.Normal;
 
-        public override void Apply(CombatCharacter target)
+        public override void Apply(CombatCharacter target, CardPrefab cardPrefab)
         {
             Player.PlayerCombatCharacter.DealDamage(target, damage, AttackType);
         }
@@ -34,7 +35,7 @@ namespace Deviloop
     {
         public AttackType AttackType = AttackType.Normal;
 
-        public override void Apply(CombatCharacter target)
+        public override void Apply(CombatCharacter target, CardPrefab cardPrefab)
         {
             List<Enemy> enemies = CombatManager.SpawnedEnemies.ToList();
             foreach (var enemy in enemies)
@@ -51,7 +52,7 @@ namespace Deviloop
         public int damage = 0;
         public AttackType AttackType = AttackType.Normal;
 
-        public override void Apply(CombatCharacter target)
+        public override void Apply(CombatCharacter target, CardPrefab cardPrefab)
         {
             IDamageable player = Player.PlayerCombatCharacter;
             player.TakeDamage(damage, AttackType);
@@ -65,7 +66,7 @@ namespace Deviloop
         public CharacterEffectBase effect;
         public int duration;
 
-        public override void Apply(CombatCharacter target)
+        public override void Apply(CombatCharacter target, CardPrefab cardPrefab)
         {
             target.AddEffect(effect, duration);
         }
@@ -77,7 +78,7 @@ namespace Deviloop
     {
         public int healAmount = 5;
 
-        public override void Apply(CombatCharacter target)
+        public override void Apply(CombatCharacter target, CardPrefab cardPrefab)
         {
             IDamageable player = Player.PlayerCombatCharacter;
             player.Heal(healAmount);
@@ -90,7 +91,7 @@ namespace Deviloop
     {
         public int shieldAmount = 3;
 
-        public override void Apply(CombatCharacter target)
+        public override void Apply(CombatCharacter target, CardPrefab cardPrefab)
         {
             IDamageable player = Player.PlayerCombatCharacter;
             player.AddShield(shieldAmount);

@@ -7509,6 +7509,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5780707991967637171, guid: d4fadc9d535bac24e91ffe0ad8f35404, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780707991967637171, guid: d4fadc9d535bac24e91ffe0ad8f35404, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780707991967637171, guid: d4fadc9d535bac24e91ffe0ad8f35404, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780707991967637171, guid: d4fadc9d535bac24e91ffe0ad8f35404, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780707991967637171, guid: d4fadc9d535bac24e91ffe0ad8f35404, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -284
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780707991967637171, guid: d4fadc9d535bac24e91ffe0ad8f35404, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
     - target: {fileID: 5860286282046249425, guid: d4fadc9d535bac24e91ffe0ad8f35404, type: 3}
       propertyPath: m_Name
       value: Reporter Canvas

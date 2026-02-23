@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Deviloop
 {
@@ -16,6 +17,9 @@ namespace Deviloop
         [Header("Effects")]
         [SerializeField, SerializeReference, SubclassSelector]
         protected List<CardEffect> _cardEffects;
+        [Header("Effects")]
+        [SerializeField, SerializeReference, SubclassSelector]
+        protected List<CardOnLassoEffect> _onLassoEffects;
         [Tooltip("will be applied in order")]
         [SerializeField, SerializeReference, SubclassSelector]
         protected CardAnimationType[] _animationType;
@@ -63,6 +67,14 @@ namespace Deviloop
             instance.transform.localPosition = Vector3.zero;
         }
 
+        public void OnLassoed(CardPrefab cardPrefab)
+        {
+            foreach (var effect in _onLassoEffects)
+            {
+                effect.Apply(cardPrefab);
+            }
+        }
+
         // Abstract method that each card type must implement
         public async Task UseCard(Action callback, CardPrefab cardPrefab)
         {
@@ -97,7 +109,7 @@ namespace Deviloop
                 }
             }
 
-            ApplyEffects(enemy);
+            ApplyEffects(enemy, cardPrefab);
             callback?.Invoke();
 
             // TODO: a better architecture to remove the consumables
@@ -122,11 +134,11 @@ namespace Deviloop
             }
         }
 
-        protected void ApplyEffects(CombatCharacter target = null)
+        protected void ApplyEffects(CombatCharacter target, CardPrefab cardPrefab)
         {
             foreach (var effect in _cardEffects)
             {
-                effect.Apply(target);
+                effect.Apply(target, cardPrefab);
             }
         }
         protected void OnEnable()

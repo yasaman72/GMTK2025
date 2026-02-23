@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
   GUID: 984afba25f2478049b773613dada3a55
   shouldLog: 0
+  activationOrder: 10
   _cardEffects: []
+  _onLassoEffects:
+  - rid: 4472579641136906378
   _animationType: []
   _extentionPrefab: {fileID: 8463951749944623439, guid: bd0b8c15ba0a07b40abd38fac1680b52, type: 3}
   TargetRandom: 0
@@ -56,4 +59,7 @@ MonoBehaviour:
   developerNotes: 
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4472579641136906378
+      type: {class: RemoveComponentEffect, ns: Deviloop, asm: Deviloop}
+      data: 

@@ -53,6 +53,11 @@ namespace Deviloop
         {
             isLassoed = true;
 
+            if (cardData != null)
+            {
+                cardData.OnLassoed(this);
+            }
+
             // Visual feedback
             if (cardRenderer != null)
             {
