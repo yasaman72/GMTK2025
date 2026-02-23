@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c877f0f4174f9744a808f1811dffb403, type: 3}
-  m_Name: Encounter_Passage_A00_01
+  m_Name: Encounter_Passage_A03
   m_EditorClassIdentifier: Deviloop::Deviloop.PassageEncounter
   EncounterName: Camp
   EncounterDebugName: Passage
   EncounterIcon: {fileID: 21300000, guid: a511b4eb36c67d44cb97f419d802c6ac, type: 3}
+  config: -1

@@ -1677,6 +1677,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3d1dcbc056be94b91377a758ad08d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Deviloop::Deviloop.PassageManager
+  _passageSetups:
+  - relatedObject: {fileID: 735400159814790465}
+    optionType: 1
+  - relatedObject: {fileID: 5206974323045501235}
+    optionType: 2
+  - relatedObject: {fileID: 7572668984022973957}
+    optionType: 4
+  - relatedObject: {fileID: 7837361056234027541}
+    optionType: 8
 --- !u!1 &4010003755737032891
 GameObject:
   m_ObjectHideFlags: 0

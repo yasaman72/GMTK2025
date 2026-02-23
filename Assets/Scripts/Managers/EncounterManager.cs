@@ -86,7 +86,9 @@ namespace Deviloop
             if (_currentEncounterIndex >= CurrentArea.MaxEncounters)
             {
                 // show the passage encounter
-                if (CurrentEncounter is not PassageEncounter && CurrentArea.PassageEncounter != null)
+                if (_currentAreaIndex < _allAreas.Areas.Count - 1 &&
+                    CurrentEncounter is not PassageEncounter && 
+                    CurrentArea.PassageEncounter != null)
                 {
                     CurrentEncounter = CurrentArea.PassageEncounter;
                     CurrentEncounter.StartEncounter();
