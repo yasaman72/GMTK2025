@@ -28,6 +28,10 @@ namespace Deviloop
                 PlayerPrefs.SetFloat(_volumeKey, .5f);
             }
         }
+        
+        public void Deactivate()
+        {
+        }
 
         private void Start()
         {

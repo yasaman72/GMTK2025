@@ -6,6 +6,7 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "AreasData", menuName = "Scriptable Objects/AreaData")]
     public class AreaData : ScriptableObject
     {
+        public bool IsEndless;
         public List<Area> Areas;
 
 

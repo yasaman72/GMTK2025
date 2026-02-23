@@ -35,6 +35,9 @@ public class RewardView : MonoBehaviour, IInitiatable
 
         _rewardItemsPool = PoolManager.Instance.CreatePool(_rewardItemPrefab, 3);
     }
+    public void Deactivate()
+    {
+    }
 
     public void OnReset()
     {

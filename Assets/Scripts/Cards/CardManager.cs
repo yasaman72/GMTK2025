@@ -142,6 +142,10 @@ namespace Deviloop
             throwButton.gameObject.SetActive(true);
         }
 
+        public void Deactivate()
+        {
+        }
+
         void UpdateUI()
         {
             // Update deck count

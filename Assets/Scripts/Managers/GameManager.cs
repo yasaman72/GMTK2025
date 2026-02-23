@@ -1,29 +1,58 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Deviloop
 {
     public class GameManager : Singleton<GameManager>
     {
-        // TODO: replace this solution after using single point of entry architecture
+        public static AreaData CurrentModeAreaData;
+        static List<IInitiatable> _initiatables = new List<IInitiatable>();
+
         private void Start()
         {
-            StartInitiatables();
+            DontDestroyOnLoad(this);
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        }
+
+        // TODO: replace this solution after using single point of entry architecture
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            StartInitiatables(scene);
+        }
+
+        private void OnSceneUnloaded(Scene scene)
+        {
+            foreach (IInitiatable initable in _initiatables)
+            {
+                initable.Deactivate();
+            }
         }
 
         [ContextMenu("GetInitiatables")]
-        private void StartInitiatables()
+        private void StartInitiatables(Scene scene)
         {
-            List<IInitiatable> initiatables = new List<IInitiatable>();
+            _initiatables = new List<IInitiatable>();
 
-            var rootObjects = gameObject.scene.GetRootGameObjects();
+            var rootObjects = scene.GetRootGameObjects();
             foreach (var rootObject in rootObjects)
             {
-                initiatables.AddRange(rootObject.GetComponentsInChildren<IInitiatable>(true).ToList());
+                _initiatables.AddRange(rootObject.GetComponentsInChildren<IInitiatable>(true).ToList());
             }
 
-            foreach (IInitiatable initable in initiatables)
+            foreach (IInitiatable initable in _initiatables)
             {
                 initable.Initiate();
             }

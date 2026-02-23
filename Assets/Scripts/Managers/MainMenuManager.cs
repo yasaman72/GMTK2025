@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 namespace Deviloop
@@ -7,8 +6,9 @@ namespace Deviloop
     {
         [SerializeField] private Animator _startGameAnimator;
 
-        public void OnStart()
+        public void OnStart(AreaData areaData)
         {
+            GameManager.CurrentModeAreaData = areaData;
             _startGameAnimator.SetTrigger("StartGame");
             // TODO: better, more generic way to reset game state when starting a new game
             RelicManager.ClearAllRelics();

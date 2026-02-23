@@ -8,5 +8,6 @@ namespace Deviloop
         public abstract void Open();
         public abstract void Close();
         public virtual void Initiate() { }
+        public virtual void Deactivate() { }
     }
 }

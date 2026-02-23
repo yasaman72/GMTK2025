@@ -8,9 +8,6 @@ namespace Deviloop
     {
         [SerializeField] private bool _shouldLog = true;
 
-        [Tooltip("Enable endless mode for testing purposes.")]
-        [SerializeField] private bool _endlessMode = true;
-
         // TODO: This should be in AreaManager
         [SerializeField] private AreaData _allAreas;
         [SerializeField] private Transform _areaBackgroundParent;
@@ -27,6 +24,9 @@ namespace Deviloop
 
         private void OnEnable()
         {
+            _allAreas = GameManager.CurrentModeAreaData ?? _allAreas;
+            Debug.Log(_allAreas.IsEndless ? "endless mode" : "campaign mode");
+            Debug.Log($"area name {_allAreas.name}");
             OnEncounterFinished += EncounterFinished;
         }
         private void OnDisable()
@@ -48,7 +48,7 @@ namespace Deviloop
             _currentAreaIndex++;
 
 
-            if (!_endlessMode && _currentAreaIndex >= _allAreas.Areas.Count)
+            if (!_allAreas.IsEndless && _currentAreaIndex >= _allAreas.Areas.Count)
             {
                 Logger.Log("All areas completed. Game finished.", _shouldLog);
                 UIViewsManager.Instance.OpenPage<WinScreen>();
@@ -88,7 +88,7 @@ namespace Deviloop
             {
                 // show the passage encounter
                 if (_currentAreaIndex < _allAreas.Areas.Count - 1 &&
-                    CurrentEncounter is not PassageEncounter && 
+                    CurrentEncounter is not PassageEncounter &&
                     CurrentArea.PassageEncounter != null)
                 {
                     CurrentEncounter = CurrentArea.PassageEncounter;
@@ -97,7 +97,7 @@ namespace Deviloop
                 }
 
                 // TODO: put this endless somewhere better
-                if (_endlessMode)
+                if (_allAreas.IsEndless)
                 {
                     Logger.Log("Endless mode enabled - restarting area.", _shouldLog);
                     _currentEncounterIndex = 0;
@@ -118,7 +118,7 @@ namespace Deviloop
             List<BaseEncounter> nextEncounters = new List<BaseEncounter>();
 
             // TODO: a better architecture
-            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
+            if (!_allAreas.IsEndless && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
             {
                 Logger.Log("Starting a combat before pre boss shop encounter.", _shouldLog);
 
@@ -126,13 +126,13 @@ namespace Deviloop
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false));
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false, new List<BaseEncounter>() { nextEncounters[0] }));
             }
-            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
+            else if (!_allAreas.IsEndless && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
             {
                 Logger.Log("Starting pre boss shop/rest encounter.", _shouldLog);
 
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>(false));
             }
-            else if (!_endlessMode && _currentEncounterIndex >= CurrentArea.MaxEncounters)
+            else if (!_allAreas.IsEndless && _currentEncounterIndex >= CurrentArea.MaxEncounters)
             {
                 Logger.Log("Starting boss encounter.", _shouldLog);
                 nextEncounters.Add(CurrentArea.BossEncounter);
@@ -159,11 +159,11 @@ namespace Deviloop
         {
             _encounterSelectionUI.ShowNextSelections(nextEncounters);
         }
-    
-    
+
+
         public bool IsInLastEncounter()
         {
-            return _currentAreaIndex >= _allAreas.Areas.Count - 1 && 
+            return _currentAreaIndex >= _allAreas.Areas.Count - 1 &&
                    _currentEncounterIndex >= CurrentArea.MaxEncounters;
         }
     }

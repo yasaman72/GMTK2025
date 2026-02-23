@@ -19,7 +19,7 @@ namespace Deviloop
             gameObject.SetActive(false);
         }
 
-        private void OnDestroy()
+        public void Deactivate()
         {
             OnShopStartEvent -= StartShop;
         }

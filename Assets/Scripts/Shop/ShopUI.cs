@@ -43,7 +43,7 @@ public class ShopUI : UIView, IInitiatable
         }
     }
 
-    private void OnDestroy()
+    public override void Deactivate()
     {
         OpenShopAction -= OnOpenShop;
     }

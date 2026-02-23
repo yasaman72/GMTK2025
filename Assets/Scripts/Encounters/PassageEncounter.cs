@@ -28,8 +28,7 @@ namespace Deviloop
 
         public override void ResetEncounter()
         {
-            PassageManager.OnEncounterFinished -= FinishEncounter;
-
+            EncounterManager.OnEncounterFinished -= FinishEncounter;
         }
 
         public override void StartEncounter()

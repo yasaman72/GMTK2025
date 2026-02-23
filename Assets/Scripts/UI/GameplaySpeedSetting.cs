@@ -27,6 +27,10 @@ namespace Deviloop
             }
         }
 
+        public void Deactivate()
+        {
+        }
+
         private void Start()
         {
             _speedIncreaseBtn.onClick.AddListener(IncreaseGameSpeed);
