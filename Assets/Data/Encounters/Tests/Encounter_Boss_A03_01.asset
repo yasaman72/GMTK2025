@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55706623c5b38564894d6d5467c6a1f0, type: 3}
+  m_Name: Encounter_Boss_A03_01
+  m_EditorClassIdentifier: 
+  EncounterName: Boss Fight
+  EncounterDebugName: Boss Fight
+  EncounterIcon: {fileID: 21300000, guid: ac9dafa1c2804694e91c2dd8f761f6c9, type: 3}
+  enemyTypes:
+  - EnemyData: {fileID: 11400000, guid: f43391dbecf3eee42b7694fa5f77ffc8, type: 2}
+    Quantity: 1
+  IsElite: 1
+  DefeatRewards:
+  - {fileID: 11400000, guid: 654c43f931491174ba0a74512c2eb5b0, type: 2}

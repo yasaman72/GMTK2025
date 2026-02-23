@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a6e23ad98d5024e9f6408fd3ac6696, type: 3}
+  m_Name: MaterialLoot_Fabric
+  m_EditorClassIdentifier: Deviloop::Deviloop.MaterialLoot
+  itemName: fabric
+  description: 
+  icon: {fileID: 21300000, guid: a01240fb825389a4fa18afe070a66395, type: 3}
+  OnLootSound:
+    Guid:
+      Data1: -541188052
+      Data2: 1143024327
+      Data3: -1921858118
+      Data4: -1210588403
+    Path: event:/UI/Button_Click
+  developerNotes: 
+  materialType: {fileID: 11400000, guid: 3138750d40b343b4fb19ac15655d5124, type: 2}
+  amount: 10

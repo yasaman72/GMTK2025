@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    public class EncounterManager : MonoBehaviour
+    public class EncounterManager : Singleton<EncounterManager>
     {
         [SerializeField] private bool _shouldLog = true;
 
@@ -51,6 +51,7 @@ namespace Deviloop
             if (!_endlessMode && _currentAreaIndex >= _allAreas.Areas.Count)
             {
                 Logger.Log("All areas completed. Game finished.", _shouldLog);
+                UIViewsManager.Instance.OpenPage<WinScreen>();
                 return;
             }
 
@@ -131,7 +132,7 @@ namespace Deviloop
 
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>(false));
             }
-            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters)
+            else if (!_endlessMode && _currentEncounterIndex >= CurrentArea.MaxEncounters)
             {
                 Logger.Log("Starting boss encounter.", _shouldLog);
                 nextEncounters.Add(CurrentArea.BossEncounter);
@@ -157,6 +158,13 @@ namespace Deviloop
         public void ShowEncounterSelectionUI(List<BaseEncounter> nextEncounters)
         {
             _encounterSelectionUI.ShowNextSelections(nextEncounters);
+        }
+    
+    
+        public bool IsInLastEncounter()
+        {
+            return _currentAreaIndex >= _allAreas.Areas.Count - 1 && 
+                   _currentEncounterIndex >= CurrentArea.MaxEncounters;
         }
     }
 }

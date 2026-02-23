@@ -11,7 +11,7 @@ namespace Deviloop
         {
             List<LootSetData> allRewards = loots.SelectMany(l => l.GetAllRewards()).ToList();
 
-            LootSetData coinReward = allRewards.First(r => r.IsCoinLoot());
+            LootSetData coinReward = allRewards.FirstOrDefault(r => r.IsCoinLoot());
 
             // if more than one reward is coin, combine them into one
             if (allRewards.Count(r => r.IsCoinLoot()) > 1)
@@ -26,8 +26,30 @@ namespace Deviloop
                     });
             }
 
+            // add material loots
+            List<LootSetData> materialsRewards = new List<LootSetData>();
+            foreach (LootSetData reward in allRewards)
+            {
+                if (reward.item is MaterialLoot materialLoot)
+                {
+                    LootSetData result = materialsRewards.FirstOrDefault(m => m.item is MaterialLoot ml && ml.materialType == materialLoot.materialType);
+                    if (result != null)
+                    {
+                        result.Count++;
+                    }
+                    else
+                    {
+                        materialsRewards.Add(reward);
+                    }
+                }
+            }
+
+            // remove material loots
+            allRewards.RemoveAll(r => r.item is  MaterialLoot);
+
             // only keep the non coin rewards
             allRewards = allRewards.Where(r => !(r.IsCoinLoot())).ToList();
+
 
             // TODO: better algorithm to pick the rewards, based on rarity, chance, seed and luck
             // right now the rarity of cards are taken into account in ItemLoot.ResetCard()
@@ -43,12 +65,20 @@ namespace Deviloop
                 .Concat(allRewards.Where(r => r.item is RelicLoot).Take(maxRelics))
                 .ToList();
 
-            allRewards.Add(coinReward);
+
+            if (coinReward != null)
+                allRewards.Add(coinReward);
+
+
+            foreach (LootSetData materialReward in materialsRewards)
+            {
+                allRewards.Add(materialReward);
+            }
 
             // reset card or relic duplicates
             foreach (var reward in allRewards)
             {
-                if (reward.item is NonCoinLootItem item)
+                if (reward.item is not MaterialLoot && reward.item is NonCoinLootItem item)
                 {
                     int safety = 50;
 

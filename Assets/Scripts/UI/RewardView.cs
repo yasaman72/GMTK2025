@@ -47,6 +47,7 @@ public class RewardView : MonoBehaviour, IInitiatable
 
         Time.timeScale = 0;
         _allCurrentLoots.Clear();
+        _itemsSelectionContent.gameObject.SetActive(false);
 
         List<LootSetData> allRewards = RewardManager.SelectRewards(loots, _maxItemOption);
 
@@ -67,6 +68,7 @@ public class RewardView : MonoBehaviour, IInitiatable
                 rewardItem.transform.SetParent(_deckContentHolder);
                 rewardItem.gameObject.SetActive(false);
             }
+
             rewardItem.gameObject.SetActive(true);
             rewardItem.transform.localScale = Vector3.one;
 

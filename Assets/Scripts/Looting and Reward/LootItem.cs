@@ -6,6 +6,7 @@ namespace Deviloop
 {
     public abstract class LootItem : ScriptableObject
     {
+        // TODO: replace with localized string
         public string itemName;
         [TextArea(3, 10)]
         public string description;

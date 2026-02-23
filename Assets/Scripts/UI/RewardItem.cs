@@ -26,6 +26,7 @@ public class RewardItem : MonoBehaviour, IPoolable
     }
     public RewardItem Setup(LootSetData lootSetData)
     {
+        // TODO: better architecture
         if (lootSetData.item is CardLoot cardLoot)
         {
             var card = cardLoot.Card;
@@ -33,6 +34,15 @@ public class RewardItem : MonoBehaviour, IPoolable
             _description.text = card.description.GetLocalizedString();
             _count.text = "";
             _icon.sprite = card.cardIcon;
+            _background.color = _itemRewardsBackground;
+        }
+        else if (lootSetData.item is MaterialLoot materialLoot)
+        {
+            var material = materialLoot.materialType;
+            _title.text = material.translatedName;
+            _description.text = "";
+            _count.text = lootSetData.Count.ToString();
+            _icon.sprite = materialLoot.icon;
             _background.color = _itemRewardsBackground;
         }
         else if (lootSetData.item is RelicLoot relicLoot && relicLoot.Relic != null)

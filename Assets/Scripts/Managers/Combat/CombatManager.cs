@@ -199,6 +199,13 @@ namespace Deviloop
 
         private void ShowRewards()
         {
+            // don't show the rewards for the very last encounter
+            //if (EncounterManager.Instance.IsInLastEncounter())
+            //{
+            //    FinishCombat();
+            //    return;
+            //}
+
             if (EncounterManager.CurrentEncounter is CombatEncounter combatEncounter)
             {
 

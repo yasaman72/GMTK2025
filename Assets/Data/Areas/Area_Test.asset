@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Areas:
   - AreaName: Starting Area
-    MaxEncounters: 10
+    MaxEncounters: 5
     AreaBackground: {fileID: 2383155565180484476, guid: e7bce10f565cf0a4c8d4bafd0a7e3290, type: 3}
-    BossEncounter: {fileID: 11400000, guid: da71f82385860f04c804b677961ee567, type: 2}
+    BossEncounter: {fileID: 11400000, guid: 9a0d9e6c577048845915c399beb26e57, type: 2}
+    PassageEncounter: {fileID: 11400000, guid: e7c1e5a88e2786f43bdf9368afcfb38c, type: 2}
     Encounters:
-    - Encounter: {fileID: 11400000, guid: f635c5799b675e444bd36c73c2565ddc, type: 2}
+    - Encounter: {fileID: 11400000, guid: cc8825bf7b6011442a0712e1c9ab4cf6, type: 2}
       Probability: 50
       IsStartingEncounter: 1
       ShouldSpawnRegularly: 0
