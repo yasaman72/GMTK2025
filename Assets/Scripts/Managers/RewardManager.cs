@@ -39,13 +39,18 @@ namespace Deviloop
                     }
                     else
                     {
-                        materialsRewards.Add(reward);
+                        materialsRewards.Add(
+                            new LootSetData
+                            {
+                                Count = 1,
+                                item = reward.item
+                            });
                     }
                 }
             }
 
             // remove material loots
-            allRewards.RemoveAll(r => r.item is  MaterialLoot);
+            allRewards.RemoveAll(r => r.item is MaterialLoot);
 
             // only keep the non coin rewards
             allRewards = allRewards.Where(r => !(r.IsCoinLoot())).ToList();

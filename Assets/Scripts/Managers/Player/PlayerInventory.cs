@@ -54,7 +54,7 @@ public class PlayerInventory : CustomMonoBehavior
         }
         else if (loot.item is MaterialLoot materialLoot && materialLoot.materialType != null)
         {
-            Logger.Log($"adding x{loot.Count} {materialLoot.itemName}.");
+            Logger.Log($"adding x{loot.Count} {materialLoot.itemName} to the inventory.");
         }
         else
         {
