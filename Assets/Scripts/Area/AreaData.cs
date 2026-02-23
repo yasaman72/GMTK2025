@@ -29,7 +29,8 @@ namespace Deviloop
                 {
                     AreaName = area.AreaName,
                     Encounters = new List<EncounterConfig>(area.Encounters),
-                    BossEncounter = area.BossEncounter
+                    BossEncounter = area.BossEncounter,
+                    PassageEncounter = area.PassageEncounter
                 };
                 _newAreasList.Add(newArea);
             }

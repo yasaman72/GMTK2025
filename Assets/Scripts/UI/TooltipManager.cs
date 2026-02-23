@@ -8,7 +8,6 @@ namespace Deviloop
         [SerializeField] private GameObject _tooltipPrefab;
 
         private GameObject _tooltip;
-        private TextMeshProUGUI _text;
         private Canvas _canvas;
         private RectTransform _tooltipRect;
         private MesssageDisplayer _messsageDisplayer;

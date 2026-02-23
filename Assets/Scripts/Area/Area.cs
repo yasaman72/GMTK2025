@@ -12,6 +12,7 @@ namespace Deviloop
 
         public GameObject AreaBackground;
         public BaseEncounter BossEncounter;
+        public PassageEncounter PassageEncounter;
         public List<EncounterConfig> Encounters;
 
         public int TotalWeight { get; private set; } = -1;

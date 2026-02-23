@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopUI : UIView
+public class ShopUI : UIView, IInitiatable
 {
     public static Action OnShopClosedEvent;
     public static Action<ShopData> OpenShopAction;
 
+    [SerializeField] private bool _shouldLog = false;
+    [Space]
     [SerializeField] private Transform _shopItemParent;
     [SerializeField] private DeckViewItem _shopItemOption;
     [SerializeField] private GameObject _shopRemoveItemOption;
@@ -132,7 +134,7 @@ public class ShopUI : UIView
         }
         else
         {
-            Debug.Log("Not enough coins to reroll.");
+            Logger.Log("Not enough coins to reroll.", _shouldLog);
         }
     }
 
@@ -149,13 +151,13 @@ public class ShopUI : UIView
         }
         else
         {
-            Debug.Log("Not enough coins to buy this item.");
+            Logger.Log("Not enough coins to buy this item.", _shouldLog);
         }
     }
 
     private void OnDeleteItemClick(DeckViewItem deleteItemButton)
     {
-        Debug.Log("Openning item deletion window.");
+        Logger.Log("Openning item deletion window.", _shouldLog);
 
         if (PlayerInventory.SpendCoin(_shopData.itemDeletionPrice))
         {
@@ -163,7 +165,7 @@ public class ShopUI : UIView
         }
         else
         {
-            Debug.Log("Not enough coins to delete item.");
+            Logger.Log("Not enough coins to delete item.", _shouldLog);
         }
     }
 

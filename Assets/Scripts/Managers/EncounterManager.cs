@@ -83,8 +83,16 @@ namespace Deviloop
                 return;
             }
 
-            if (_currentEncounterIndex == CurrentArea.MaxEncounters)
+            if (_currentEncounterIndex >= CurrentArea.MaxEncounters)
             {
+                // show the passage encounter
+                if (CurrentEncounter is not PassageEncounter && CurrentArea.PassageEncounter != null)
+                {
+                    CurrentEncounter = CurrentArea.PassageEncounter;
+                    CurrentEncounter.StartEncounter();
+                    return;
+                }
+
                 // TODO: put this endless somewhere better
                 if (_endlessMode)
                 {
@@ -106,7 +114,8 @@ namespace Deviloop
         {
             List<BaseEncounter> nextEncounters = new List<BaseEncounter>();
 
-            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 3)
+            // TODO: a better architecture
+            if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
             {
                 Logger.Log("Starting a combat before pre boss shop encounter.", _shouldLog);
 
@@ -114,12 +123,11 @@ namespace Deviloop
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false));
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<CombatEncounter>(false, new List<BaseEncounter>() { nextEncounters[0] }));
             }
-            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 2)
+            else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters - 1)
             {
                 Logger.Log("Starting pre boss shop/rest encounter.", _shouldLog);
 
                 nextEncounters.Add(CurrentArea.GetRandomEncounterType<ShopEncounter>(false));
-                //nextEncounters.Add(CurrentArea.GetRandomEncounterType<RestEncounter>());
             }
             else if (!_endlessMode && _currentEncounterIndex == CurrentArea.MaxEncounters)
             {

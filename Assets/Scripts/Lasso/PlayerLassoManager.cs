@@ -45,7 +45,7 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private GestureRecognizerController _gestureRecognizerController;
 
     private List<Vector2> _points = new();
-    private static bool _hasAlreadyDrawn = false;
+    private static bool _hasAlreadyDrawn = true;
     public static bool HasAlreadyDrawn => _hasAlreadyDrawn;
     private bool _startNewLine = false;
     private Coroutine clearCoroutine;

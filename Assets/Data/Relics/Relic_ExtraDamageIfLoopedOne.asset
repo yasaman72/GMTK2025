@@ -83,6 +83,7 @@ MonoBehaviour:
       type: {class: DealDamageToAllEnemies, ns: Deviloop, asm: Deviloop}
       data:
         _damage: 2
+        _attackType: 0
     - rid: 5144960850776293465
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:

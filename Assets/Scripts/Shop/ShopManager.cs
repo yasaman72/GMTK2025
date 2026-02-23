@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Deviloop
 {
-    public class ShopManager : MonoBehaviour
+    public class ShopManager : MonoBehaviour, IInitiatable
     {
         public static Action<ShopData> OnShopStartEvent;
         public static Action OnShopFinishedEvent;
@@ -12,7 +12,8 @@ namespace Deviloop
         [SerializeField] private TextMeshProUGUI _shopkeeperDialogue;
         [SerializeField] private GameObject _dialogueBubble;
 
-        private void Awake()
+
+        public void Initiate()
         {
             OnShopStartEvent += StartShop;
             gameObject.SetActive(false);

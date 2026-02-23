@@ -6701,6 +6701,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9131897460699798954, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7140,6 +7144,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1337448877715653713, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 3866617400102388491, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 3967523302213182626, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
       propertyPath: m_Name
       value: Passage
@@ -7188,13 +7200,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6980518348218237676, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 8289260806672102327, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 8738458329111122092, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8277691299450861804, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9d17b74dff1f7645913e69812fe61d7, type: 3}
 --- !u!1001 &5959485322713427550
 PrefabInstance:
@@ -7210,7 +7231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 706197184035712189, guid: b3834ca06e744bf4fa6859ebf42d42dd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1716653025989477486, guid: b3834ca06e744bf4fa6859ebf42d42dd, type: 3}
       propertyPath: m_LocalPosition.x
