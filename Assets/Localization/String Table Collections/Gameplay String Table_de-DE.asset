@@ -307,6 +307,26 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5144960777497608279
+  - m_Id: 21452710693613568
+    m_Localized: Common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21452853543219200
+    m_Localized: Epic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21452935902572544
+    m_Localized: Legendary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21453026440818688
+    m_Localized: Rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21453101497888768
+    m_Localized: Uncommon
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

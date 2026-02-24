@@ -11,6 +11,7 @@ namespace Deviloop
         public MaterialType type;
         public Color color;
         public Sprite icon; 
+        public Rarity rarity; 
         
         [DeveloperNotes, SerializeField]
         private string developerNotes;

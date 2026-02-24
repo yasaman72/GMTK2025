@@ -13,6 +13,7 @@ public class RewardItem : MonoBehaviour, IPoolable
     [SerializeField] private Image _background;
     [SerializeField] private Image _icon;
     [SerializeField] private Color _itemRewardsBackground = Color.white;
+    [SerializeField] private RarityInterface _rarityInterface;
 
     private TooltipTrigger _tooltipTrigger;
 
@@ -26,6 +27,8 @@ public class RewardItem : MonoBehaviour, IPoolable
     }
     public RewardItem Setup(LootSetData lootSetData)
     {
+        _rarityInterface.gameObject.SetActive(true);
+
         // TODO: better architecture
         if (lootSetData.item is CardLoot cardLoot)
         {
@@ -35,6 +38,7 @@ public class RewardItem : MonoBehaviour, IPoolable
             _count.text = "";
             _icon.sprite = card.cardIcon;
             _background.color = _itemRewardsBackground;
+            _rarityInterface.SetVisuals(card.rarity);
         }
         else if (lootSetData.item is MaterialLoot materialLoot)
         {
@@ -44,6 +48,7 @@ public class RewardItem : MonoBehaviour, IPoolable
             _count.text = lootSetData.Count.ToString();
             _icon.sprite = materialLoot.icon;
             _background.color = _itemRewardsBackground;
+            _rarityInterface.SetVisuals(materialLoot.materialType.rarity);
         }
         else if (lootSetData.item is RelicLoot relicLoot && relicLoot.Relic != null)
         {
@@ -55,6 +60,7 @@ public class RewardItem : MonoBehaviour, IPoolable
             _background.color = _itemRewardsBackground;
             _tooltipTrigger = _background.gameObject.AddComponent<TooltipTrigger>();
             SetTooltipText(relic.description);
+            _rarityInterface.SetVisuals(relic.rarity);
         }
         else
         {
@@ -62,7 +68,9 @@ public class RewardItem : MonoBehaviour, IPoolable
             _description.text = lootSetData.item.description;
             _count.text = lootSetData.Count.ToString();
             _icon.sprite = lootSetData.item.icon;
+            _rarityInterface.gameObject.SetActive(false);
         }
+
         return this;
     }
 

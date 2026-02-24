@@ -39,3 +39,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfa10ab0885a5a24a91a3271f6e65ded, type: 2}
   - {fileID: 11400000, guid: 72c434fcd099a5743b69dcbc10d091ed, type: 2}
   - {fileID: 11400000, guid: 64532742e96196549bd652885e6ed99d, type: 2}
+  rarityConfigs:
+  - {fileID: 11400000, guid: 6a5a641a6cc742e4fba45bfd2088ff24, type: 2}
+  - {fileID: 11400000, guid: cb59dca9227f93241b395a93644eeb38, type: 2}
+  - {fileID: 11400000, guid: 87076d93b3570cb4987a3e7bef2815a6, type: 2}
+  - {fileID: 11400000, guid: 56d590af3d0f2c2428f427ef710b2f9c, type: 2}
+  - {fileID: 11400000, guid: 55751d308b03ba844b31b8a6aada0fda, type: 2}

@@ -25,6 +25,7 @@ MonoBehaviour:
   type: 32
   color: {r: 0.7075472, g: 0.29162765, b: 0.19691172, a: 1}
   icon: {fileID: 21300000, guid: d2bb84a122569b44d83e242582bb78c2, type: 3}
+  rarity: 50
   developerNotes: 
   references:
     version: 2

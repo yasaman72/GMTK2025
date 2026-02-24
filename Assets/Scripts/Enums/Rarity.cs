@@ -1,5 +1,6 @@
 namespace Deviloop
 {
+    // the numbers are the chance
     public enum Rarity
     {
         Common = 50,

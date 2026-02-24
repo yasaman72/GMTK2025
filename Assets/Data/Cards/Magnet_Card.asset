@@ -26,8 +26,8 @@ MonoBehaviour:
   isInGame: 1
   rarity: 15
   materialType: 2
-  price: 30
-  overridePrice: 1
+  price: 20
+  overridePrice: 0
   cardIcon: {fileID: 21300000, guid: d61d13d1bcbe22c47a75bb326bf322c1, type: 3}
   spriteScale: {x: 0.4, y: 0.4}
   OnSelectColor: {r: 0.8509804, g: 1, b: 0.49019608, a: 1}

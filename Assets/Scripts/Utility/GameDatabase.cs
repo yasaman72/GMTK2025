@@ -1,4 +1,3 @@
-using Deviloop;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,5 +10,6 @@ namespace Deviloop
         public List<Relic> relics;
         public List<Material> materials;
         public List<BaseCard> cards;
+        public List<RarityConfig> rarityConfigs;
     }
 }

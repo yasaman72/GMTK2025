@@ -9,6 +9,7 @@ public class DeckViewItem : MonoBehaviour, IPoolable
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _countText;
+    [SerializeField] private RarityInterface _rarityInterface;
     [Header("Shop")]
     [SerializeField] private GameObject _priceParent;
     [SerializeField] private TextMeshProUGUI _priceText;
@@ -47,6 +48,7 @@ public class DeckViewItem : MonoBehaviour, IPoolable
             }
         }
 
+        _rarityInterface.SetVisuals(card.rarity);
         _priceParent.SetActive(true);
         _priceText.text = card.price.ToString();
     }

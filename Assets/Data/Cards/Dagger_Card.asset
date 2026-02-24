@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Deviloop::Deviloop.BaseCard
   GUID: afc25e026ff620f4db9e2db9c46677c1
   shouldLog: 0
+  activationOrder: 10
   _cardEffects:
   - rid: 4472579520941785469
+  _onLassoEffects: []
   _animationType:
   - rid: 4472579520941785470
   - rid: 4472579520941785543
@@ -26,7 +28,7 @@ MonoBehaviour:
   isInGame: 1
   rarity: 50
   materialType: 2
-  price: 20
+  price: 10
   overridePrice: 0
   cardIcon: {fileID: 21300000, guid: 854c0fd59787b124ba003ffdabdcf06e, type: 3}
   spriteScale: {x: 0.5, y: 0.5}

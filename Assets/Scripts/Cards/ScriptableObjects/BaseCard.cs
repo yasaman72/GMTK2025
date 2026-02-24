@@ -170,14 +170,16 @@ namespace Deviloop
 
             if (overridePrice) return;
 
-            price = rarity switch
+            if (GameDataBaseManager.GameDatabase == null) return;
+
+            foreach (var config in GameDataBaseManager.GameDatabase.rarityConfigs)
             {
-                Rarity.Common => Mathf.Max(20, price),
-                Rarity.Uncommon => Mathf.Max(30, price),
-                Rarity.Rare => Mathf.Max(40, price),
-                Rarity.Legendary => Mathf.Max(50, price),
-                _ => price,
-            };
+                if (config.rarity == rarity)
+                {
+                    price = config.basePrice;
+                    break;
+                }
+            }
         }
 #endif
     }

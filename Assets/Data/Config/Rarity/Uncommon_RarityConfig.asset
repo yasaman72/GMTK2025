@@ -9,24 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc883bf3a3c3ea34882cb53c276ab380, type: 3}
-  m_Name: Explosive
-  m_EditorClassIdentifier: Deviloop::Deviloop.Material
-  materialName:
+  m_Script: {fileID: 11500000, guid: 4dccee81db9223349845db76dd141453, type: 3}
+  m_Name: Uncommon_RarityConfig
+  m_EditorClassIdentifier: Deviloop::Deviloop.RarityConfig
+  rarity: 30
+  rarityName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
     m_TableEntryReference:
-      m_KeyId: 9200060903424
+      m_KeyId: 21453101497888768
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  translatedName: explosive
-  type: 128
-  color: {r: 0.6792453, g: 0.36247605, b: 0.16340333, a: 1}
-  icon: {fileID: 21300000, guid: 34c7c148d1216f549b102dfc1ccb95e4, type: 3}
-  rarity: 30
-  developerNotes: 
+  color: {r: 0.3479886, g: 0.46950147, b: 0.6415094, a: 1}
+  basePrice: 15
   references:
     version: 2
     RefIds: []

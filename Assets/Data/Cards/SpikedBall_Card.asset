@@ -17,6 +17,7 @@ MonoBehaviour:
   activationOrder: 10
   _cardEffects:
   - rid: 4472579520941785483
+  _onLassoEffects: []
   _animationType:
   - rid: 4472579520941785482
   - rid: 4472579520941785540
@@ -28,7 +29,7 @@ MonoBehaviour:
   isInGame: 1
   rarity: 15
   materialType: 32
-  price: 60
+  price: 20
   overridePrice: 0
   cardIcon: {fileID: 21300000, guid: 6058c6b4be8fc494ca31f6aab8634f61, type: 3}
   spriteScale: {x: 0.5, y: 0.5}
