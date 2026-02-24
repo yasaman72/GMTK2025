@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
-using static UnityEngine.GraphicsBuffer;
 
 namespace Deviloop
 {
