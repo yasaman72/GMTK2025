@@ -183,7 +183,7 @@ namespace Deviloop
 
         private async Task ThrowCardsSequence()
         {
-            using var ss = new DisposableLockUIInput(HUDRaycaster);
+            //using var ss = new DisposableLockUIInput(HUDRaycaster);
 
             throwButton.gameObject.SetActive(false);
 
