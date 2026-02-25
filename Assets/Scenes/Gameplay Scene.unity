@@ -6068,6 +6068,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1912243462227331284, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2550312267400875052, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6672,7 +6676,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7868355859670123822, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+    - {fileID: 351136051001159730, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6697,6 +6703,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 161a6224a46a2f24c81976532540caca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3915370811910431695 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6646657083831193686, guid: 643d49f51b28a7f46a01a6ed64a19b23, type: 3}
+  m_PrefabInstance: {fileID: 3915370811910431692}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4019621324865817169
@@ -6939,9 +6956,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 405607435}
     - target: {fileID: 8840379169227006985, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
+      propertyPath: HUDRaycaster
+      value: 
+      objectReference: {fileID: 3915370811910431695}
+    - target: {fileID: 8840379169227006985, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
       propertyPath: deckCountText
       value: 
       objectReference: {fileID: 2059575341}
+    - target: {fileID: 8840379169227006985, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
+      propertyPath: mainCanvasRaycaster
+      value: 
+      objectReference: {fileID: 3915370811910431695}
     - target: {fileID: 8840379169227006985, guid: 10c80ebf7fbfe6841ba856e00a1a7067, type: 3}
       propertyPath: discardDeckCountText
       value: 

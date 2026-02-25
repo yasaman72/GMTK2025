@@ -20,6 +20,7 @@ namespace Deviloop
 
         public override void Close()
         {
+            GenericInputBinder.IsGameplayInputBlocked = false;
             gameObject.SetActive(false);
             UIViewsManager.Instance.ClosePage();
         }

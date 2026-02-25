@@ -6,6 +6,8 @@ namespace Deviloop
     {
         public override void Open()
         {
+            GenericInputBinder.IsGameplayInputBlocked = true;
+
             Time.timeScale = 0f;
             gameObject.SetActive(true);
         }

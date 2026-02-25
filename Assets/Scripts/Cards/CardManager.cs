@@ -1,4 +1,5 @@
 ﻿using Deviloop.ScriptableObjects;
+using Deviloop.Utils.IDisposableUtils;
 using FMODUnity;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,7 @@ namespace Deviloop
         public TextMeshProUGUI discardDeckCountText;
         public Transform deckDisplayParent;
         public float enemyTurnDuration = 2f;
+        public GraphicRaycaster HUDRaycaster;
 
         // Runtime variables
         public List<CardPrefab> thrownCards = new();
@@ -156,8 +158,8 @@ namespace Deviloop
 
         private void HandleTurnChanged(TurnManager.ETurnMode turnMode)
         {
-            if (turnMode == TurnManager.ETurnMode.Player && 
-                !Player.PlayerCombatCharacter.IsDead() && 
+            if (turnMode == TurnManager.ETurnMode.Player &&
+                !Player.PlayerCombatCharacter.IsDead() &&
                 CombatManager.Instance.IsAnyEnemyAlive())
             {
                 throwButton.gameObject.SetActive(true);
@@ -181,6 +183,8 @@ namespace Deviloop
 
         private async Task ThrowCardsSequence()
         {
+            using var ss = new DisposableLockUIInput(HUDRaycaster);
+
             throwButton.gameObject.SetActive(false);
 
             List<BaseCard> cardsToThrow = SelectCardsToThrow();
