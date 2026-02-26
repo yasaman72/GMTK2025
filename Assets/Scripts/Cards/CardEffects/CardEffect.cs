@@ -97,4 +97,17 @@ namespace Deviloop
             player.AddShield(shieldAmount);
         }
     }
+
+    [AddTypeMenu("RemoveComponent")]
+    [System.Serializable]
+    public class RemoveComponentEffect : CardEffect
+    {
+        public override void Apply(CombatCharacter target, CardPrefab cardPrefab)
+        {
+            foreach (Transform child in cardPrefab.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
 }

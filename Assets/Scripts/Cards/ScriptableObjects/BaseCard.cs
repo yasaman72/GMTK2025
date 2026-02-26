@@ -16,9 +16,10 @@ namespace Deviloop
         [Header("Effects")]
         [SerializeField, SerializeReference, SubclassSelector]
         protected List<CardEffect> _cardEffects;
-        [Header("Effects")]
         [SerializeField, SerializeReference, SubclassSelector]
-        protected List<CardOnLassoEffect> _onLassoEffects;
+        protected List<CardEffect> _onLassoEffects;
+        [SerializeField, SerializeReference, SubclassSelector]
+        protected List<CardEffect> _onDropEffects;
         [Tooltip("will be applied in order")]
         [SerializeField, SerializeReference, SubclassSelector]
         protected CardAnimationType[] _animationType;
@@ -66,29 +67,13 @@ namespace Deviloop
             instance.transform.localPosition = Vector3.zero;
         }
 
-        public void OnLassoed(CardPrefab cardPrefab)
-        {
-            foreach (var effect in _onLassoEffects)
-            {
-                effect.Apply(cardPrefab);
-            }
-        }
 
         // Abstract method that each card type must implement
         public async Task UseCard(Action callback, CardPrefab cardPrefab)
         {
-            CombatCharacter enemy = null;
+            CombatCharacter enemy = GetTargetEnemy();
 
-            if (TargetRandom)
-            {
-                enemy = CombatManager.Instance.GetRandomEnemy();
-            }
-            else
-            {
-                enemy = CombatTargetSelection.CurrentTarget;
-            }
-
-            if (enemy == null || enemy.IsDead())
+            if (enemy == null)
             {
                 callback?.Invoke();
                 return;
@@ -108,7 +93,7 @@ namespace Deviloop
                 }
             }
 
-            ApplyEffects(enemy, cardPrefab);
+            ApplyOnGrabEffects(enemy, cardPrefab);
             callback?.Invoke();
 
             // TODO: a better architecture to remove the consumables
@@ -133,18 +118,61 @@ namespace Deviloop
             }
         }
 
-        protected void ApplyEffects(CombatCharacter target, CardPrefab cardPrefab)
+        protected void ApplyOnGrabEffects(CombatCharacter target, CardPrefab cardPrefab)
         {
             foreach (var effect in _cardEffects)
             {
                 effect.Apply(target, cardPrefab);
             }
         }
+
+        public void ApplyOnLassoeEffects(CardPrefab cardPrefab)
+        {
+            CombatCharacter target = GetTargetEnemy();
+            foreach (var effect in _onLassoEffects)
+            {
+                effect.Apply(target, cardPrefab);
+            }
+        }
+
+        public void ApplyOnDropEffects(CardPrefab cardPrefab)
+        {
+            CombatCharacter target = GetTargetEnemy();
+
+            foreach (var effect in _onDropEffects)
+            {
+                effect.Apply(target, cardPrefab);
+            }
+        }
+
+        private CombatCharacter GetTargetEnemy()
+        {
+            CombatCharacter enemy = null;
+
+            if (TargetRandom)
+            {
+                enemy = CombatManager.Instance.GetRandomEnemy();
+            }
+            else
+            {
+                enemy = CombatTargetSelection.CurrentTarget;
+            }
+
+            if (enemy.IsDead())
+            {
+                return null;
+            }
+
+            return enemy;
+        }
+
         protected void OnEnable()
         {
             DamagePlayer damagePlayerEffect = (DamagePlayer)_cardEffects.Find(e => e is DamagePlayer);
             DamageEnemyCardEffect damagingEffect = (DamageEnemyCardEffect)_cardEffects.Find(e => e is DamageEnemyCardEffect);
-            HealPlayerEffect healEffect = (HealPlayerEffect)_cardEffects.Find(e => e is HealPlayerEffect);
+            HealPlayerEffect healEffect = (HealPlayerEffect)_cardEffects.Find(e => e is HealPlayerEffect) ?? 
+                                          (HealPlayerEffect)_onDropEffects.Find(e => e is HealPlayerEffect) ??
+                                          (HealPlayerEffect)_onLassoEffects.Find(e => e is HealPlayerEffect);
             ShieldPlayerEffect shieldEffect = (ShieldPlayerEffect)_cardEffects.Find(e => e is ShieldPlayerEffect);
             List<AddCharacterEffect> addEffects = _cardEffects
                 .FindAll(e => e is AddCharacterEffect)

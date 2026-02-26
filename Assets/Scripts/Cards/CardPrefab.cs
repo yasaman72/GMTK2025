@@ -55,7 +55,7 @@ namespace Deviloop
 
             if (cardData != null)
             {
-                cardData.OnLassoed(this);
+                cardData.ApplyOnLassoeEffects(this);
             }
 
             // Visual feedback
@@ -100,6 +100,8 @@ namespace Deviloop
             //{
             //    PlayerComboManager.OnPlayerComboBreak?.Invoke();
             //}
+
+            cardData.ApplyOnDropEffects(this);
 
             PoolManager.Instance.GetPool<CardPrefab>(this).ReturnToPool(this);
         }

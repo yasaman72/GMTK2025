@@ -285,6 +285,22 @@ MonoBehaviour:
     m_Key: Rarity/Uncommon
     m_Metadata:
       m_Items: []
+  - m_Id: 22234706541850624
+    m_Key: card/title/Cigar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22234741488791552
+    m_Key: card/description/Cigar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22235225641496576
+    m_Key: material/vegetation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22235676936024064
+    m_Key: material/paper
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

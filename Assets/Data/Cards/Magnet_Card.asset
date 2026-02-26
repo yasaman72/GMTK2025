@@ -17,7 +17,8 @@ MonoBehaviour:
   activationOrder: 10
   _cardEffects: []
   _onLassoEffects:
-  - rid: 4472579641136906378
+  - rid: 4472579712933691491
+  _onDropEffects: []
   _animationType: []
   _extentionPrefab: {fileID: 8463951749944623439, guid: bd0b8c15ba0a07b40abd38fac1680b52, type: 3}
   TargetRandom: 0
@@ -60,6 +61,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4472579641136906378
+    - rid: 4472579712933691491
       type: {class: RemoveComponentEffect, ns: Deviloop, asm: Deviloop}
       data: 

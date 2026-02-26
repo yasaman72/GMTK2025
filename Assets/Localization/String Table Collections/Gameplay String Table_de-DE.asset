@@ -327,6 +327,24 @@ MonoBehaviour:
     m_Localized: Uncommon
     m_Metadata:
       m_Items: []
+  - m_Id: 22234706541850624
+    m_Localized: Cigarette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22234741488791552
+    m_Localized: deals {playerDamage} damage to you if grabbed. Heals you {heal}
+      if dropped.
+    m_Metadata:
+      m_Items:
+      - rid: 5144960777497608279
+  - m_Id: 22235225641496576
+    m_Localized: vegetation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22235676936024064
+    m_Localized: paper
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -365,3 +383,4 @@ MonoBehaviour:
         - id: 19181445249282048
         - id: 19275401324703744
         - id: 19274707100282880
+        - id: 22234741488791552
