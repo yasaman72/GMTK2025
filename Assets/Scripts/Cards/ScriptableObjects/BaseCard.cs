@@ -166,6 +166,7 @@ namespace Deviloop
             return enemy;
         }
 
+        [ContextMenu("update smart localized texts")]
         protected void OnEnable()
         {
             DamagePlayer damagePlayerEffect = (DamagePlayer)_cardEffects.Find(e => e is DamagePlayer);

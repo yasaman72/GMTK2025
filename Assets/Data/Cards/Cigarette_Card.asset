@@ -96,4 +96,4 @@ MonoBehaviour:
     - rid: 4472579712933691492
       type: {class: HealPlayerEffect, ns: Deviloop, asm: Deviloop}
       data:
-        healAmount: 2
+        healAmount: 1
