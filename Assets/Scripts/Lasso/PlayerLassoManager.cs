@@ -38,7 +38,7 @@ public class PlayerLassoManager : MonoBehaviour
     [SerializeField] private Transform _cardsResolvePosition;
     [SerializeField] private float _cardsResolveDistance;
     [SerializeField] private ModifiableFloat _flySpeed = new ModifiableFloat(30f, false);
-    [SerializeField] private ModifiableFloat _rotateDuration = new ModifiableFloat(100);
+    [SerializeField] private ModifiableFloat _rotateDuration = new ModifiableFloat(.5f);
     [SerializeField] private ModifiableFloat _waitBeforeApply = new ModifiableFloat(1.5f);
     [Space]
     [SerializeField] private float _slowMotionTimeScale = 0.2f;

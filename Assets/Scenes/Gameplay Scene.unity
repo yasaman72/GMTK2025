@@ -2024,6 +2024,14 @@ PrefabInstance:
       propertyPath: _flySpeed.baseValue
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _rotateSpeed.baseValue
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664502192828920617, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
+      propertyPath: _rotateDuration.baseValue
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5275249678738002183, guid: f217c3de7693b184f8e16eedce3ef9d6, type: 3}
       propertyPath: m_Color.b
       value: 1
