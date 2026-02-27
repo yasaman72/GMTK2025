@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc883bf3a3c3ea34882cb53c276ab380, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b8f50f302d8034eabf887f5ca07440, type: 3}
   m_Name: Metal
-  m_EditorClassIdentifier: Deviloop::Deviloop.Material
+  m_EditorClassIdentifier: Deviloop::Deviloop.MaterialData
   materialName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -23,7 +23,7 @@ MonoBehaviour:
     m_LocalVariables: []
   translatedName: metal
   type: 2
-  color: {r: 0.6320754, g: 0.51682943, b: 0.43231574, a: 1}
+  color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   icon: {fileID: 21300000, guid: e6f1ccdb0f4b6e24eb7a2fe150464c01, type: 3}
   rarity: 50
   developerNotes: 

@@ -8,7 +8,7 @@ namespace Deviloop
     {
         // TODO: limit the write access to this class only to GameDatabaseManager
         public List<Relic> relics;
-        public List<Material> materials;
+        public List<MaterialData> materials;
         public List<BaseCard> cards;
         public List<RarityConfig> rarityConfigs;
     }

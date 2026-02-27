@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc883bf3a3c3ea34882cb53c276ab380, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b8f50f302d8034eabf887f5ca07440, type: 3}
   m_Name: Paper
-  m_EditorClassIdentifier: Deviloop::Deviloop.Material
+  m_EditorClassIdentifier: Deviloop::Deviloop.MaterialData
   materialName:
     m_TableReference:
       m_TableCollectionName: GUID:b9ce7a0ae83848d49ba09c791e109edf
@@ -23,7 +23,7 @@ MonoBehaviour:
     m_LocalVariables: []
   translatedName: paper
   type: 512
-  color: {r: 0.68293875, g: 0.9716981, b: 0.9446626, a: 1}
+  color: {r: 0.8350907, g: 0.8490566, b: 0.748932, a: 1}
   icon: {fileID: 21300000, guid: 79aef50183e51df4aba01e7832a1f4c3, type: 3}
   rarity: 30
   developerNotes: 

@@ -1,79 +1,81 @@
-using Deviloop;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DeckViewItem : MonoBehaviour, IPoolable
+namespace Deviloop
 {
-    [SerializeField] private Image _icon;
-    [SerializeField] private TextMeshProUGUI _descriptionText;
-    [SerializeField] private TextMeshProUGUI _nameText;
-    [SerializeField] private TextMeshProUGUI _countText;
-    [SerializeField] private RarityInterface _rarityInterface;
-    [Header("Shop")]
-    [SerializeField] private GameObject _priceParent;
-    [SerializeField] private TextMeshProUGUI _priceText;
-    [SerializeField] private Button _button;
-    [Header("Materials")]
-    [SerializeField] private GameObject _materialIcon;
-    [SerializeField] private Transform _materialsParent;
-
-    public void OnSpawned()
+    public class DeckViewItem : MonoBehaviour, IPoolable
     {
-    }
+        [SerializeField] private Image _icon;
+        [SerializeField] private TextMeshProUGUI _descriptionText;
+        [SerializeField] private TextMeshProUGUI _nameText;
+        [SerializeField] private TextMeshProUGUI _countText;
+        [SerializeField] private RarityInterface _rarityInterface;
+        [Header("Shop")]
+        [SerializeField] private GameObject _priceParent;
+        [SerializeField] private TextMeshProUGUI _priceText;
+        [SerializeField] private Button _button;
+        [Header("Materials")]
+        [SerializeField] private GameObject _materialIcon;
+        [SerializeField] private Transform _materialsParent;
 
-    public void OnDespawned()
-    {
-        _button.onClick.RemoveAllListeners();
-    }
-    public void Setup(BaseCard card)
-    {
-        _nameText.text = card.cardName.GetLocalizedString();
-        _descriptionText.text = card.description.GetLocalizedString();
-        _icon.sprite = card.cardIcon;
-
-        foreach (Transform child in _materialsParent)
+        public void OnSpawned()
         {
-            Destroy(child.gameObject);
         }
 
-        // Setup material icon
-        foreach (Deviloop.Material material in GameDataBaseManager.GameDatabase.materials)
+        public void OnDespawned()
         {
-            if (material.CompareMaterials(card.materialType))
+            _button.onClick.RemoveAllListeners();
+        }
+        public void Setup(BaseCard card)
+        {
+            _nameText.text = card.cardName.GetLocalizedString();
+            _descriptionText.text = card.description.GetLocalizedString();
+            _icon.sprite = card.cardIcon;
+
+            foreach (Transform child in _materialsParent)
             {
-                GameObject materialObject = Instantiate(_materialIcon, _materialsParent);
-                MaterialIcon materialIcon = materialObject.GetComponent<MaterialIcon>();
-                materialIcon.Setup(material);
+                Destroy(child.gameObject);
             }
+
+            // Setup material icon
+            foreach (MaterialData material in GameDataBaseManager.GameDatabase.materials)
+            {
+                if (material.CompareMaterials(card.materialType))
+                {
+                    GameObject materialObject = Instantiate(_materialIcon, _materialsParent);
+                    MaterialIcon materialIcon = materialObject.GetComponent<MaterialIcon>();
+                    materialIcon.Setup(material);
+                }
+            }
+
+            _rarityInterface.SetVisuals(card.rarity);
+            _priceParent.SetActive(true);
+            _priceText.text = card.price.ToString();
         }
 
-        _rarityInterface.SetVisuals(card.rarity);
-        _priceParent.SetActive(true);
-        _priceText.text = card.price.ToString();
-    }
+        public void Setup(int price)
+        {
+            _priceText.text = price.ToString();
+            Activate();
+        }
 
-    public void Setup(int price)
-    {
-        _priceText.text = price.ToString();
-        Activate();
-    }
+        public void Deactivate()
+        {
+            _button.onClick.RemoveAllListeners();
+            _descriptionText.text = "SOLD!";
+        }
 
-    public void Deactivate()
-    {
-        _button.onClick.RemoveAllListeners();
-        _descriptionText.text = "SOLD!";
-    }
+        public void Activate()
+        {
+            _button.interactable = true;
+            _priceParent.SetActive(true);
+            _descriptionText.text = "";
+        }
 
-    public void Activate()
-    {
-        _button.interactable = true;
-        _priceParent.SetActive(true);
-        _descriptionText.text = "";
-    }
-
-    public void DisablePrice()
-    {
-        _priceParent.SetActive(false);
+        public void DisablePrice()
+        {
+            _priceParent.SetActive(false);
+        }
     }
 }

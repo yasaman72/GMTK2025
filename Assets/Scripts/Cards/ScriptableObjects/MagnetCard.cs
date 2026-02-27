@@ -5,7 +5,7 @@ namespace Deviloop
     public class MagnetCard : MonoBehaviour
     {
         [SerializeField] private BaseCard magentCard;
-        [SerializeField] private Material material;
+        [SerializeField] private MaterialData material;
         [SerializeField] private float attractionForce = 15f;
         [SerializeField] private float attractionRadius = 5f;
         [SerializeField] private float holdDistance = 1.5f;

@@ -41,12 +41,12 @@ namespace Deviloop
                 return;
             }
 
-            database.materials = new List<Material>();
+            database.materials = new List<MaterialData>();
             database.cards = new List<BaseCard>();
             database.relics = new List<Relic>();
             database.rarityConfigs = new List<RarityConfig>();
 
-            var materialsGuids = AssetDatabase.FindAssets("t:Material", new[] { "Assets/Data/Materials" });
+            var materialsGuids = AssetDatabase.FindAssets("t:MaterialData", new[] { "Assets/Data/Materials" });
             var itemsGuids = AssetDatabase.FindAssets("t:BaseCard", new[] { "Assets/Data/Cards" });
             var relicsGuids = AssetDatabase.FindAssets("t:Relic", new[] { "Assets/Data/Relics" });
             var rarityGuids = AssetDatabase.FindAssets("t:RarityConfig", new[] { "Assets/Data/config/Rarity" });
@@ -54,7 +54,7 @@ namespace Deviloop
             foreach (var guid in materialsGuids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
-                var asset = AssetDatabase.LoadAssetAtPath<Material>(path);
+                var asset = AssetDatabase.LoadAssetAtPath<MaterialData>(path);
                 if (asset != null)
                     database.materials.Add(asset);
             }

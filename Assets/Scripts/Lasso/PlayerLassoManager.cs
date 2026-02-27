@@ -1,4 +1,5 @@
 using Deviloop;
+using Deviloop.Utils.IDisposableUtils;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -21,6 +22,8 @@ public class PlayerLassoManager : MonoBehaviour
 
     [SerializeField] private bool shouldLog = true;
     [SerializeField] private bool shouldPauseOnLoop = true;
+    [Header("components")]
+    [SerializeField] private AreaRenderer _areaRenderer;
     [Space]
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private ContactFilter2D _itemsFilter;
@@ -34,7 +37,8 @@ public class PlayerLassoManager : MonoBehaviour
     [Space]
     [SerializeField] private Transform _cardsResolvePosition;
     [SerializeField] private float _cardsResolveDistance;
-    [SerializeField] private ModifiableFloat _flySpeed = new ModifiableFloat(30f);
+    [SerializeField] private ModifiableFloat _flySpeed = new ModifiableFloat(30f, false);
+    [SerializeField] private ModifiableFloat _rotateDuration = new ModifiableFloat(100);
     [SerializeField] private ModifiableFloat _waitBeforeApply = new ModifiableFloat(1.5f);
     [Space]
     [SerializeField] private float _slowMotionTimeScale = 0.2f;
@@ -346,6 +350,23 @@ public class PlayerLassoManager : MonoBehaviour
             return;
         }
 
+        using var _ = new DisposableGeneric(() =>
+        {
+            try
+            {
+                _areaRenderer.RenderSpriteShape(loopPoints);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+            }
+        },
+        () =>
+        {
+            _areaRenderer.Clear();
+        });
+
+
         _hasAlreadyDrawn = true;
         _spellParticleSystem.Stop();
         ImmediateLassoClear(0.5f);
@@ -367,6 +388,8 @@ public class PlayerLassoManager : MonoBehaviour
 
         lassoedCards = ReorderGrabbedCard(lassoedCards);
 
+        await Awaitable.WaitForSecondsAsync(_waitBeforeApply.Value);
+
         await PutCardsInLineAsync(lassoedCards);
 
         foreach (var card in lassoedCards)
@@ -377,7 +400,8 @@ public class PlayerLassoManager : MonoBehaviour
                 await Task.Yield();
         }
 
-        UnityEngine.Object.Destroy(temp);
+        Destroy(temp);
+
         _isResolvingALoop = false;
         OnLoopClosed?.Invoke();
     }
@@ -400,11 +424,18 @@ public class PlayerLassoManager : MonoBehaviour
         {
             Vector3 targetPos = startPos + Vector3.right * (_cardsResolveDistance * i);
 
-            await originalCards[i].transform
+            var rotateTween = originalCards[i].transform
+                .DORotate(Vector3.zero, _rotateDuration.Value)
+                .SetEase(Ease.OutCubic)
+                .AsyncWaitForCompletion();
+
+            var moveTween = originalCards[i].transform
                 .DOMove(targetPos, _flySpeed.Value)
                 .SetSpeedBased()
                 .SetEase(Ease.OutCubic)
                 .AsyncWaitForCompletion();
+
+            await Task.WhenAll(rotateTween, moveTween);
         }
 
         await Awaitable.WaitForSecondsAsync(_waitBeforeApply.Value);

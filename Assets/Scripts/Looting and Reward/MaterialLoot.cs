@@ -5,7 +5,7 @@ namespace Deviloop
     [CreateAssetMenu(fileName = "MaterialLoot", menuName = "Scriptable Objects/Loots/LootType/Material")]
     public class MaterialLoot : NonCoinLootItem
     {
-        public Material materialType;
+        public MaterialData materialType;
 
         public override bool IsSameLoot(NonCoinLootItem other)
         {

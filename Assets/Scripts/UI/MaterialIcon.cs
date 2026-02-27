@@ -10,10 +10,10 @@ namespace Deviloop
         [SerializeField] private Image _image;
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TooltipTrigger _toolTipTrigger;
-        [ReadOnly, SerializeField] private Material _material;
+        [ReadOnly, SerializeField] private MaterialData _material;
 
 
-        public void Setup(Material material)
+        public void Setup(MaterialData material)
         {
             _material = material;
 

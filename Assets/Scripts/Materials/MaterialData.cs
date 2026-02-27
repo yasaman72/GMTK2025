@@ -4,7 +4,7 @@ using UnityEngine.Localization;
 namespace Deviloop
 {
     [CreateAssetMenu(fileName = "Material", menuName = "Scriptable Objects/Material")]
-    public class Material : ScriptableObject
+    public class MaterialData : ScriptableObject
     {
         public LocalizedString materialName;
         [HideInInspector] public string translatedName;
