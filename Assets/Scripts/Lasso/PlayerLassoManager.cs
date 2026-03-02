@@ -37,7 +37,7 @@ public class PlayerLassoManager : MonoBehaviour
     [Space]
     [SerializeField] private Transform _cardsResolvePosition;
     [SerializeField] private float _cardsResolveDistance;
-    [SerializeField] private ModifiableFloat _flySpeed = new ModifiableFloat(30f, false);
+    [SerializeField] private ModifiableFloat _flyDuration = new ModifiableFloat(1f);
     [SerializeField] private ModifiableFloat _rotateDuration = new ModifiableFloat(.5f);
     [SerializeField] private ModifiableFloat _waitBeforeApply = new ModifiableFloat(1.5f);
     [Space]
@@ -343,7 +343,7 @@ public class PlayerLassoManager : MonoBehaviour
                 MessageController.OnDisplayMessage?.Invoke($"Max allowed items is {maxedAllowedItems}. Try again!", 2);
 
             Time.timeScale = 1f;
-            UnityEngine.Object.Destroy(temp);
+            Destroy(temp);
 
             InvertLasso();
             _isResolvingALoop = false;
@@ -430,8 +430,7 @@ public class PlayerLassoManager : MonoBehaviour
                 .AsyncWaitForCompletion();
 
             var moveTween = originalCards[i].transform
-                .DOMove(targetPos, _flySpeed.Value)
-                .SetSpeedBased()
+                .DOMove(targetPos, _flyDuration.Value)
                 .SetEase(Ease.OutCubic)
                 .AsyncWaitForCompletion();
 

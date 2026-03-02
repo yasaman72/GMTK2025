@@ -158,7 +158,7 @@ namespace Deviloop
                 enemy = CombatTargetSelection.CurrentTarget;
             }
 
-            if (enemy.IsDead())
+            if (enemy == null || enemy.IsDead())
             {
                 return null;
             }
