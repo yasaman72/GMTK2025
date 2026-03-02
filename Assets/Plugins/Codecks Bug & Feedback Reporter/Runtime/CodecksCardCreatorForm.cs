@@ -40,7 +40,7 @@ namespace Codecks.Runtime
         /// </summary>
         public void ShowCodecksForm()
         {
-            GenericInputBinder.AreAllInputBlocked = true;
+            InputSettings.AreAllInputBlocked = true;
             cardCreator.StartCoroutine(ShowCodecksFormCoroutine());
         }
 
@@ -96,7 +96,7 @@ namespace Codecks.Runtime
         /// </summary>
         public void HideCodecksForm()
         {
-            GenericInputBinder.AreAllInputBlocked = false;
+            InputSettings.AreAllInputBlocked = false;
             queuedScreenshot = null;
             gameObject.SetActive(false);
             Destroy(screenshotTex);

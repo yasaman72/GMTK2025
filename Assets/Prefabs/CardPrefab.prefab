@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6799838227094638523}
+  - component: {fileID: 2433646272860243771}
   - component: {fileID: 4511104064061259222}
   - component: {fileID: 7123327090805414664}
-  - component: {fileID: 2433646272860243771}
   - component: {fileID: -1086724186209438731}
   - component: {fileID: 3720263682926236972}
+  - component: {fileID: 8205641545232628949}
   m_Layer: 3
   m_Name: CardPrefab
   m_TagString: ThrowableCard
@@ -36,6 +37,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2433646272860243771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009389148060104062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614d0f37557c4e0ab6aec17cc677ac98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardRenderer: {fileID: 4511104064061259222}
+  _tooltipTrigger: {fileID: 8205641545232628949}
+  _rb: {fileID: 7123327090805414664}
+  _collider: {fileID: 3720263682926236972}
+  _freezeColor: {r: 0.3160377, g: 0.9614362, b: 1, a: 0.6}
+  _onFreezeOutlineColor: {r: 0.32941177, g: 1, b: 0, a: 1}
+  isLassoed: 0
+  cardData: {fileID: 0}
 --- !u!212 &4511104064061259222
 SpriteRenderer:
   serializedVersion: 2
@@ -122,23 +143,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2433646272860243771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4009389148060104062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614d0f37557c4e0ab6aec17cc677ac98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardRenderer: {fileID: 4511104064061259222}
-  _rb: {fileID: 7123327090805414664}
-  _collider: {fileID: 3720263682926236972}
-  isLassoed: 0
-  cardData: {fileID: 0}
 --- !u!95 &-1086724186209438731
 Animator:
   serializedVersion: 7
@@ -276,3 +280,28 @@ PolygonCollider2D:
       - {x: 0.04, y: -0.089999996}
       - {x: 0.02, y: -0.11}
   m_UseDelaunayMesh: 1
+--- !u!114 &8205641545232628949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009389148060104062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae1128c4dfac44db776ac763e5402a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.TooltipTrigger
+  _shouldShowDuringLasso: 1
+  _tooltipText:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

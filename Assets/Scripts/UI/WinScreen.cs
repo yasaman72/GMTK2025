@@ -4,12 +4,14 @@ namespace Deviloop
 {
     public class WinScreen : UIView
     {
-        public override void Open()
+        public override bool Open()
         {
-            GenericInputBinder.IsGameplayInputBlocked = true;
+            InputSettings.IsGameplayInputBlocked = true;
 
             Time.timeScale = 0f;
             gameObject.SetActive(true);
+
+            return true;
         }
         public override void Close()
         {
@@ -20,7 +22,7 @@ namespace Deviloop
         public void OnResume()
         {
             Time.timeScale = 1f;
-            GenericInputBinder.IsGameplayInputBlocked = false;
+            InputSettings.IsGameplayInputBlocked = false;
 
             Close();
         }

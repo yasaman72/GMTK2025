@@ -48,9 +48,10 @@ public class ShopUI : UIView, IInitiatable
         OpenShopAction -= OnOpenShop;
     }
 
-    public override void Open()
+    public override bool Open()
     {
         gameObject.SetActive(true);
+        return true;
     }
 
     public override void Close()

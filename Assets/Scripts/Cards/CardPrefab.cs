@@ -1,14 +1,18 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Deviloop
 {
-    public class CardPrefab : MonoBehaviour, IPoolable
+    public class CardPrefab : MonoBehaviour, IPoolable, IPointerEnterHandler, IPointerExitHandler
     {
         [Header("Components")]
-        [SerializeField] private SpriteRenderer cardRenderer;
+        [SerializeField] private SpriteRenderer _cardRenderer;
+        [SerializeField] private TooltipTrigger _tooltipTrigger;
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private PolygonCollider2D _collider;
+        [SerializeField] private Color _freezeColor;
+        [SerializeField] private Color _onFreezeOutlineColor;
 
         [ReadOnly]
         public bool isLassoed = false;
@@ -23,11 +27,11 @@ namespace Deviloop
             _rb.bodyType = RigidbodyType2D.Dynamic;
             _rb.gravityScale = 1;
 
-            if (cardRenderer != null)
+            if (_cardRenderer != null)
             {
-                cardRenderer.color = Color.white;
-                cardRenderer.material.SetColor("_OutlineColor", Color.white);
-                cardRenderer.material.SetFloat("_OutlineWidth", 2);
+                _cardRenderer.color = Color.white;
+                _cardRenderer.material.SetColor("_OutlineColor", Color.white);
+                _cardRenderer.material.SetFloat("_OutlineWidth", 2);
             }
         }
 
@@ -42,11 +46,14 @@ namespace Deviloop
         public void InitializeCard(BaseCard card)
         {
             cardData = card;
-            cardRenderer.sprite = cardData.cardIcon;
+            _cardRenderer.sprite = cardData.cardIcon;
             _collider.CreateFromSprite(cardData.cardIcon);
             cardData.AddComponent(gameObject);
             transform.localScale = cardData.spriteScale;
             gameObject.name = cardData.name;
+
+            _tooltipTrigger.SetLocalizedString(card.description);
+            _tooltipTrigger.enabled = false;
         }
 
         public void OnLassoed()
@@ -59,9 +66,9 @@ namespace Deviloop
             }
 
             // Visual feedback
-            if (cardRenderer != null)
+            if (_cardRenderer != null)
             {
-                cardRenderer.color = cardData.OnSelectColor; // Show it's selected
+                _cardRenderer.color = cardData.OnSelectColor; // Show it's selected
             }
 
             // Stop physics
@@ -76,14 +83,14 @@ namespace Deviloop
             if (cardData != null)
             {
                 cardData.UseCard(CardActivationCallback, this);
-                cardRenderer.material.SetColor("_OutlineColor", Color.red);
-                cardRenderer.material.SetFloat("_OutlineWidth", 10);
+                _cardRenderer.material.SetColor("_OutlineColor", Color.red);
+                _cardRenderer.material.SetFloat("_OutlineWidth", 10);
             }
         }
 
         public void OnDropedForBeingExtra()
         {
-            cardRenderer.color = new Color(.5f, .5f, .5f, .5f);
+            _cardRenderer.color = new Color(.5f, .5f, .5f, .5f);
             transform.DOShakePosition(1f, 0.2f, 10, 90, false, true);
             transform.DOScale(Vector3.zero, 0.5f).SetDelay(1f).OnComplete(
                 () => PoolManager.Instance.GetPool<CardPrefab>(this).ReturnToPool(this));
@@ -104,6 +111,41 @@ namespace Deviloop
             cardData.ApplyOnDropEffects(this);
 
             PoolManager.Instance.GetPool<CardPrefab>(this).ReturnToPool(this);
+        }
+    
+        public void FreezeCard()
+        {
+            _cardRenderer.color = _freezeColor;
+            _tooltipTrigger.enabled = true;
+
+        }
+
+        public void UnfreezeCard()
+        {
+            _tooltipTrigger.enabled = false;
+
+            if (_cardRenderer != null)
+            {
+                _cardRenderer.color = Color.white;
+                _cardRenderer.material.SetColor("_OutlineColor", Color.white);
+                _cardRenderer.material.SetFloat("_OutlineWidth", 2);
+            }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (!CardFreezer.IsCardFrozen) return;
+
+            _cardRenderer.material.SetColor("_OutlineColor", _onFreezeOutlineColor);
+            _cardRenderer.material.SetFloat("_OutlineWidth", 10);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (!CardFreezer.IsCardFrozen) return;
+
+            _cardRenderer.material.SetColor("_OutlineColor", Color.white);
+            _cardRenderer.material.SetFloat("_OutlineWidth", 5);
         }
     }
 }

@@ -5,22 +5,25 @@ namespace Deviloop
 {
     public class PauseMenuManager : UIView
     {
-        public override void Open()
+        public override bool Open()
         {
+            if (InputSettings.AreAllInputBlocked) return false;
+
             if (gameObject.activeSelf)
             {
                 OnResume();
-                return;
+                return true;
             }
 
-            GenericInputBinder.IsGameplayInputBlocked = true;
+            InputSettings.IsGameplayInputBlocked = true;
             Time.timeScale = 0f;
             gameObject.SetActive(true);
+            return true;
         }
 
         public override void Close()
         {
-            GenericInputBinder.IsGameplayInputBlocked = false;
+            InputSettings.IsGameplayInputBlocked = false;
             gameObject.SetActive(false);
             UIViewsManager.Instance.ClosePage();
         }
@@ -28,7 +31,7 @@ namespace Deviloop
         public void OnResume()
         {
             Time.timeScale = 1f;
-            GenericInputBinder.IsGameplayInputBlocked = false;
+            InputSettings.IsGameplayInputBlocked = false;
 
             Close();
         }

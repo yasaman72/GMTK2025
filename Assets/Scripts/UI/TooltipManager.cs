@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,19 +29,21 @@ namespace Deviloop
             _tooltipRec = _tooltip.GetComponent<RectTransform>();
         }
 
-        public void ShowTooltipInPosition(string content, Vector2 position)
+        public void ShowTooltipInPosition(string content, Vector2 position, bool shouldShowDuringLasso)
         {
-            StartCoroutine(ShowTooltip(content, position));
+            StopAllCoroutines();
+            StartCoroutine(ShowTooltip(content, position, shouldShowDuringLasso));
         }
 
-        public void ShowTooltipUnderMouse(string content)
+        public void ShowTooltipUnderMouse(string content, bool shouldShowDuringLasso)
         {
-            StartCoroutine(ShowTooltip(content, Input.mousePosition));
+            StopAllCoroutines();
+            StartCoroutine(ShowTooltip(content, Input.mousePosition, shouldShowDuringLasso));
         }
 
-        private IEnumerator ShowTooltip(string content, Vector2 position)
+        private IEnumerator ShowTooltip(string content, Vector2 position, bool shouldShowDuringLasso)
         {
-            if (!PlayerLassoManager.HasAlreadyDrawn) yield break;
+            if (!shouldShowDuringLasso && !PlayerLassoManager.HasAlreadyDrawn) yield break;
 
             _tooltip.SetActive(true);
 

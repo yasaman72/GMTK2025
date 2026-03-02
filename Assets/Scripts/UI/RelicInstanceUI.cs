@@ -20,7 +20,7 @@ namespace Deviloop
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            TooltipManager.Instance.ShowTooltipUnderMouse(_relic.description.GetLocalizedString());
+            TooltipManager.Instance.ShowTooltipUnderMouse(_relic.description.GetLocalizedString(), true);
         }
 
         public void OnPointerExit(PointerEventData eventData)

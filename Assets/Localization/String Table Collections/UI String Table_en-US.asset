@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en-US
   m_SharedData: {fileID: 11400000, guid: 43d307f1defda77489296589d689e1f3, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 5637349002716381332
   m_TableData:
   - m_Id: 707971035136
     m_Localized: throw!
@@ -112,6 +113,17 @@ MonoBehaviour:
     m_Localized: Start Endless Mode
     m_Metadata:
       m_Items: []
+  - m_Id: 23556712302424064
+    m_Localized: hold {global.FreezeButton} to check items
+    m_Metadata:
+      m_Items:
+      - rid: 5637349002716381332
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5637349002716381332
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 23556712302424064

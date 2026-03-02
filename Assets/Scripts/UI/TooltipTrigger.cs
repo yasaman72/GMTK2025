@@ -1,6 +1,4 @@
-using System;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization;
@@ -9,6 +7,7 @@ namespace Deviloop
 {
     public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        [SerializeField] private bool _shouldShowDuringLasso = false;
         [SerializeField] private LocalizedString _tooltipText;
 
         private bool _isPointerOver;
@@ -50,7 +49,7 @@ namespace Deviloop
             RenewToken();
 
             TooltipManager.Instance.ShowTooltipUnderMouse(
-                _tooltipText.GetLocalizedString());
+                _tooltipText.GetLocalizedString(), _shouldShowDuringLasso);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -64,21 +63,7 @@ namespace Deviloop
             }
 
             RenewToken();
-            _ = HideAfterDelayAsync(_cts.Token);
-        }
-
-        private async Task HideAfterDelayAsync(CancellationToken token)
-        {
-            try
-            {
-                await Awaitable.WaitForSecondsAsync(0.1f, token);
-
-                if (token.IsCancellationRequested || _isPointerOver)
-                    return;
-
-                TooltipManager.Instance.HideTooltip();
-            }
-            catch (OperationCanceledException) { }
+            TooltipManager.Instance.HideTooltip();
         }
 
         private void RenewToken()

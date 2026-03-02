@@ -36,6 +36,11 @@ public class DeckView : MonoBehaviour
 
     private void onDeckOpen(CardDeck deck, Action<BaseCard> OnCardClick = null, bool showPrice = true)
     {
+        if (InputSettings.AreAllInputBlocked)
+        {
+            return;
+        }
+
         _deckTitle.text = "";
 
         Canvas.ForceUpdateCanvases();

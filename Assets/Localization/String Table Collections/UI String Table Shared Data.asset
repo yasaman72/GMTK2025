@@ -107,6 +107,10 @@ MonoBehaviour:
     m_Key: Menus/StartEndless
     m_Metadata:
       m_Items: []
+  - m_Id: 23556712302424064
+    m_Key: Hint/Freeze
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

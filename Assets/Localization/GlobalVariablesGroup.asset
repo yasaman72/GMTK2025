@@ -25,13 +25,16 @@ MonoBehaviour:
   - name: CurrentThrownItemsCount
     variable:
       rid: 686208056379572333
+  - name: FreezeButton
+    variable:
+      rid: 5637349002716381333
   references:
     version: 2
     RefIds:
     - rid: 686207956737327291
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 2
+        m_Value: 1
     - rid: 686207959008804954
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
@@ -43,4 +46,8 @@ MonoBehaviour:
     - rid: 686208056379572333
       type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
-        m_Value: 0
+        m_Value: 5
+    - rid: 5637349002716381333
+      type: {class: StringGlobalVariable, ns: UnityEngine.Localization.SmartFormat.GlobalVariables, asm: Unity.Localization}
+      data:
+        m_Value: '[Tab]'

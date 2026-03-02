@@ -30,8 +30,8 @@ namespace Deviloop
                 }
             }
 
-            _viewStack.Push(view);
-            view.Open();
+            if (view.Open())
+                _viewStack.Push(view);
 
             return view;
         }
@@ -49,13 +49,18 @@ namespace Deviloop
                 }
             }
 
-            _viewStack.Push(view);
-            view.Open();
+            if (view.Open())
+                _viewStack.Push(view);
         }
 
         public void ClosePage()
         {
             _viewStack.Pop();
+        }
+
+        public bool IsAnyOverviewOpen()
+        {
+            return _viewStack.Count > 0;
         }
     }
 }

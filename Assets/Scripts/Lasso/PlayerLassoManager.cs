@@ -129,7 +129,6 @@ public class PlayerLassoManager : MonoBehaviour
     {
         if (!GameStateManager.Instance.CanPlayerDrawLasso || _hasAlreadyDrawn)
         {
-            Time.timeScale = 1f;
             return;
         }
 
@@ -186,9 +185,14 @@ public class PlayerLassoManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            if (InputSettings.IsPointrerOverUI)
+            {
+                ImmediateLassoClear();
+                return;
+            }
+
             _startNewLine = false;
             Time.timeScale = 1f;
-
             StartCoroutine(InvertLasso());
         }
     }

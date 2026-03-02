@@ -125,7 +125,7 @@ namespace Deviloop
     {
         [SerializeField] private ModifiableFloat _rotateDuration = new ModifiableFloat(.5f);
 
-        [SerializeField] private int rounds = 5;
+        [SerializeField] private float rounds = 5;
 
         public override async Task Play(GameObject card, GameObject target = null)
         {

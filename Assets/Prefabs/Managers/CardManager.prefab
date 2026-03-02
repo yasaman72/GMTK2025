@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 2795149489267271710}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13, y: -8.1, z: 0}
+  m_LocalPosition: {x: -0.13, y: -9.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,7 +110,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.5140686, y: -1.5679078}
+  m_Offset: {x: -0.2238121, y: -1.5679078}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -120,7 +120,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 26.7034, y: 4.1358156}
+  m_Size: {x: 83.54754, y: 4.1358156}
   m_EdgeRadius: 0
 --- !u!1 &3771842613608920168
 GameObject:
@@ -132,6 +132,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1871688503937795850}
   - component: {fileID: 7025005772330031540}
+  - component: {fileID: 7289225607444020428}
+  - component: {fileID: 2116693146787820563}
+  - component: {fileID: 7603137315952821051}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -170,14 +173,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldLog: 0
   baseDeck: {fileID: 11400000, guid: 999cc3a33c6139845b6a017597e1a0f8, type: 2}
-  cardsToThrowPerTurn: 5
+  cardPrefab: {fileID: 2433646272860243771, guid: 5c064492220d22245a9c1f34b8d3eed3, type: 3}
+  _extraHandCards: {fileID: 0}
   throwOrigin: {fileID: 2660645805810739518}
   delayBetweenThrows: 0.2
   throwRange: {x: -5, y: 5}
-  throwForceRange: {x: 10, y: 12}
+  throwForceRange: {x: 12, y: 14}
   throwAngleRange: {x: 80, y: 100}
   torqueRange: {x: -5, y: 5}
-  comboCard: {fileID: 11400000, guid: 2e99b5feed481ef44b9051d4d690e253, type: 2}
   throwSound:
     Guid:
       Data1: 979551258
@@ -197,3 +200,92 @@ MonoBehaviour:
   discardDeckCountText: {fileID: 0}
   deckDisplayParent: {fileID: 0}
   enemyTurnDuration: 2
+  HUDRaycaster: {fileID: 0}
+  thrownCards: []
+--- !u!114 &7289225607444020428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771842613608920168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c61f22f09913d4f836c42e8a104d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.GenericInputBinder
+  _keyCode: 32
+  _isGameplay: 1
+  _action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7025005772330031540}
+        m_TargetAssemblyTypeName: Deviloop.CardManager, Deviloop
+        m_MethodName: OnThrowButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2116693146787820563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771842613608920168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceebae6992a03948938a0e073a97f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.CardFreezer
+  _playerLassoManager: {fileID: 0}
+  _cardManager: {fileID: 7025005772330031540}
+--- !u!114 &7603137315952821051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771842613608920168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff5c5269398b6e4888fa020701c985b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Deviloop::Deviloop.GenericInputHoldBinder
+  _keyCode: 9
+  _isGameplay: 1
+  _onHoldStartAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2116693146787820563}
+        m_TargetAssemblyTypeName: Deviloop.CardFreezer, Deviloop
+        m_MethodName: ToggleCardFreeze
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onReleaseStartAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2116693146787820563}
+        m_TargetAssemblyTypeName: Deviloop.CardFreezer, Deviloop
+        m_MethodName: ToggleCardFreeze
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

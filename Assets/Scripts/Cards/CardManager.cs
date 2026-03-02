@@ -1,5 +1,4 @@
 ﻿using Deviloop.ScriptableObjects;
-using Deviloop.Utils.IDisposableUtils;
 using FMODUnity;
 using System;
 using System.Collections.Generic;
@@ -78,7 +77,7 @@ namespace Deviloop
         // TODO: move all the global localized variables to another class
         private static IntVariable CombatRoundCounterVariable;
 
-        private ObjectPool<CardPrefab> cardsPool;
+        private ObjectPool<CardPrefab> _cardsPool;
 
         protected override void Awake()
         {
@@ -118,11 +117,11 @@ namespace Deviloop
         {
             try
             {
-                cardsPool = PoolManager.Instance.GetPool(cardPrefab);
+                _cardsPool = PoolManager.Instance.GetPool(cardPrefab);
             }
             catch (Exception)
             {
-                cardsPool = PoolManager.Instance.CreatePool(cardPrefab, 20);
+                _cardsPool = PoolManager.Instance.CreatePool(cardPrefab, 20);
             }
 
             // TODO: review CardDeck class
@@ -187,17 +186,26 @@ namespace Deviloop
 
             throwButton.gameObject.SetActive(false);
 
-            List<BaseCard> cardsToThrow = SelectCardsToThrow();
+            List<BaseCard> _cardsToThrow = new List<BaseCard>();
+            _cardsToThrow = SelectCardsToThrow();
+            _cardsToThrow = ShuffleCards(_cardsToThrow);
 
             AudioManager.PlayAudioOneShot?.Invoke(throwStartSound);
 
-            cardsToThrow = ShuffleCards(cardsToThrow);
-
             GameStateManager.Instance.CanPlayerDrawLasso = true;
             // Throw cards with slight delays
-            for (int i = 0; i < cardsToThrow.Count; i++)
+            for (int i = 0; i < _cardsToThrow.Count; i++)
             {
-                ThrowCard(cardsToThrow[i]);
+                if (CardFreezer.IsCardFrozen)
+                {
+                    // Wait until cards are unfrozen before continuing to throw the rest
+                    while (CardFreezer.IsCardFrozen)
+                    {
+                        await Awaitable.WaitForSecondsAsync(0.1f);
+                    }
+                }
+
+                ThrowCard(_cardsToThrow[i]);
                 AudioManager.PlayAudioOneShot?.Invoke(throwSound);
                 await Awaitable.WaitForSecondsAsync(ShouldThrowAtOnce ? 0 : delayBetweenThrows);
             }
@@ -283,7 +291,7 @@ namespace Deviloop
         void ThrowCard(BaseCard card)
         {
             Vector2 origin = (Vector2)throwOrigin.position + (Vector2.right * Random.Range(throwRange.x, throwRange.y));
-            CardPrefab thrownCard = cardsPool.Get();
+            CardPrefab thrownCard = _cardsPool.Get();
             thrownCard.InitializeCard(card);
             thrownCard.transform.position = origin;
             thrownCard.transform.rotation = Quaternion.identity;
@@ -310,7 +318,7 @@ namespace Deviloop
             foreach (var card in thrownCards)
             {
                 if (card != null && card.gameObject.activeInHierarchy)
-                    cardsPool.ReturnToPool(card);
+                    _cardsPool.ReturnToPool(card);
             }
             thrownCards.Clear();
             if (_extraHandCards != null)
@@ -354,6 +362,24 @@ namespace Deviloop
 
             if (_drawDeck.GetTotalCardCount() <= 0)
                 ReturnCardsToDrawDeck();
+        }
+
+        public void FreezeCards()
+        {
+            foreach (CardPrefab card in thrownCards)
+            {
+                if (card != null)
+                    card.FreezeCard();
+            }
+        }
+
+        public void UnfreezeCards()
+        {
+            foreach (CardPrefab card in thrownCards)
+            {
+                if (card != null)
+                    card.UnfreezeCard();
+            }
         }
     }
 }
