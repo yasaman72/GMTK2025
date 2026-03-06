@@ -20,15 +20,5 @@ namespace Deviloop
         {
 
         }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (materialType == null) return;
-
-            icon = materialType.icon;
-            itemName = materialType.materialName.GetLocalizedString();
-        }
-#endif
     }
 }

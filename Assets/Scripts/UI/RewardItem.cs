@@ -43,10 +43,10 @@ public class RewardItem : MonoBehaviour, IPoolable
         else if (lootSetData.item is MaterialLoot materialLoot)
         {
             var material = materialLoot.materialType;
-            _title.text = material.translatedName;
+            _title.text = material.materialName.GetLocalizedString();
             _description.text = "";
             _count.text = lootSetData.Count.ToString();
-            _icon.sprite = materialLoot.icon;
+            _icon.sprite = materialLoot.materialType.icon;
             _background.color = _itemRewardsBackground;
             _rarityInterface.SetVisuals(materialLoot.materialType.rarity);
         }
@@ -64,8 +64,9 @@ public class RewardItem : MonoBehaviour, IPoolable
         }
         else
         {
-            _title.text = lootSetData.item.itemName;
-            _description.text = lootSetData.item.description;
+            // TODO: this happens only for coin loot, but we should have a better architecture for this
+            _title.text = "";
+            _description.text = "";
             _count.text = lootSetData.Count.ToString();
             _icon.sprite = lootSetData.item.icon;
             _rarityInterface.gameObject.SetActive(false);

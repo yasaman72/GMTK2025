@@ -29,19 +29,22 @@ namespace Deviloop
 
         private bool CanFreeze()
         {
+
             if (PlayerLassoManager.HasAlreadyDrawn) return false;
             return true;
         }
 
-        private void Freeze()
+        public void Freeze()
         {
+            if (CanFreeze() == false) return;
+
             Time.timeScale = 0f;
 
             GameStateManager.Instance.CanPlayerDrawLasso = false;
             _cardManager.FreezeCards();
         }
 
-        private void Unfreeze()
+        public void Unfreeze()
         {
             Time.timeScale = 1f;
 

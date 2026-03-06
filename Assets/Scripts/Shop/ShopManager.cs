@@ -22,6 +22,7 @@ namespace Deviloop
         public void Deactivate()
         {
             OnShopStartEvent -= StartShop;
+            PlayerInventory.OnNotEnoughGold -= OnNotEnoughGold;
         }
 
         private void OnEnable()

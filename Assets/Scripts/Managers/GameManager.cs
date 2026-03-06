@@ -23,6 +23,8 @@ namespace Deviloop
 
         private void OnDisable()
         {
+            CallDeactivates();
+
             SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
@@ -34,6 +36,11 @@ namespace Deviloop
         }
 
         private void OnSceneUnloaded(Scene scene)
+        {
+            CallDeactivates();
+        }
+
+        private void CallDeactivates()
         {
             foreach (IInitiatable initable in _initiatables)
             {

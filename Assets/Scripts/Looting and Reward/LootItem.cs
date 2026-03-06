@@ -1,4 +1,3 @@
-using Deviloop;
 using FMODUnity;
 using UnityEngine;
 
@@ -6,17 +5,12 @@ namespace Deviloop
 {
     public abstract class LootItem : ScriptableObject
     {
-        // TODO: replace with localized string
-        public string itemName;
-        [TextArea(3, 10)]
-        public string description;
         public Sprite icon;
         public EventReference OnLootSound;
 
         [DeveloperNotes, SerializeField]
         private string developerNotes;
     }
-
 
     // TODO: come up with a better name
     public abstract class NonCoinLootItem : LootItem

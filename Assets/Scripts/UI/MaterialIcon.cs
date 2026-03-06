@@ -26,7 +26,7 @@ namespace Deviloop
                 }
                 if (_name != null)
                 {
-                    _name.text = _material.translatedName;
+                    _name.text = _material.materialName.GetLocalizedString();
                 }
             }
 

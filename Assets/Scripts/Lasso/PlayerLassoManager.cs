@@ -91,7 +91,7 @@ public class PlayerLassoManager : MonoBehaviour
             _lineRenderer = GetComponent<LineRenderer>();
         }
 
-        ImmediateLassoClear();
+        ClearLasso();
 
         CardManager.OnPlayerClickedThrowButton += OnPlayerDrawTurnStart;
         TurnManager.OnTurnChanged += OnTurnChanged;
@@ -115,13 +115,13 @@ public class PlayerLassoManager : MonoBehaviour
         }
         else if (turnMode == TurnManager.ETurnMode.Player)
         {
-            ImmediateLassoClear();
+            ClearLasso();
         }
     }
 
     private void OnPlayerDrawTurnStart()
     {
-        ImmediateLassoClear();
+        ClearLasso();
         _hasAlreadyDrawn = false;
     }
 
@@ -135,8 +135,9 @@ public class PlayerLassoManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StopCoroutine(InvertLasso());
-            ImmediateLassoClear();
+            ClearLasso();
             _startNewLine = true;
+            // TODO: a unified solution for changing time scale
             Time.timeScale = _slowMotionTimeScale;
         }
 
@@ -187,7 +188,8 @@ public class PlayerLassoManager : MonoBehaviour
         {
             if (InputSettings.IsPointrerOverUI)
             {
-                ImmediateLassoClear();
+                Time.timeScale = 1f;
+                ClearLasso();
                 return;
             }
 
@@ -197,7 +199,7 @@ public class PlayerLassoManager : MonoBehaviour
         }
     }
 
-    private void ImmediateLassoClear(float dealy = 0)
+    private void ClearLasso(float dealy = 0)
     {
         if (clearCoroutine != null)
             StopCoroutine(clearCoroutine);
@@ -353,6 +355,8 @@ public class PlayerLassoManager : MonoBehaviour
             _isResolvingALoop = false;
             return;
         }
+       
+        ClearLasso();
 
         using var _ = new DisposableGeneric(() =>
         {
@@ -373,7 +377,6 @@ public class PlayerLassoManager : MonoBehaviour
 
         _hasAlreadyDrawn = true;
         _spellParticleSystem.Stop();
-        ImmediateLassoClear(0.5f);
 
         foreach (var hit in hits)
         {
