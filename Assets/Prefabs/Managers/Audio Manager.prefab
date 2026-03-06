@@ -69,7 +69,7 @@ MonoBehaviour:
   EventPlayTrigger: 1
   EventStopTrigger: 0
   AllowFadeout: 1
-  TriggerOnce: 0
+  TriggerOnce: 1
   Preload: 1
   NonRigidbodyVelocity: 0
   Params: []
